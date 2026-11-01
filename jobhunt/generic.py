@@ -212,6 +212,38 @@ def _skills_in(text: str) -> list[str]:
     return [s for s in persona.get()["skills"] if re.search(rf"(?<![a-z]){re.escape(s.lower())}(?![a-z])", blob)]
 
 
+def _skill_text(s: str) -> str:
+    """'Picking and packing' → 'picking and packing' mid-sentence; keeps WMS, Excel, SQL, Python as written."""
+    first = s.split(" ")[0]
+    if any(c.isupper() for c in first[1:]) or first.isupper() or len(first) <= 3:
+        return s
+    proper = {"excel", "word", "python", "sap", "salesforce", "google", "microsoft", "canva", "xero", "sage", "english"}
+    return s if first.lower() in proper else s[:1].lower() + s[1:]
+
+
+def _notice(notice: str) -> str:
+    n = (notice or "").strip().rstrip(".")
+    if not n:
+        return ""
+    if re.search(r"immediate|now|straight away|right away", n, re.I):
+        return "I am available to start immediately"
+    if re.match(r"(?i)^(i |my )", n):
+        return n
+    return f"My notice period is {n[:1].lower() + n[1:]}"
+
+
+def _flow(sentences: list[str]) -> list[str]:
+    """Don't repeat 'As Warehouse Operative at Amazon, …' for every sentence about the same job."""
+    out, last = [], None
+    for f in sentences:
+        m = re.match(r"^As (.+?) at (.+?), I (.*)$", f)
+        if m and (m.group(1), m.group(2)) == last:
+            f = f"I also {m.group(3)}" if not m.group(3).startswith(("also ", "was ", "'m ")) else f"I {m.group(3)}"
+        last = (m.group(1), m.group(2)) if m else last
+        out.append(f)
+    return out
+
+
 def _join(items: list[str]) -> str:
     items = [i for i in items if i]
     return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1] if items else ""
@@ -228,11 +260,11 @@ def letter(job: dict, profile: dict) -> str:
     matched = _skills_in(desc)[:3]
     opening = f"I am applying for the {role} role at {company}."
     if matched:
-        opening += f" The role calls for {_join(matched)}, which is where my experience lies."
+        opening += f" The role calls for {_join([_skill_text(x) for x in matched])}, which is where my experience lies."
     hook = company_hook(desc, job.get("company") or "")
     if hook:
         opening += f" Your advert says: “{hook}” – that is the kind of place I want to contribute to."
-    body = top_facts(f"{role} {desc}", 3)
+    body = _flow(top_facts(f"{role} {desc}", 3))
     paras = []
     if body:
         paras.append(" ".join(body[:2]))
@@ -241,13 +273,14 @@ def letter(job: dict, profile: dict) -> str:
     summary = (career.get("summary") or "").strip()
     if summary and not paras:
         paras.append(summary)
-    extra = [s for s in p["skills"] if s not in matched][:3]
-    if matched or extra:
-        paras.append(f"I would also bring {_join((matched + extra)[:4])}.")
+    said = " ".join(paras + [opening]).lower()
+    extra = [x for x in p["skills"] if x not in matched and x.lower() not in said][:3]
+    if extra:
+        paras.append(f"I would also bring {_join([_skill_text(x) for x in extra])}.")
     quals = qualifications_line()
-    notice = (profile.get("notice_period") or "").strip()
+    notice = _notice(profile.get("notice_period"))
     closing = (f"My qualifications include {quals}. " if quals else "") + \
-        (f"I am {notice[:1].lower() + notice[1:]}, and I" if notice else "I") + \
+        (f"{notice}, and I" if notice else "I") + \
         f" would welcome the chance to discuss how I could contribute to {company}."
     if not paras:
         paras.append("[Add two or three sentences about your most relevant experience – fill in My career and "
