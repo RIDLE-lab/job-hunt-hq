@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from .persona import home_label
 
+import re
 import sys
 import threading
 from datetime import date, timedelta
@@ -96,8 +97,21 @@ def fetch_jobs(cfg: dict, log=print) -> list[dict]:
     return found
 
 
+HR_WORDS = re.compile(r"\b(hr|human resources?|people (advis|partner|operations|officer|coordinator|manager|business)|"
+                      r"personnel|recruit|talent|resourcing|learning (and|&) development|l&d|employee relations|"
+                      r"payroll|reward|onboarding|hris|organi[sz]ational development)", re.I)
+
+
+def wants_hr_jobs(cfg: dict) -> bool:
+    """The Talent World only lists HR jobs, so it's only searched for people looking for HR work."""
+    from . import persona
+    if persona.builtin():
+        return True
+    return any(HR_WORDS.search(k or "") for k in (cfg.get("search", {}).get("keywords") or []))
+
+
 def fetch_talentworld(conn, cfg: dict, log=print) -> list[dict]:
-    if not cfg.get("sources", {}).get("talentworld", True):
+    if not cfg.get("sources", {}).get("talentworld", True) or not wants_hr_jobs(cfg):
         return []
     known = {r["external_id"] for r in conn.execute("SELECT external_id FROM jobs WHERE source = 'The Talent World'")}
     first_run = not known

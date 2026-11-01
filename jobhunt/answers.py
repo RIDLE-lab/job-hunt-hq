@@ -311,7 +311,8 @@ def story_answer(question: str, job: dict) -> tuple[str, str, int]:
         score += sum(1 for w in re.findall(r"[a-z]{6,}", (s.get("title") or "").lower()) if w in words)
         return score
 
-    gap = next((g for g in GAPS if re.search(g[0], question, re.I)), None)
+    from . import persona
+    gap = next((g for g in GAPS if re.search(g[0], question, re.I)), None) if persona.builtin() else None
     preferred = [s for s in stories if gap and gap[2] and gap[2] in (s.get("tags") or "").lower()]
     best = max(preferred or stories, key=fit)
     score = fit(best)

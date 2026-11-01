@@ -531,6 +531,15 @@ def test_generic_scoring_and_letters():
                                  {"name": "Dana Dev", "notice_period": "Available in one month"})
         assert "Acme Ltd" in letter and "Django" in letter and "Chenai" not in letter and "CIPD" not in letter
         assert generic.experience_answer("Do you have experience of Django?").startswith("Yes. As Developer at Acme Ltd")
+        # a developer isn't sent HR-only job boards, or HR wording from the owner's own answers
+        from jobhunt.config import load_config
+        from jobhunt.refresh import wants_hr_jobs
+        assert not wants_hr_jobs(load_config())
+        assert wants_hr_jobs({"search": {"keywords": ["Recruitment Consultant"]}})
+        from jobhunt.answers import suggest
+        ans = suggest({"label": "Tell us about a time you led a restructure", "kind": "textarea", "options": []},
+                      {}, {}, {}, {}, "", {})[0]
+        assert "CIPD" not in ans and "MBA" not in ans
 
 
 def test_create_cv():
