@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Adding job · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="card" id="import-box">
+  <h2 id="import-msg">Reading the job and preparing your application pack…</h2>
+  <p class="muted" id="import-detail"></p>
+</section>
+<script>
+(async () => {
+  const msg = document.getElementById('import-msg'), detail = document.getElementById('import-detail');
+  let job;
+  try { job = JSON.parse(decodeURIComponent(location.hash.slice(1))); }
+  catch { msg.textContent = 'No job was received.'; detail.textContent = 'Open a job on LinkedIn or Indeed and click the Send to Job Hunt HQ button again.'; return; }
+  detail.textContent = job.jobs ? `${job.jobs.length} jobs from your search` : (job.title || '') + (job.company ? ' · ' + job.company : '');
+  if (job.jobs) msg.textContent = 'Adding the jobs from your search…';
+  history.replaceState(null, '', location.pathname);
+  try {
+    const r = await fetch('{{ url_for("api_import") }}', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(job)});
+    const out = await r.json();
+    if (!r.ok) throw new Error(out.error || 'Something went wrong.');
+    if (job.jobs) {
+      msg.textContent = `Added ${out.added} new job${out.added === 1 ? '' : 's'}` + (out.updated ? ` (${out.updated} you already had)` : '');
+      detail.textContent = 'Opening your dashboard…';
+      setTimeout(() => location.replace(out.job_url), 1200);
+      return;
+    }
+    location.replace(out.job_url);
+  } catch (e) {
+    msg.textContent = "Couldn't add the job";
+    detail.textContent = e.message + ' You can add it on the Add a job page instead.';
+  }
+})();
+</script>
+{% endblock %}

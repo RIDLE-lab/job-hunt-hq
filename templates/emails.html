@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_status.html" import status_icon, status_badge %}
+{% block title %}Emails · Job Hunt HQ{% endblock %}
+{% block content %}
+{% set email_labels = email_labels if email_labels is defined else dict(status_labels, job_alert="Job alert", other="Other email", second_stage="2nd stage") %}
+<section class="head"><div>
+  <h1>Emails</h1>
+  <p class="muted">Recruitment emails found in Gmail, sorted automatically. If one is sorted wrongly, change the application's status on the dashboard.</p>
+</div></section>
+<section class="card">
+  {% if events %}
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Received</th><th>Type</th><th>From</th><th>Subject</th><th>Matched to</th></tr></thead>
+    <tbody>
+    {% for e in events %}
+      <tr>
+        <td class="num">{{ e.received_at[:16].replace('T', ' ') }}</td>
+        <td>{{ status_badge(e.category, email_labels.get(e.category, e.category|replace('_', ' ')|capitalize)) }}</td>
+        <td class="small">{{ e.sender }}</td>
+        <td class="small">{{ e.subject }}<div class="muted tiny">{{ e.snippet }}</div></td>
+        <td class="small">{% if e.app_company %}{{ e.app_role }} · {{ e.app_company }}{% else %}<span class="muted">—</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <p class="empty">No emails yet. Connect Gmail on the <a href="{{ url_for('setup') }}">Setup</a> page, then press Refresh now.</p>
+  {% endif %}
+</section>
+{% endblock %}

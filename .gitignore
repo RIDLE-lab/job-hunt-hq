@@ -1,0 +1,8 @@
+# Your private things – never put these on GitHub
+config.yaml
+credentials.json
+data/
+.venv/
+__pycache__/
+*.pyc
+*.zip

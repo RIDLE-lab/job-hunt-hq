@@ -1,0 +1,22 @@
+{
+  "summary": "HR officer with experience across recruitment, onboarding, employee relations and HR systems.",
+  "experience": [
+    {"title": "HR Officer", "company": "Example Care Ltd", "location": "Chelmsford, Essex", "start": "03/2024", "end": "",
+     "description": "Run end-to-end recruitment for 40+ roles a year, from adverts to Right to Work and DBS checks.\nKeep personnel files audit-ready and support managers with absence, grievances and disciplinaries.\nBuilt Excel trackers for the recruitment pipeline and compliance deadlines.",
+     "full_history_only": "", "start_date": "", "end_date": "", "reason": ""},
+    {"title": "HR Assistant", "company": "Sample Services plc", "location": "London", "start": "06/2021", "end": "02/2024",
+     "description": "Administered the HRIS and onboarding for new starters.\nProduced monthly people reports for senior leaders.",
+     "full_history_only": "", "start_date": "", "end_date": "", "reason": "Moved to a more senior role"}
+  ],
+  "education": [
+    {"school": "Example University", "degree": "BA (Hons)", "field": "Business and Human Resource Management", "start": "2018",
+     "end": "2021", "expected": "", "kind": "bachelor", "form_degree": "Bachelors Degree", "form_field": "Human Resources Management",
+     "result": "2:1"}
+  ],
+  "certifications": ["CIPD Level 5 Associate Diploma in People Management"],
+  "skills": ["Recruitment", "Onboarding", "Employee Relations", "Absence Management", "HR Information Systems (HRIS)",
+             "Microsoft Excel", "GDPR", "Report Writing"],
+  "languages": [{"language": "English", "level": "Native"}],
+  "stories": [],
+  "competencies": []
+}

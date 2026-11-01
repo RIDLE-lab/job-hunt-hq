@@ -1,0 +1,81 @@
+# Job Hunt HQ settings.
+# Copy this file to config.yaml and fill in your keys. config.yaml stays on your PC only.
+
+profile:
+  name: Alex Example
+  email: alex@example.com
+  phone: "07000 000000"
+  linkedin: https://www.linkedin.com/in/your-profile
+  github: https://github.com/your-name
+  address: 1 Example Street, Southend-on-Sea, Essex, SS1 1AA, United Kingdom
+  location: Southend-on-Sea, Essex
+  current_employer: Example Ltd
+  current_title: HR Officer
+  notice_period: One month
+  salary_expectation: "£30,000 – £34,000"
+  right_to_work: Yes – no sponsorship required
+  cv_path: C:/Users/you/Documents/My CV.pdf
+  cover_letter_folder: C:/Users/you/Documents/Cover Letters
+
+search:
+  # Each line is searched separately on Reed and Adzuna.
+  keywords:
+    - Human Resources
+    - HR Advisor
+    - HR Officer
+    - People Advisor
+    - People Partner
+    - HR Business Partner
+    - People Operations
+    - L&D Coordinator
+    - Learning and Development
+    - HR Systems Analyst
+    - People Analytics
+    - Talent Acquisition
+    - Recruitment Advisor
+  # Example: living in south Essex, anywhere in Essex or Greater London is fine (furthest: Edgware).
+  # Each place is searched with its own radius in miles.
+  locations:
+    - {place: London, miles: 12}            # Greater London, out to Edgware, Uxbridge, Croydon
+    - {place: Southend-on-Sea, miles: 15}   # South Essex: Basildon, Rayleigh, Wickford, Billericay
+    - {place: Chelmsford, miles: 15}        # Mid Essex: Brentwood, Witham, Maldon
+    - {place: Harlow, miles: 10}            # West Essex: Epping, Loughton, Stansted
+  distance_miles: 15
+  hide_far_jobs: true       # hide jobs outside Essex / Greater London (e.g. Kent, Herts, Surrey)
+  min_salary: 28000
+  include_remote: true
+  # Jobs whose title contains any of these words are hidden.
+  exclude_title_words: [Director, Head of, Chief, Senior Manager, Payroll Manager, German, French speaking]
+  max_age_days: 14
+
+sources:
+  talentworld: true         # thetalentworld.co.uk – HR jobs, no key needed
+  reed_api_key: ""          # free: https://www.reed.co.uk/developers/jobseeker
+  adzuna_app_id: ""         # free: https://developer.adzuna.com/signup
+  adzuna_app_key: ""
+
+gmail:
+  enabled: false            # set to true after adding credentials.json (see README)
+  lookback_days: 30
+  read_job_alerts: true     # adds jobs from LinkedIn and Indeed job-alert emails
+
+ai:
+  # Optional. Leave blank to use the built-in letter writer (free).
+  # With a key from console.anthropic.com, letters are written by Claude (pay per use, a few pence each).
+  anthropic_api_key: ""
+  model: claude-haiku-5-5
+
+app:
+  port: 5055
+  open_browser: true
+  auto_refresh_hours: 3     # while the app is open, look for new jobs this often (0 = only when you press Refresh)
+
+# Emails you the new jobs each refresh finds, best match first, with your match %.
+# Needs a Gmail "app password": see README, "Job emails".
+email:
+  enabled: false
+  to: ""                    # empty = the email in your profile
+  from: ""                  # the Gmail account that sends it; empty = the email in your profile
+  gmail_app_password: ""    # the 16-letter code from myaccount.google.com/apppasswords
+  min_score: 50             # only jobs matching your CV this well (Good fit is 50+, Strong fit 70+)
+  max_jobs: 20

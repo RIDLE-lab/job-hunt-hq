@@ -1,0 +1,36 @@
+{# A live HTML likeness of the PDF – same content and order, in the chosen design. #}
+<div class="paper d-{{ prefs.design }}" id="paper" style="--acc: {{ accents[prefs.accent] }}">
+  <div class="pp-side">
+    <p class="pp-name">{{ cv.name or 'Your name' }}</p>
+    {% if cv.headline %}<p class="pp-head">{{ cv.headline }}</p>{% endif %}
+    <p class="pp-h">Contact</p>
+    {% for c in cv.contact %}<p class="pp-t">{{ c }}</p>{% endfor %}
+    {% if cv.skills %}<p class="pp-h">Skills</p>{% for s in cv.skills[:22] %}<p class="pp-t">• {{ s }}</p>{% endfor %}{% endif %}
+    {% if cv.languages %}<p class="pp-h">Languages</p>{% for s in cv.languages %}<p class="pp-t">{{ s }}</p>{% endfor %}{% endif %}
+    {% if cv.certifications %}<p class="pp-h">Certifications</p>{% for s in cv.certifications[:8] %}<p class="pp-t">• {{ s }}</p>{% endfor %}{% endif %}
+  </div>
+  <div class="pp-main">
+    <div class="pp-top">
+      <p class="pp-name">{{ cv.name or 'Your name' }}</p>
+      {% if cv.headline %}<p class="pp-head">{{ cv.headline }}</p>{% endif %}
+      {% if cv.contact %}<p class="pp-contact">{{ cv.contact|join('  |  ') }}</p>{% endif %}
+    </div>
+    {% if cv.summary %}<p class="pp-h">Profile</p><p class="pp-t">{{ cv.summary }}</p>{% endif %}
+    {% if cv.experience %}<p class="pp-h">Experience</p>
+      {% for e in cv.experience %}
+      <div class="pp-role"><p><b>{{ e.title }}</b>{% if e.company %} · {{ e.company }}{% endif %}</p><span>{{ e.dates }}</span></div>
+      {% if e.location %}<p class="pp-loc">{{ e.location }}</p>{% endif %}
+      <ul>{% for b in e.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
+      {% endfor %}
+    {% endif %}
+    {% if cv.education %}<p class="pp-h">Education</p>
+      {% for ed in cv.education %}<div class="pp-role"><p><b>{{ ed.qualification }}</b>{% if ed.school %} · {{ ed.school }}{% endif %}{% if ed.result %} – {{ ed.result }}{% endif %}</p><span>{{ ed.dates }}</span></div>{% endfor %}
+    {% endif %}
+    <div class="pp-extra">
+    {% if cv.skills %}<p class="pp-h">Skills</p><p class="pp-t">{{ cv.skills|join(' · ') }}</p>{% endif %}
+    {% if cv.certifications %}<p class="pp-h">Certifications</p><ul>{% for s in cv.certifications %}<li>{{ s }}</li>{% endfor %}</ul>{% endif %}
+    {% if cv.languages %}<p class="pp-h">Languages</p><p class="pp-t">{{ cv.languages|join(' · ') }}</p>{% endif %}
+    </div>
+    {% if not (cv.summary or cv.experience or cv.education) %}<p class="pp-t pp-empty">Your CV appears here as you fill in each step.</p>{% endif %}
+  </div>
+</div>

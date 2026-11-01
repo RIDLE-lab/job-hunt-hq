@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block title %}Apply for me · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head">
+  <div>
+    <h1>Apply for me</h1>
+    <p class="muted" id="rb-job">{% if state.job %}{{ state.job.title }} · {{ state.job.company }}{% else %}Pick a job below and the robot opens the employer's application in its own browser window.{% endif %}</p>
+  </div>
+  <span class="pill" id="rb-status">{{ state.status }}</span>
+</section>
+
+{% set idle = state.status == 'idle' %}
+<section class="card robot" id="rb-card" {% if idle %}hidden{% endif %}>
+  <p id="rb-msg" class="rb-msg">{{ state.message }}</p>
+  <form id="rb-questions" class="rb-questions" hidden></form>
+  <div class="row" id="rb-actions"></div>
+  <p class="muted small">The robot uses its own browser window, separate from your normal one. Sign in to each job site in
+    that window once and it remembers you. It never types passwords and never presses Submit.</p>
+</section>
+
+<section class="card" id="rb-logcard" {% if idle %}hidden{% endif %}>
+  <h2>What it's done</h2>
+  <ul class="rb-log" id="rb-log"></ul>
+</section>
+
+<div id="rb-start" {% if state.running %}hidden{% endif %}>
+<section class="card">
+  <h2>Apply from a link</h2>
+  <p class="muted small">Paste a job link – LinkedIn, an employer's careers page, Workday, Ashby, Greenhouse, SmartRecruiters… The app adds the job,
+    writes your cover letter and starts applying on the employer's own form.</p>
+  <form method="post" action="{{ url_for('robot_link') }}" class="row link-apply">
+    <input type="url" name="url" required placeholder="https://jobs.ashbyhq.com/…" aria-label="Job or application link">
+    <button class="btn btn-primary">Apply for me</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Ready for Apply for me</h2>
+  {% if ready %}
+  <p class="muted small">These jobs have the employer's own application link, best matches first.</p>
+  <ul class="rb-ready">
+    {% for j in ready %}
+    <li>
+      <div>
+        <a href="{{ url_for('job_detail', job_id=j.id) }}"><b>{{ j.title }}</b></a>
+        <span class="muted"> · {{ j.company }}{% if j.location %} · {{ j.location }}{% endif %}</span>
+      </div>
+      <span class="score-chip">{{ j.score if j.score is not none else '–' }}</span>
+      <form method="post" action="{{ url_for('robot_start', job_id=j.id) }}"><button class="btn btn-primary">Apply for me</button></form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No jobs with an employer application link yet.</p>
+  {% endif %}
+  {% if waiting %}
+  <p class="muted small">{{ waiting }} other job{{ 's' if waiting != 1 }} only {{ 'has' if waiting == 1 else 'have' }} a LinkedIn, Indeed or Reed link,
+    and the robot doesn't work on job boards. To add one here: open its advert, click the advert's Apply button, and press your
+    <b>Fill this application</b> bookmark once on the employer's page. The app then saves the link.</p>
+  {% endif %}
+</section>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const LABELS = {idle: "Not running", starting: "Starting", working: "Working", waiting: "Needs you",
+                  question: "Question for you", review: "Ready for you to submit", applied: "Applied",
+                  stopped: "Stopped", closed: "Window closed", error: "Stopped – problem"};
+  const SOURCES = {remembered: "Your earlier answer", rule: "From your details", ai: "Suggested by Claude – check it",
+                   draft: "A draft from the advert and your CV – make it yours", own_words: "Write this yourself",
+                   story: "From your examples in My career",
+                   competency: "Your saved competency answer (My career) – tailor it to this job",
+                   experience: "A brief answer from your CV – check it"};
+  let version = -1, shownQuestions = "";
+
+  async function send(action, answers) {
+    await fetch("{{ url_for('robot_api') }}", {method: "POST", headers: {"Content-Type": "application/json"},
+                                               body: JSON.stringify({action, answers})});
+    poll();
+  }
+
+  function button(text, cls, fn) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "btn " + (cls || ""); b.textContent = text;
+    b.onclick = () => { b.disabled = true; fn(); };
+    return b;
+  }
+
+  function renderQuestions(qs) {
+    const form = $("rb-questions");
+    form.replaceChildren();
+    qs.forEach((q) => {
+      const box = document.createElement("div");
+      box.className = "rb-q";
+      const lab = document.createElement("label");
+      lab.textContent = q.label || "(question without a label)";
+      lab.htmlFor = "rbq-" + q.id;
+      box.appendChild(lab);
+      if (q.hint) { const h = document.createElement("p"); h.className = "small muted rb-hint"; h.textContent = q.hint; box.appendChild(h); }
+      if (q.note) { const n = document.createElement("div"); n.className = "rb-note small"; n.textContent = q.note; box.appendChild(n); }
+      if (q.source === "own_words") {
+        const n = document.createElement("div"); n.className = "rb-note small";
+        n.append("They've asked for this in your own words, so I haven't written it. Points from your CV that fit this advert:");
+        const ul = document.createElement("ul");
+        (q.points || []).forEach((p) => { const li = document.createElement("li"); li.textContent = p; ul.appendChild(li); });
+        n.appendChild(ul); box.appendChild(n);
+      }
+      let input;
+      if (q.options && q.options.length) {
+        input = document.createElement("select");
+        input.appendChild(new Option("— choose —", ""));
+        q.options.forEach((o) => input.appendChild(new Option(o, o, false, o === q.suggestion)));
+      } else if (q.kind === "textarea") {
+        input = document.createElement("textarea");
+        input.rows = q.source === "story" || q.id === "advert" ? 10 : 5; input.value = q.suggestion || "";
+      } else {
+        input = document.createElement("input");
+        input.value = q.suggestion || "";
+      }
+      input.id = "rbq-" + q.id; input.dataset.qid = q.id;
+      box.appendChild(input);
+      const foot = document.createElement("div");
+      foot.className = "rb-foot small muted";
+      const rem = document.createElement("label");
+      const cb = document.createElement("input");
+      cb.type = "checkbox"; cb.checked = true; cb.dataset.remember = q.id;
+      rem.append(cb, " Remember this answer for other applications");
+      foot.append(q.source ? SOURCES[q.source] + " · " : "");
+      if (!q.no_remember) foot.append(rem);
+      box.appendChild(foot);
+      form.appendChild(box);
+    });
+  }
+
+  function collect() {
+    const out = {};
+    document.querySelectorAll("#rb-questions [data-qid]").forEach((el) => {
+      const cb = document.querySelector(`[data-remember="${el.dataset.qid}"]`);
+      out[el.dataset.qid] = {value: el.value, remember: cb ? cb.checked : false};
+    });
+    return out;
+  }
+
+  function render(s) {
+    $("rb-card").hidden = $("rb-logcard").hidden = s.status === "idle";
+    $("rb-status").textContent = LABELS[s.status] || s.status;
+    $("rb-status").className = "pill rb-" + s.status;
+    $("rb-msg").textContent = s.message || "";
+    if (s.job) $("rb-job").textContent = s.job.title + " · " + s.job.company;
+    const qs = s.status === "question" ? (s.questions || []) : [];
+    const key = qs.map((q) => q.id).join(",");
+    if (key !== shownQuestions) { renderQuestions(qs); shownQuestions = key; }
+    $("rb-questions").hidden = !qs.length;
+    const a = $("rb-actions");
+    a.replaceChildren();
+    if (s.status === "question") {
+      a.append(button("Send answers", "btn-primary", () => send("answers", collect())),
+               button("Skip – I'll answer in the window", "btn-ghost", () => send("continue")));
+    } else if (s.status === "waiting") {
+      a.append(button("Continue", "btn-primary", () => send("continue")));
+    } else if (s.status === "review") {
+      a.append(button("I've submitted – mark as applied", "btn-primary", () => send("done")),
+               button("There's another page – carry on", "btn-ghost", () => send("continue")));
+    } else if (s.status === "error") {
+      a.append(button("I've submitted – mark as applied", "btn-primary", () => send("done")));
+    }
+    if (["working", "starting"].includes(s.status))
+      a.append(button("Pause – I'll take over", "btn-ghost", () => send("pause")));
+    if (s.running && ["waiting", "review", "working"].includes(s.status))
+      a.append(button("Attach my CV & cover letter", "btn-ghost", () => send("attach")));
+    if (s.running) a.append(button(s.status === "applied" || s.status === "error" ? "Close the browser" : "Stop and close the browser",
+                                   "btn-ghost", () => send("stop")));
+    if (s.job && !s.running) {
+      const l = document.createElement("a");
+      l.className = "btn"; l.href = "/job/" + s.job.id; l.textContent = "Back to the job";
+      a.append(l);
+    }
+    // Finished: show the start page again, with this run as a short summary you can clear.
+    const finished = !s.running && s.status !== "idle";
+    if (finished) a.append(button("Clear – start another", "btn-primary", () => send("clear")));
+    $("rb-start").hidden = !!s.running;
+    $("rb-logcard").classList.toggle("rb-done", finished);
+    const log = $("rb-log");
+    log.replaceChildren(...(s.log || []).slice().reverse().map((t) => { const li = document.createElement("li"); li.textContent = t; return li; }));
+    if (["question", "waiting", "review"].includes(s.status) && document.hidden && window.Notification?.permission === "granted")
+      new Notification("Job Hunt HQ needs you", {body: s.message});
+  }
+
+  async function poll() {
+    try {
+      const s = await (await fetch("{{ url_for('robot_api') }}")).json();
+      const key = s.version + ":" + s.running;
+      if (key !== version) { version = key; render(s); }
+    } catch (e) { $("rb-msg").textContent = "Can't reach Job Hunt HQ – is the black window still open?"; }
+  }
+  if (window.Notification && Notification.permission === "default") Notification.requestPermission();
+  poll();
+  setInterval(poll, 1500);
+})();
+</script>
+{% endblock %}

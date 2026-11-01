@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Feedback · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>Feedback</h1>
+  <p class="muted">{% if is_admin %}What people have told you – problems, ideas and questions. Mark each one as planned or done,
+    and reply: they see your reply on their own Feedback page.{% else %}Tell us what's wrong, what's missing or what
+    you like. You'll see replies here.{% endif %}</p>
+</div></section>
+
+<section class="card">
+  <h2>Send feedback</h2>
+  {% with page_path = request.args.get('from', '') %}{% include "_feedback_form.html" %}{% endwith %}
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <h2>{{ 'Everyone’s feedback' if is_admin else 'What you’ve sent' }}</h2>
+    <nav class="app-tabs" aria-label="Show">
+      <a href="{{ url_for('feedback_page', show='open') }}" class="{{ 'on' if show == 'open' }}">Open <span>{{ counts.new + counts.planned }}</span></a>
+      {% for key, label in statuses %}<a href="{{ url_for('feedback_page', show=key) }}" class="{{ 'on' if show == key }}">{{ label }} <span>{{ counts[key] }}</span></a>{% endfor %}
+      <a href="{{ url_for('feedback_page', show='all') }}" class="{{ 'on' if show == 'all' }}">All</a>
+    </nav>
+  </div>
+  {% for f in items %}
+  <article class="fb fb-{{ f.kind }}">
+    <header>
+      <span class="fb-kind">{{ kinds[f.kind] }}</span>
+      <span class="pill fb-st-{{ f.status }}">{{ dict(statuses)[f.status] }}</span>
+      <span class="muted small">{% if is_admin %}<b>{{ f.name or f.username }}</b> · {% endif %}{{ f.created_at[:16].replace('T', ' ') }}{% if f.page %} · on <a href="{{ f.page }}">{{ f.page }}</a>{% endif %}</span>
+    </header>
+    <p class="fb-msg">{{ f.message }}</p>
+    {% if f.image %}<a href="{{ url_for('feedback_image', fid=f.id) }}" target="_blank" rel="noopener"><img class="fb-img" src="{{ url_for('feedback_image', fid=f.id) }}" alt="Screenshot sent with this feedback" loading="lazy"></a>{% endif %}
+    {% if is_admin %}
+    <form method="post" action="{{ url_for('feedback_update', fid=f.id) }}" class="fb-admin">
+      <label>Reply <span class="muted small">(they'll see this)</span><textarea name="reply" rows="2">{{ f.reply or '' }}</textarea></label>
+      <div class="row">
+        <select name="status" aria-label="Status">{% for key, label in statuses %}<option value="{{ key }}" {{ 'selected' if f.status == key }}>{{ label }}</option>{% endfor %}</select>
+        <button class="btn small">Save</button>
+        <button class="btn btn-ghost small danger" name="action" value="delete" onclick="return confirm('Delete this feedback?')">Delete</button>
+      </div>
+    </form>
+    {% elif f.reply %}
+    <p class="fb-reply"><b>Reply:</b> {{ f.reply }}</p>
+    {% endif %}
+  </article>
+  {% else %}
+  <p class="empty">{{ 'Nothing here.' if show != 'open' else ('No open feedback.' if is_admin else 'You haven’t sent any feedback yet.') }}</p>
+  {% endfor %}
+</section>
+{% endblock %}

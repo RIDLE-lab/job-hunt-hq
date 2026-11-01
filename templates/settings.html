@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}My settings · Job Hunt HQ{% endblock %}
+{% block content %}
+{% set p, sr, pr, em, gm = s.profile, s.search, s.prefs, s.email, s.gmail %}
+<section class="head"><div>
+  <h1>My settings</h1>
+  <p class="muted">Your details, the jobs Job Hunt HQ looks for, and your Gmail. Only you can see these.</p>
+</div></section>
+
+<form method="post" class="settings-form">
+<section class="card">
+  <h2>About you</h2>
+  <div class="form wide">
+    <div class="two">
+      <div><label>Full name<input name="name" value="{{ p.name or '' }}" required></label></div>
+      <div><label>Email<input name="email" type="email" value="{{ p.email or '' }}"></label></div>
+    </div>
+    <div class="two">
+      <div><label>Phone<input name="phone" value="{{ p.phone or '' }}"></label></div>
+      <div><label>Town, city or postcode<input name="location" value="{{ p.location or '' }}"></label></div>
+    </div>
+    <label>Home address <span class="muted">(for application forms)</span><input name="address" value="{{ p.address or '' }}"></label>
+    <div class="two">
+      <div><label>LinkedIn<input name="linkedin" value="{{ p.linkedin or '' }}"></label></div>
+      <div><label>GitHub or portfolio<input name="github" value="{{ p.github or '' }}"></label></div>
+    </div>
+    <div class="two">
+      <div><label>Current job title<input name="current_title" value="{{ p.current_title or '' }}"></label></div>
+      <div><label>Current employer<input name="current_employer" value="{{ p.current_employer or '' }}"></label></div>
+    </div>
+    <div class="two">
+      <div><label>Notice period<input name="notice_period" value="{{ p.notice_period or '' }}"></label></div>
+      <div><label>Salary expectation<input name="salary_expectation" value="{{ p.salary_expectation or '' }}" placeholder="e.g. £30,000 – £34,000"></label></div>
+    </div>
+    <label>Right to work in the UK<input name="right_to_work" value="{{ p.right_to_work or '' }}"></label>
+  </div>
+</section>
+
+<section class="card">
+  <h2>The jobs you want</h2>
+  <div class="form wide">
+    <label>Job titles <span class="muted">(one per line)</span><textarea name="keywords" rows="6">{{ (sr.keywords or [])|join('\n') }}</textarea></label>
+    <div class="two">
+      <div><label>Places and distance <span class="muted">(one per line: place, miles)</span>
+        <textarea name="places" rows="4" placeholder="Manchester, 15&#10;Leeds, 10">{{ places }}</textarea></label></div>
+      <div>
+        <label>Default distance<select name="miles">{% for m in miles %}<option value="{{ m }}" {{ 'selected' if (sr.distance_miles or 15) == m }}>{{ m }} miles</option>{% endfor %}</select></label>
+        <label>Minimum salary (£)<input name="min_salary" inputmode="numeric" value="{{ sr.min_salary or '' }}"></label>
+      </div>
+    </div>
+    <label class="check"><input type="checkbox" name="include_remote" value="yes" {{ 'checked' if sr.include_remote is not defined or sr.include_remote }}> Also show remote jobs</label>
+    <div class="two">
+      <div><label>Your level<select name="level">{% for v, l in levels %}<option value="{{ v }}" {{ 'selected' if (pr.level or 'mid') == v }}>{{ l }}</option>{% endfor %}</select></label></div>
+      <div><label>Hide titles containing<input name="exclude" value="{{ (sr.exclude_title_words or [])|join(', ') }}"></label></div>
+    </div>
+    <label>Your main skills <span class="muted">(comma-separated)</span><textarea name="skills" rows="3">{{ (pr.skills or [])|join(', ') }}</textarea></label>
+  </div>
+</section>
+
+<section class="card" id="gmail">
+  <h2>Gmail</h2>
+  <p class="muted">Connect Gmail and Job Hunt HQ reads replies from employers – acknowledgements, interviews, rejections,
+    offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything.
+    You need a Gmail <b>app password</b>: go to <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>
+    (2-Step Verification must be on), create one called “Job Hunt HQ”, and paste the 16 letters here.</p>
+  <div class="form wide">
+    <div class="two">
+      <div><label>Gmail address<input name="gmail_address" type="email" value="{{ em.from or '' }}" placeholder="you@gmail.com"></label></div>
+      <div><label>App password {% if has_password %}<span class="pill rb-applied">Saved</span>{% endif %}
+        <input name="gmail_app_password" type="password" autocomplete="off" placeholder="{{ 'Leave blank to keep the saved one' if has_password else '16 letters' }}"></label></div>
+    </div>
+    <label class="check"><input type="checkbox" name="read_job_alerts" value="yes" {{ 'checked' if gm.read_job_alerts is not defined or gm.read_job_alerts }}> Add jobs from my LinkedIn and Indeed job-alert emails</label>
+    <label class="check"><input type="checkbox" name="job_emails" value="yes" {{ 'checked' if em.enabled }}> Email me the best new jobs after each refresh</label>
+    <input type="hidden" name="send_to" value="{{ em.to or '' }}">
+  </div>
+</section>
+<div class="row sticky-save"><button class="btn btn-primary">Save settings</button></div>
+</form>
+{% endblock %}

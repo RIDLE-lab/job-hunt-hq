@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Setup · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>Setup</h1>
+  {% if builtin and not hosted %}<p class="muted">Settings live in <code>{{ status.config_file }}</code> in the app folder. Full steps are in README.md.</p>
+  {% else %}<p class="muted">Your browser buttons and connections. Change your details and the jobs you want in <a href="{{ url_for('settings_page') }}">My settings</a>.</p>{% endif %}
+</div></section>
+{% if builtin and not hosted %}<section class="card" id="phone">
+  <h2>Use on your iPhone</h2>
+  {% if not on_pc %}
+  <p>You're using Job Hunt HQ on another device. Phone access is managed from the Setup page on your PC.</p>
+  {% else %}
+  <p class="muted small">Your PC stays in charge – Job Hunt HQ keeps running there – and your iPhone opens it through
+    <b>Tailscale</b>, a free app that links your own devices privately. Nothing is opened up to the internet, it works
+    on any Wi-Fi or 4G/5G, and the app asks for your PIN on every new device.</p>
+  <ol class="phone-steps">
+    <li><b>Install Tailscale on this PC</b> from <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a>
+      and sign in (Google or Microsoft account is fine).
+      {% if ts.installed and ts.running %}<span class="pill rb-applied">Done{% if ts.name %} – {{ ts.name }}{% endif %}</span>
+      {% elif ts.installed %}<span class="pill">Installed – open it and sign in</span>{% endif %}</li>
+    <li><b>Install Tailscale on your iPhone</b> from the App Store and sign in with the <b>same account</b>.</li>
+    <li><b>Choose a PIN</b> (6–12 digits) for signing in on your phone.
+      {% if has_pin %}<span class="pill rb-applied">Set</span>{% endif %}
+      <form method="post" action="{{ url_for('setup_phone') }}" class="row">
+        <input type="hidden" name="action" value="pin">
+        <input name="pin" type="password" inputmode="numeric" pattern="[0-9]{6,12}" placeholder="{{ 'New PIN' if has_pin else 'PIN' }}" required>
+        <button class="btn">{{ 'Change PIN' if has_pin else 'Save PIN' }}</button>
+      </form></li>
+    <li><b>Share Job Hunt HQ with your phone</b>
+      {% if ts.serving %}<span class="pill rb-applied">On</span>{% endif %}
+      <form method="post" action="{{ url_for('setup_phone') }}" class="row">
+        <input type="hidden" name="action" value="{{ 'stop' if ts.serving else 'share' }}">
+        <button class="btn {{ '' if ts.serving else 'btn-primary' }}" {{ 'disabled' if not (ts.running and has_pin) }}>
+          {{ 'Stop sharing' if ts.serving else 'Turn on iPhone access' }}</button>
+      </form>
+      <span class="muted small">The first time, Tailscale may ask you to switch on “HTTPS certificates” for your account –
+        follow the link it shows, then press the button again.</span></li>
+    <li><b>Open it on your iPhone</b> (Tailscale switched on):
+      {% if phone_url %}<div class="phone-url"><a href="{{ phone_url }}">{{ phone_url }}</a></div>
+      <form method="post" action="{{ url_for('setup_phone') }}"><input type="hidden" name="action" value="email">
+        <button class="btn btn-ghost">Email me this link</button></form>{% else %}<span class="muted">– appears here once step 1 is done.</span>{% endif %}
+      In Safari tap <b>Share → Add to Home Screen</b> to keep it as an app.</li>
+  </ol>
+  {% endif %}
+  {% if phone_fill %}
+  <details>
+    <summary><b>The Fill and Send buttons on your iPhone</b></summary>
+    <p class="muted small">Safari on iPhone can't drag buttons, so: bookmark any page, then <b>Edit</b> the bookmark, rename it and
+      paste the code below as its address. On a job form, tap the address bar and pick the bookmark.</p>
+    <p><b>Fill this application (iPhone)</b></p>
+    <textarea class="copy-box" readonly onclick="this.select()">{{ phone_fill }}</textarea>
+    <button type="button" class="btn btn-ghost" onclick="navigator.clipboard.writeText(this.previousElementSibling.value).then(()=>this.textContent='Copied')">Copy</button>
+    <p><b>Send to Job Hunt HQ (iPhone)</b></p>
+    <textarea class="copy-box" readonly onclick="this.select()">{{ phone_send }}</textarea>
+    <button type="button" class="btn btn-ghost" onclick="navigator.clipboard.writeText(this.previousElementSibling.value).then(()=>this.textContent='Copied')">Copy</button>
+  </details>
+  {% endif %}
+  <p class="muted small">On your phone you can do everything except watch the robot's browser: it runs on your PC. You can start
+    Apply for me and answer its questions from your phone; signing in to job sites, CAPTCHAs and pressing Submit still
+    happen on the PC – or use the Fill button on your phone to fill a form there.</p>
+</section>{% endif %}
+
+<section class="card" id="button">
+  <h2>Your two browser buttons</h2>
+  <p>Drag <b>both</b> buttons onto your browser's bookmarks bar (press <b>Ctrl+Shift+B</b> if you can't see the bar):</p>
+  <div class="row">
+    <a class="btn btn-primary bookmarklet" href="{{ bookmarklet }}" onclick="event.preventDefault(); alert('Drag this button to your bookmarks bar.');">Send to Job Hunt HQ</a>
+    <a class="btn btn-primary bookmarklet" href="{{ fill_bookmarklet }}" onclick="event.preventDefault(); alert('Drag this button to your bookmarks bar.');">Fill this application</a>
+  </div>
+  <ol class="steps small" style="margin-top:14px">
+    <li>On a job advert (LinkedIn, Indeed…), click <b>Send to Job Hunt HQ</b>. The app scores it and writes your cover letter.</li>
+    <li>Click the site's <b>Apply</b> button to reach the employer's form.</li>
+    <li>On the form, click <b>Fill this application</b>. It fills your details, the message and cover letter boxes, attaches your
+      CV and the cover letter as a PDF, and highlights everything it filled.</li>
+    <li>Check the highlighted fields, answer anything left blank, press the site's Submit, then press
+      <b>I've submitted – mark as applied</b> in the blue box.</li>
+  </ol>
+  <p class="muted small">The app must be running (run.bat). Both buttons open a small Job Hunt HQ window for a moment – if your
+    browser blocks it, allow pop-ups for that site (LinkedIn, Indeed, and the first time on each employer site). The Fill button
+    contains a private key, so other websites can't read your details. If you ever share your bookmarks, delete
+    <code>data\access_token.txt</code> and drag the buttons again.</p>
+</section>
+
+<section class="card">
+  {% if not builtin %}
+  <ul class="checks">
+    <li class="{{ 'ok' if status.cv_file else 'todo' }}"><b>CV</b> – {% if status.cv_file %}attaching {{ status.cv_name }}{% else %}<a href="{{ url_for('cv_builder') }}">upload or create one</a>{% endif %}</li>
+    <li class="{{ 'ok' if status.gmail_enabled and status.gmail_method else 'todo' }}"><b>Reading Gmail</b> –
+      {% if status.gmail_enabled and status.gmail_method %}on{% else %}off – add a Gmail app password in <a href="{{ url_for('settings_page') }}#gmail">My settings</a>{% endif %}</li>
+    <li class="{{ 'ok' if status.email[0] else 'opt' }}" id="email"><b>Job emails</b> – {{ ('on: new jobs scoring ' ~ status.email_min ~ '% or more go to ' ~ status.email_to) if status.email[0] else 'off (My settings)' }}</li>
+    <li class="{{ 'ok' if status.reed or status.adzuna else 'todo' }}"><b>Job sources</b> – {{ 'Reed and Adzuna searched for you' if status.reed and status.adzuna else 'ask ' ~ 'the owner to add the job-site keys' }}</li>
+  </ul>
+  {% if status.email[0] %}<form method="post" action="{{ url_for('test_email') }}"><button class="btn">Send me a test email</button></form>{% endif %}
+  {% else %}
+  <ul class="checks">
+    <li class="{{ 'ok' if status.config_file == 'config.yaml' else 'todo' }}">
+      <b>Your settings file</b> – {{ 'config.yaml found' if status.config_file == 'config.yaml' else 'copy config.example.yaml to config.yaml' }}</li>
+    <li class="{{ 'ok' if status.cv else 'todo' }}">
+      <b>CV</b> – {{ ('using ' ~ status.cv_file ~ ' (always the latest version of “Rashid Idle CV”)') if status.cv else 'not found at ' ~ cfg.profile.cv_path }}</li>
+    <li class="{{ 'ok' if status.reed else 'todo' }}"><b>Reed jobs</b> – {{ 'key added' if status.reed else 'add your free Reed API key' }}</li>
+    <li class="{{ 'ok' if status.adzuna else 'todo' }}"><b>Adzuna jobs</b> – {{ 'keys added' if status.adzuna else 'add your free Adzuna app ID and key' }}</li>
+    <li class="{{ 'ok' if status.gmail_enabled and status.gmail_method else 'todo' }}"><b>Reading Gmail</b> (replies and LinkedIn/Indeed job alerts) –
+      {% if status.gmail_enabled and status.gmail_method == 'app_password' %}on, using your Gmail app password
+      {% elif status.gmail_enabled and status.gmail_method == 'api' %}on, using credentials.json{% if not status.gmail_signed_in %} – you'll sign in to Google the first time you press Refresh now{% endif %}
+      {% elif status.gmail_method %}set gmail: enabled: true in config.yaml
+      {% else %}add your Gmail app password (see Job emails below), then set gmail: enabled: true{% endif %}</li>
+    <li class="{{ 'ok' if status.email[0] else 'opt' }}" id="email"><b>Job emails</b> – {{ ('on: new jobs scoring ' ~ status.email_min ~ '% or more go to ' ~ status.email_to) if status.email[0] else status.email[1] }}</li>
+    <li class="{{ 'ok' if status.auto_hours else 'opt' }}"><b>Automatic refresh</b> – {{ ('every ' ~ (status.auto_hours|int if status.auto_hours == status.auto_hours|int else status.auto_hours) ~ ' hours while the app is open') if status.auto_hours else 'off (app: auto_refresh_hours in config.yaml)' }}</li>
+    <li class="{{ 'ok' if status.ai else 'opt' }}"><b>Claude-written letters (optional)</b> – {{ 'on' if status.ai else 'off: using the free built-in letter writer' }}</li>
+  </ul>
+  <form method="post" action="{{ url_for('test_email') }}"><button class="btn">Send me a test email</button></form>
+  {% endif %}
+</section>
+{% endblock %}

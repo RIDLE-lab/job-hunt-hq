@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}My career · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head">
+  <div>
+    <h1>My career</h1>
+    <p class="muted">What Apply for me uses to fill "My Experience" pages: work history, education, skills and languages.
+      It started from your CV. Keep it up to date, and every later application uses it.</p>
+  </div>
+</section>
+
+<form method="post" class="career">
+<section class="card">
+  <div class="card-head"><h2>Work experience</h2><button type="button" class="btn btn-ghost" data-add="exp">Add a job</button></div>
+  <p class="muted small">Newest first. Dates as MM/YYYY. Leave "To" empty if you still work there. The robot types these into
+    Workday's “My Experience” page (and similar forms) exactly as written here.</p>
+  <div class="rows" id="exp-rows">
+    {% for e in career.experience %}{% set i = loop.index0 %}
+    <fieldset class="row-card">
+      <div class="grid3">
+        <label>Job title<input name="exp-{{ i }}-title" value="{{ e.title }}"></label>
+        <label>Company<input name="exp-{{ i }}-company" value="{{ e.company }}"></label>
+        <label>Location<input name="exp-{{ i }}-location" value="{{ e.location }}"></label>
+        <label>From<input name="exp-{{ i }}-start" value="{{ e.start }}" placeholder="MM/YYYY"></label>
+        <label>To<input name="exp-{{ i }}-end" value="{{ e.end }}" placeholder="Empty = current"></label>
+        <label>Exact start (dd/mm/yyyy)<input name="exp-{{ i }}-start_date" value="{{ e.start_date or '' }}" placeholder="for forms that want the day"></label>
+        <label>Exact end (dd/mm/yyyy)<input name="exp-{{ i }}-end_date" value="{{ e.end_date or '' }}"></label>
+        <label>Reason for leaving<input name="exp-{{ i }}-reason" value="{{ e.reason or '' }}" placeholder="e.g. Fixed-term contract ended"></label>
+        <label>Employed through an agency?<input name="exp-{{ i }}-agency" value="{{ e.agency or '' }}" placeholder="Agency name, if any"></label>
+      </div>
+      <label>Description<textarea name="exp-{{ i }}-description" rows="4">{{ e.description }}</textarea></label>
+      <label class="check small"><input type="checkbox" name="exp-{{ i }}-full_history_only" value="yes" {{ 'checked' if e.full_history_only }}>
+        Only on forms that ask for my full employment history (left off Workday-style “relevant roles” sections)</label>
+      <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+    </fieldset>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-head"><h2>Education and qualifications</h2><button type="button" class="btn btn-ghost" data-add="edu">Add a qualification</button></div>
+  <div class="rows" id="edu-rows">
+    {% for e in career.education %}{% set i = loop.index0 %}
+    <fieldset class="row-card">
+      <div class="grid3">
+        <label>School or university<input name="edu-{{ i }}-school" value="{{ e.school }}"></label>
+        <label>Qualification<input name="edu-{{ i }}-degree" value="{{ e.degree }}"></label>
+        <label>Subject<input name="edu-{{ i }}-field" value="{{ e.field }}"></label>
+        <label>From (year)<input name="edu-{{ i }}-start" value="{{ e.start }}"></label>
+        <label>To (year)<input name="edu-{{ i }}-end" value="{{ e.end }}" placeholder="Empty = in progress"></label>
+        <label>Exact start (dd/mm/yyyy)<input name="edu-{{ i }}-start_date" value="{{ e.start_date or '' }}"></label>
+        <label>Exact end (dd/mm/yyyy)<input name="edu-{{ i }}-end_date" value="{{ e.end_date or '' }}"></label>
+        <label>Expected end (if in progress)<input name="edu-{{ i }}-expected" value="{{ e.expected or '' }}" placeholder="YYYY"></label>
+        <label>Result / grade<input name="edu-{{ i }}-result" value="{{ e.result or '' }}" placeholder="e.g. 2:2, Pass, Pending"></label>
+        <label>Form choice: degree<input name="edu-{{ i }}-form_degree" value="{{ e.form_degree or '' }}" placeholder="e.g. Masters Degree"></label>
+        <label>Form choice: field of study<input name="edu-{{ i }}-form_field" value="{{ e.form_field or '' }}" placeholder="e.g. Human Resources Management"></label>
+        <label>Level<select name="edu-{{ i }}-kind">
+          {% for k, l in [('master', 'Master’s / MBA'), ('bachelor', 'Bachelor’s'), ('professional', 'Professional (CIPD etc.)'), ('secondary', 'School / college')] %}
+          <option value="{{ k }}" {{ 'selected' if e.kind == k }}>{{ l }}</option>{% endfor %}</select></label>
+      </div>
+      <label class="check small"><input type="checkbox" name="edu-{{ i }}-full_history_only" value="yes" {{ 'checked' if e.full_history_only }}>
+        Only on forms that ask for my full education history</label>
+      <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+    </fieldset>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card" id="competencies">
+  <div class="card-head"><h2>Competency answers</h2><button type="button" class="btn btn-ghost" data-add="comp">Add a competency</button></div>
+  <p class="muted small">For forms with a box per competency (“Leadership”, “Communication”, “Planning and organising”…). The robot
+    offers the matching answer for you to check and tailor. Tags are other words a form might use for the same competency.</p>
+  <div class="rows" id="comp-rows">
+    {% for e in career.competencies %}{% set i = loop.index0 %}
+    <fieldset class="row-card">
+      <div class="grid3">
+        <label>Competency<input name="comp-{{ i }}-name" value="{{ e.name }}"></label>
+        <label style="grid-column: span 2">Tags<input name="comp-{{ i }}-tags" value="{{ e.tags }}"></label>
+      </div>
+      <label>Your answer<textarea name="comp-{{ i }}-answer" rows="5">{{ e.answer }}</textarea></label>
+      <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+    </fieldset>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card" id="examples">
+  <div class="card-head"><h2>My examples</h2><button type="button" class="btn btn-ghost" data-add="sty">Add an example</button></div>
+  <p class="muted small">Your real stories for “Describe a time when…” and “Give an example…” questions. The robot picks the one that best
+    fits each question and writes the answer in the right order (situation, task, action, result, what you'd do differently).
+    Tags are the words a question might use. Keep them true – an interviewer will ask you about them.</p>
+  <div class="rows" id="sty-rows">
+    {% for e in career.stories %}{% set i = loop.index0 %}
+    <fieldset class="row-card">
+      <div class="grid3">
+        <label>Title<input name="sty-{{ i }}-title" value="{{ e.title }}"></label>
+        <label style="grid-column: span 2">Tags<input name="sty-{{ i }}-tags" value="{{ e.tags }}"></label>
+      </div>
+      <label>Situation<textarea name="sty-{{ i }}-situation" rows="3">{{ e.situation }}</textarea></label>
+      <label>Task – your role<textarea name="sty-{{ i }}-task" rows="2">{{ e.task }}</textarea></label>
+      <label>Action – what you did<textarea name="sty-{{ i }}-action" rows="4">{{ e.action }}</textarea></label>
+      <label>Result<textarea name="sty-{{ i }}-result" rows="2">{{ e.result }}</textarea></label>
+      <label>What you'd do differently<textarea name="sty-{{ i }}-learned" rows="2">{{ e.learned }}</textarea></label>
+      <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+    </fieldset>
+    {% endfor %}
+  </div>
+  <p><button class="btn btn-primary">Save my career details</button></p>
+</section>
+
+<section class="card">
+  <h2>Skills, certifications and languages</h2>
+  <label>Skills <span class="muted small">(one per line, or separated by commas – added to Workday's Skills box)</span>
+    <textarea name="skills" rows="5">{{ career.skills|join('\n') }}</textarea></label>
+  <label>Certifications<textarea name="certifications" rows="2">{{ career.certifications|join('\n') }}</textarea></label>
+  <label>Languages <span class="muted small">(one per line: Language – level)</span>
+    <textarea name="languages" rows="4">{% for l in career.languages %}{{ l.language }} – {{ l.level }}
+{% endfor %}</textarea></label>
+  <p><button class="btn btn-primary">Save my career details</button></p>
+</section>
+</form>
+
+<section class="card" id="answers">
+  <h2>Answers the robot remembers</h2>
+  {% if answers %}
+  <p class="muted small">Questions you answered with “Remember” ticked. Change an answer or delete it, and the robot asks you again next time.</p>
+  <form method="post" action="{{ url_for('career_answers') }}">
+    <table class="answers-table">
+      <thead><tr><th>Question</th><th>Your answer</th><th>Delete</th></tr></thead>
+      <tbody>
+      {% for a in answers %}
+        <tr><td>{{ a.question }}<input type="hidden" name="key" value="{{ a.key }}"></td>
+            <td><input name="answer-{{ a.key }}" value="{{ a.answer }}" aria-label="Answer to {{ a.question }}"></td>
+            <td><input type="checkbox" name="delete-{{ a.key }}" value="1" aria-label="Delete"></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p><button class="btn">Save answers</button></p>
+  </form>
+  {% else %}
+  <p class="empty">None yet. When the robot asks you a question and you tick “Remember”, it appears here.</p>
+  {% endif %}
+</section>
+
+<template id="tpl-exp"><fieldset class="row-card"><div class="grid3">
+  <label>Job title<input name="exp-N-title"></label><label>Company<input name="exp-N-company"></label>
+  <label>Location<input name="exp-N-location"></label><label>From<input name="exp-N-start" placeholder="MM/YYYY"></label>
+  <label>To<input name="exp-N-end" placeholder="Empty = current"></label></div>
+  <label>Description<textarea name="exp-N-description" rows="4"></textarea></label>
+  <label class="check small"><input type="checkbox" name="exp-N-full_history_only" value="yes"> Only on forms that ask for my full employment history</label>
+  <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+<template id="tpl-edu"><fieldset class="row-card"><div class="grid3">
+  <label>School or university<input name="edu-N-school"></label><label>Qualification<input name="edu-N-degree"></label>
+  <label>Subject<input name="edu-N-field"></label><label>From (year)<input name="edu-N-start"></label>
+  <label>To (year)<input name="edu-N-end" placeholder="Empty = in progress"></label>
+  <label>Expected end (if in progress)<input name="edu-N-expected" placeholder="YYYY"></label>
+  <label>Result / grade<input name="edu-N-result"></label>
+  <label>Form choice: degree<input name="edu-N-form_degree" placeholder="e.g. Masters Degree"></label>
+  <label>Form choice: field of study<input name="edu-N-form_field"></label>
+  <label>Level<select name="edu-N-kind"><option value="master">Master’s / MBA</option><option value="bachelor">Bachelor’s</option>
+  <option value="professional">Professional (CIPD etc.)</option><option value="secondary">School / college</option></select></label></div>
+  <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+<template id="tpl-comp"><fieldset class="row-card"><div class="grid3">
+  <label>Competency<input name="comp-N-name"></label><label style="grid-column: span 2">Tags<input name="comp-N-tags"></label></div>
+  <label>Your answer<textarea name="comp-N-answer" rows="5"></textarea></label>
+  <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+<template id="tpl-sty"><fieldset class="row-card"><div class="grid3">
+  <label>Title<input name="sty-N-title"></label><label style="grid-column: span 2">Tags<input name="sty-N-tags" placeholder="e.g. stakeholder, influence, change"></label></div>
+  <label>Situation<textarea name="sty-N-situation" rows="3"></textarea></label><label>Task – your role<textarea name="sty-N-task" rows="2"></textarea></label>
+  <label>Action – what you did<textarea name="sty-N-action" rows="4"></textarea></label><label>Result<textarea name="sty-N-result" rows="2"></textarea></label>
+  <label>What you'd do differently<textarea name="sty-N-learned" rows="2"></textarea></label>
+  <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+<script>
+  let counter = 1000;
+  document.addEventListener("click", (e) => {
+    const add = e.target.closest("[data-add]");
+    if (add) {
+      const kind = add.dataset.add, html = document.getElementById("tpl-" + kind).innerHTML.replaceAll("-N-", "-" + (counter++) + "-");
+      document.getElementById(kind + "-rows").insertAdjacentHTML(kind === "exp" ? "afterbegin" : "beforeend", html);
+    }
+    const rm = e.target.closest("[data-remove]");
+    if (rm) rm.closest("fieldset").remove();
+  });
+</script>
+{% endblock %}

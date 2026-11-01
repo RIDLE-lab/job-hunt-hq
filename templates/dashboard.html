@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% from "_status.html" import status_icon, status_badge %}
+{% block content %}
+{% set email_labels = email_labels if email_labels is defined else dict(status_labels, job_alert="Job alert", other="Other email", second_stage="2nd stage") %}
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-date">{{ today_label }}{% if meta.last_refresh %} · jobs checked at {{ meta.last_refresh[11:16] }}{% endif %}</p>
+    <h1>{{ greeting }}, {{ me.first }}.</h1>
+    <p class="hero-sub">{% if kpis.new_today %}{{ kpis.new_today }} new job{{ 's' if kpis.new_today != 1 }} came in today. {% endif %}{{ kpis.matches }} match{{ 'es' if kpis.matches != 1 }} to look through, and {{ kpis.waiting }} application{{ 's' if kpis.waiting != 1 }} waiting to hear back.</p>
+    <dl class="figures">
+      <a href="#matches"><dt>To review</dt><dd>{{ kpis.matches }}</dd></a>
+      <a href="#applications"><dt>Applied</dt><dd>{{ kpis.applied }}</dd></a>
+      <div><dt>Waiting</dt><dd>{{ kpis.waiting }}</dd></div>
+      <div class="good"><dt>Moving forward</dt><dd>{{ kpis.progressing }}</dd></div>
+      <div class="bad"><dt>Rejected</dt><dd>{{ kpis.rejected }}</dd></div>
+    </dl>
+  </div>
+  <figure class="radar" aria-label="Your best matches">
+    <div class="radar-scope">
+      <svg viewBox="0 0 200 200" aria-hidden="true" class="rings">
+        <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/>
+        <path d="M100 4v192M4 100h192"/>
+      </svg>
+      <div class="sweep" aria-hidden="true"></div>
+      {% for j in jobs[:18] %}
+      <a class="blip{{ ' ready' if j.status == 'prepared' }}{{ ' strong' if (j.score or 0) >= 70 }}" data-score="{{ j.score or 0 }}" href="{{ url_for('job_detail', job_id=j.id) }}"
+         aria-label="{{ j.title }} at {{ j.company }}, {{ j.score or 'no' }} match"><span class="tip">{{ j.title }}<small>{{ j.company }} · {{ j.score or '–' }}</small></span></a>
+      {% endfor %}
+    </div>
+    <figcaption><span><i class="k ready"></i>Letter ready</span><span><i class="k strong"></i>Strong fit</span><span><i class="k"></i>Other matches</span><em>Closer to the centre = better match</em></figcaption>
+  </figure>
+</section>
+
+{% set letters = jobs|selectattr('status', 'equalto', 'prepared')|list %}
+{% if attention or letters or kpis.new_today %}
+<section class="card next">
+  <h2>Your next steps<span class="count">{{ attention|length + (1 if letters else 0) + (1 if kpis.new_today else 0) }}</span></h2>
+  {% if letters or kpis.new_today %}
+  <div class="steps-grid today">
+    {% if letters %}
+    <a class="step" href="{{ url_for('job_detail', job_id=letters[0].id) }}">
+      <span class="step-ico">{{ icon('mail') }}</span>
+      <span><b>{{ letters|length }} cover letter{{ 's' if letters|length != 1 }} ready</b><small>Starting with {{ letters[0].company }}</small></span>
+    </a>
+    {% endif %}
+    {% if kpis.new_today %}
+    <a class="step" href="{{ url_for('dashboard', sort='newest') }}#matches">
+      <span class="step-ico">{{ icon('plus') }}</span>
+      <span><b>{{ kpis.new_today }} new job{{ 's' if kpis.new_today != 1 }} today</b><small>Newest first</small></span>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% for m in attention_months %}
+  <details class="month"{{ ' open' if m.open }}>
+    <summary><span class="month-name">{{ m.label }}</span><span class="month-n">{{ m.steps|length }}</span></summary>
+    <div class="steps-grid">
+      {% for a in m.steps %}
+      <a class="step st-{{ a.status }}" href="/applications?q={{ a.company|urlencode }}">
+        <span class="step-ico">{{ status_icon(a.status) }}</span>
+        <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{{ a.company }} · {{ (a.next_date or a.when|nice_date) }}</small></span>
+      </a>
+      {% endfor %}
+    </div>
+  </details>
+  {% endfor %}
+</section>
+{% endif %}
+
+<div class="grid2">
+<section class="card" id="matches">
+  <div class="card-head">
+    <h2>Jobs to review</h2>
+    <form class="filters" method="get">
+      {% if src %}<input type="hidden" name="src" value="{{ src }}">{% endif %}
+      <input type="search" name="q" value="{{ q }}" placeholder="Search title, company, place" aria-label="Search jobs">
+      <select name="fit" aria-label="Fit" onchange="this.form.submit()">
+        <option value="">All fits</option>
+        {% for f in ['Strong fit', 'Good fit', 'Stretch', 'Weak fit', 'Not scored'] %}
+        <option {{ 'selected' if fit == f }}>{{ f }}</option>{% endfor %}
+      </select>
+      <select name="posted" aria-label="Posted" onchange="this.form.submit()">
+        {% for v, label in [('', 'Posted any time'), ('1', 'Last 24 hours'), ('3', 'Last 3 days'), ('7', 'Last week'),
+                            ('14', 'Last 2 weeks'), ('30', 'Last month')] %}
+        <option value="{{ v }}" {{ 'selected' if posted == v }}>{{ label }}</option>{% endfor %}
+      </select>
+      <select name="sort" aria-label="Sort" onchange="this.form.submit()">
+        <option value="" {{ 'selected' if not sort }}>Best match first</option>
+        <option value="newest" {{ 'selected' if sort == 'newest' }}>Newest first</option>
+      </select>
+    </form>
+  </div>
+  {% if sources|length > 1 or src %}
+  <nav class="src-filter" aria-label="Where jobs came from">
+    <a href="{{ url_for('dashboard', **dict(args, src=None)) }}#matches" class="{{ 'on' if not src }}">All</a>
+    {% for name, n in sources %}
+    <a href="{{ url_for('dashboard', **dict(args, src=name)) }}#matches" class="{{ 'on' if src == name }}">{{ name }} <span>{{ n }}</span></a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  {% if jobs %}
+  <ul class="jobs">
+    {% for j in jobs %}
+    <li class="job">
+      <div class="score score-{{ fit_label(j.score)|lower|replace(' ', '-') }}" title="{{ fit_label(j.score) }}">{{ j.score if j.score is not none else '–' }}</div>
+      <div class="job-main">
+        <a href="{{ url_for('job_detail', job_id=j.id) }}" class="job-title">{{ j.title }}</a>
+        <div class="muted small">{{ j.company }}{% if j.location %} · {{ j.location }}{% endif %}{% if j.salary_text %} · {{ j.salary_text }}{% endif %}
+          {% if j.age is not none %} · <span class="age{{ ' age-new' if j.age <= 1 }}" title="Posted {{ j.posted }}">{{ 'today' if j.age <= 0 else 'yesterday' if j.age == 1 else j.age ~ ' days ago' if j.age < 14 else (j.age // 7) ~ ' weeks ago' if j.age < 60 else (j.age // 30) ~ ' months ago' }}</span>{% else %} · <span class="age" title="The site didn't say when this was posted, so it only shows under Posted any time">date unknown</span>{% endif %}</div>
+        {% if j.score_reasons %}<div class="reasons small">{{ j.score_reasons }}</div>{% endif %}
+      </div>
+      <div class="job-side small">
+        <span class="src">{{ j.source }}</span>
+        {% if j.status == 'prepared' %}<span class="pill pill-ready">Letter ready</span>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if total_jobs > jobs|length %}
+  <p class="more"><a class="btn btn-ghost" href="{{ url_for('dashboard', **dict(args, limit=limit + 50)) }}#matches">Show 50 more</a>
+    <span class="muted small">Showing {{ jobs|length }} of {{ total_jobs }}</span></p>
+  {% endif %}
+  {% else %}
+  <p class="empty">No jobs to review{% if q or fit or posted or src %} for this filter{% endif %}.{% if posted and src in ('LinkedIn', 'Indeed') %} Most saved LinkedIn and Indeed jobs have no posting date, so set Posted to "any time" to see them.{% endif %} Press <b>Refresh now</b> to search Reed and Adzuna, or <a href="{{ url_for('add_job') }}">add a job</a> from LinkedIn.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Recent replies</h2>
+  {% if events %}
+  <ul class="events">
+    {% for e in events %}
+    <li class="reply st-{{ e.category }}">
+      <span class="reply-ico">{{ status_icon(e.category) }}</span>
+      <div class="reply-main">
+        <span class="reply-st">{{ email_labels.get(e.category, e.category|replace('_', ' ')|capitalize) }}</span>
+        <strong>{{ e.app_company or e.sender.split('<')[0] }}</strong>
+        <div class="muted small reply-subj">{{ e.subject }}</div>
+        <div class="muted tiny">{{ e.received_at[:16].replace('T', ' ') }}</div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Replies from employers show here once Gmail is connected. <a href="{{ url_for('setup') }}">See setup</a>.</p>
+  {% endif %}
+</section>
+</div>
+
+<section class="card" id="applications">
+  <div class="card-head"><h2>Latest applications</h2><a class="card-link" href="/applications">See all {{ apps|length }} applications</a></div>
+  <div class="table-wrap">
+  <table class="apps">
+    <thead><tr><th>Role</th><th>Company</th><th>Applied</th><th>Status</th><th>Next step</th></tr></thead>
+    <tbody>
+    {% for a in apps[:8] %}
+      <tr>
+        <td>{% if a.job_id %}<a href="{{ url_for('job_detail', job_id=a.job_id) }}">{{ a.role }}</a>{% else %}{{ a.role }}{% endif %}
+          {% if a.salary_text %}<div class="muted tiny">{{ a.salary_text }}</div>{% endif %}</td>
+        <td>{{ a.company }}<div class="muted tiny">{{ a.location or '' }}</div></td>
+        <td class="num">{{ a.applied_on or '—' }}</td>
+        <td>
+          <form method="post" action="{{ url_for('application_update', app_id=a.id) }}" class="st-pick st-{{ a.status }}">
+            {{ status_icon(a.status) }}
+            <select name="status" class="status-select pill-{{ a.status }}" onchange="this.form.submit()" aria-label="Status for {{ a.role }}">
+              {% for s, label in app_statuses %}<option value="{{ s }}" {{ 'selected' if a.status == s }}>{{ label }}</option>{% endfor %}
+            </select>
+          </form>
+        </td>
+        <td class="small">{{ a.next_step or a.notes or '' }}{% if a.next_date %} <span class="date">{{ a.next_date }}</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+<script>
+  /* Job radar: each dot is one of your best matches. The better the match, the nearer the centre. */
+  (() => {
+    const blips = [...document.querySelectorAll('.radar .blip')];
+    blips.forEach((b, i) => {
+      const score = +b.dataset.score || 0;
+      const r = Math.min(46, Math.max(7, (100 - score) * 0.62));          /* % of the scope */
+      const a = (i * 137.5 - 90) * Math.PI / 180;
+      b.style.left = (50 + r * Math.cos(a)) + '%';
+      b.style.top = (50 + r * Math.sin(a)) + '%';
+      b.style.setProperty('--d', (i * 0.06) + 's');
+    });
+  })();
+</script>
+{% endblock %}

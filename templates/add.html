@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Add a job · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>Add a job</h1>
+  <p class="muted">Quickest way: on the job page in LinkedIn or Indeed, click your <b>Send to Job Hunt HQ</b> bookmark (<a href="{{ url_for('setup') }}#button">set it up</a>).
+  Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it.</p>
+</div></section>
+<section class="card">
+  <form method="post" class="form">
+    <label for="f-url">Job link</label>
+    <div class="row" style="margin:0">
+      <input id="f-url" name="url" type="url" value="{{ form.get('url', '') }}" placeholder="https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…" style="flex:1; min-width:0">
+      <button class="btn btn-primary">Get job</button>
+      {% if not hosted %}<button class="btn" formaction="{{ url_for('robot_link') }}">Get job and apply for me</button>{% endif %}
+    </div>
+    <p class="muted small">If the link can't be read, fill in the details below and paste the advert text, then press Get job again.</p>
+    <div class="two">
+      <div><label for="f-title">Job title</label><input id="f-title" name="title" value="{{ form.get('title', '') }}"></div>
+      <div><label for="f-company">Company</label><input id="f-company" name="company" value="{{ form.get('company', '') }}"></div>
+    </div>
+    <div class="two">
+      <div><label for="f-location">Location</label><input id="f-location" name="location" value="{{ form.get('location', '') }}"></div>
+      <div><label for="f-salary">Salary</label><input id="f-salary" name="salary" value="{{ form.get('salary', '') }}" placeholder="£32,000 – £35,000"></div>
+    </div>
+    <label for="f-closes">Closing date</label>
+    <input id="f-closes" name="closes" type="date" value="{{ form.get('closes', '') }}">
+    <label for="f-desc">Advert text</label>
+    <textarea id="f-desc" name="description" rows="12" placeholder="Paste the job description here (on the job page: select the advert text, Ctrl+C, then Ctrl+V here)">{{ form.get('description', '') }}</textarea>
+  </form>
+</section>
+{% endblock %}

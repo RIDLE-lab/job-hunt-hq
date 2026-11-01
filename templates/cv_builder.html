@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% block title %}Create CV · Job Hunt HQ{% endblock %}
+{% block content %}
+{% set idx = (steps|map(attribute=0)|list).index(step) %}
+<section class="head">
+  <div>
+    <p class="back">Step {{ idx + 1 }} of {{ steps|length }}</p>
+    <h1>Create CV</h1>
+    <p class="muted">Fill in each step, pick a design, and download it as PDF or Word – or tailored to a job you're applying
+      for. Everything here is also used by My career, letters and application forms.</p>
+  </div>
+  <ol class="wizard cv-steps" aria-label="Steps">
+    {% for key, label in steps %}
+    <li class="{{ 'on' if key == step else 'done' if loop.index0 < idx }}"><a href="{{ url_for('cv_builder', step=key) }}">{{ label }}</a></li>
+    {% endfor %}
+  </ol>
+</section>
+
+<div class="cv-layout">
+<div class="cv-main">
+<section class="card">
+{% if step == 'profile' %}
+  <h2>Headline and profile</h2>
+  <form method="post" class="form wide">
+    <input type="hidden" name="step" value="profile">
+    <label for="headline">Headline <span class="muted">(under your name – usually the job you're aiming for)</span></label>
+    <input id="headline" name="headline" value="{{ career.headline or profile.current_title or '' }}" placeholder="e.g. HR Administrator">
+    <label for="summary">Profile <span class="muted">(3–4 sentences: who you are, your strongest experience, what you want next)</span></label>
+    <textarea id="summary" name="summary" rows="6">{{ career.summary or '' }}</textarea>
+    <p class="muted small">Name, phone, email, location and links come from <a href="{{ url_for('settings_page') }}">My settings</a>.</p>
+    <div class="row"><button class="btn btn-primary" name="go" value="experience">Save and continue</button>
+      <button class="btn btn-ghost" name="go" value="profile">Save</button></div>
+  </form>
+  <div class="import-box">
+  <p class="small"><b>Already have a CV?</b> Upload it and any empty steps fill in from it – then check and improve each one.</p>
+  <form method="post" action="{{ url_for('cv_upload') }}" enctype="multipart/form-data" class="row upload-row">
+    <input type="hidden" name="next" value="{{ url_for('cv_builder', step='profile') }}">
+    <input type="file" name="cv" accept=".pdf,.doc,.docx" required aria-label="Your CV">
+    <button class="btn">Upload and read my CV</button>
+  </form>
+  </div>
+
+{% elif step == 'experience' %}
+  <div class="card-head"><h2>Experience</h2><button type="button" class="btn btn-ghost" data-add="exp">Add a job</button></div>
+  <p class="muted small">Newest first. Put <b>one achievement per line</b> – each becomes a bullet point. Start with an action
+    (“Managed…”, “Built…”, “Cut…”) and add a number where you have one. Dates as MM/YYYY; leave “To” empty if it's your current job.</p>
+  <form method="post" class="career">
+    <input type="hidden" name="step" value="experience">
+    <div class="rows" id="exp-rows">
+      {% for e in career.experience %}{% set i = loop.index0 %}
+      <fieldset class="row-card">
+        <div class="grid3">
+          <label>Job title<input name="exp-{{ i }}-title" value="{{ e.title }}"></label>
+          <label>Company<input name="exp-{{ i }}-company" value="{{ e.company }}"></label>
+          <label>Location<input name="exp-{{ i }}-location" value="{{ e.location }}"></label>
+          <label>From<input name="exp-{{ i }}-start" value="{{ e.start }}" placeholder="MM/YYYY"></label>
+          <label>To<input name="exp-{{ i }}-end" value="{{ e.end }}" placeholder="Empty = current"></label>
+        </div>
+        <label>Achievements <span class="muted small">(one per line)</span><textarea name="exp-{{ i }}-description" rows="5">{{ e.description }}</textarea></label>
+        {% for k in ['start_date', 'end_date', 'reason', 'agency', 'full_history_only'] %}{% if e[k] %}<input type="hidden" name="exp-{{ i }}-{{ k }}" value="{{ e[k] }}">{% endif %}{% endfor %}
+        <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+      </fieldset>
+      {% else %}
+      <p class="empty" data-empty>No jobs yet – press “Add a job”. Placements, part-time work and volunteering all count.</p>
+      {% endfor %}
+    </div>
+    <div class="row"><a class="btn btn-ghost" href="{{ url_for('cv_builder', step='profile') }}">Back</a>
+      <button class="btn btn-primary" name="go" value="education">Save and continue</button>
+      <button class="btn btn-ghost" name="go" value="experience">Save</button></div>
+  </form>
+  <template id="tpl-exp"><fieldset class="row-card"><div class="grid3">
+    <label>Job title<input name="exp-N-title"></label><label>Company<input name="exp-N-company"></label>
+    <label>Location<input name="exp-N-location"></label><label>From<input name="exp-N-start" placeholder="MM/YYYY"></label>
+    <label>To<input name="exp-N-end" placeholder="Empty = current"></label></div>
+    <label>Achievements <span class="muted small">(one per line)</span><textarea name="exp-N-description" rows="5"></textarea></label>
+    <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+
+{% elif step == 'education' %}
+  <div class="card-head"><h2>Education</h2><button type="button" class="btn btn-ghost" data-add="edu">Add a qualification</button></div>
+  <p class="muted small">Highest qualification first. Leave “To” empty if you're still studying, and add the expected year.</p>
+  <form method="post" class="career">
+    <input type="hidden" name="step" value="education">
+    <div class="rows" id="edu-rows">
+      {% for e in career.education %}{% set i = loop.index0 %}
+      <fieldset class="row-card">
+        <div class="grid3">
+          <label>Qualification<input name="edu-{{ i }}-degree" value="{{ e.degree }}" placeholder="e.g. BSc"></label>
+          <label>Subject<input name="edu-{{ i }}-field" value="{{ e.field }}"></label>
+          <label>School, college or university<input name="edu-{{ i }}-school" value="{{ e.school }}"></label>
+          <label>From (year)<input name="edu-{{ i }}-start" value="{{ e.start }}"></label>
+          <label>To (year)<input name="edu-{{ i }}-end" value="{{ e.end }}" placeholder="Empty = in progress"></label>
+          <label>Result / grade<input name="edu-{{ i }}-result" value="{{ e.result or '' }}" placeholder="e.g. 2:1, Merit"></label>
+          <label>Expected (if in progress)<input name="edu-{{ i }}-expected" value="{{ e.expected or '' }}" placeholder="YYYY"></label>
+        </div>
+        {% for k in ['kind', 'form_degree', 'form_field', 'start_date', 'end_date', 'full_history_only'] %}{% if e[k] %}<input type="hidden" name="edu-{{ i }}-{{ k }}" value="{{ e[k] }}">{% endif %}{% endfor %}
+        <button type="button" class="btn btn-ghost small" data-remove>Remove</button>
+      </fieldset>
+      {% else %}
+      <p class="empty" data-empty>No qualifications yet – press “Add a qualification”.</p>
+      {% endfor %}
+    </div>
+    <div class="row"><a class="btn btn-ghost" href="{{ url_for('cv_builder', step='experience') }}">Back</a>
+      <button class="btn btn-primary" name="go" value="skills">Save and continue</button>
+      <button class="btn btn-ghost" name="go" value="education">Save</button></div>
+  </form>
+  <template id="tpl-edu"><fieldset class="row-card"><div class="grid3">
+    <label>Qualification<input name="edu-N-degree" placeholder="e.g. BSc"></label><label>Subject<input name="edu-N-field"></label>
+    <label>School, college or university<input name="edu-N-school"></label><label>From (year)<input name="edu-N-start"></label>
+    <label>To (year)<input name="edu-N-end" placeholder="Empty = in progress"></label><label>Result / grade<input name="edu-N-result"></label>
+    <label>Expected (if in progress)<input name="edu-N-expected" placeholder="YYYY"></label></div>
+    <button type="button" class="btn btn-ghost small" data-remove>Remove</button></fieldset></template>
+
+{% elif step == 'skills' %}
+  <h2>Skills and languages</h2>
+  <form method="post" class="career">
+    <input type="hidden" name="step" value="skills">
+    <label>Skills <span class="muted small">(one per line – use the words job adverts use: tools, systems, methods)</span>
+      <textarea name="skills" rows="8">{{ career.skills|join('\n') }}</textarea></label>
+    <label>Certifications and courses <span class="muted small">(one per line)</span>
+      <textarea name="certifications" rows="3">{{ career.certifications|join('\n') }}</textarea></label>
+    <label>Languages <span class="muted small">(one per line: Language – level)</span>
+      <textarea name="languages" rows="3" placeholder="English – Native&#10;French – Conversational">{% for l in career.languages %}{{ l.language }}{% if l.level %} – {{ l.level }}{% endif %}
+{% endfor %}</textarea></label>
+    <div class="row"><a class="btn btn-ghost" href="{{ url_for('cv_builder', step='education') }}">Back</a>
+      <button class="btn btn-primary" name="go" value="design">Save and choose a design</button>
+      <button class="btn btn-ghost" name="go" value="skills">Save</button></div>
+  </form>
+
+{% else %}
+  <h2>Design and download</h2>
+  <form method="post" id="design-form">
+    <input type="hidden" name="step" value="design">
+    <div class="designs">
+      {% for key, label, about in designs %}
+      <label class="design-pick">
+        <input type="radio" name="design" value="{{ key }}" {{ 'checked' if prefs.design == key }}>
+        <span class="thumb thumb-{{ key }}" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <b>{{ label }}</b><span class="muted small">{{ about }}</span>
+      </label>
+      {% endfor %}
+    </div>
+    <p class="small"><b>Colour</b></p>
+    <div class="swatches">
+      {% for key, hex in accents.items() %}
+      <label class="swatch" title="{{ key|capitalize }}"><input type="radio" name="accent" value="{{ key }}" data-hex="{{ hex }}" {{ 'checked' if prefs.accent == key }}>
+        <span style="background: {{ hex }}"></span><span class="sr">{{ key|capitalize }}</span></label>
+      {% endfor %}
+    </div>
+    <div class="row"><button class="btn">Save design</button></div>
+  </form>
+
+  <h2 class="gap">Download</h2>
+  <div class="row">
+    <a class="btn btn-primary" data-dl href="{{ url_for('cv_download', fmt='pdf', design=prefs.design, accent=prefs.accent) }}">Download PDF</a>
+    <a class="btn" data-dl href="{{ url_for('cv_download', fmt='docx', design=prefs.design, accent=prefs.accent) }}">Download Word</a>
+  </div>
+  <p class="muted small">Word uses the Classic layout so it stays easy to edit.</p>
+  {% if builtin and not hosted %}
+  <p class="muted small">Your applications keep using <b>{{ current_cv or 'Rashid Idle CV' }}</b> from Documents.</p>
+  {% else %}
+  <form method="post" action="{{ url_for('cv_use') }}" class="row">
+    <button class="btn btn-signal">Use this CV for my applications</button>
+    {% if current_cv %}<span class="muted small">Now attached: {{ current_cv }}</span>{% endif %}
+  </form>
+  {% endif %}
+
+  <h2 class="gap">Tailor it to a job</h2>
+  <p class="muted small">Puts the skills and achievements the advert asks for first. Nothing is added or changed – it only
+    reorders what you've written, so every word is still true.</p>
+  {% if jobs %}
+  <form method="get" action="{{ url_for('cv_download') }}" class="row tailor-row">
+    <input type="hidden" name="design" value="{{ prefs.design }}"><input type="hidden" name="accent" value="{{ prefs.accent }}">
+    <select name="job" aria-label="Job" required>
+      {% for j in jobs %}<option value="{{ j.id }}">{{ j.title }} – {{ j.company }}</option>{% endfor %}
+    </select>
+    <button class="btn" name="fmt" value="pdf">Tailored PDF</button>
+    <button class="btn btn-ghost" name="fmt" value="docx">Tailored Word</button>
+  </form>
+  {% else %}
+  <p class="empty">Shortlist a job first, then come back – or use “Tailored CV” on any job's page.</p>
+  {% endif %}
+{% endif %}
+</section>
+
+{% if tips %}
+<section class="card tips">
+  <h2>Make it stronger</h2>
+  <ul>{% for where, tip in tips %}<li><a href="{{ url_for('settings_page') if where == 'details' else url_for('cv_builder', step=where) }}">{{ tip }}</a></li>{% endfor %}</ul>
+</section>
+{% endif %}
+</div>
+
+<aside class="cv-preview card" aria-label="Preview">
+  <div class="card-head"><h2>Preview</h2>
+    <a class="small" target="_blank" rel="noopener" id="preview-open" href="{{ url_for('cv_download', view=1, design=prefs.design, accent=prefs.accent) }}">Open the PDF</a></div>
+  <div class="paper-wrap">{% include "_cv_paper.html" %}</div>
+</aside>
+</div>
+
+<script>
+  let counter = 1000;
+  document.addEventListener("click", (e) => {
+    const add = e.target.closest("[data-add]");
+    if (add) {
+      const kind = add.dataset.add, rows = document.getElementById(kind + "-rows");
+      rows.querySelector("[data-empty]")?.remove();
+      const html = document.getElementById("tpl-" + kind).innerHTML.replaceAll("-N-", "-" + (counter++) + "-");
+      rows.insertAdjacentHTML(kind === "exp" ? "afterbegin" : "beforeend", html);
+      rows.querySelector(".row-card input")?.focus();
+    }
+    const rm = e.target.closest("[data-remove]");
+    if (rm) rm.closest("fieldset").remove();
+  });
+  const form = document.getElementById("design-form");
+  if (form) form.addEventListener("change", () => {
+    const d = form.design.value, a = form.accent.value, base = "{{ url_for('cv_download') }}";
+    const q = `design=${d}&accent=${a}`;
+    const paper = document.getElementById("paper");
+    paper.className = "paper d-" + d;
+    paper.style.setProperty("--acc", form.querySelector(`input[name=accent][value="${a}"]`).dataset.hex);
+    document.getElementById("preview-open").href = `${base}?view=1&${q}`;
+    document.querySelectorAll("[data-dl]").forEach((l) => l.href = l.href.replace(/design=[^&]*&accent=[^&]*/, q));
+    document.querySelectorAll(".tailor-row input[name=design]").forEach((i) => i.value = d);
+    document.querySelectorAll(".tailor-row input[name=accent]").forEach((i) => i.value = a);
+  });
+</script>
+{% endblock %}

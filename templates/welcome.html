@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Welcome · Job Hunt HQ{% endblock %}
+{% block content %}
+{% set p, sr, pr = s.profile, s.search, s.prefs %}
+<section class="head">
+  <div>
+    <p class="back">Step {{ step }} of 3</p>
+    <h1>{{ ['', 'About you', 'What you’re looking for', 'Your CV'][step] }}</h1>
+    <p class="muted">{{ ['', 'So applications, letters and forms use your details.',
+      'So Job Hunt HQ finds the right jobs near you – and scores each one for how well it fits.',
+      'Upload the CV you have, build a new one, or do it later.'][step] }}</p>
+  </div>
+  <ol class="wizard" aria-label="Progress">
+    {% for n, label in [(1, 'About you'), (2, 'Jobs'), (3, 'CV')] %}
+    <li class="{{ 'done' if n < step else 'on' if n == step }}">{{ label }}</li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="card">
+{% if step == 1 %}
+  <form method="post" class="form">
+    <input type="hidden" name="step" value="1">
+    <div class="two">
+      <div><label for="name">Full name</label><input id="name" name="name" value="{{ p.name or user.name }}" autocomplete="name" required></div>
+      <div><label for="email">Email</label><input id="email" name="email" type="email" value="{{ p.email or user.email or '' }}" autocomplete="email"></div>
+    </div>
+    <div class="two">
+      <div><label for="phone">Phone</label><input id="phone" name="phone" value="{{ p.phone or '' }}" autocomplete="tel"></div>
+      <div><label for="location">Where you want to work near <span class="muted">(town, city or postcode)</span></label>
+        <input id="location" name="location" value="{{ p.location or '' }}" placeholder="e.g. Manchester or M1 2AB" required></div>
+    </div>
+    <label for="address">Home address <span class="muted">(only used to fill in application forms)</span></label>
+    <input id="address" name="address" value="{{ p.address or '' }}" autocomplete="street-address">
+    <div class="two">
+      <div><label for="linkedin">LinkedIn profile <span class="muted">(optional)</span></label><input id="linkedin" name="linkedin" value="{{ p.linkedin or '' }}" placeholder="https://www.linkedin.com/in/…"></div>
+      <div><label for="current_title">Current or most recent job title <span class="muted">(optional)</span></label><input id="current_title" name="current_title" value="{{ p.current_title or '' }}"></div>
+    </div>
+    <div class="two">
+      <div><label for="notice_period">Notice period</label><input id="notice_period" name="notice_period" value="{{ p.notice_period or '' }}" placeholder="e.g. Available immediately, 1 month"></div>
+      <div><label for="right_to_work">Right to work in the UK</label><input id="right_to_work" name="right_to_work" value="{{ p.right_to_work or '' }}" placeholder="e.g. British citizen – no sponsorship needed"></div>
+    </div>
+    <button class="btn btn-primary">Next: the jobs you want</button>
+  </form>
+
+{% elif step == 2 %}
+  <form method="post" class="form">
+    <input type="hidden" name="step" value="2">
+    <label for="keywords">Job titles you're looking for <span class="muted">(one per line – each is searched separately)</span></label>
+    <textarea id="keywords" name="keywords" rows="5" placeholder="e.g.&#10;Marketing Executive&#10;Digital Marketing Assistant&#10;Social Media Coordinator">{{ (sr.keywords or [])|join('\n') }}</textarea>
+    <div class="two">
+      <div><label for="miles">How far you'll travel</label>
+        <select id="miles" name="miles">{% for m in miles %}<option value="{{ m }}" {{ 'selected' if (sr.distance_miles or 15) == m }}>Up to {{ m }} miles from {{ p.location or 'home' }}</option>{% endfor %}</select></div>
+      <div><label for="min_salary">Minimum salary <span class="muted">(£ a year, optional)</span></label>
+        <input id="min_salary" name="min_salary" inputmode="numeric" value="{{ sr.min_salary or '' }}" placeholder="e.g. 28000"></div>
+    </div>
+    <label class="check"><input type="checkbox" name="include_remote" value="yes" {{ 'checked' if sr.include_remote is not defined or sr.include_remote }}> Also show remote jobs</label>
+    <div class="two">
+      <div><label for="level">Your level</label>
+        <select id="level" name="level">{% for v, l in levels %}<option value="{{ v }}" {{ 'selected' if (pr.level or 'mid') == v }}>{{ l }}</option>{% endfor %}</select></div>
+      <div><label for="exclude">Hide jobs with these words in the title <span class="muted">(optional)</span></label>
+        <input id="exclude" name="exclude" value="{{ (sr.exclude_title_words or [])|join(', ') }}" placeholder="e.g. Director, Sales"></div>
+    </div>
+    <label for="skills">Your main skills <span class="muted">(comma-separated – used to score how well each job fits)</span></label>
+    <textarea id="skills" name="skills" rows="3" placeholder="e.g. SEO, Google Analytics, copywriting, Canva, social media">{{ (pr.skills or [])|join(', ') }}</textarea>
+    <div class="row"><a class="btn btn-ghost" href="{{ url_for('welcome', step=1) }}">Back</a><button class="btn btn-primary">Next: your CV</button></div>
+  </form>
+
+{% else %}
+  <div class="cv-choice">
+    <form method="post" action="{{ url_for('cv_upload') }}" enctype="multipart/form-data" class="choice">
+      <h2>Upload your CV</h2>
+      <p class="muted">PDF or Word. Job Hunt HQ attaches it to applications, and reads your work history, education and
+        skills into My career so forms and letters can use them. You can check and edit everything afterwards.</p>
+      <input type="hidden" name="next" value="{{ url_for('welcome', step=3) }}">
+      <input type="file" name="cv" accept=".pdf,.doc,.docx" required>
+      <button class="btn btn-primary">Upload and read my CV</button>
+    </form>
+    <div class="choice">
+      <h2>Build a new CV</h2>
+      <p class="muted">Step by step, with a choice of designs – download it as PDF or Word, and get a version tailored to
+        each job.</p>
+      <form method="post"><input type="hidden" name="step" value="3"><input type="hidden" name="then" value="cv_builder">
+        <button class="btn">Finish set-up and build my CV</button></form>
+    </div>
+  </div>
+  {% if career.experience or career.skills %}
+  <p class="saved"><b>Read from your CV:</b> {{ career.experience|length }} job{{ 's' if career.experience|length != 1 }},
+    {{ career.education|length }} qualification{{ 's' if career.education|length != 1 }}, {{ career.skills|length }} skill{{ 's' if career.skills|length != 1 }}.
+    Check them on <a href="{{ url_for('career_page') }}">My career</a> any time.</p>
+  {% endif %}
+  <form method="post" class="row">
+    <input type="hidden" name="step" value="3">
+    <a class="btn btn-ghost" href="{{ url_for('welcome', step=2) }}">Back</a>
+    <button class="btn btn-primary">{{ 'Finish' if career.experience else 'Skip for now and finish' }}</button>
+  </form>
+{% endif %}
+</section>
+{% endblock %}

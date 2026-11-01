@@ -1,0 +1,15 @@
+<form method="post" action="{{ url_for('feedback_page') }}" enctype="multipart/form-data" class="form fb-form">
+  <input type="hidden" name="page" value="{{ page_path or request.full_path.rstrip('?') }}">
+  <div class="fb-kinds" role="radiogroup" aria-label="What kind of feedback">
+    {% for key, label in feedback_kinds %}
+    <label class="fb-chip"><input type="radio" name="kind" value="{{ key }}" {{ 'checked' if loop.first }}><span>{{ label }}</span></label>
+    {% endfor %}
+  </div>
+  <label for="fb-message-{{ fb_id or 'p' }}">Your message</label>
+  <textarea id="fb-message-{{ fb_id or 'p' }}" name="message" rows="4" required maxlength="5000"
+    placeholder="What happened, or what would make it better? The more detail the better."></textarea>
+  <label for="fb-image-{{ fb_id or 'p' }}">Screenshot <span class="muted">(optional)</span></label>
+  <input id="fb-image-{{ fb_id or 'p' }}" name="image" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+  <div class="row"><button class="btn btn-primary">Send feedback</button>
+    {% if fb_id %}<button type="button" class="btn btn-ghost" data-fb-close>Cancel</button>{% endif %}</div>
+</form>

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}People · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>People</h1>
+  <p class="muted">Who can use Job Hunt HQ. Only people with an invite code can make an account, and everyone's
+    jobs, CV, letters and emails are private to them – you can't see theirs and they can't see yours.</p>
+</div></section>
+
+{% if made %}
+<section class="card made">
+  {% if made.kind == 'invite' %}
+  <h2>Invite ready</h2>
+  <p>Send this link to the person you're inviting. It works once and expires in 14 days.</p>
+  {% set link = base ~ '/join/' ~ made.code %}
+  {% else %}
+  <h2>Password reset link for {{ made.who }}</h2>
+  <p>Send this link to {{ made.who }}. It works once and expires in 48 hours.</p>
+  {% set link = base ~ '/reset/' ~ made.code %}
+  {% endif %}
+  <div class="copy-line"><code id="made-link">{{ link }}</code> <button type="button" class="copy" data-copy="made-link">Copy</button></div>
+  {% if made.kind == 'invite' %}<p class="muted small">Or they can go to {{ base }}/join and type the code <b>{{ made.code }}</b>.</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="card">
+  <div class="card-head"><h2>Invite someone</h2></div>
+  <form method="post" class="row invite-form">
+    <input type="hidden" name="action" value="invite">
+    <input name="note" placeholder="Who it's for (just for you), e.g. Amira from uni" maxlength="80">
+    <button class="btn btn-primary">Create invite</button>
+  </form>
+  {% set open_invites = invites|selectattr('used_by', 'none')|list %}
+  {% if invites %}
+  <div class="table-wrap"><table>
+    <thead><tr><th>Code</th><th>For</th><th>Made</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for i in invites %}
+      <tr>
+        <td><code>{{ i.code }}</code></td>
+        <td>{{ i.note or '—' }}</td>
+        <td class="num">{{ i.created_at|nice_date }}</td>
+        <td>{% if i.used_by %}Used by <b>{{ i.used_by_name }}</b>{% elif i.expires_at < today %}Expired{% else %}Waiting · until {{ i.expires_at|nice_date }}{% endif %}</td>
+        <td>{% if not i.used_by %}<form method="post"><input type="hidden" name="action" value="cancel"><input type="hidden" name="code" value="{{ i.code }}"><button class="btn btn-ghost small">Cancel</button></form>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Accounts</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Name</th><th>Username</th><th>Joined</th><th>Last signed in</th><th></th></tr></thead>
+    <tbody>
+    {% for p in users %}
+      <tr class="{{ '' if p.active else 'muted' }}">
+        <td><b>{{ p.name }}</b>{% if p.is_admin %} <span class="pill">Owner</span>{% endif %}{% if not p.active %} <span class="pill pill-rejected">Switched off</span>{% endif %}
+          {% if not p.setup_done %}<div class="muted tiny">Hasn't finished setting up yet</div>{% endif %}</td>
+        <td>{{ p.username }}</td>
+        <td class="num">{{ p.created_at|nice_date }}</td>
+        <td class="num">{{ p.last_login|nice_date if p.last_login else '—' }}</td>
+        <td class="actions">
+          {% if not p.is_admin %}
+          <form method="post"><input type="hidden" name="user_id" value="{{ p.id }}"><input type="hidden" name="action" value="reset"><button class="btn btn-ghost small">Password reset link</button></form>
+          <form method="post"><input type="hidden" name="user_id" value="{{ p.id }}"><input type="hidden" name="action" value="{{ 'off' if p.active else 'on' }}"><button class="btn btn-ghost small{{ ' danger' if p.active }}">{{ 'Switch off' if p.active else 'Switch back on' }}</button></form>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+</section>
+{% endblock %}

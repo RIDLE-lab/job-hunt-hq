@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% from "_status.html" import status_icon, status_badge %}
+{% block title %}Applications · Job Hunt HQ{% endblock %}
+{% block content %}
+{% set email_labels = email_labels if email_labels is defined else dict(status_labels, job_alert="Job alert", other="Other email", sent="You sent") %}
+<section class="head">
+  <div>
+    <h1>Applications</h1>
+    <p class="muted">Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in
+      your Gmail. Open one to see every email about it.</p>
+  </div>
+  <dl class="app-figures">
+    <div><dt>Applied</dt><dd>{{ total }}</dd></div>
+    <div><dt>Waiting</dt><dd>{{ counts.waiting }}</dd></div>
+    <div class="good"><dt>Moving forward</dt><dd>{{ counts.forward }}</dd></div>
+    <div class="gold"><dt>Offers</dt><dd>{{ counts.offer }}</dd></div>
+  </dl>
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <nav class="app-tabs" aria-label="Show">
+      {% for key, label, _ in groups %}{% if key == 'all' or counts[key] %}
+      <a href="{{ url_for('applications_page', show=key, q=q or None) }}" class="{{ 'on' if group == key }} tab-{{ key }}">{{ label }} <span>{{ counts[key] }}</span></a>
+      {% endif %}{% endfor %}
+    </nav>
+    <form method="get" class="app-search">
+      <input type="hidden" name="show" value="{{ group }}">
+      <input type="search" name="q" value="{{ q }}" placeholder="Search role or employer" aria-label="Search applications">
+    </form>
+  </div>
+
+  <div class="history{{ ' running' if history.running }}" id="history">
+    {% if history.running or history.message %}
+      <p id="history-msg">{{ history.message }}</p>
+      {% if history.running %}<div class="bar"><i id="history-bar" style="width:2%"></i></div>{% endif %}
+    {% endif %}
+    {% if not history.running %}
+    <form method="post" action="{{ url_for('applications_import') }}">
+      <button class="btn">Import my 2026 history from Gmail</button>
+      <button class="btn btn-ghost" name="rebuild" value="1" onclick="return confirm('Re-read all of 2026 from Gmail from scratch? Applications found in emails are rebuilt; the ones you added yourself are kept.')">Re-read everything</button>
+      <span class="muted small">Reads every job email since 1 January – replies, interviews, offers and what you sent – and
+        adds anything missing here. It can take 10–20 minutes; you can keep using the app.</span>
+    </form>
+    {% endif %}
+  </div>
+
+  <details class="add-app">
+    <summary class="btn btn-ghost">+ Add an application</summary>
+    <form method="post" action="{{ url_for('application_add') }}" class="add-form">
+      <label>Role <input name="role" required placeholder="e.g. HR Officer"></label>
+      <label>Employer <input name="company" required placeholder="e.g. South Essex College"></label>
+      <label>Applied on <input name="applied_on" type="date" value="{{ today }}"></label>
+      <label>Status <select name="status">{% for s, label in app_statuses %}<option value="{{ s }}" {{ 'selected' if s == 'applied' }}>{{ label }}</option>{% endfor %}</select></label>
+      <button class="btn btn-primary">Add</button>
+    </form>
+  </details>
+
+  {% if apps %}
+  <ol class="app-list">
+    {% for a in apps %}
+    <li class="app st-{{ a.status }}">
+      <details>
+        <summary>
+          <span class="app-ico">{{ status_icon(a.status) }}</span>
+          <span class="app-main">
+            <b>{{ a.role }}</b>
+            <span class="app-co">{{ a.company }}{% if a.location %} · {{ a.location }}{% endif %}</span>
+          </span>
+          <span class="app-meta">
+            {{ status_badge(a.status, status_labels.get(a.status, a.status)) }}
+            <span class="muted small">
+              {% if a.applied_on %}Applied {{ a.applied_on|nice_date }}{% endif %}
+              {% if a.status in ('applied', 'acknowledged') and a.days %} · waiting {{ a.days }} day{{ 's' if a.days != 1 }}{% endif %}
+            </span>
+          </span>
+        </summary>
+        <div class="app-more">
+          {% if a.next_step %}<p class="next"><b>Next:</b> {{ a.next_step }}{% if a.next_date %} <span class="date">{{ a.next_date }}</span>{% endif %}</p>{% endif %}
+          {% set evs = events.get(a.id, []) %}
+          {% if evs %}
+          <ol class="timeline">
+            {% for e in evs %}
+            <li class="st-{{ e.category }}">
+              <span class="tl-ico">{{ status_icon(e.category) }}</span>
+              <div>
+                <span class="tl-when">{{ e.received_at|nice_date }} {{ e.received_at[11:16] }} · {{ email_labels.get(e.category, e.category) }}</span>
+                <a class="tl-subject" href="{{ gmail_url(e.gmail_id, e.subject) }}" target="_blank" rel="noopener" title="Open in Gmail">{{ e.subject }}<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+                <span class="muted small">{{ e.sender.split('<')[0].strip(' "') }}</span>
+              </div>
+            </li>
+            {% endfor %}
+          </ol>
+          {% else %}
+          <p class="muted small">No emails about this one yet.</p>
+          {% endif %}
+          <div class="app-actions">
+            <form method="post" action="{{ url_for('application_update', app_id=a.id) }}" class="st-pick st-{{ a.status }}">
+              {{ status_icon(a.status) }}
+              <select name="status" class="status-select pill-{{ a.status }}" onchange="this.form.submit()" aria-label="Status for {{ a.role }}">
+                {% for s, label in app_statuses %}<option value="{{ s }}" {{ 'selected' if a.status == s }}>{{ label }}</option>{% endfor %}
+              </select>
+            </form>
+            {% if a.job_id %}<a class="btn btn-ghost" href="{{ url_for('job_detail', job_id=a.job_id) }}">Open job</a>{% endif %}
+            <details class="edit">
+              <summary class="btn btn-ghost">Edit</summary>
+              <form method="post" action="{{ url_for('application_edit', app_id=a.id) }}" class="edit-form">
+                <label>Role <input name="role" value="{{ a.role }}"></label>
+                <label>Employer <input name="company" value="{{ a.company }}"></label>
+                <button class="btn btn-primary">Save</button>
+              </form>
+            </details>
+            <form method="post" action="{{ url_for('application_remove', app_id=a.id) }}" onsubmit="return confirm('Remove {{ a.role|e }} at {{ a.company|e }}? It won\'t be added again from emails.')">
+              <input type="hidden" name="show" value="{{ group }}">
+              <button class="btn btn-ghost danger">Not an application</button>
+            </form>
+            {% if a.source == 'gmail' %}<span class="muted tiny">Found in your Gmail</span>{% endif %}
+          </div>
+        </div>
+      </details>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty">Nothing here{% if q %} for “{{ q }}”{% endif %}.</p>
+  {% endif %}
+</section>
+
+<script>
+  /* Import progress */
+  (() => {
+    const box = document.getElementById('history');
+    if (!box || !box.classList.contains('running')) return;
+    const tick = async () => {
+      try {
+        const h = await (await fetch('{{ url_for("history_api") }}')).json();
+        const msg = document.getElementById('history-msg'), bar = document.getElementById('history-bar');
+        if (h.total) {
+          msg.textContent = `Reading your emails: ${h.done} of ${h.total} · ${h.created} applications added, ${h.updated} updated`;
+          if (bar) bar.style.width = Math.max(2, Math.min(100, 100 * h.done / h.total)) + '%';
+        }
+        if (!h.running) { location.reload(); return; }
+      } catch (e) {}
+      setTimeout(tick, 2000);
+    };
+    tick();
+  })();
+</script>
+{% endblock %}
