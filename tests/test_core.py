@@ -1047,6 +1047,16 @@ def test_public_tour_and_join():
     assert "invite code" in anon.get("/join?code=ABCD-EFGH-JKLM").data.decode().lower()
 
 
+def test_arabic_right_to_left():
+    """Arabic: the page is translated and turned right to left; sentences with numbers keep their numbers."""
+    from jobhunt import i18n
+    assert ("ar", "العربية") in i18n.LANGS
+    page = i18n.translate('<html lang="en-GB"><a>Home</a><p>See all 12 applications</p></html>', "ar")
+    assert 'lang="ar" dir="rtl"' in page and "الرئيسية" in page and "12" in page
+    assert i18n.phrase("{n} new jobs came in today.", "ar", n=3) == "وصلت 3 وظائف جديدة اليوم."
+    assert i18n.translate('<html lang="en-GB"><a>Home</a></html>', "fr").count("rtl") == 0
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

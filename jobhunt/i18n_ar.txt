@@ -1,0 +1,519 @@
+# Arabic (العربية) – Modern Standard Arabic. One line per phrase: English|Arabic. Gaps in {curly brackets} are filled in.
+Dashboard|لوحة التحكم
+Job sites|مواقع التوظيف
+Assistant|المساعد
+Add a job|إضافة وظيفة
+Apply for me|قدّم نيابةً عني
+Applications|الطلبات
+My career|مسيرتي المهنية
+Create CV|إنشاء سيرة ذاتية
+Emails|البريد الإلكتروني
+People|الأشخاص
+Feedback|الملاحظات
+Setup|الإعداد
+Signed in as|مسجّل الدخول باسم
+My settings|إعداداتي
+Account and password|الحساب وكلمة المرور
+Sign out|تسجيل الخروج
+Send feedback|إرسال ملاحظات
+Refresh jobs|تحديث الوظائف
+Jump to a page (Ctrl+K)|الانتقال إلى صفحة (Ctrl+K)
+Jobs|الوظائف
+Add|إضافة
+Apply|تقديم
+Career|المسيرة
+More|المزيد
+Account|الحساب
+Sign in|تسجيل الدخول
+Username|اسم المستخدم
+Password|كلمة المرور
+Create your account|أنشئ حسابك
+Your name|اسمك
+Choose a username|اختر اسم مستخدم
+Choose a password|اختر كلمة مرور
+(at least 10 characters)|(10 أحرف على الأقل)
+Type it again|اكتبها مرة أخرى
+Create my account|إنشاء حسابي
+Join Job Hunt HQ|انضم إلى Job Hunt HQ
+Invite code|رمز الدعوة
+Email|البريد الإلكتروني
+(optional)|(اختياري)
+Already have an account?|لديك حساب بالفعل؟
+New password|كلمة مرور جديدة
+Save new password|حفظ كلمة المرور الجديدة
+Back to sign in|العودة إلى تسجيل الدخول
+Privacy and your data|الخصوصية وبياناتك
+Your job search, wherever you are.|بحثك عن عمل، أينما كنت.
+Full name|الاسم الكامل
+Phone|الهاتف
+Where you want to work near|المكان الذي تريد العمل بالقرب منه
+(town, city or postcode)|(البلدة أو المدينة أو الرمز البريدي)
+Country|الدولة
+Language for Job Hunt HQ|لغة Job Hunt HQ
+Home address|عنوان السكن
+(only used to fill in application forms)|(يُستخدم فقط لتعبئة نماذج التقديم)
+LinkedIn profile|ملف LinkedIn
+Current or most recent job title|المسمى الوظيفي الحالي أو الأخير
+Notice period|فترة الإشعار
+Right to work in the UK|حق العمل في المملكة المتحدة
+Next: the jobs you want|التالي: الوظائف التي تريدها
+Job titles you're looking for|المسميات الوظيفية التي تبحث عنها
+(one per line – each is searched separately)|(مسمى في كل سطر – يُبحث عن كل منها على حدة)
+How far you'll travel|المسافة التي ستتنقلها
+Minimum salary|الحد الأدنى للراتب
+Also show remote jobs|أظهر الوظائف عن بُعد أيضًا
+Your level|مستواك
+Hide jobs with these words in the title|إخفاء الوظائف التي تحتوي عناوينها على هذه الكلمات
+Your main skills|مهاراتك الرئيسية
+Back|رجوع
+Next: your CV|التالي: سيرتك الذاتية
+Upload your CV|ارفع سيرتك الذاتية
+Upload and read my CV|رفع سيرتي الذاتية وقراءتها
+Build a new CV|إنشاء سيرة ذاتية جديدة
+Finish set-up and build my CV|إنهاء الإعداد وإنشاء سيرتي الذاتية
+About you|عنك
+Town, city or postcode|البلدة أو المدينة أو الرمز البريدي
+GitHub or portfolio|GitHub أو ملف الأعمال
+Indeed profile|ملف Indeed
+Current job title|المسمى الوظيفي الحالي
+Current employer|جهة العمل الحالية
+Salary expectation|الراتب المتوقع
+The jobs you want|الوظائف التي تريدها
+Job titles|المسميات الوظيفية
+(one per line)|(مسمى في كل سطر)
+Places and distance|الأماكن والمسافة
+Default distance|المسافة الافتراضية
+Hide titles containing|إخفاء العناوين التي تحتوي على
+(comma-separated)|(مفصولة بفواصل)
+Your emails stay private.|رسائلك تبقى خاصة.
+Download my data|تنزيل بياناتي
+Gmail address|عنوان Gmail
+Saved|تم الحفظ
+Email me the best new jobs after each refresh|أرسل لي أفضل الوظائف الجديدة بعد كل تحديث
+Save settings|حفظ الإعدادات
+Pick from every kind of work|اختر من كل مجالات العمل
+– or type your own titles in the box|– أو اكتب المسميات التي تريدها في المربع
+Choose a field…|اختر مجالًا…
+…or search any job title|…أو ابحث عن أي مسمى وظيفي
+Every job site, one place|كل مواقع التوظيف في مكان واحد
+Send to Job Hunt HQ|إرسال إلى Job Hunt HQ
+Found for you automatically|وُجدت لك تلقائيًا
+LinkedIn and Indeed job alerts|تنبيهات الوظائف من LinkedIn وIndeed
+Link LinkedIn and Indeed|ربط LinkedIn وIndeed
+Switch on job alerts|تفعيل تنبيهات الوظائف
+Bring your profile in|استورد ملفك الشخصي
+Add your profile links|أضف روابط ملفاتك
+Use the browser buttons|استخدم أزرار المتصفح
+Fill this application|املأ هذا الطلب
+Your job-application assistant|مساعدك في طلبات التوظيف
+Install it (2 minutes, once)|ثبّته (دقيقتان، مرة واحدة)
+Download the assistant|تنزيل المساعد
+Using it|طريقة الاستخدام
+On a job advert|في إعلان وظيفة
+On an application form|في نموذج التقديم
+Ask your assistant|اسأل مساعدك
+After you submit|بعد الإرسال
+Mark as applied|تحديد كمُقدَّم
+Change your password|غيّر كلمة المرور
+Current password|كلمة المرور الحالية
+Change password|تغيير كلمة المرور
+Your data|بياناتك
+Delete my account|حذف حسابي
+Delete my account and data|حذف حسابي وبياناتي
+Your password|كلمة مرورك
+Show|عرض
+Open|فتح
+All|الكل
+Reply|رد
+Status|الحالة
+Save|حفظ
+Delete|حذف
+Your message|رسالتك
+Screenshot|لقطة شاشة
+Cancel|إلغاء
+Something's wrong|هناك مشكلة
+An idea|فكرة
+A question|سؤال
+Something I like|شيء أعجبني
+Headline and profile|العنوان والنبذة
+Headline|العنوان
+Save and continue|حفظ ومتابعة
+Already have a CV?|لديك سيرة ذاتية بالفعل؟
+Experience|الخبرة
+Job title|المسمى الوظيفي
+Company|الشركة
+Location|الموقع
+From|من
+To|إلى
+Achievements|الإنجازات
+Remove|إزالة
+Education|التعليم
+Add a qualification|إضافة مؤهل
+Qualification|المؤهل
+Subject|التخصص
+School, college or university|المدرسة أو الكلية أو الجامعة
+Skills and languages|المهارات واللغات
+Skills|المهارات
+Certifications and courses|الشهادات والدورات
+Languages|اللغات
+Design and download|التصميم والتنزيل
+Colour|اللون
+Save design|حفظ التصميم
+Download|تنزيل
+Download PDF|تنزيل PDF
+Download Word|تنزيل Word
+Use this CV for my applications|استخدم هذه السيرة الذاتية في طلباتي
+Tailor it to a job|خصّصها لوظيفة
+Make it stronger|اجعلها أقوى
+Preview|معاينة
+To review|للمراجعة
+Applied|تم التقديم
+Waiting|في الانتظار
+Moving forward|تتقدّم
+Rejected|مرفوضة
+Your best matches|أفضل الوظائف المناسبة لك
+Strong fit|مناسبة جدًا
+Good fit|مناسبة
+Your next steps|خطواتك التالية
+Jobs to review|وظائف للمراجعة
+Search jobs|البحث في الوظائف
+Best match first|الأنسب أولًا
+Refresh now|تحديث الآن
+Recent replies|الردود الأخيرة
+Role|الوظيفة
+Next step|الخطوة التالية
+Offers|العروض
+Open in Gmail|فتح في Gmail
+Open job|فتح الوظيفة
+Edit|تعديل
+Cover letter|خطاب التقديم
+Answers|الإجابات
+My details|بياناتي
+Advert|الإعلان
+Attach your CV|أرفق سيرتك الذاتية
+I've applied|قدّمت
+Not for me|غير مناسبة لي
+Write cover letter|كتابة خطاب التقديم
+Save changes|حفظ التغييرات
+Copy|نسخ
+Work experience|الخبرة العملية
+Description|الوصف
+Salary|الراتب
+Closing date|آخر موعد للتقديم
+Save my career details|حفظ بيانات مسيرتي
+Question|السؤال
+Your rights|حقوقك
+Nobody reads your emails|لا أحد يقرأ رسائلك
+Starting out / junior|مبتدئ
+Experienced|ذو خبرة
+Senior / lead|خبير / قيادي
+Skip for now and finish|تخطَّ الآن وأنهِ
+Finish|إنهاء
+Applying|التقديم
+You|أنت
+Overview|نظرة عامة
+Your details, the jobs Job Hunt HQ looks for, and your Gmail. Only you can see these.|بياناتك، والوظائف التي يبحث عنها Job Hunt HQ، وGmail الخاص بك. أنت وحدك من يستطيع رؤيتها.
+(for application forms)|(لنماذج التقديم)
+(optional – your public Indeed CV link)|(اختياري – رابط سيرتك العامة على Indeed)
+Right to work|حق العمل
+Gmail|Gmail
+Upload the CV you have, build a new one, or do it later.|ارفع سيرتك الذاتية الحالية، أو أنشئ واحدة جديدة، أو افعل ذلك لاحقًا.
+So applications, letters and forms use your details.|لكي تستخدم الطلبات والخطابات والنماذج بياناتك.
+What you’re looking for|ما الذي تبحث عنه
+Step 1 of 3|الخطوة 1 من 3
+Step 2 of 3|الخطوة 2 من 3
+Step 3 of 3|الخطوة 3 من 3
+Your CV|سيرتك الذاتية
+CV|السيرة الذاتية
+Good morning|صباح الخير
+Good afternoon|مساء الخير
+Good evening|مساء الخير
+jobs checked at {time}|فُحصت الوظائف الساعة {time}
+1 new job came in today.|وصلت وظيفة جديدة واحدة اليوم.
+{n} new jobs came in today.|وصلت {n} وظائف جديدة اليوم.
+{m} matches to look through, and {w} applications waiting to hear back.|{m} وظيفة مناسبة للمراجعة، و{w} طلبات بانتظار الرد.
+1 match to look through, and {w} applications waiting to hear back.|وظيفة مناسبة واحدة للمراجعة، و{w} طلبات بانتظار الرد.
+{m} matches to look through, and 1 application waiting to hear back.|{m} وظيفة مناسبة للمراجعة، وطلب واحد بانتظار الرد.
+1 match to look through, and 1 application waiting to hear back.|وظيفة مناسبة واحدة للمراجعة، وطلب واحد بانتظار الرد.
+Letter ready|الخطاب جاهز
+Other matches|وظائف أخرى
+Closer to the centre = better match|الأقرب إلى المركز = الأنسب
+{n} new jobs today|{n} وظائف جديدة اليوم
+1 new job today|وظيفة جديدة واحدة اليوم
+Newest first|الأحدث أولًا
+See all {n} applications|عرض كل الطلبات ({n})
+Latest applications|أحدث الطلبات
+All fits|كل المستويات
+Replies from employers show here once Gmail is connected.|تظهر ردود أصحاب العمل هنا بعد ربط Gmail.
+See setup|عرض الإعداد
+Ready to submit|جاهز للإرسال
+Submitted|أُرسل
+Received|استُلم
+Pre-screening|فرز أولي
+Assessment|تقييم
+Interview|مقابلة
+2nd stage|المرحلة الثانية
+Job offer|عرض عمل
+Withdrawn|مسحوب
+Stretch|طموحة
+Weak fit|ضعيفة المناسبة
+Not scored|غير مقيّمة
+Job alert|تنبيه وظيفة
+Other email|بريد آخر
+You sent|أرسلتَ
+Needs an account|يتطلب حسابًا
+Needs an account (Workday)|يتطلب حسابًا (Workday)
+No account needed|لا يتطلب حسابًا
+Recruiter – no account needed|وكالة توظيف – لا يتطلب حسابًا
+Job title matches your HR / people background|المسمى يناسب خبرتك في الموارد البشرية
+Job title isn't an HR role|المسمى ليس من وظائف الموارد البشرية
+A step up – worth applying as a stretch|خطوة للأعلى – تستحق المحاولة
+Very senior title – likely out of reach for now|منصب رفيع جدًا – غالبًا بعيد المنال حاليًا
+Very senior title – likely a big step up|منصب رفيع جدًا – غالبًا قفزة كبيرة
+Exactly the kind of role you're looking for|بالضبط نوع الوظيفة التي تبحث عنها
+Close to the roles you're looking for|قريبة من الوظائف التي تبحث عنها
+Not one of the job titles you chose|ليست من المسميات التي اخترتها
+A step up from your level|أعلى من مستواك بخطوة
+More junior than you're aiming for|أقل من المستوى الذي تطمح إليه
+Pays below your minimum|الراتب أقل من الحد الأدنى لديك
+Pays below your expectation|الراتب أقل من توقعاتك
+Check the location|تحقق من الموقع
+Asks for {n}+ years' experience|تتطلب خبرة {n}+ سنوات
+Stretch: asks for {n}+ years|طموحة: تتطلب {n}+ سنوات
+Terms of use|شروط الاستخدام
+Privacy|الخصوصية
+Cookies|ملفات تعريف الارتباط
+Disclaimer|إخلاء المسؤولية
+Acceptable use|الاستخدام المقبول
+Contact|تواصل معنا
+About this page, or anything else in Job Hunt HQ.|عن هذه الصفحة، أو أي شيء آخر في Job Hunt HQ.
+Report misuse or a security problem|الإبلاغ عن إساءة استخدام أو مشكلة أمنية
+Home|الرئيسية
+Search|بحث
+Clear|مسح
+Still waiting to hear|بانتظار الرد
+Job offers|عروض العمل
+Not sent yet|لم تُرسل بعد
+Latest replies|أحدث الردود
+Best matches|الأنسب لك
+My examples|أمثلتي
+Show 50 more|عرض 50 أخرى
+Posted any time|نُشرت في أي وقت
+Search title, company, place|ابحث بالمسمى أو الشركة أو المكان
+Jobs for you|وظائف لك
+{n} jobs to look through, best match first.|{n} وظيفة للمراجعة، الأنسب أولًا.
+1 job to look through.|وظيفة واحدة للمراجعة.
+{n} strong fits|{n} مناسبة جدًا
+1 strong fit|واحدة مناسبة جدًا
+{n} cover letters ready|{n} خطابات تقديم جاهزة
+1 cover letter ready|خطاب تقديم واحد جاهز
+Search every job site|ابحث في كل مواقع التوظيف
+Do this next|افعل هذا تاليًا
+All {n} moving forward|كل الطلبات المتقدمة ({n})
+Starting with {company}|بدءًا بـ {company}
+{n} applications not sent yet|{n} طلبات لم تُرسل بعد
+1 application not sent yet|طلب واحد لم يُرسل بعد
+You're all caught up|أنجزت كل شيء
+Have a look at your best matches below, or press Refresh jobs.|ألقِ نظرة على الوظائف الأنسب لك أدناه، أو اضغط «تحديث الوظائف».
+Get the most out of Job Hunt HQ|استفد إلى أقصى حد من Job Hunt HQ
+{done} of {all} done|أُنجز {done} من {all}
+Add your name and where you live|أضف اسمك ومكان سكنك
+Choose the jobs you're looking for|اختر الوظائف التي تبحث عنها
+Upload or create your CV|ارفع سيرتك الذاتية أو أنشئها
+Add your work history (it writes better letters)|أضف خبراتك العملية (لكتابة خطابات أفضل)
+Connect Gmail to track replies (optional)|اربط Gmail لمتابعة الردود (اختياري)
+See all {n} jobs|عرض كل الوظائف ({n})
+Your applications|طلباتك
+Open →|فتح ←
+All emails →|كل الرسائل ←
+{n} sent this week|{n} أُرسلت هذا الأسبوع
+{n}% have had a reply|{n}% تلقت ردًا
+Connect Gmail|ربط Gmail
+Connect Gmail in My settings|اربط Gmail من «إعداداتي»
+Paste a link or advert – it scores it and writes your letter|الصق رابطًا أو إعلانًا – يقيّمه ويكتب خطابك
+Fills in application forms for you|يملأ نماذج التقديم نيابةً عنك
+Build, improve or tailor your CV|أنشئ سيرتك الذاتية أو حسّنها أو خصّصها
+Your searches on every job site, ready to open|عمليات بحثك في كل مواقع التوظيف، جاهزة للفتح
+Skip to content|انتقل إلى المحتوى
+Changes are kept when you press Save.|تُحفظ التغييرات عند الضغط على «حفظ».
+Remembered answers|الإجابات المحفوظة
+Competencies|الكفاءات
+Interview prep|التحضير للمقابلة
+Interview practice|التدرّب على المقابلة
+Practise for it|تدرّب عليها
+Quick practice|تدريب سريع
+Your interviews|مقابلاتك
+Get ready early|استعد مبكرًا
+How it works|طريقة العمل
+Recent practice|التدريبات الأخيرة
+Start practising|ابدأ التدريب
+Keep practising|واصل التدريب
+Practise|تدرّب
+Practise for the interview|تدرّب على المقابلة
+Practise for my kind of work|تدرّب على مجال عملي
+Practise answers and get a score with tips|تدرّب على الإجابات واحصل على تقييم ونصائح
+New set of questions|مجموعة أسئلة جديدة
+The advert|الإعلان
+Your answer|إجابتك
+Get feedback|احصل على التقييم
+Try again|حاول مرة أخرى
+What went well|ما الذي أحسنت فيه
+To make it stronger|لتجعلها أقوى
+What they're looking for|ما الذي يبحثون عنه
+Practice round done|انتهت جولة التدريب
+Go through again|أعد المحاولة
+Back to Interview prep|العودة إلى التحضير للمقابلة
+Get ahead|استعد مبكرًا
+Your interviews|مقابلاتك
+Quick practice|تدريب سريع
+Answer out loud|أجب بصوت عالٍ
+Next question →|السؤال التالي ←
+Read it out|اقرأه بصوت عالٍ
+To improve|للتحسين
+Your results|نتائجك
+# Welcome page (tour)
+Skip to the tour|انتقل إلى الجولة
+The tour|الجولة
+Features|المزايا
+Join|انضم
+For every kind of work · {countries} countries · {langs} languages|لكل أنواع العمل · {countries} دولة · {langs} لغات
+Your whole job search,|بحثك الكامل عن عمل،
+in one place.|في مكان واحد.
+Job Hunt HQ finds jobs on every site, scores each one against you, writes your cover letter, fills in application forms, tracks every reply and helps you practise for the interview.|يجد Job Hunt HQ الوظائف في كل المواقع، ويقيّم مدى مناسبة كل وظيفة لك، ويكتب خطاب التقديم، ويملأ نماذج الطلبات، ويتابع كل رد، ويساعدك على التدرّب للمقابلة.
+▶ Take the 60-second tour|▶ خذ جولة في 60 ثانية
+Join with an invite code|انضم برمز دعوة
+See how it works|شاهد كيف يعمل
+Ten steps, from choosing your kind of work to walking into the interview ready. Use the arrows, or let it play.|عشر خطوات، من اختيار مجال عملك إلى دخول المقابلة وأنت مستعد. استخدم الأسهم أو دعها تعمل تلقائيًا.
+1 · You choose|1 · أنت تختار
+Any job, anywhere|أي وظيفة، في أي مكان
+Pick from {titles} job titles across {fields} fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.|اختر من بين {titles} مسمى وظيفيًا في {fields} مجالًا – المستودعات والرعاية والقانون وتقنية المعلومات والتجزئة والموارد البشرية وغيرها – أو اكتب ما تريد. أخبره أين تسكن وإلى أي مسافة ستتنقل.
+Works for career changers too|يناسب من يغيّرون مسارهم المهني أيضًا
+Places are checked as you type|يتم التحقق من الأماكن أثناء الكتابة
+{n} countries, each with its own job sites|{n} دولة، لكل منها مواقع توظيف خاصة بها
+Jobs you're looking for|الوظائف التي تبحث عنها
+Where|أين
+2 · One press|2 · ضغطة واحدة
+Jobs found and scored|وظائف يُعثر عليها وتُقيَّم
+Press Refresh jobs and it searches the job sites for you, giving every job a match score, so the best ones are at the top – with the reasons why.|اضغط «تحديث الوظائف» فيبحث في مواقع التوظيف نيابةً عنك، ويمنح كل وظيفة درجة مناسبة، لتظهر الأفضل في الأعلى – مع ذكر الأسباب.
+Strong fits stand out|الوظائف الأنسب تبرز أولًا
+See why each job matches|اعرف سبب مناسبة كل وظيفة
+Hide the ones that don’t suit|أخفِ ما لا يناسبك
+3 · One click|3 · نقرة واحدة
+Every job site in one place|كل مواقع التوظيف في مكان واحد
+Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.|عمليات بحثك جاهزة على Indeed وLinkedIn وReed وTotaljobs وCV-Library وNHS Jobs والمواقع المتخصصة في مجالك.
+The right sites for your country|المواقع المناسبة لبلدك
+Set up job alerts in a click|فعّل تنبيهات الوظائف بنقرة
+Save any advert you find|احفظ أي إعلان تجده
+Specialist sites ↗|مواقع متخصصة ↗
+4 · Done for you|4 · يُنجز من أجلك
+Your cover letter, already written|خطاب التقديم مكتوب مسبقًا
+Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.|افتح أي وظيفة تجد خطاب التقديم بانتظارك – مكتوبًا من خبرتك الحقيقية ومطابقًا للإعلان. عدّله ثم نزّله بصيغة PDF أو Word.
+Never invents experience|لا يختلق أي خبرة أبدًا
+Paste any job description to get one|الصق أي وصف وظيفي لتحصل على خطاب
+Tailored CV for each job too|وسيرة ذاتية مخصصة لكل وظيفة أيضًا
+5 · On the application|5 · في نموذج التقديم
+The assistant fills it in|المساعد يملؤه لك
+A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.|يظهر مساعد صغير على مواقع التوظيف، فيملأ بياناتك، ويرفق سيرتك الذاتية وخطاب التقديم، ويقترح إجابات للأسئلة – من خبراتك أنت.
+You always press Submit yourself|أنت من يضغط «إرسال» دائمًا
+Personal questions are left to you|الأسئلة الشخصية متروكة لك
+Only appears on job sites|يظهر على مواقع التوظيف فقط
+You check it and press Submit.|تراجعه ثم تضغط «إرسال».
+6 · Automatically|6 · تلقائيًا
+Every reply tracked|متابعة كل رد
+Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|اربط Gmail فتُصنَّف الردود تلقائيًا: استلام، مقابلة، تقييم، عرض أو رفض. وتُحدَّث طلباتك دون أي جهد منك.
+See what needs you next|اعرف ما يحتاج إلى انتباهك تاليًا
+Your whole year at a glance|عامك كله في لمحة
+Offer|عرض
+7 · Get ready|7 · استعد
+Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.|أسئلة لتلك الوظيفة بالتحديد. اكتب إجابتك أو قلها بصوتك، واحصل على درجة من 10 وتقييم وفق أسلوب STAR ونصائح واضحة للتحسين.
+Examples from your own history|أمثلة من خبراتك أنت
+See yourself improve|شاهد تحسّنك
+“Tell me about a time you had several deadlines at once.”|«حدّثني عن موقف كانت لديك فيه عدة مواعيد نهائية في وقت واحد.»
+Strong answer|إجابة قوية
+✓ Situation|✓ الموقف
+✓ Task|✓ المهمة
+✓ Action|✓ الإجراء
+✓ Result|✓ النتيجة
+→ Put a number on the result if you can.|← اذكر رقمًا للنتيجة إن أمكن.
+8 · Stand out|8 · تميّز
+A CV that fits|سيرة ذاتية مناسبة
+Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.|أنشئ سيرة ذاتية من الصفر، أو ارفع سيرتك أو ملفك على LinkedIn وحسّنها. اختر تصميمًا ثم خصّصها لكل وظيفة.
+Three clean designs|ثلاثة تصاميم أنيقة
+PDF or Word|PDF أو Word
+Suggestions to make it stronger|اقتراحات لجعلها أقوى
+Classic|كلاسيكي
+Modern|عصري
+Compact|مختصر
+9 · Your way|9 · على طريقتك
+Your language, your phone|لغتك، هاتفك
+Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.|استخدمه بالإنجليزية أو الفرنسية أو الألمانية أو الهولندية أو الإسبانية أو البرتغالية أو العربية – على حاسوبك أو هاتفك.
+Add it to your home screen|أضفه إلى شاشتك الرئيسية
+Works on any device|يعمل على أي جهاز
+Switch language any time|غيّر اللغة في أي وقت
+10 · Yours|10 · ملكك
+Private by design|الخصوصية في صميم التصميم
+Your details are only ever seen by you. Download everything or delete your account whenever you like.|بياناتك لا يراها أحد غيرك. نزّل كل شيء أو احذف حسابك متى شئت.
+UK GDPR rights built in|حقوق اللائحة العامة لحماية البيانات (UK GDPR) مدمجة
+Nothing sold or shared|لا يُباع شيء ولا يُشارَك
+Invite-only accounts|الحسابات بالدعوة فقط
+Only you see your data|أنت وحدك ترى بياناتك
+Download it all|نزّلها كلها
+Delete your account|احذف حسابك
+Everything it does|كل ما يقدمه
+All included. No adverts.|كل شيء مشمول. بلا إعلانات.
+Home summary|ملخص الصفحة الرئيسية
+What needs you next, your best matches and where every application has got to – at a glance.|ما يحتاج إليك تاليًا، والوظائف الأنسب لك، ومرحلة كل طلب – في لمحة واحدة.
+Job matching|مطابقة الوظائف
+Every job scored against your experience, skills, salary and travel, with the reasons.|تقييم كل وظيفة وفق خبرتك ومهاراتك وراتبك ومسافة التنقل، مع ذكر الأسباب.
+Every job site|كل مواقع التوظيف
+Your searches ready on all the main job boards and the specialist ones for your field.|عمليات بحثك جاهزة على كل مواقع التوظيف الرئيسية والمتخصصة في مجالك.
+Cover letters|خطابات التقديم
+Written for each job from your real experience. Edit, copy, or download as PDF or Word.|تُكتب لكل وظيفة من خبرتك الحقيقية. عدّلها أو انسخها أو نزّلها بصيغة PDF أو Word.
+Browser assistant|مساعد المتصفح
+Fills in application forms, attaches your CV and letter, and suggests answers. You press Submit.|يملأ نماذج التقديم ويرفق سيرتك وخطابك ويقترح الإجابات. وأنت من يضغط «إرسال».
+Application tracker|متابعة الطلبات
+Every application and every reply in one list, updated from Gmail automatically.|كل طلب وكل رد في قائمة واحدة، تُحدَّث تلقائيًا من Gmail.
+Practise questions for the job, speak or type your answer, get a score and tips.|تدرّب على أسئلة الوظيفة، وأجب كتابةً أو بصوتك، واحصل على درجة ونصائح.
+CV builder|منشئ السيرة الذاتية
+Build, import or improve your CV, pick a design, and tailor it to each job.|أنشئ سيرتك الذاتية أو استوردها أو حسّنها، واختر تصميمًا، وخصّصها لكل وظيفة.
+Any career|أي مسار مهني
+{titles} job titles across {fields} fields, and help changing career.|{titles} مسمى وظيفيًا في {fields} مجالًا، ومساعدة في تغيير المسار المهني.
+Languages and countries|اللغات والدول
+{langs} languages, including Arabic, and {countries} countries, each with its own job sites.|{langs} لغات منها العربية، و{countries} دولة لكل منها مواقع توظيف خاصة بها.
+Phone and computer|الهاتف والحاسوب
+Use it anywhere, and add it to your phone’s home screen like an app.|استخدمه في أي مكان، وأضفه إلى شاشة هاتفك الرئيسية كأنه تطبيق.
+Private and secure|خاص وآمن
+Only you see your data. Download it or delete it at any time.|أنت وحدك ترى بياناتك. نزّلها أو احذفها في أي وقت.
+Job Hunt HQ is invite-only for now. Accounts are made with a personal invite code.|Job Hunt HQ متاح حاليًا بالدعوة فقط. تُنشأ الحسابات برمز دعوة شخصي.
+Get an invite code|احصل على رمز دعوة
+– from the person who invited you, or ask for one at|– من الشخص الذي دعاك، أو اطلبه عبر
+Enter it here|أدخله هنا
+and choose your username and password.|واختر اسم المستخدم وكلمة المرور.
+Set up in five minutes|الإعداد في خمس دقائق
+– add your CV, choose the jobs you want, and you're off.|– أضف سيرتك الذاتية واختر الوظائف التي تريدها، وابدأ.
+Your invite code|رمز الدعوة الخاص بك
+No code?|ليس لديك رمز؟
+Ask for one|اطلب رمزًا
+Questions|أسئلة شائعة
+Who is it for?|لمن هذا الموقع؟
+Anyone looking for work – whatever the job, whether you’re starting out, moving up or changing career.|لكل من يبحث عن عمل – أيًا كانت الوظيفة، سواء كنت في بداية طريقك أو تسعى للترقي أو تغيّر مسارك المهني.
+Does it apply for me automatically?|هل يقدّم نيابةً عني تلقائيًا؟
+It does the work – finds jobs, writes letters, fills in forms – but you always check and press Submit yourself. Questions about you personally (health, diversity, criminal record) are always left for you.|يقوم بالعمل – يجد الوظائف ويكتب الخطابات ويملأ النماذج – لكنك دائمًا تراجع وتضغط «إرسال» بنفسك. والأسئلة الشخصية (الصحة والتنوع والسجل الجنائي) متروكة لك دائمًا.
+Will it make things up about me?|هل سيختلق معلومات عني؟
+No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.|لا. الخطابات والإجابات واقتراحات السيرة الذاتية تعتمد فقط على ما أخبرته به عن خبرتك.
+Is my data safe?|هل بياناتي آمنة؟
+Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.|أنت وحدك من يرى بياناتك. لا أحد يقرأ رسائلك – ولا حتى القائمون على الموقع. ويمكنك تنزيل كل شيء أو حذف حسابك في أي وقت.
+Does it work on my phone?|هل يعمل على هاتفي؟
+Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.|نعم. افتحه في متصفح هاتفك وأضفه إلى الشاشة الرئيسية لتستخدمه كتطبيق.
+How do I get an invite code?|كيف أحصل على رمز دعوة؟
+Page|الصفحة
+How Job Hunt HQ works|كيف يعمل Job Hunt HQ
+{i} of {all}|{i} من {all}
+Previous|السابق
+Pause|إيقاف مؤقت
+Next|التالي
+Choose a step|اختر خطوة
+Three groups of four letters or numbers|ثلاث مجموعات من أربعة أحرف أو أرقام
+Legal|قانوني
+Play|تشغيل
+Ask the person who told you about Job Hunt HQ, or email {email}.|اسأل الشخص الذي أخبرك عن Job Hunt HQ، أو راسلنا على {email}.

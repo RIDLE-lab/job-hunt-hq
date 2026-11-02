@@ -38,7 +38,7 @@
 <section class="t-hero">
   <div class="t-in t-hero-in">
     <div>
-      <p class="t-eyebrow">For every kind of work · {{ n_countries }} countries · 6 languages</p>
+      <p class="t-eyebrow">{{ t('For every kind of work · {countries} countries · {langs} languages', countries=n_countries, langs=langs|length) }}</p>
       <h1>Your whole job search,<br>in one place.</h1>
       <p class="t-lead">Job Hunt HQ finds jobs on every site, scores each one against you, writes your cover letter, fills in
         application forms, tracks every reply and helps you practise for the interview.</p>
@@ -67,7 +67,7 @@
     <ol class="t-bars" aria-hidden="true">{% for _ in range(10) %}<li><i></i></li>{% endfor %}</ol>
 
     {% set slides = [
-      ('You choose', 'Any job, anywhere', 'Pick from ' ~ n_titles ~ ' job titles across ' ~ n_sectors ~ ' fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.', ['Works for career changers too', 'Places are checked as you type', n_countries ~ ' countries, each with its own job sites']),
+      ('You choose', 'Any job, anywhere', t('Pick from {titles} job titles across {fields} fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.', titles=n_titles, fields=n_sectors), ['Works for career changers too', 'Places are checked as you type', n_countries ~ ' countries, each with its own job sites']),
       ('One press', 'Jobs found and scored', 'Press Refresh jobs and it searches the job sites for you, giving every job a match score, so the best ones are at the top – with the reasons why.', ['Strong fits stand out', 'See why each job matches', 'Hide the ones that don’t suit']),
       ('One click', 'Every job site in one place', 'Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.', ['The right sites for your country', 'Set up job alerts in a click', 'Save any advert you find']),
       ('Done for you', 'Your cover letter, already written', 'Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.', ['Never invents experience', 'Paste any job description to get one', 'Tailored CV for each job too']),
@@ -75,11 +75,11 @@
       ('Automatically', 'Every reply tracked', 'Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.', ['Nobody reads your emails', 'See what needs you next', 'Your whole year at a glance']),
       ('Get ready', 'Practise for the interview', 'Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.', ['Answer out loud', 'Examples from your own history', 'See yourself improve']),
       ('Stand out', 'A CV that fits', 'Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.', ['Three clean designs', 'PDF or Word', 'Suggestions to make it stronger']),
-      ('Your way', 'Your language, your phone', 'Use it in English, Français, Deutsch, Nederlands, Español or Português – on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
+      ('Your way', 'Your language, your phone', 'Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
       ('Yours', 'Private by design', 'Your details are only ever seen by you. Download everything or delete your account whenever you like.', ['UK GDPR rights built in', 'Nothing sold or shared', 'Invite-only accounts']),
     ] %}
     {% for eyebrow, title, text, points in slides %}
-    <article class="t-slide{{ ' on' if loop.first }}" data-n="{{ loop.index0 }}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of 10: {{ title }}"{% if not loop.first %} hidden{% endif %}>
+    <article class="t-slide{{ ' on' if loop.first }}" data-n="{{ loop.index0 }}" role="group" aria-roledescription="slide" aria-label="{{ t('{i} of {all}', i=loop.index, all=10) }}: {{ title }}"{% if not loop.first %} hidden{% endif %}>
       <div class="t-copy">
         <p class="t-step">{{ loop.index }} · {{ eyebrow }}</p>
         <h3>{{ title }}</h3>
@@ -138,7 +138,7 @@ I'm applying for the Warehouse Team Leader role at Northline Logistics. For the 
         <div class="m-cvs">{% for d in ['Classic', 'Modern', 'Compact'] %}<div class="m-cv m-cv-{{ loop.index }}"><i></i><i></i><i></i><i></i><i></i><small>{{ d }}</small></div>{% endfor %}</div>
         {% elif loop.index0 == 8 %}
         <div class="m-phone"><div class="m-screen">
-          <div class="m-hello"><span>Good morning, Sam.</span><span>Bonjour, Sam.</span><span>Guten Morgen, Sam.</span><span>Goedemorgen, Sam.</span><span>Buenos días, Sam.</span><span>Bom dia, Sam.</span></div>
+          <div class="m-hello"><span>Good morning, Sam.</span><span>Bonjour, Sam.</span><span>Guten Morgen, Sam.</span><span>Goedemorgen, Sam.</span><span>Buenos días, Sam.</span><span>Bom dia, Sam.</span><span lang="ar" dir="rtl">صباح الخير يا Sam.</span></div>
           <div class="m-mini"><i></i><i></i><i></i></div>
         </div></div>
         {% else %}
@@ -173,8 +173,8 @@ I'm applying for the Warehouse Team Leader role at Northline Logistics. For the 
       ('Application tracker', 'Every application and every reply in one list, updated from Gmail automatically.'),
       ('Interview prep', 'Practise questions for the job, speak or type your answer, get a score and tips.'),
       ('CV builder', 'Build, import or improve your CV, pick a design, and tailor it to each job.'),
-      ('Any career', n_titles ~ ' job titles across ' ~ n_sectors ~ ' fields, and help changing career.'),
-      ('Languages and countries', '6 languages, ' ~ n_countries ~ ' countries, each with its own job sites.'),
+      ('Any career', t('{titles} job titles across {fields} fields, and help changing career.', titles=n_titles, fields=n_sectors)),
+      ('Languages and countries', t('{langs} languages, including Arabic, and {countries} countries, each with its own job sites.', langs=langs|length, countries=n_countries)),
       ('Phone and computer', 'Use it anywhere, and add it to your phone’s home screen like an app.'),
       ('Private and secure', 'Only you see your data. Download it or delete it at any time.'),
     ] %}
@@ -215,7 +215,7 @@ I'm applying for the Warehouse Team Leader role at Northline Logistics. For the 
     ('Will it make things up about me?', 'No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.'),
     ('Is my data safe?', 'Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.'),
     ('Does it work on my phone?', 'Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.'),
-    ('How do I get an invite code?', 'Ask the person who told you about Job Hunt HQ, or email ' ~ contact ~ '.'),
+    ('How do I get an invite code?', t('Ask the person who told you about Job Hunt HQ, or email {email}.', email=contact)),
   ] %}
   <details class="t-q"><summary>{{ q }}</summary><p>{{ a }}</p></details>
   {% endfor %}

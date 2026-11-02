@@ -110,9 +110,9 @@ body.tour { background: var(--paper); }
 .m-phone { width: 190px; height: 330px; border-radius: 30px; background: #050a2a; padding: 12px; box-shadow: 0 20px 40px -14px rgba(0,0,0,.7); animation: t-pop .5s both; }
 .m-screen { height: 100%; border-radius: 20px; background: linear-gradient(180deg, var(--night-2), var(--night)); padding: 22px 14px; display: grid; align-content: start; gap: 16px; }
 .m-hello { position: relative; height: 54px; }
-.m-hello span { position: absolute; inset: 0; color: #fff; font: 800 1.3rem/1.15 var(--serif); opacity: 0; animation: hello 9s infinite; }
+.m-hello span { position: absolute; inset: 0; color: #fff; font: 800 1.3rem/1.15 var(--serif); opacity: 0; animation: hello 10.5s infinite; }
 .m-hello span:nth-child(2) { animation-delay: 1.5s; } .m-hello span:nth-child(3) { animation-delay: 3s; } .m-hello span:nth-child(4) { animation-delay: 4.5s; }
-.m-hello span:nth-child(5) { animation-delay: 6s; } .m-hello span:nth-child(6) { animation-delay: 7.5s; }
+.m-hello span:nth-child(5) { animation-delay: 6s; } .m-hello span:nth-child(6) { animation-delay: 7.5s; } .m-hello span:nth-child(7) { animation-delay: 9s; }
 @keyframes hello { 0%, 100% { opacity: 0; transform: translateY(6px); } 3%, 14% { opacity: 1; transform: none; } 17% { opacity: 0; } }
 .m-mini { display: grid; gap: 8px; }
 .m-mini i { height: 34px; border-radius: 8px; background: rgba(255,255,255,.1); }
@@ -176,3 +176,18 @@ body.tour { background: var(--paper); }
   .t-faq h2 { font-size: 1.8rem; }
   .tour > .t-in > .lang-pick { padding-bottom: 90px; }   /* room for in-app browser bars (Instagram, LinkedIn) */
 }
+/* right-to-left (Arabic) */
+[dir="rtl"] .t-links { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .t-hero-art .radar { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .t-copy li { padding-left: 0; padding-right: 28px; }
+[dir="rtl"] .t-copy li::before { left: auto; right: 0; }
+[dir="rtl"] .t-dots { margin-left: 0; margin-right: 10px; }
+[dir="rtl"] .m-lock ul, [dir="rtl"] .t-steps { padding-left: 0; padding-right: 22px; }
+[dir="rtl"] .t-q summary { padding-right: 0; padding-left: 30px; }
+[dir="rtl"] .t-q summary::after { right: auto; left: 4px; }
+[dir="rtl"] .t-code input { direction: ltr; }
+@media (max-width: 900px) {
+  .t-hero-in, .t-join-in, .t-slide { grid-template-columns: minmax(0, 1fr); }
+  .t-join-in > *, .t-hero-in > * { min-width: 0; overflow-wrap: anywhere; }
+}
+.t-code input, .t-code .btn { width: 100%; min-width: 0; }

@@ -8,8 +8,10 @@ import re
 from pathlib import Path
 
 LANGS = [("en", "English"), ("fr", "Français"), ("de", "Deutsch"), ("nl", "Nederlands"), ("es", "Español"),
-         ("pt", "Português")]
+         ("pt", "Português"), ("ar", "العربية")]
 CODES = [c for c, _ in LANGS]
+TABLE_COLUMNS = ["en", "fr", "de", "nl", "es", "pt"]     # the columns of i18n_table.txt
+RTL = {"ar"}                                              # languages written right to left
 _TABLE: dict[str, dict[str, str]] | None = None
 
 
@@ -21,10 +23,19 @@ def table() -> dict[str, dict[str, str]]:
             if not line.strip() or line.startswith("#"):
                 continue
             parts = [p.strip() for p in line.split("|")]
-            if len(parts) != len(CODES):
+            if len(parts) != len(TABLE_COLUMNS):
                 continue
-            for code, text in zip(CODES[1:], parts[1:]):
+            for code, text in zip(TABLE_COLUMNS[1:], parts[1:]):
                 _TABLE[code][parts[0]] = text
+        # languages kept in a file of their own: i18n_<code>.txt, one "English|translation" per line
+        for code in CODES[1:]:
+            extra = Path(__file__).with_name(f"i18n_{code}.txt")
+            if not extra.is_file():
+                continue
+            for line in extra.read_text(encoding="utf-8").splitlines():
+                if line.strip() and not line.startswith("#") and line.count("|") == 1:
+                    en, tr = (x.strip() for x in line.split("|"))
+                    _TABLE[code][en] = tr
     return _TABLE
 
 
@@ -94,16 +105,18 @@ def translate(page: str, lang: str) -> str:
             chunk = TEXT.sub(node, chunk)
             out.append(ATTR.sub(attr, chunk))
     page = "".join(out)
-    return re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"', page, count=1)
+    return re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"' + (' dir="rtl"' if lang in RTL else ''), page, count=1)
 
 
 DAYS = {"fr": "lun mar mer jeu ven sam dim", "de": "Mo Di Mi Do Fr Sa So", "nl": "ma di wo do vr za zo",
-        "es": "lun mar mié jue vie sáb dom", "pt": "seg ter qua qui sex sáb dom"}
+        "es": "lun mar mié jue vie sáb dom", "pt": "seg ter qua qui sex sáb dom",
+        "ar": "الاثنين الثلاثاء الأربعاء الخميس الجمعة السبت الأحد"}
 MONTHS = {"fr": "janv févr mars avr mai juin juil août sept oct nov déc",
           "de": "Jan Feb Mär Apr Mai Jun Jul Aug Sep Okt Nov Dez",
           "nl": "jan feb mrt apr mei jun jul aug sep okt nov dec",
           "es": "ene feb mar abr may jun jul ago sep oct nov dic",
-          "pt": "jan fev mar abr mai jun jul ago set out nov dez"}
+          "pt": "jan fev mar abr mai jun jul ago set out nov dez",
+          "ar": "يناير فبراير مارس أبريل مايو يونيو يوليو أغسطس سبتمبر أكتوبر نوفمبر ديسمبر"}
 
 
 def phrase(text: str, lang: str, **values) -> str:
