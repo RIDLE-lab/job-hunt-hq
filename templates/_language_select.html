@@ -1,0 +1,1 @@
+<select name="language" class="lang-select" aria-label="Language">{% for code, label in langs %}<option value="{{ code }}" {{ 'selected' if lang == code }}>{{ label }}</option>{% endfor %}</select>

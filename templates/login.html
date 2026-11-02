@@ -23,6 +23,7 @@
     <form method="post" class="login-box" autocomplete="on"{% if mode == "first" and hosted %} enctype="multipart/form-data"{% endif %}>
     {% if mode == 'login' %}
       <h2>Sign in</h2>
+      {% if done %}<p class="flash ok-flash">{{ done }}</p>{% endif %}
       {% if error %}<p class="flash">{{ error }}</p>{% endif %}
       <input type="hidden" name="next" value="{{ next }}">
       <label for="username">Username</label>
@@ -91,6 +92,8 @@
       <p><a href="{{ url_for('login') }}">Back to sign in</a></p>
       {% endif %}
     {% endif %}
+      <p class="muted small login-note"><a href="{{ url_for('privacy') }}">Privacy and your data</a></p>
+      <p class="lang-pick small">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</p>
     </form>
   </section>
 </body>

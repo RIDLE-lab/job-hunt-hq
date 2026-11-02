@@ -26,7 +26,7 @@
       </label>
       <datalist id="jump-pages">
         {% for section, items in nav %}{% for ep, label, ic in items %}<option value="{{ label }}" data-href="{{ url_for(ep) }}">{% endfor %}{% endfor %}
-        <option value="Setup" data-href="{{ url_for('setup') }}">
+        {% if not hosted %}<option value="Setup" data-href="{{ url_for('setup') }}">{% endif %}
       </datalist>
       <form method="post" action="{{ url_for('refresh') }}" class="refresh-form" onsubmit="this.querySelector('button').classList.add('busy')">
         <button class="btn btn-signal refresh-btn" aria-label="Refresh jobs">{{ icon('refresh') }}<span class="lbl">Refresh jobs</span></button>
@@ -41,12 +41,13 @@
       <span class="nav-gap"></span>
       {% if is_admin %}<a href="/people" class="{{ 'on' if request.endpoint == 'people_page' }}">People</a>{% endif %}
       {% if is_admin and feedback_new %}<a href="/feedback" class="{{ 'on' if request.endpoint == 'feedback_page' }}">Feedback <span class="fb-count">{{ feedback_new }}</span></a>{% endif %}
-      <a href="{{ url_for('setup') }}" class="{{ 'on' if request.endpoint == 'setup' }}">Setup</a>
+      {% if not hosted %}<a href="{{ url_for('setup') }}" class="{{ 'on' if request.endpoint == 'setup' }}">Setup</a>{% endif %}
       <details class="who-menu">
         <summary class="who"><span class="avatar">{{ me.initials }}</span>{{ me.name }}</summary>
         <div class="who-pop">
           {% if user %}<p class="muted small">Signed in as <b>{{ user.username }}</b></p>{% endif %}
           <a href="/settings">My settings</a>
+          <div class="lang-pick">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</div>
           <a href="/feedback">Feedback{% if feedback_new %} <span class="fb-count">{{ feedback_new }}</span>{% endif %}</a>
           <a href="/account">Account and password</a>
           <a href="{{ url_for('logout') }}">Sign out</a>
@@ -90,7 +91,7 @@
         <a href="/cv">Create CV</a>
         <a href="{{ url_for('emails') }}">Emails</a>
         <a href="/settings">My settings</a>
-        <a href="{{ url_for('setup') }}">Setup</a>
+        {% if not hosted %}<a href="{{ url_for('setup') }}">Setup</a>{% endif %}
         {% if is_admin %}<a href="/people">People</a>{% endif %}
         <a href="/account">Account</a>
         <a href="{{ url_for('logout') }}">Sign out</a>
@@ -139,5 +140,7 @@
       setTimeout(() => b.textContent = 'Copy', 1500);
     });
   </script>
+<script src="{{ url_for('static', filename='place.js') }}" defer></script>
+{% if lang != 'en' %}<script src="{{ url_for('static', filename='translate.js') }}" data-lang="{{ lang }}" defer></script>{% endif %}
 </body>
 </html>

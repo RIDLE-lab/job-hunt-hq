@@ -1,0 +1,229 @@
+# English | Français | Deutsch | Nederlands | Español | Português
+Dashboard|Tableau de bord|Übersicht|Dashboard|Panel|Painel
+Job sites|Sites d'emploi|Jobbörsen|Vacaturesites|Portales de empleo|Sites de emprego
+Assistant|Assistant|Assistent|Assistent|Asistente|Assistente
+Add a job|Ajouter une offre|Stelle hinzufügen|Vacature toevoegen|Añadir oferta|Adicionar vaga
+Apply for me|Postuler pour moi|Für mich bewerben|Solliciteer voor mij|Postular por mí|Candidatar por mim
+Applications|Candidatures|Bewerbungen|Sollicitaties|Candidaturas|Candidaturas
+My career|Mon parcours|Mein Werdegang|Mijn loopbaan|Mi trayectoria|O meu percurso
+Create CV|Créer un CV|Lebenslauf erstellen|Cv maken|Crear CV|Criar CV
+Emails|E-mails|E-Mails|E-mails|Correos|E-mails
+People|Personnes|Personen|Mensen|Personas|Pessoas
+Feedback|Avis|Feedback|Feedback|Comentarios|Feedback
+Setup|Configuration|Einrichtung|Instellen|Configuración|Configuração
+Signed in as|Connecté en tant que|Angemeldet als|Ingelogd als|Sesión iniciada como|Sessão iniciada como
+My settings|Mes paramètres|Meine Einstellungen|Mijn instellingen|Mis ajustes|As minhas definições
+Account and password|Compte et mot de passe|Konto und Passwort|Account en wachtwoord|Cuenta y contraseña|Conta e palavra-passe
+Sign out|Se déconnecter|Abmelden|Uitloggen|Cerrar sesión|Terminar sessão
+Send feedback|Envoyer un avis|Feedback senden|Feedback sturen|Enviar comentarios|Enviar feedback
+Refresh jobs|Actualiser les offres|Stellen aktualisieren|Vacatures vernieuwen|Actualizar ofertas|Atualizar vagas
+Jump to a page (Ctrl+K)|Aller à une page (Ctrl+K)|Zu einer Seite (Strg+K)|Naar een pagina (Ctrl+K)|Ir a una página (Ctrl+K)|Ir para uma página (Ctrl+K)
+Jobs|Offres|Stellen|Vacatures|Ofertas|Vagas
+Add|Ajouter|Hinzufügen|Toevoegen|Añadir|Adicionar
+Apply|Postuler|Bewerben|Solliciteren|Postular|Candidatar
+Career|Parcours|Werdegang|Loopbaan|Trayectoria|Percurso
+More|Plus|Mehr|Meer|Más|Mais
+Account|Compte|Konto|Account|Cuenta|Conta
+Sign in|Se connecter|Anmelden|Inloggen|Iniciar sesión|Iniciar sessão
+Username|Nom d'utilisateur|Benutzername|Gebruikersnaam|Usuario|Nome de utilizador
+Password|Mot de passe|Passwort|Wachtwoord|Contraseña|Palavra-passe
+Create your account|Créez votre compte|Konto erstellen|Maak je account aan|Crea tu cuenta|Crie a sua conta
+Your name|Votre nom|Ihr Name|Je naam|Tu nombre|O seu nome
+Choose a username|Choisissez un nom d'utilisateur|Benutzernamen wählen|Kies een gebruikersnaam|Elige un usuario|Escolha um nome de utilizador
+Choose a password|Choisissez un mot de passe|Passwort wählen|Kies een wachtwoord|Elige una contraseña|Escolha uma palavra-passe
+(at least 10 characters)|(au moins 10 caractères)|(mindestens 10 Zeichen)|(minstens 10 tekens)|(al menos 10 caracteres)|(pelo menos 10 caracteres)
+Type it again|Retapez-le|Erneut eingeben|Typ het opnieuw|Escríbela otra vez|Escreva novamente
+Create my account|Créer mon compte|Mein Konto erstellen|Mijn account aanmaken|Crear mi cuenta|Criar a minha conta
+Join Job Hunt HQ|Rejoindre Job Hunt HQ|Job Hunt HQ beitreten|Word lid van Job Hunt HQ|Únete a Job Hunt HQ|Juntar-se ao Job Hunt HQ
+Invite code|Code d'invitation|Einladungscode|Uitnodigingscode|Código de invitación|Código de convite
+Email|E-mail|E-Mail|E-mail|Correo electrónico|E-mail
+(optional)|(facultatif)|(optional)|(optioneel)|(opcional)|(opcional)
+Already have an account?|Vous avez déjà un compte ?|Schon ein Konto?|Heb je al een account?|¿Ya tienes cuenta?|Já tem conta?
+New password|Nouveau mot de passe|Neues Passwort|Nieuw wachtwoord|Nueva contraseña|Nova palavra-passe
+Save new password|Enregistrer le mot de passe|Neues Passwort speichern|Nieuw wachtwoord opslaan|Guardar contraseña|Guardar palavra-passe
+Back to sign in|Retour à la connexion|Zurück zur Anmeldung|Terug naar inloggen|Volver a iniciar sesión|Voltar ao início de sessão
+Privacy and your data|Confidentialité et vos données|Datenschutz und Ihre Daten|Privacy en je gegevens|Privacidad y tus datos|Privacidade e os seus dados
+Your job search, wherever you are.|Votre recherche d'emploi, où que vous soyez.|Ihre Jobsuche, wo immer Sie sind.|Je zoektocht naar werk, waar je ook bent.|Tu búsqueda de empleo, estés donde estés.|A sua procura de emprego, onde quer que esteja.
+Full name|Nom complet|Vollständiger Name|Volledige naam|Nombre completo|Nome completo
+Phone|Téléphone|Telefon|Telefoon|Teléfono|Telefone
+Where you want to work near|Où vous voulez travailler|Wo Sie arbeiten möchten|Waar je wilt werken|Dónde quieres trabajar|Onde quer trabalhar
+(town, city or postcode)|(ville ou code postal)|(Ort oder Postleitzahl)|(plaats of postcode)|(ciudad o código postal)|(cidade ou código postal)
+Country|Pays|Land|Land|País|País
+Language for Job Hunt HQ|Langue de Job Hunt HQ|Sprache für Job Hunt HQ|Taal van Job Hunt HQ|Idioma de Job Hunt HQ|Idioma do Job Hunt HQ
+Home address|Adresse|Wohnadresse|Huisadres|Dirección|Morada
+(only used to fill in application forms)|(utilisée seulement pour remplir les candidatures)|(nur zum Ausfüllen von Bewerbungen)|(alleen voor het invullen van sollicitaties)|(solo para rellenar solicitudes)|(só para preencher candidaturas)
+LinkedIn profile|Profil LinkedIn|LinkedIn-Profil|LinkedIn-profiel|Perfil de LinkedIn|Perfil do LinkedIn
+Current or most recent job title|Intitulé de poste actuel ou le plus récent|Aktuelle oder letzte Position|Huidige of laatste functie|Puesto actual o más reciente|Cargo atual ou mais recente
+Notice period|Préavis|Kündigungsfrist|Opzegtermijn|Preaviso|Período de pré-aviso
+Right to work in the UK|Droit de travailler (pays)|Arbeitserlaubnis|Recht om te werken|Permiso de trabajo|Autorização de trabalho
+Next: the jobs you want|Suivant : les postes recherchés|Weiter: gewünschte Stellen|Volgende: de banen die je wilt|Siguiente: los empleos que buscas|Seguinte: as vagas que procura
+Job titles you're looking for|Postes recherchés|Gesuchte Stellenbezeichnungen|Functies die je zoekt|Puestos que buscas|Cargos que procura
+(one per line – each is searched separately)|(un par ligne – chacun est recherché séparément)|(einer pro Zeile – jeder wird einzeln gesucht)|(één per regel – elk wordt apart gezocht)|(uno por línea – cada uno se busca por separado)|(um por linha – cada um é pesquisado separadamente)
+How far you'll travel|Distance maximale|Wie weit Sie pendeln|Hoe ver je wilt reizen|Distancia máxima|Distância máxima
+Minimum salary|Salaire minimum|Mindestgehalt|Minimumsalaris|Salario mínimo|Salário mínimo
+Also show remote jobs|Afficher aussi le télétravail|Auch Remote-Stellen zeigen|Toon ook thuiswerkbanen|Mostrar también teletrabajo|Mostrar também trabalho remoto
+Your level|Votre niveau|Ihr Niveau|Je niveau|Tu nivel|O seu nível
+Hide jobs with these words in the title|Masquer les offres contenant ces mots|Stellen mit diesen Wörtern ausblenden|Verberg vacatures met deze woorden|Ocultar ofertas con estas palabras|Ocultar vagas com estas palavras
+Your main skills|Vos principales compétences|Ihre wichtigsten Fähigkeiten|Je belangrijkste vaardigheden|Tus principales habilidades|As suas principais competências
+Back|Retour|Zurück|Terug|Atrás|Voltar
+Next: your CV|Suivant : votre CV|Weiter: Ihr Lebenslauf|Volgende: je cv|Siguiente: tu CV|Seguinte: o seu CV
+Upload your CV|Importer votre CV|Lebenslauf hochladen|Upload je cv|Sube tu CV|Carregar o seu CV
+Upload and read my CV|Importer et lire mon CV|Lebenslauf hochladen und einlesen|Cv uploaden en inlezen|Subir y leer mi CV|Carregar e ler o meu CV
+Build a new CV|Créer un nouveau CV|Neuen Lebenslauf erstellen|Nieuw cv maken|Crear un CV nuevo|Criar um CV novo
+Finish set-up and build my CV|Terminer et créer mon CV|Einrichtung beenden und Lebenslauf erstellen|Afronden en mijn cv maken|Terminar y crear mi CV|Concluir e criar o meu CV
+About you|À propos de vous|Über Sie|Over jou|Sobre ti|Sobre si
+Town, city or postcode|Ville ou code postal|Ort oder Postleitzahl|Plaats of postcode|Ciudad o código postal|Cidade ou código postal
+GitHub or portfolio|GitHub ou portfolio|GitHub oder Portfolio|GitHub of portfolio|GitHub o portafolio|GitHub ou portefólio
+Indeed profile|Profil Indeed|Indeed-Profil|Indeed-profiel|Perfil de Indeed|Perfil do Indeed
+Current job title|Poste actuel|Aktuelle Position|Huidige functie|Puesto actual|Cargo atual
+Current employer|Employeur actuel|Aktueller Arbeitgeber|Huidige werkgever|Empresa actual|Empregador atual
+Salary expectation|Prétentions salariales|Gehaltsvorstellung|Salarisverwachting|Expectativa salarial|Expectativa salarial
+The jobs you want|Les postes recherchés|Gewünschte Stellen|De banen die je wilt|Los empleos que buscas|As vagas que procura
+Job titles|Intitulés de poste|Stellenbezeichnungen|Functietitels|Puestos|Cargos
+(one per line)|(un par ligne)|(einer pro Zeile)|(één per regel)|(uno por línea)|(um por linha)
+Places and distance|Lieux et distance|Orte und Entfernung|Plaatsen en afstand|Lugares y distancia|Locais e distância
+Default distance|Distance par défaut|Standardentfernung|Standaardafstand|Distancia predeterminada|Distância predefinida
+Hide titles containing|Masquer les intitulés contenant|Titel ausblenden mit|Verberg titels met|Ocultar puestos que contengan|Ocultar cargos com
+(comma-separated)|(séparés par des virgules)|(durch Kommas getrennt)|(gescheiden door komma's)|(separados por comas)|(separados por vírgulas)
+Your emails stay private.|Vos e-mails restent privés.|Ihre E-Mails bleiben privat.|Je e-mails blijven privé.|Tus correos son privados.|Os seus e-mails continuam privados.
+Download my data|Télécharger mes données|Meine Daten herunterladen|Mijn gegevens downloaden|Descargar mis datos|Transferir os meus dados
+Gmail address|Adresse Gmail|Gmail-Adresse|Gmail-adres|Dirección de Gmail|Endereço Gmail
+Saved|Enregistré|Gespeichert|Opgeslagen|Guardado|Guardado
+Email me the best new jobs after each refresh|M'envoyer les meilleures offres après chaque actualisation|Beste neue Stellen nach jeder Aktualisierung mailen|Mail me de beste nieuwe vacatures na elke update|Envíame las mejores ofertas tras cada actualización|Enviar-me as melhores vagas após cada atualização
+Save settings|Enregistrer les paramètres|Einstellungen speichern|Instellingen opslaan|Guardar ajustes|Guardar definições
+Pick from every kind of work|Choisissez parmi tous les métiers|Aus allen Berufen wählen|Kies uit alle soorten werk|Elige entre todo tipo de trabajos|Escolha entre todo o tipo de trabalho
+– or type your own titles in the box|– ou tapez vos propres intitulés|– oder eigene Bezeichnungen eingeben|– of typ je eigen functies in het vak|– o escribe tus propios puestos|– ou escreva os seus próprios cargos
+Choose a field…|Choisissez un domaine…|Bereich wählen…|Kies een vakgebied…|Elige un sector…|Escolha uma área…
+…or search any job title|…ou cherchez un intitulé|…oder Beruf suchen|…of zoek een functie|…o busca un puesto|…ou pesquise um cargo
+Every job site, one place|Tous les sites d'emploi, au même endroit|Alle Jobbörsen an einem Ort|Alle vacaturesites op één plek|Todos los portales de empleo en un lugar|Todos os sites de emprego num só lugar
+Send to Job Hunt HQ|Envoyer à Job Hunt HQ|An Job Hunt HQ senden|Naar Job Hunt HQ sturen|Enviar a Job Hunt HQ|Enviar para o Job Hunt HQ
+Found for you automatically|Trouvées automatiquement pour vous|Automatisch für Sie gefunden|Automatisch voor je gevonden|Encontradas automáticamente|Encontradas automaticamente para si
+LinkedIn and Indeed job alerts|Alertes emploi LinkedIn et Indeed|Jobalarme von LinkedIn und Indeed|Vacature-alerts van LinkedIn en Indeed|Alertas de LinkedIn e Indeed|Alertas de emprego do LinkedIn e Indeed
+Link LinkedIn and Indeed|Relier LinkedIn et Indeed|LinkedIn und Indeed verbinden|LinkedIn en Indeed koppelen|Vincular LinkedIn e Indeed|Ligar LinkedIn e Indeed
+Switch on job alerts|Activez les alertes emploi|Jobalarme einschalten|Zet vacature-alerts aan|Activa las alertas de empleo|Ative os alertas de emprego
+Bring your profile in|Importez votre profil|Profil übernehmen|Haal je profiel binnen|Importa tu perfil|Importe o seu perfil
+Add your profile links|Ajoutez vos liens de profil|Profil-Links hinzufügen|Voeg je profiellinks toe|Añade los enlaces de tu perfil|Adicione as ligações do seu perfil
+Use the browser buttons|Utilisez les boutons du navigateur|Browser-Schaltflächen nutzen|Gebruik de browserknoppen|Usa los botones del navegador|Use os botões do navegador
+Fill this application|Remplir cette candidature|Diese Bewerbung ausfüllen|Deze sollicitatie invullen|Rellenar esta solicitud|Preencher esta candidatura
+Your job-application assistant|Votre assistant de candidature|Ihr Bewerbungsassistent|Je sollicitatie-assistent|Tu asistente de candidaturas|O seu assistente de candidaturas
+Install it (2 minutes, once)|L'installer (2 minutes, une fois)|Installieren (2 Minuten, einmalig)|Installeren (2 minuten, eenmalig)|Instálalo (2 minutos, una vez)|Instalar (2 minutos, uma vez)
+Download the assistant|Télécharger l'assistant|Assistent herunterladen|Assistent downloaden|Descargar el asistente|Transferir o assistente
+Using it|L'utiliser|So nutzen Sie ihn|Gebruik|Cómo usarlo|Como usar
+On a job advert|Sur une offre d'emploi|In einer Stellenanzeige|Bij een vacature|En una oferta|Num anúncio de emprego
+On an application form|Sur un formulaire de candidature|In einem Bewerbungsformular|Op een sollicitatieformulier|En un formulario de solicitud|Num formulário de candidatura
+Ask your assistant|Demandez à votre assistant|Fragen Sie Ihren Assistenten|Vraag je assistent|Pregunta a tu asistente|Pergunte ao seu assistente
+After you submit|Après l'envoi|Nach dem Absenden|Na het versturen|Después de enviar|Depois de enviar
+Mark as applied|Marquer comme postulé|Als beworben markieren|Markeren als gesolliciteerd|Marcar como enviada|Marcar como candidatado
+Change your password|Changer votre mot de passe|Passwort ändern|Wachtwoord wijzigen|Cambia tu contraseña|Altere a sua palavra-passe
+Current password|Mot de passe actuel|Aktuelles Passwort|Huidig wachtwoord|Contraseña actual|Palavra-passe atual
+Change password|Changer le mot de passe|Passwort ändern|Wachtwoord wijzigen|Cambiar contraseña|Alterar palavra-passe
+Your data|Vos données|Ihre Daten|Je gegevens|Tus datos|Os seus dados
+Delete my account|Supprimer mon compte|Mein Konto löschen|Mijn account verwijderen|Eliminar mi cuenta|Eliminar a minha conta
+Delete my account and data|Supprimer mon compte et mes données|Konto und Daten löschen|Account en gegevens verwijderen|Eliminar mi cuenta y datos|Eliminar conta e dados
+Your password|Votre mot de passe|Ihr Passwort|Je wachtwoord|Tu contraseña|A sua palavra-passe
+Show|Afficher|Anzeigen|Tonen|Mostrar|Mostrar
+Open|Ouvrir|Öffnen|Openen|Abrir|Abrir
+All|Tout|Alle|Alles|Todo|Tudo
+Reply|Réponse|Antwort|Antwoord|Respuesta|Resposta
+Status|Statut|Status|Status|Estado|Estado
+Save|Enregistrer|Speichern|Opslaan|Guardar|Guardar
+Delete|Supprimer|Löschen|Verwijderen|Eliminar|Eliminar
+Your message|Votre message|Ihre Nachricht|Je bericht|Tu mensaje|A sua mensagem
+Screenshot|Capture d'écran|Screenshot|Schermafbeelding|Captura de pantalla|Captura de ecrã
+Cancel|Annuler|Abbrechen|Annuleren|Cancelar|Cancelar
+Something's wrong|Un problème|Etwas stimmt nicht|Er klopt iets niet|Algo va mal|Algo está errado
+An idea|Une idée|Eine Idee|Een idee|Una idea|Uma ideia
+A question|Une question|Eine Frage|Een vraag|Una pregunta|Uma pergunta
+Something I like|Ce que j'aime|Was mir gefällt|Iets wat ik goed vind|Algo que me gusta|Algo de que gosto
+Headline and profile|Titre et profil|Überschrift und Profil|Kop en profiel|Titular y perfil|Título e perfil
+Headline|Titre|Überschrift|Kop|Titular|Título
+Save and continue|Enregistrer et continuer|Speichern und weiter|Opslaan en verder|Guardar y continuar|Guardar e continuar
+Already have a CV?|Vous avez déjà un CV ?|Schon einen Lebenslauf?|Heb je al een cv?|¿Ya tienes CV?|Já tem CV?
+Experience|Expérience|Berufserfahrung|Werkervaring|Experiencia|Experiência
+Job title|Intitulé du poste|Position|Functie|Puesto|Cargo
+Company|Entreprise|Unternehmen|Bedrijf|Empresa|Empresa
+Location|Lieu|Ort|Locatie|Ubicación|Local
+From|De|Von|Van|Desde|De
+To|À|Bis|Tot|Hasta|Até
+Achievements|Réalisations|Erfolge|Prestaties|Logros|Conquistas
+Remove|Supprimer|Entfernen|Verwijderen|Quitar|Remover
+Education|Formation|Ausbildung|Opleiding|Formación|Formação
+Add a qualification|Ajouter un diplôme|Abschluss hinzufügen|Opleiding toevoegen|Añadir titulación|Adicionar habilitação
+Qualification|Diplôme|Abschluss|Diploma|Titulación|Habilitação
+Subject|Domaine|Fach|Studierichting|Especialidad|Área
+School, college or university|École ou université|Schule oder Hochschule|School of universiteit|Centro o universidad|Escola ou universidade
+Skills and languages|Compétences et langues|Fähigkeiten und Sprachen|Vaardigheden en talen|Habilidades e idiomas|Competências e línguas
+Skills|Compétences|Fähigkeiten|Vaardigheden|Habilidades|Competências
+Certifications and courses|Certifications et formations|Zertifikate und Kurse|Certificaten en cursussen|Certificaciones y cursos|Certificações e cursos
+Languages|Langues|Sprachen|Talen|Idiomas|Línguas
+Design and download|Modèle et téléchargement|Design und Download|Ontwerp en downloaden|Diseño y descarga|Modelo e transferência
+Colour|Couleur|Farbe|Kleur|Color|Cor
+Save design|Enregistrer le modèle|Design speichern|Ontwerp opslaan|Guardar diseño|Guardar modelo
+Download|Télécharger|Herunterladen|Downloaden|Descargar|Transferir
+Download PDF|Télécharger en PDF|PDF herunterladen|PDF downloaden|Descargar PDF|Transferir PDF
+Download Word|Télécharger en Word|Word herunterladen|Word downloaden|Descargar Word|Transferir Word
+Use this CV for my applications|Utiliser ce CV pour mes candidatures|Diesen Lebenslauf für Bewerbungen nutzen|Gebruik dit cv voor mijn sollicitaties|Usar este CV en mis candidaturas|Usar este CV nas minhas candidaturas
+Tailor it to a job|L'adapter à une offre|An eine Stelle anpassen|Afstemmen op een vacature|Adaptarlo a una oferta|Adaptar a uma vaga
+Make it stronger|L'améliorer|Verbessern|Sterker maken|Mejóralo|Torná-lo mais forte
+Preview|Aperçu|Vorschau|Voorbeeld|Vista previa|Pré-visualização
+To review|À examiner|Zu prüfen|Te bekijken|Por revisar|Para rever
+Applied|Postulé|Beworben|Gesolliciteerd|Enviadas|Candidatado
+Waiting|En attente|Wartend|Wachtend|En espera|Em espera
+Moving forward|En cours|Im Prozess|Gaat door|Avanzando|Em progresso
+Rejected|Refusé|Abgelehnt|Afgewezen|Rechazada|Rejeitado
+Your best matches|Vos meilleures correspondances|Ihre besten Treffer|Je beste matches|Tus mejores coincidencias|As suas melhores correspondências
+Strong fit|Très bon profil|Sehr passend|Sterke match|Muy adecuado|Muito adequado
+Good fit|Bon profil|Passend|Goede match|Adecuado|Adequado
+Your next steps|Vos prochaines étapes|Ihre nächsten Schritte|Je volgende stappen|Tus próximos pasos|Os seus próximos passos
+Jobs to review|Offres à examiner|Zu prüfende Stellen|Vacatures om te bekijken|Ofertas por revisar|Vagas para rever
+Search jobs|Rechercher des offres|Stellen suchen|Vacatures zoeken|Buscar ofertas|Pesquisar vagas
+Best match first|Meilleure correspondance d'abord|Beste Treffer zuerst|Beste match eerst|Mejor coincidencia primero|Melhor correspondência primeiro
+Refresh now|Actualiser|Jetzt aktualisieren|Nu vernieuwen|Actualizar ahora|Atualizar agora
+Recent replies|Réponses récentes|Neueste Antworten|Recente reacties|Respuestas recientes|Respostas recentes
+Latest applications|Dernières candidatures|Neueste Bewerbungen|Laatste sollicitaties|Últimas candidaturas|Últimas candidaturas
+Role|Poste|Stelle|Functie|Puesto|Cargo
+Next step|Prochaine étape|Nächster Schritt|Volgende stap|Siguiente paso|Próximo passo
+Offers|Offres reçues|Angebote|Aanbiedingen|Ofertas recibidas|Propostas
+Open in Gmail|Ouvrir dans Gmail|In Gmail öffnen|Openen in Gmail|Abrir en Gmail|Abrir no Gmail
+Open job|Ouvrir l'offre|Stelle öffnen|Vacature openen|Abrir oferta|Abrir vaga
+Edit|Modifier|Bearbeiten|Bewerken|Editar|Editar
+Cover letter|Lettre de motivation|Anschreiben|Motivatiebrief|Carta de presentación|Carta de apresentação
+Answers|Réponses|Antworten|Antwoorden|Respuestas|Respostas
+My details|Mes informations|Meine Angaben|Mijn gegevens|Mis datos|Os meus dados
+Advert|Annonce|Anzeige|Vacaturetekst|Anuncio|Anúncio
+Attach your CV|Joignez votre CV|Lebenslauf anhängen|Voeg je cv toe|Adjunta tu CV|Anexe o seu CV
+I've applied|J'ai postulé|Ich habe mich beworben|Ik heb gesolliciteerd|Ya he postulado|Já me candidatei
+Not for me|Pas pour moi|Nicht für mich|Niet voor mij|No es para mí|Não é para mim
+Write cover letter|Rédiger la lettre|Anschreiben schreiben|Brief schrijven|Escribir carta|Escrever carta
+Save changes|Enregistrer|Änderungen speichern|Wijzigingen opslaan|Guardar cambios|Guardar alterações
+Copy|Copier|Kopieren|Kopiëren|Copiar|Copiar
+Work experience|Expérience professionnelle|Berufserfahrung|Werkervaring|Experiencia laboral|Experiência profissional
+Description|Description|Beschreibung|Omschrijving|Descripción|Descrição
+Salary|Salaire|Gehalt|Salaris|Salario|Salário
+Closing date|Date limite|Bewerbungsschluss|Sluitingsdatum|Fecha límite|Data limite
+Save my career details|Enregistrer mon parcours|Werdegang speichern|Loopbaan opslaan|Guardar mi trayectoria|Guardar o meu percurso
+Question|Question|Frage|Vraag|Pregunta|Pergunta
+Your rights|Vos droits|Ihre Rechte|Je rechten|Tus derechos|Os seus direitos
+Nobody reads your emails|Personne ne lit vos e-mails|Niemand liest Ihre E-Mails|Niemand leest je e-mails|Nadie lee tus correos|Ninguém lê os seus e-mails
+Starting out / junior|Débutant / junior|Berufseinsteiger / Junior|Starter / junior|Principiante / junior|Iniciante / júnior
+Experienced|Expérimenté|Erfahren|Ervaren|Con experiencia|Experiente
+Senior / lead|Senior / responsable|Senior / Leitung|Senior / leidinggevend|Sénior / responsable|Sénior / chefia
+Skip for now and finish|Passer et terminer|Überspringen und beenden|Nu overslaan en afronden|Omitir y terminar|Saltar e concluir
+Finish|Terminer|Fertig|Afronden|Terminar|Concluir
+Applying|Candidatures|Bewerben|Solliciteren|Postular|Candidatar
+You|Vous|Sie|Jij|Tú|Você
+Overview|Vue d'ensemble|Überblick|Overzicht|Resumen|Visão geral
+Your details, the jobs Job Hunt HQ looks for, and your Gmail. Only you can see these.|Vos informations, les postes que Job Hunt HQ recherche et votre Gmail. Vous seul pouvez les voir.|Ihre Angaben, die gesuchten Stellen und Ihr Gmail. Nur Sie sehen diese.|Je gegevens, de banen die Job Hunt HQ zoekt en je Gmail. Alleen jij kunt dit zien.|Tus datos, los empleos que busca Job Hunt HQ y tu Gmail. Solo tú puedes verlos.|Os seus dados, as vagas que o Job Hunt HQ procura e o seu Gmail. Só você os pode ver.
+(for application forms)|(pour les formulaires de candidature)|(für Bewerbungsformulare)|(voor sollicitatieformulieren)|(para formularios de solicitud)|(para formulários de candidatura)
+(optional – your public Indeed CV link)|(facultatif – le lien public de votre CV Indeed)|(optional – Ihr öffentlicher Indeed-Lebenslauf-Link)|(optioneel – je openbare Indeed-cv-link)|(opcional – el enlace público de tu CV de Indeed)|(opcional – a ligação pública do seu CV no Indeed)
+Right to work|Droit de travailler|Arbeitserlaubnis|Recht om te werken|Permiso de trabajo|Autorização de trabalho
+Gmail|Gmail|Gmail|Gmail|Gmail|Gmail
+Upload the CV you have, build a new one, or do it later.|Importez votre CV, créez-en un nouveau ou faites-le plus tard.|Laden Sie Ihren Lebenslauf hoch, erstellen Sie einen neuen oder später.|Upload je cv, maak een nieuwe of doe het later.|Sube tu CV, crea uno nuevo o hazlo más tarde.|Carregue o seu CV, crie um novo ou faça-o mais tarde.
+So applications, letters and forms use your details.|Pour que candidatures, lettres et formulaires utilisent vos informations.|Damit Bewerbungen, Anschreiben und Formulare Ihre Angaben nutzen.|Zodat sollicitaties, brieven en formulieren je gegevens gebruiken.|Para que candidaturas, cartas y formularios usen tus datos.|Para que candidaturas, cartas e formulários usem os seus dados.
+What you’re looking for|Ce que vous recherchez|Was Sie suchen|Wat je zoekt|Lo que buscas|O que procura
+Step 1 of 3|Étape 1 sur 3|Schritt 1 von 3|Stap 1 van 3|Paso 1 de 3|Passo 1 de 3
+Step 2 of 3|Étape 2 sur 3|Schritt 2 von 3|Stap 2 van 3|Paso 2 de 3|Passo 2 de 3
+Step 3 of 3|Étape 3 sur 3|Schritt 3 von 3|Stap 3 van 3|Paso 3 de 3|Passo 3 de 3
+Your CV|Votre CV|Ihr Lebenslauf|Je cv|Tu CV|O seu CV
+CV|CV|Lebenslauf|Cv|CV|CV
+Job sites|Sites d'emploi|Jobbörsen|Vacaturesites|Portales de empleo|Sites de emprego

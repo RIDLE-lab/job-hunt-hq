@@ -478,3 +478,30 @@ def new_feedback_count() -> int:
         return 0
     with connect() as c:
         return c.execute("SELECT COUNT(*) FROM feedback WHERE status = 'new'").fetchone()[0]
+
+
+def owner_contact() -> str:
+    """The owner's email, for privacy and data requests."""
+    try:
+        with connect() as c:
+            row = c.execute("SELECT id, email FROM users WHERE is_admin = 1 ORDER BY id LIMIT 1").fetchone()
+        if not row:
+            return ""
+        return (load_settings(row["id"]).get("profile") or {}).get("email") or row["email"] or ""
+    except Exception:
+        return ""
+
+
+def delete_user(user_id: int):
+    """Right to erasure: remove the person's account and everything stored for them. The owner can't be deleted."""
+    u = get(user_id)
+    if not u or u["is_admin"]:
+        raise ValueError("The owner's account can't be deleted here.")
+    for f in feedback_list(user_id):
+        delete_feedback(f["id"])                   # their feedback and any screenshots
+    folder = user_dir(user_id)
+    if folder.exists() and folder.parent.name == "users":
+        shutil.rmtree(folder, ignore_errors=True)  # jobs, applications, emails, CV, letters, settings, Gmail link
+    with connect() as c:
+        c.execute("DELETE FROM resets WHERE user_id = ?", (user_id,))
+        c.execute("DELETE FROM users WHERE id = ?", (user_id,))

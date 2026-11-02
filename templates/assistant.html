@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Assistant · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>Your job-application assistant</h1>
+  <p class="muted">A small helper that floats on every job site – Indeed, LinkedIn, Reed, NHS Jobs, Workday and the rest.
+    On an advert it scores the job against your details. On an application form it fills in what it can, suggests answers
+    from your own work history and examples, and attaches your CV and letter. It never presses Submit – you always do that.</p>
+</div></section>
+
+<div class="grid2">
+<section class="card">
+  <h2>Install it (2 minutes, once)</h2>
+  <ol class="steps">
+    <li><a class="btn btn-primary" href="{{ url_for('assistant_download') }}">Download the assistant</a>
+      <p class="muted small">It's already connected to <b>your</b> account – don't share the file.</p></li>
+    <li><b>Unzip it</b>: right-click the download → <i>Extract All</i>. Keep the folder somewhere safe, like Documents.</li>
+    <li>Open your browser's extensions page – type this in the address bar:
+      <div class="copy-line"><code>chrome://extensions</code></div>
+      <p class="muted small">Opera GX: <code>opera://extensions</code> · Edge: <code>edge://extensions</code></p></li>
+    <li>Switch on <b>Developer mode</b> (top right).</li>
+    <li>Click <b>Load unpacked</b> and choose the <b>Job Hunt HQ Assistant</b> folder.</li>
+    <li>Pin it: click the jigsaw icon → pin <b>Job Hunt HQ Assistant</b>.</li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>Using it</h2>
+  <ul class="checks">
+    <li class="ok"><b>On a job advert</b> – the round Job Hunt HQ button shows your fit score. Click it to see why, and
+      <i>Save it and write my cover letter</i>.</li>
+    <li class="ok"><b>On an application form</b> – <i>Fill this page for me</i> fills your details and attaches your CV and
+      letter. <i>Suggest answers</i> drafts each question from your own experience; edit it, then <i>Put it in the form</i>.</li>
+    <li class="ok"><b>Ask your assistant</b> – e.g. “Which of my experiences best fits this role?”{% if not ai %}
+      <span class="muted">(needs AI switched on by the owner)</span>{% endif %}</li>
+    <li class="ok"><b>After you submit</b> – <i>Mark as applied</i>, and it's tracked in Applications.</li>
+  </ul>
+  <p class="muted small">Drag the button anywhere on the screen. Questions about you personally (health, criminal
+    record, diversity) are always left for you to answer. Answers only use what's in your own details – check each one
+    before you submit.</p>
+</section>
+</div>
+{% endblock %}

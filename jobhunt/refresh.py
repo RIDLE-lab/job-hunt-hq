@@ -78,26 +78,32 @@ def fetch_jobs(cfg: dict, log=print) -> list[dict]:
     locations = [(l, default_distance) if isinstance(l, str) else (l["place"], int(l.get("miles", default_distance)))
                  for l in search.get("locations", ["London"])]
     min_salary = search.get("min_salary")
+    from . import countries
+    country = countries.code_for((cfg.get("profile") or {}).get("country") or "GB")
+    uk, adz = country == "GB", countries.adzuna(country)
     found: list[dict] = []
     for kw in keywords:
         for loc, distance in locations:
-            if src.get("reed_api_key"):
+            if src.get("reed_api_key") and uk:
                 try:
                     found += sources.search_reed(src["reed_api_key"], kw, loc, distance, min_salary)
                 except Exception as e:
                     log(f"Reed '{kw}' in {loc}: {e}")
-            if src.get("adzuna_app_id") and src.get("adzuna_app_key"):
+            if src.get("adzuna_app_id") and src.get("adzuna_app_key") and adz:
                 try:
                     found += sources.search_adzuna(src["adzuna_app_id"], src["adzuna_app_key"], kw, loc,
-                                                   distance, min_salary, int(search.get("max_age_days", 14)))
+                                                   distance, min_salary, int(search.get("max_age_days", 14)), adz)
                 except Exception as e:
                     log(f"Adzuna '{kw}' in {loc}: {e}")
-            if src.get("cvlibrary_key"):
+            if src.get("cvlibrary_key") and uk:
                 try:
                     found += sources.search_cvlibrary(src["cvlibrary_key"], kw, loc, distance, min_salary,
                                                       int(search.get("max_age_days", 14)))
                 except Exception as e:
                     log(f"CV-Library '{kw}' in {loc}: {e}")
+    if not uk and not adz:
+        log(f"Automatic job search isn't available for {countries.name(country)} yet – use the Job sites page, "
+            "and your LinkedIn and Indeed job alerts.")
     if not (src.get("reed_api_key") or src.get("adzuna_app_id") or src.get("cvlibrary_key")):
         log("No Reed/Adzuna keys in config.yaml yet – add them for more jobs (optional).")
     return found
@@ -113,6 +119,9 @@ def wants_hr_jobs(cfg: dict) -> bool:
     from . import persona
     if persona.builtin():
         return True
+    from . import countries
+    if countries.code_for((cfg.get("profile") or {}).get("country") or "GB") != "GB":
+        return False                         # a UK-only job board
     return any(HR_WORDS.search(k or "") for k in (cfg.get("search", {}).get("keywords") or []))
 
 

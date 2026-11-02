@@ -28,7 +28,12 @@
     <div class="two">
       <div><label for="phone">Phone</label><input id="phone" name="phone" value="{{ p.phone or '' }}" autocomplete="tel"></div>
       <div><label for="location">Where you want to work near <span class="muted">(town, city or postcode)</span></label>
-        <input id="location" name="location" value="{{ p.location or '' }}" placeholder="e.g. Manchester or M1 2AB" required></div>
+        <input id="location" name="location" value="{{ p.location or '' }}" placeholder="e.g. Manchester, M1 2AB, Lyon, Rotterdam" required data-place autocomplete="address-level2"></div>
+    </div>
+    <div class="two">
+      <div><label for="country">Country</label>
+        <select id="country" name="country" data-country>{% for code, c in countries.items() %}<option value="{{ code }}" {{ 'selected' if (p.country or 'GB') == code }}>{{ c[0] }}</option>{% endfor %}</select></div>
+      <div><label for="language">Language for Job Hunt HQ</label>{% include "_language_select.html" %}</div>
     </div>
     <label for="address">Home address <span class="muted">(only used to fill in application forms)</span></label>
     <input id="address" name="address" value="{{ p.address or '' }}" autocomplete="street-address">
@@ -52,7 +57,7 @@
     <div class="two">
       <div><label for="miles">How far you'll travel</label>
         <select id="miles" name="miles">{% for m in miles %}<option value="{{ m }}" {{ 'selected' if (sr.distance_miles or 15) == m }}>Up to {{ m }} miles from {{ p.location or 'home' }}</option>{% endfor %}</select></div>
-      <div><label for="min_salary">Minimum salary <span class="muted">(£ a year, optional)</span></label>
+      <div><label for="min_salary">Minimum salary <span class="muted">({{ currency }} a year, optional)</span></label>
         <input id="min_salary" name="min_salary" inputmode="numeric" value="{{ sr.min_salary or '' }}" placeholder="e.g. 28000"></div>
     </div>
     <label class="check"><input type="checkbox" name="include_remote" value="yes" {{ 'checked' if sr.include_remote is not defined or sr.include_remote }}> Also show remote jobs</label>

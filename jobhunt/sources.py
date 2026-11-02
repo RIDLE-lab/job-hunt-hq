@@ -79,7 +79,7 @@ def search_reed(api_key: str, keywords: str, location: str, distance: int, min_s
 
 
 # ---------------------------------------------------------------- Adzuna
-ADZUNA_URL = "https://api.adzuna.com/v1/api/jobs/gb/search/1"
+ADZUNA_URL = "https://api.adzuna.com/v1/api/jobs/{country}/search/1"
 
 
 def parse_adzuna(payload: dict) -> list[dict]:
@@ -107,13 +107,13 @@ def parse_adzuna(payload: dict) -> list[dict]:
 
 
 def search_adzuna(app_id: str, app_key: str, keywords: str, location: str, distance_miles: int,
-                  min_salary: int | None, max_age_days: int) -> list[dict]:
+                  min_salary: int | None, max_age_days: int, country: str = "gb") -> list[dict]:
     params = {"app_id": app_id, "app_key": app_key, "what": keywords, "where": location,
               "distance": int(distance_miles * 1.609), "max_days_old": max_age_days,
               "results_per_page": 50, "content-type": "application/json"}
     if min_salary:
         params["salary_min"] = min_salary
-    resp = requests.get(ADZUNA_URL, params=params, headers=UA, timeout=TIMEOUT)
+    resp = requests.get(ADZUNA_URL.format(country=country or "gb"), params=params, headers=UA, timeout=TIMEOUT)
     resp.raise_for_status()
     return parse_adzuna(resp.json())
 

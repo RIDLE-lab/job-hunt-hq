@@ -30,9 +30,9 @@
   <h2>Or do it yourself in 4 steps</h2>{% else %}<h2>Apply in 4 steps</h2>{% endif %}
   <ol class="steps">
     <li>
-      {% if job.cover_letter %}<b>Read your cover letter and answers</b> below and personalise anything in [brackets].{% else %}<b>Write the cover letter.</b>{% endif %}
+      <b>Your cover letter is ready</b> – read it below, with your answers, and personalise anything in [brackets].
       <form method="post" action="{{ url_for('job_letter', job_id=job.id) }}">
-        <button class="btn">{{ 'Write it again' if job.cover_letter else 'Write cover letter' }}</button>
+        <button class="btn btn-ghost small">Write it again</button>
       </form>
     </li>
     <li><b>Open the application</b>, then click your <b>Fill this application</b> bookmark on the form

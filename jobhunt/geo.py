@@ -6,6 +6,7 @@ import json
 import math
 import re
 import threading
+import time
 
 import requests
 
@@ -53,17 +54,106 @@ def _lookup(place: str):
             res = r.get("result") or {}
             if res.get("latitude"):
                 return [res["latitude"], res["longitude"]]
-        r = requests.get(f"{base}/places", params={"q": place, "limit": 5}, timeout=8).json()
-        results = r.get("result") or []
-        # prefer towns/cities over farms and streets with the same name
-        rank = {"City": 0, "Town": 1, "Suburban Area": 2, "Village": 3, "Hamlet": 4, "Other Settlement": 5}
-        results.sort(key=lambda x: rank.get(x.get("local_type"), 9))
-        for res in results:
-            if res.get("latitude"):
-                return [res["latitude"], res["longitude"]]
+        if not _abroad(place):
+            r = requests.get(f"{base}/places", params={"q": place, "limit": 5}, timeout=8).json()
+            results = r.get("result") or []
+            # prefer towns/cities over farms and streets with the same name
+            rank = {"City": 0, "Town": 1, "Suburban Area": 2, "Village": 3, "Hamlet": 4, "Other Settlement": 5}
+            results.sort(key=lambda x: rank.get(x.get("local_type"), 9))
+            for res in results:
+                if res.get("latitude"):
+                    return [res["latitude"], res["longitude"]]
+        hit = _osm(place)                    # anywhere else in the world
+        if hit is None:
+            return None
+        if hit:
+            return [hit["lat"], hit["lon"]]
     except Exception:
         return None          # offline or the service is busy: try again next time
     return []                # looked up, nothing found
+
+
+ABROAD = re.compile(r",\s*(france|germany|deutschland|netherlands|nederland|belgium|belgique|belgi[eë]|spain|españa|espana|"
+                    r"portugal|italy|italia|poland|polska|austria|österreich|switzerland|schweiz|suisse|ireland|"
+                    r"united states|usa|canada|australia|uae|united arab emirates)\s*$", re.I)
+
+
+def _abroad(place: str) -> bool:
+    return bool(ABROAD.search(place or ""))
+
+
+_OSM_LOCK = threading.Lock()
+_OSM_LAST = [0.0]
+
+
+def _osm(place: str):
+    """OpenStreetMap's free place search (at most one request a second, as its rules ask)."""
+    with _OSM_LOCK:
+        wait = 1.1 - (time.time() - _OSM_LAST[0])
+        if wait > 0:
+            time.sleep(wait)
+        _OSM_LAST[0] = time.time()
+        try:
+            r = requests.get("https://nominatim.openstreetmap.org/search",
+                             params={"q": place, "format": "jsonv2", "addressdetails": 1, "limit": 1,
+                                     "accept-language": "en"},
+                             headers={"User-Agent": "JobHuntHQ/1.0 (personal job-search assistant)"}, timeout=10)
+            r.raise_for_status()
+            res = r.json()
+        except Exception:
+            return None
+    if not res:
+        return {}
+    a = res[0].get("address") or {}
+    town = a.get("city") or a.get("town") or a.get("village") or a.get("municipality") or a.get("suburb") or \
+        res[0].get("name") or ""
+    region = a.get("state") or a.get("county") or a.get("region") or ""
+    return {"lat": float(res[0]["lat"]), "lon": float(res[0]["lon"]), "town": town, "region": region,
+            "country": (a.get("country_code") or "").upper(), "country_name": a.get("country") or ""}
+
+
+def describe(place: str) -> dict:
+    """What a typed place is: {"label": "Leeds, West Yorkshire, England, United Kingdom", "country": "GB"} – shown
+    to the person as they type, so they can see it's understood."""
+    place = (place or "").strip()
+    if len(place) < 2:
+        return {}
+    key = "describe:" + re.sub(r"\s+", " ", place.lower())
+    with _LOCK:
+        cache = _load()
+        if key in cache:
+            return cache[key] or {}
+    out = {}
+    try:
+        m = POSTCODE.search(place)
+        if m and not _abroad(place):
+            res = (requests.get(f"https://api.postcodes.io/postcodes/{m.group(1)}{m.group(2)}", timeout=8).json()
+                   .get("result") or {})
+            if res:
+                bits = [res.get("postcode"), res.get("admin_district"), res.get("region") or res.get("country"),
+                        res.get("country"), "United Kingdom"]
+                out = {"label": ", ".join(dict.fromkeys(b for b in bits if b)), "country": "GB"}
+        if not out and not _abroad(place):
+            res = (requests.get("https://api.postcodes.io/places", params={"q": place, "limit": 5}, timeout=8).json()
+                   .get("result") or [])
+            rank = {"City": 0, "Town": 1, "Suburban Area": 2, "Village": 3, "Hamlet": 4, "Other Settlement": 5}
+            res.sort(key=lambda x: rank.get(x.get("local_type"), 9))
+            if res and res[0].get("name_1", "").lower().startswith(place.split(",")[0].strip().lower()[:4]):
+                r0 = res[0]
+                bits = [r0.get("name_1"), r0.get("county_unitary") or r0.get("district_borough"), r0.get("region"),
+                        r0.get("country"), "United Kingdom"]
+                out = {"label": ", ".join(dict.fromkeys(b for b in bits if b)), "country": "GB"}
+        if not out:
+            hit = _osm(place)
+            if hit:
+                bits = [hit["town"], hit["region"], hit["country_name"]]
+                out = {"label": ", ".join(dict.fromkeys(b for b in bits if b)), "country": hit["country"]}
+    except Exception:
+        return {}
+    with _LOCK:
+        _load()[key] = out
+        _save()
+    return out
 
 
 def locate(place: str):

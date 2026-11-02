@@ -265,8 +265,12 @@ def _slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")
 
 
-def search_links(title: str, place: str, miles: int = 15) -> list[tuple[str, str]]:
-    """(site, url) – each opens that site's own search for this job and place."""
+def search_links(title: str, place: str, miles: int = 15, country: str = "GB") -> list[tuple[str, str]]:
+    """(site, url) – each opens that site's own search for this job and place, on the main sites of the person's
+    country (and, in the UK, the specialist sites for their field too)."""
+    from . import countries
+    if countries.code_for(country) != "GB":
+        return countries.site_links(country, _norm(title) or title, place, miles)
     t, p = _q(_norm(title) or title), _q(place)
     links = [
         ("Indeed", f"https://uk.indeed.com/jobs?q={t}&l={p}&radius={miles}"),
@@ -299,8 +303,8 @@ def search_links(title: str, place: str, miles: int = 15) -> list[tuple[str, str
     return links
 
 
-def alert_links(title: str, place: str) -> list[tuple[str, str]]:
+def alert_links(title: str, place: str, country: str = "GB") -> list[tuple[str, str]]:
     """Where to switch on daily job-alert emails – Job Hunt HQ reads LinkedIn and Indeed alerts from Gmail."""
-    t, p = _q(_norm(title) or title), _q(place)
-    return [("LinkedIn", f"https://www.linkedin.com/jobs/search/?keywords={t}&location={p}"),
-            ("Indeed", f"https://uk.indeed.com/jobs?q={t}&l={p}")]
+    from . import countries
+    links = dict(countries.site_links(country, _norm(title) or title, place))
+    return [(n, links[n]) for n in ("LinkedIn", "Indeed") if n in links]

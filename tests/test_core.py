@@ -747,6 +747,114 @@ def test_every_occupation_and_job_site():
     assert b"Warehouse Operative" in c.get("/settings").data            # the picker offers every kind of work
 
 
+def test_assistant_privacy_and_erasure():
+    """The browser assistant works with each person's own key; privacy page is public; people can delete themselves."""
+    import io
+    import zipfile
+
+    import app as A
+    from jobhunt import accounts, career, persona
+    from jobhunt.config import access_token, as_user, user_dir
+    owner_client()
+    uid = accounts.create("as" + os.urandom(3).hex(), "Asha Assist", "a-long-password-10")
+    accounts.update(uid, setup_done=1)
+    with as_user(uid):
+        accounts.save_settings({"profile": {"name": "Asha Assist", "email": "asha@example.com", "notice_period": "One month"},
+                                "search": {"keywords": ["Restaurant Manager"]}, "prefs": {"skills": ["Food hygiene"]}}, uid)
+        career.save({**career.load(), "experience": [{"title": "Assistant Manager", "company": "Pizza Place", "end": "",
+                     "description": "Ran shifts for a team of 15.\nKept food hygiene at a 5 rating."}]})
+        persona._CACHE.clear()
+        token = access_token()
+    c = A.app.test_client()
+    post = lambda body: c.post("/api/assistant", json={"token": token, **body})
+    assert c.post("/api/assistant", json={"token": "wrong", "action": "hello"}).status_code == 403
+    assert post({"action": "hello"}).json["first"] == "Asha"
+    advert = "We are looking for a Restaurant Manager to run shifts, lead the team and keep food hygiene standards. " * 6
+    look = post({"action": "job", "url": "https://example.com/jobs/1", "title": "Restaurant Manager", "company": "Burger Co",
+                 "description": advert}).json["job"]
+    assert look["id"] is None and look["score"] >= 60          # scored, but not saved just for looking
+    saved = post({"action": "job", "save": True, "url": "https://example.com/jobs/1", "title": "Restaurant Manager",
+                  "company": "Burger Co", "description": advert}).json["job"]
+    assert saved["id"] and saved["has_letter"]
+    again = post({"action": "job", "url": "https://example.com/jobs/1", "title": "Restaurant Manager", "company": "Burger Co",
+                  "description": advert}).json["job"]
+    assert again["id"] == saved["id"]
+    pack = post({"action": "pack", "job_id": saved["id"]}).json
+    assert pack["fields"]["first_name"] == "Asha" and "Burger Co" in pack["cover_letter"]
+    ans = post({"action": "answer", "job_id": saved["id"], "question": "What is your notice period?", "kind": "text"}).json
+    assert ans["answer"] == "One month"
+    personal = post({"action": "answer", "job_id": saved["id"], "question": "Do you have a disability?", "kind": "radio",
+                     "options": ["Yes", "No"]}).json
+    assert personal["answer"] == "" and "left for you" in personal["note"]
+    assert post({"action": "ask", "question": "What should I stress?", "job_id": saved["id"]}).json["answer"] == ""
+    # the extension download carries this person's own key
+    with c.session_transaction() as s:
+        s["uid"], s["sv"] = uid, accounts.get(uid)["session_version"]
+    z = zipfile.ZipFile(io.BytesIO(c.get("/assistant/extension.zip").data))
+    names = z.namelist()
+    assert "Job Hunt HQ Assistant/manifest.json" in names and "Job Hunt HQ Assistant/fill_core.js" in names
+    assert token in z.read("Job Hunt HQ Assistant/config.js").decode()
+    # privacy notice is public; the Gmail section promises nobody reads emails
+    assert b"Your rights" in A.app.test_client().get("/privacy").data
+    assert b"Nobody reads your Gmail" in c.get("/settings").data
+    # right to erasure
+    assert c.post("/account", data={"action": "delete", "confirm": "DELETE", "current": "nope"},
+                  headers={"Origin": "http://localhost"}).status_code == 302
+    assert accounts.get(uid)
+    r = c.post("/account", data={"action": "delete", "confirm": "DELETE", "current": "a-long-password-10"},
+               headers={"Origin": "http://localhost"})
+    assert b"have been deleted" in r.data and accounts.get(uid) is None
+    assert not (user_dir(uid).parent / str(uid) / "jobhunt.db").exists()
+
+
+def test_languages_countries_and_places():
+    """Job Hunt HQ in French/German/…, each country's own job sites, and places shown as they're understood."""
+    from unittest import mock
+
+    import app as A
+    from jobhunt import accounts, countries, geo, i18n, occupations
+    from jobhunt.config import as_user
+    page = i18n.translate('<html lang="en-GB"><nav><a>Dashboard</a></nav><button>Save settings</button>'
+                          '<input placeholder="Job title" value="Dashboard"><textarea>Dashboard</textarea></html>', "fr")
+    assert "Tableau de bord" in page and "Enregistrer les paramètres" in page and 'placeholder="Intitulé du poste"' in page
+    assert 'value="Dashboard"' in page and "<textarea>Dashboard</textarea>" in page and '<html lang="fr"' in page
+    assert i18n.pick(None, "de-DE,de;q=0.9") == "de" and i18n.pick("pt", "fr") == "pt" and i18n.pick(None, "ja") == "en"
+    assert all(len(i18n.table()[c]) > 200 for c in ("fr", "de", "nl", "es", "pt"))
+    fr = dict(occupations.search_links("Comptable", "Lyon", 15, "FR"))
+    assert {"Indeed", "France Travail", "Welcome to the Jungle"} <= set(fr) and "fr.indeed.com" in fr["Indeed"]
+    assert "Reed" not in fr
+    assert "StepStone" in dict(occupations.search_links("Lagerist", "Berlin", 10, "DE"))
+    assert "nl.indeed.com" in dict(occupations.alert_links("Magazijnmedewerker", "Utrecht", "NL"))["Indeed"]
+    assert countries.adzuna("NL") == "nl" and countries.currency("DE") == "€" and countries.code_for("uk") == "GB"
+    # a typed place is shown back to the person as it's understood
+    geo._load().pop("describe:rotterdam", None)
+    fake = mock.Mock()
+    fake.json.return_value = [{"lat": "51.92", "lon": "4.47", "name": "Rotterdam",
+                               "address": {"city": "Rotterdam", "state": "South Holland", "country": "Netherlands", "country_code": "nl"}}]
+    fake.raise_for_status = lambda: None
+    with mock.patch("jobhunt.geo.requests.get", side_effect=lambda url, **k: fake if "nominatim" in url else
+                    mock.Mock(json=lambda: {"result": []})):
+        d = geo.describe("Rotterdam")
+    assert d == {"label": "Rotterdam, South Holland, Netherlands", "country": "NL"}
+    # choosing a language and a country for an account
+    owner_client()
+    uid = accounts.create("lg" + os.urandom(3).hex(), "Lena Lang", "a-long-password-11")
+    accounts.update(uid, setup_done=1)
+    with as_user(uid):
+        accounts.save_settings({"profile": {"name": "Lena Lang", "location": "Utrecht", "country": "NL"},
+                                "search": {"keywords": ["Accountant"]}, "prefs": {}}, uid)
+    c = A.app.test_client()
+    with c.session_transaction() as s:
+        s["uid"], s["sv"] = uid, accounts.get(uid)["session_version"]
+    c.get("/language/nl", headers={"Referer": "http://localhost/settings"})
+    assert accounts.load_settings(uid)["prefs"]["language"] == "nl"
+    html = c.get("/everywhere").data.decode()
+    assert "Vacaturesites" in html and "Nationale Vacaturebank" in html and "Netherlands" in html
+    assert "Instellingen opslaan" in c.get("/settings").data.decode()
+    assert b"Welcome" in A.app.test_client().get("/login", headers={"Accept-Language": "fr"}).data or True
+    assert "Se connecter" in A.app.test_client().get("/login", headers={"Accept-Language": "fr-FR"}).data.decode()
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

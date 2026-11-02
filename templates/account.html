@@ -25,5 +25,19 @@
   <p class="muted">Download everything that's yours – jobs, applications, emails, My career, settings, letters and your CV –
     as one zip. Keep it as a backup, or use it to move to the Job Hunt HQ website.</p>
   <a class="btn" href="{{ url_for('account_export') }}">Download my data</a>
+  <p class="muted small" style="margin-top:12px">How your data is used, and your rights under UK GDPR: <a href="{{ url_for('privacy') }}">Privacy and your data</a>.</p>
 </section>
+{% if not u.is_admin %}
+<section class="card">
+  <h2>Delete my account</h2>
+  <p class="muted">Deletes your account and everything stored for you – jobs, applications, emails read from Gmail, CV,
+    letters, settings and feedback. This can't be undone, so download your data first if you want a copy.</p>
+  <form method="post" class="form narrow">
+    <input type="hidden" name="action" value="delete">
+    <label for="confirm">Type DELETE</label><input id="confirm" name="confirm" autocomplete="off" required>
+    <label for="current-del">Your password</label><input id="current-del" name="current" type="password" autocomplete="current-password" required>
+    <button class="btn danger">Delete my account and data</button>
+  </form>
+</section>
+{% endif %}
 {% endblock %}

@@ -29,14 +29,17 @@ app.config.update(SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_HTTPONLY=True, P
 # ------------------------------------------------------------------ accounts and signing in
 from jobhunt import accounts  # noqa: E402
 from jobhunt import occupations  # noqa: E402
+from jobhunt import countries, i18n  # noqa: E402
 
 OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
-OPEN_ENDPOINTS = {"login", "static", "manifest", "first_account", "join", "reset_password"}
+OPEN_ENDPOINTS = {"login", "static", "manifest", "first_account", "join", "reset_password", "privacy", "set_language"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
-TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter"}
-SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page"}
+TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter", "api_assistant"}
+SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy",
+                   "set_language", "api_place",
+                   "account_page", "account_export"}
 # On the website (not your PC) there's no screen for the robot's browser and no Word to open – those pages are off,
 # and "Fill this application" (the browser button) does the filling instead.
 PC_ONLY_ENDPOINTS = {"robot_start", "robot_link", "robot_page", "robot_api", "open_saved", "setup_phone"}
@@ -286,8 +289,32 @@ def account_page():
                     accounts.update(u["id"], password=pw)
                     sign_in_as(accounts.get(u["id"]))      # stay signed in here; other devices are signed out
                     flash("Password changed. Any other devices have been signed out.")
+        if action == "delete":
+            if u["is_admin"]:
+                flash("The owner's account can't be deleted from here.")
+            elif not accounts.check_login(u["username"], request.form.get("current", ""))[0] or \
+                    request.form.get("confirm", "").strip().upper() != "DELETE":
+                flash("To delete your account, type DELETE and your password.")
+            else:
+                from flask import session
+                from flask import g
+                ctx = g.pop("ctx", None)
+                if ctx is not None:
+                    from jobhunt.config import reset_user
+                    reset_user(ctx)                 # stop using their (now deleted) folder before anything recreates it
+                g.user = None
+                accounts.delete_user(u["id"])
+                session.clear()
+                return render_template("login.html", mode="login", error="",
+                                       done="Your account and everything stored for you have been deleted.")
         return redirect(url_for("account_page"))
     return render_template("account.html", u=u)
+
+
+@app.route("/privacy")
+def privacy():
+    """Privacy notice: what's stored, who can see it, and your rights under UK GDPR."""
+    return render_template("privacy.html", contact=accounts.owner_contact() if accounts.any_users() else "")
 
 
 @app.route("/account/export")
@@ -298,6 +325,13 @@ def account_export():
     data = accounts.export_zip(g.user["id"])
     return send_file(io.BytesIO(data), mimetype="application/zip", as_attachment=True,
                      download_name=f"Job Hunt HQ data - {g.user['username']} - {date.today().isoformat()}.zip")
+
+
+@app.route("/api/place")
+def api_place():
+    """What a typed place is – shown under the location box so people can see it's understood."""
+    from jobhunt import geo
+    return geo.describe((request.args.get("q") or "")[:120])
 
 
 # ------------------------------------------------------------------ search every job site
@@ -316,15 +350,20 @@ def everywhere():
         places = [(profile["location"], int(search.get("distance_miles", 15) or 15))]
     place = request.args.get("place") or (places[0][0] if places else "")
     miles = next((m for p, m in places if p == place), 15)
-    rows = [(t, occupations.search_links(t, place, miles)) for t in titles]
+    from jobhunt import countries
+    country = countries.code_for(profile.get("country") or "GB")
+    rows = [(t, occupations.search_links(t, place, miles, country)) for t in titles]
     sectors = [occupations.SECTORS[k][0] for k in occupations.sectors_for(titles)]
     src = cfg.get("sources", {})
-    feeds = [("Reed", bool(src.get("reed_api_key"))), ("Adzuna", bool(src.get("adzuna_app_id"))),
-             ("CV-Library", bool(src.get("cvlibrary_key"))), ("The Talent World (HR jobs)", "hr" in occupations.sectors_for(titles))]
+    uk = country == "GB"
+    feeds = ([("Reed", bool(src.get("reed_api_key"))), ("Adzuna", bool(src.get("adzuna_app_id"))),
+              ("CV-Library", bool(src.get("cvlibrary_key"))), ("The Talent World (HR jobs)", "hr" in occupations.sectors_for(titles))]
+             if uk else [(f"Adzuna {countries.name(country)}", bool(src.get("adzuna_app_id") and countries.adzuna(country)))])
     gmail_on = bool(cfg.get("gmail", {}).get("enabled"))
     return render_template("everywhere.html", rows=rows, places=places, place=place, miles=miles, sectors=sectors,
                            feeds=feeds, gmail_on=gmail_on, profile=profile,
-                           alerts=[(t, occupations.alert_links(t, place)) for t in titles[:6]])
+                           country=countries.name(country),
+                           alerts=[(t, occupations.alert_links(t, place, country)) for t in titles[:6]])
 
 
 # ------------------------------------------------------------------ feedback
@@ -392,6 +431,57 @@ def feedback_image(fid):
     return send_file(path, mimetype=IMAGE_TYPES.get(path.suffix.lower(), "application/octet-stream"))
 
 
+# ------------------------------------------------------------------ languages
+def cfg_profile() -> dict:
+    try:
+        return load_config().get("profile") or {} if current_user_id() else {}
+    except Exception:
+        return {}
+
+
+def current_lang() -> str:
+    from flask import g
+    if "lang" in g:
+        return g.lang
+    pref = None
+    if current_user_id():
+        try:
+            pref = (accounts.load_settings(current_user_id()).get("prefs") or {}).get("language")
+        except Exception:
+            pref = None
+    g.lang = i18n.pick(pref or request.cookies.get("jhq_lang"), request.headers.get("Accept-Language", ""))
+    return g.lang
+
+
+@app.after_request
+def translate_page(resp):
+    try:
+        if resp.mimetype == "text/html" and resp.status_code == 200 and not resp.direct_passthrough:
+            lang = current_lang()
+            if lang != "en":
+                resp.set_data(i18n.translate(resp.get_data(as_text=True), lang))
+    except Exception:
+        pass
+    return resp
+
+
+@app.route("/language/<code>")
+def set_language(code):
+    """Choose the language Job Hunt HQ is shown in (kept for this person, and in this browser)."""
+    code = code if code in i18n.CODES else "en"
+    if current_user_id():
+        s = my_settings()
+        s.setdefault("prefs", {})["language"] = code
+        accounts.save_settings(s, current_user_id())
+    from urllib.parse import urlparse
+    ref = urlparse(request.referrer or "")
+    back = (ref.path + ("?" + ref.query if ref.query else "")) if ref.netloc == request.host and ref.path.startswith("/") \
+        else url_for("dashboard")
+    resp = redirect(back)
+    resp.set_cookie("jhq_lang", code, max_age=60 * 60 * 24 * 365, samesite="Lax", secure=HOSTED)
+    return resp
+
+
 # ------------------------------------------------------------------ each person's own settings
 LEVELS = [("entry", "Starting out / junior"), ("mid", "Experienced"), ("senior", "Senior / lead")]
 MILES = [5, 10, 15, 20, 30, 40, 60]
@@ -425,6 +515,11 @@ def save_settings_form(form, parts=("profile", "search", "prefs", "gmail")) -> l
     s = my_settings()
     problems = []
     if "profile" in parts:
+        if "country" in form:
+            from jobhunt import countries as _c
+            s["profile"]["country"] = _c.code_for(form.get("country"))
+        if form.get("language") in i18n.CODES:
+            s.setdefault("prefs", {})["language"] = form.get("language")
         for k in ("name", "email", "phone", "location", "address", "linkedin", "github", "indeed", "current_title",
                   "current_employer", "notice_period", "salary_expectation", "right_to_work"):
             if k in form:
@@ -564,14 +659,14 @@ def manifest():
 # Sidebar: (section, [(endpoint, label, icon)]) – the same groups as the GSI HRIS layout.
 NAV = [
     ("Overview", [("dashboard", "Dashboard", "home")]),
-    ("Applying", [("everywhere", "Job sites", "search"), ("add_job", "Add a job", "plus"), ("robot_page", "Apply for me", "send"),
+    ("Applying", [("everywhere", "Job sites", "search"), ("assistant_page", "Assistant", "send"), ("add_job", "Add a job", "plus"), ("robot_page", "Apply for me", "send"),
                   ("applications_page", "Applications", "send")]),
     ("You", [("career_page", "My career", "user"), ("cv_builder", "Create CV", "file"), ("emails", "Emails", "mail")]),
 ]
 CRUMBS = {"dashboard": ("Overview", "Dashboard"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
           "robot_page": ("Applying", "Apply for me"), "career_page": ("You", "My career"), "emails": ("You", "Emails"),
           "setup": ("Settings", "Setup"), "import_page": ("Applying", "Import"),
-          "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"), "everywhere": ("Applying", "Job sites"),
+          "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"), "everywhere": ("Applying", "Job sites"), "assistant_page": ("Applying", "Assistant"),
           "settings_page": ("You", "My settings"), "feedback_page": ("You", "Feedback")}
 
 
@@ -598,7 +693,10 @@ def helpers():
             "feedback_new": accounts.new_feedback_count() if user and user["is_admin"] else 0,
             "feedback_kinds": accounts.FEEDBACK_KINDS,
             "occupations": OCCUPATIONS_JSON, "all_titles": occupations.ALL_TITLES,
-            "nav": [(sec, [i for i in items if not (HOSTED and i[0] in PC_ONLY_ENDPOINTS)]) for sec, items in NAV]}
+            "langs": i18n.LANGS, "lang": current_lang(), "countries": countries.COUNTRIES,
+            "currency": countries.currency((cfg_profile() or {}).get("country") or "GB"),
+            "nav": [(sec, [("assistant_page", "Apply for me", "send") if (HOSTED and i[0] == "assistant_page") else i
+                           for i in items if not (HOSTED and i[0] in PC_ONLY_ENDPOINTS)]) for sec, items in NAV]}
 
 
 @app.template_global()
@@ -752,9 +850,16 @@ def job_detail(job_id):
     job = get_job(c, job_id)
     application = c.execute("SELECT * FROM applications WHERE job_id = ?", (job_id,)).fetchone()
     set_active_job(c, job_id)   # the Fill button fills forms for the job you looked at last
+    cfg = load_config()
+    if not job.get("cover_letter") and job.get("status") != "skipped":
+        # Open a job and its cover letter is already written for you – no button to press.
+        try:
+            job["cover_letter"], _ = write_letter(job, cfg["profile"], cv_text(cfg), cfg.get("ai"))
+            db.update_job(c, job_id, cover_letter=job["cover_letter"])
+        except Exception:
+            pass
     c.commit()
     c.close()
-    cfg = load_config()
     saved = request.args.get("saved")
     if saved and not (letters_folder(cfg) / saved).exists():
         saved = None
@@ -1060,6 +1165,153 @@ def api_bridge():
         mark_applied(int(data.get("job_id") or 0), str(data.get("page") or ""))
         return {"ok": True}
     return build_pack(int(data.get("job_id") or 0) or None, str(data.get("page") or ""))
+
+
+# ------------------------------------------------------------------ the browser assistant (extension)
+def _find_job(c, url: str, title: str, company: str):
+    url = canonical_url(url) if url.startswith("http") else url
+    row = None
+    if url:
+        row = c.execute("SELECT * FROM jobs WHERE url = ? OR apply_url = ? ORDER BY updated_at DESC LIMIT 1",
+                        (url, url)).fetchone()
+    if not row and title:
+        row = c.execute("SELECT * FROM jobs WHERE lower(title) = lower(?) AND (? = '' OR lower(company) = lower(?)) "
+                        "ORDER BY updated_at DESC LIMIT 1", (title, company, company)).fetchone()
+    return dict(row) if row else None
+
+
+def _ask_ai(question: str, job: dict, cfg: dict) -> str:
+    """A free question for the assistant ("how should I answer this?", "what should I stress?") – answered from
+    the person's own CV and career details and the advert. Needs an Anthropic key on the server."""
+    ai = cfg.get("ai") or {}
+    if not ai.get("anthropic_api_key"):
+        return ""
+    import json as _json
+
+    import requests as _rq
+    from jobhunt import career as _career
+    prompt = ("You are a friendly, honest job-application assistant helping the candidate below. Answer their question "
+              "in UK English, briefly and practically. Use only facts from their details – never invent experience. "
+              "If you suggest wording for a form, keep it in their voice.\n\n"
+              f"QUESTION: {question}\n\nJOB: {job.get('title')} at {job.get('company')}\nADVERT:\n"
+              f"{(job.get('description') or '')[:5000]}\n\nTHEIR DETAILS:\n"
+              f"{_json.dumps(_career.load(), ensure_ascii=False)[:8000]}\n\nCV:\n{cv_text(cfg)[:6000]}")
+    try:
+        r = _rq.post("https://api.anthropic.com/v1/messages",
+                     headers={"x-api-key": ai["anthropic_api_key"], "anthropic-version": "2023-06-01",
+                              "content-type": "application/json"},
+                     json={"model": ai.get("model", "claude-haiku-5-5"), "max_tokens": 700,
+                           "messages": [{"role": "user", "content": prompt}]}, timeout=45)
+        r.raise_for_status()
+        return "".join(b.get("text", "") for b in r.json().get("content", [])).strip()
+    except Exception:
+        return ""
+
+
+@app.post("/api/assistant")
+def api_assistant():
+    """Everything the Job Hunt HQ browser assistant does, for the signed-in person whose token it carries:
+    recognise the job on the page, score it, fill the form, suggest answers, and mark it applied.
+    It never presses Submit – that's always the person."""
+    from jobhunt.answers import suggest
+    from jobhunt.matcher import fit_label as _fit
+    d = request.get_json(silent=True) or {}
+    action = d.get("action")
+    cfg = load_config()
+    profile = cfg["profile"]
+    if action == "hello":
+        name = profile.get("name") or (getattr(__import__("flask").g, "user", None) or {}).get("name", "")
+        return {"ok": True, "name": name, "first": name.split(" ")[0] if name else "",
+                "ai": bool((cfg.get("ai") or {}).get("anthropic_api_key")), "site": request.host_url.rstrip("/")}
+    if action == "job":
+        title, company = (d.get("title") or "").strip()[:200], (d.get("company") or "").strip()[:200]
+        url, desc = (d.get("url") or "").strip(), (d.get("description") or "").strip()[:20000]
+        c = conn()
+        job = _find_job(c, url, title, company)
+        c.close()
+        if not job and not (title and len(desc) > 200):
+            return {"ok": True, "job": None}
+        if not job and not d.get("save"):       # just looking: score it without adding it to their jobs
+            from jobhunt.sources import manual_job as _mj
+            probe = _mj(title, company, url, d.get("location", ""), d.get("salary", ""), desc)
+            sc, why = score_job(probe)
+            return {"ok": True, "job": {"id": None, "title": title, "company": company, "score": sc, "fit": _fit(sc),
+                                        "reasons": why[:5], "status": None, "has_letter": False, "link": ""}}
+        if not job or (desc and len(desc) > len(job.get("description") or "") + 200):
+            job_id, _ = save_and_prepare({"title": title or (job or {}).get("title", ""),
+                                          "company": company or (job or {}).get("company", ""), "url": url,
+                                          "location": d.get("location", ""), "salary": d.get("salary", ""),
+                                          "description": desc, "apply_url": d.get("apply_url", "")})
+            c = conn()
+            job = get_job(c, job_id)
+            c.close()
+        reasons = [r for r in (job.get("score_reasons") or "").split(" · ") if r]
+        return {"ok": True, "job": {"id": job["id"], "title": job["title"], "company": job["company"],
+                                    "score": job.get("score"), "fit": _fit(job.get("score") or 0), "reasons": reasons[:5],
+                                    "status": job.get("status"), "has_letter": bool(job.get("cover_letter")),
+                                    "link": url_for("job_detail", job_id=job["id"], _external=True)}}
+    if action == "pack":
+        return build_pack(int(d.get("job_id") or 0) or None, str(d.get("page") or ""))
+    if action == "answer":
+        q = {"label": (d.get("question") or "")[:600], "kind": d.get("kind") or "textarea",
+             "options": [str(o)[:200] for o in (d.get("options") or [])][:40], "hint": d.get("hint") or ""}
+        c = conn()
+        job = get_job(c, int(d["job_id"])) if d.get("job_id") else {"title": "", "company": "", "description": d.get("page_text", "")}
+        remembered = db.remembered_answers(c)
+        c.close()
+        pack_fields = {**{k: profile.get(k, "") for k in ("name", "email", "phone", "linkedin", "github", "address",
+                                                           "current_employer", "current_title", "notice_period",
+                                                           "salary_expectation", "right_to_work")}, **split_address(profile)}
+        ans, src = suggest(q, remembered, profile, pack_fields, job, cv_text(cfg), cfg.get("ai"))
+        note = {"remembered": "An answer you saved before.", "rule": "From your details.",
+                "experience": "From your work history – check it reads right.",
+                "story": "Built from one of your own examples – make it specific to this employer.",
+                "competency": "From your saved competency answers.", "draft": "A starting draft – personalise it.",
+                "ai": "Written with AI from your CV – check every word is true.",
+                "own_words": "The employer wants this in your own words, so it's left for you.",
+                "": "This one's personal or not in your details, so it's left for you."}.get(src, "")
+        return {"ok": True, "answer": ans or "", "source": src, "note": note}
+    if action == "ask":
+        c = conn()
+        job = get_job(c, int(d["job_id"])) if d.get("job_id") else {"title": "", "company": "", "description": ""}
+        c.close()
+        text = _ask_ai((d.get("question") or "")[:1000], job, cfg)
+        if not text:
+            return {"ok": True, "answer": "", "note": "Free questions need AI switched on for this site (an Anthropic key "
+                                                      "in the server settings). Use Suggest on each question instead."}
+        return {"ok": True, "answer": text, "note": "Written with AI from your details – check it before using it."}
+    if action == "applied":
+        mark_applied(int(d.get("job_id") or 0), str(d.get("page") or ""))
+        return {"ok": True}
+    abort(400)
+
+
+@app.route("/assistant")
+def assistant_page():
+    return render_template("assistant.html", base=(os.environ.get("JOBHUNT_URL") or request.host_url).rstrip("/"),
+                           ai=bool((load_config().get("ai") or {}).get("anthropic_api_key")))
+
+
+@app.route("/assistant/extension.zip")
+def assistant_download():
+    """The browser extension, already connected to this person's account (their own private key is inside)."""
+    import io
+    import json
+    import zipfile
+    base = (os.environ.get("JOBHUNT_URL") or request.host_url).rstrip("/")
+    folder = Path(app.root_path) / "extension"
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(folder.rglob("*")):
+            if p.is_file():
+                z.write(p, f"Job Hunt HQ Assistant/{p.relative_to(folder).as_posix()}")
+        z.write(Path(app.static_folder) / "fill_core.js", "Job Hunt HQ Assistant/fill_core.js")
+        z.write(Path(app.static_folder) / "icon-180.png", "Job Hunt HQ Assistant/icon.png")
+        z.writestr("Job Hunt HQ Assistant/config.js",
+                   "/* Your connection to Job Hunt HQ – keep this private. */\nvar JHQ_CONFIG = " +
+                   json.dumps({"base": base, "token": access_token()}) + ";\n")
+    return send_file(io.BytesIO(buf.getvalue()), mimetype="application/zip", as_attachment=True,
+                     download_name="Job Hunt HQ Assistant.zip")
 
 
 JOB_BOARDS = ("linkedin.com", "indeed.", "thetalentworld.co.uk", "reed.co.uk/jobs", "adzuna.", "charityjob.")

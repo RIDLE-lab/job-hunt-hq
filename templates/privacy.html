@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy and your data · Job Hunt HQ</title>
+  <meta name="theme-color" content="#0b1240">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="page privacy">
+  <p class="back"><a href="{{ url_for('dashboard') }}">← Job Hunt HQ</a></p>
+  <h1>Privacy and your data</h1>
+  <p class="muted">How Job Hunt HQ uses your information, and your rights under UK GDPR and the Data Protection Act 2018.</p>
+
+  <section class="card">
+    <h2>Who looks after your data</h2>
+    <p>Job Hunt HQ is run privately by its owner, who invites people to use it. The owner is responsible for your data
+      (the “controller”).{% if contact %} For any question or request, email <a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20data%20request">{{ contact }}</a>.{% endif %}
+      You can also use the <b>Feedback</b> button once you're signed in.</p>
+  </section>
+
+  <section class="card">
+    <h2>What's stored, and why</h2>
+    <ul>
+      <li><b>Your account:</b> name, username and email. Your password is stored only as a secure scrambled “hash” – nobody can read it.</li>
+      <li><b>Your details and career:</b> what you enter in My settings, My career and Create CV, and the CV you upload – used to
+        find and score jobs, write your cover letters and CVs, and fill in application forms <i>when you ask it to</i>.</li>
+      <li><b>Your jobs and applications:</b> the jobs found or saved for you, your letters, and where each application has got to.</li>
+      <li><b>Gmail (only if you connect it):</b> emails are read automatically, only to recognise replies about your job
+        applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other
+        email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your Gmail.</li>
+      <li><b>Feedback</b> you send, with any screenshot.</li>
+    </ul>
+    <p>The legal basis is your <b>consent</b> and providing the service you've asked for. Nothing is sold, shared with
+      advertisers, or used to train AI. Nobody else who uses Job Hunt HQ can see anything of yours.</p>
+  </section>
+
+  <section class="card">
+    <h2>Nobody reads your emails</h2>
+    <p>No person looks at your Gmail through Job Hunt HQ – not the owner and not other users. Everything happens
+      automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names,
+      usernames and when people last signed in.</p>
+  </section>
+
+  <section class="card">
+    <h2>AI and job sites</h2>
+    <p>If AI writing is switched on, the advert and the relevant parts of your CV are sent to Anthropic's Claude to write a
+      draft, and nothing else. Job searches send only the job title and place to Reed, Adzuna and the other job sites –
+      never your personal details.</p>
+  </section>
+
+  <section class="card">
+    <h2>Your rights</h2>
+    <ul>
+      <li><b>See your data</b> – <i>Account → Download my data</i> gives you everything in one file, straight away.</li>
+      <li><b>Ask how it's used</b> – email the owner or use Feedback, and you'll get an answer within one month.</li>
+      <li><b>Correct it</b> – change anything in My settings and My career, or ask.</li>
+      <li><b>Delete it</b> – <i>Account → Delete my account</i> removes your account and everything stored for you, immediately.</li>
+      <li><b>Take it elsewhere</b> – the download is a standard file you can keep or move.</li>
+      <li><b>Withdraw consent / object</b> – disconnect Gmail in My settings at any time, or stop using the service.</li>
+    </ul>
+    <p class="muted small">If you're unhappy with how your data is handled, you can complain to the Information Commissioner's
+      Office: <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+  </section>
+
+  <section class="card">
+    <h2>How long it's kept, and where</h2>
+    <p>Your data is kept until you delete it or your account. It's stored on the service's server (in the EU for the website)
+      and backed up only by the owner. Connections are encrypted (HTTPS).</p>
+  </section>
+</main>
+</body>
+</html>
