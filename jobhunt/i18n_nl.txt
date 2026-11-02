@@ -836,3 +836,39 @@ Title, company or place|Functie, bedrijf of plaats
 Uses your skills|Gebruikt je vaardigheden
 Only you can see these settings.|Alleen jij ziet deze instellingen.
 Write my cover letter|Schrijf mijn motivatiebrief
+Review queue|Beoordelingslijst
+{n} strong matches ready, each with its cover letter written.|{n} sterke matches klaar, elk met een geschreven motivatiebrief.
+1 strong match ready, with its cover letter written.|1 sterke match klaar, met een geschreven motivatiebrief.
+Nothing waiting for you.|Er wacht niets op je.
+Check it, approve it, and press Submit on the employer's form yourself.|Controleer, keur goed en druk zelf op Verzenden in het formulier van de werkgever.
+to review|te beoordelen
+Edit it|Bewerken
+Approve and open the form ↗|Goedkeuren en formulier openen ↗
+Open the job|Vacature openen
+Later|Later
+Did you press Submit on the employer's form?|Heb je op Verzenden gedrukt in het formulier van de werkgever?
+The assistant fills it in for you – check each page before you send it.|De assistent vult het voor je in – controleer elke pagina voordat je verzendt.
+Yes, mark it as sent|Ja, markeer als verzonden
+Not yet – keep it on my list|Nog niet – houd hem op mijn lijst
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|Goedkeuren kopieert de brief, zet deze vacature op ‘Nog niet verzonden’ en opent het formulier in een nieuw tabblad. Zonder jou wordt niets verzonden.
+Next up|Hierna
+and {n} more|en nog {n}
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|Nieuwe sterke matches (score 70 of hoger) verschijnen hier met hun brief al geschreven. Job Hunt HQ zoekt er om de paar uur naar, en telkens als je op Vacatures vernieuwen drukt.
+See all jobs|Alle vacatures bekijken
+Approved – waiting for you to press Submit|Goedgekeurd – wacht tot jij op Verzenden drukt
+Open the form ↗|Formulier openen ↗
+Mark as sent|Markeer als verzonden
+{n} strong matches to review|{n} sterke matches om te beoordelen
+1 strong match to review|1 sterke match om te beoordelen
+Letters written – approve each one in seconds|Brieven geschreven – keur ze in seconden goed
+Review {n} strong matches|{n} sterke matches beoordelen
+Review 1 strong match|1 sterke match beoordelen
+Marked as sent: {role} at {company}.|Gemarkeerd als verzonden: {role} bij {company}.
+Every match, best first|Alle matches, beste eerst
+Strong matches, letters written|Sterke matches, brieven geschreven
+Paste a link or an advert|Plak een link of vacaturetekst
+Your searches on every site|Je zoekopdrachten op elke site
+Work history, skills, answers|Werkervaring, vaardigheden, antwoorden
+Build, improve or tailor it|Maken, verbeteren of aanpassen
+Replies from employers|Reacties van werkgevers
+The browser assistant|De browserassistent

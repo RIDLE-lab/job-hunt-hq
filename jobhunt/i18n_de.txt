@@ -811,3 +811,41 @@ Title, company or place|Titel, Firma oder Ort
 Uses your skills|Nutzt Ihre Fähigkeiten
 Only you can see these settings.|Nur Sie sehen diese Einstellungen.
 Write my cover letter|Mein Anschreiben schreiben
+Review queue|Prüfliste
+{n} strong matches ready, each with its cover letter written.|{n} starke Treffer bereit, jeweils mit fertigem Anschreiben.
+1 strong match ready, with its cover letter written.|1 starker Treffer bereit, mit fertigem Anschreiben.
+Nothing waiting for you.|Nichts wartet auf Sie.
+Check it, approve it, and press Submit on the employer's form yourself.|Prüfen, freigeben und im Formular des Arbeitgebers selbst auf Absenden klicken.
+to review|zu prüfen
+Edit it|Bearbeiten
+Approve and open the form ↗|Freigeben und Formular öffnen ↗
+Open the job|Stelle öffnen
+Later|Später
+Did you press Submit on the employer's form?|Haben Sie im Formular des Arbeitgebers auf Absenden geklickt?
+The assistant fills it in for you – check each page before you send it.|Der Assistent füllt es für Sie aus – prüfen Sie jede Seite vor dem Absenden.
+Yes, mark it as sent|Ja, als gesendet markieren
+Not yet – keep it on my list|Noch nicht – auf meiner Liste lassen
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|Beim Freigeben wird das Anschreiben kopiert, die Stelle als „Noch nicht gesendet“ gespeichert und das Formular in einem neuen Tab geöffnet. Ohne Sie wird nichts gesendet.
+Next up|Als Nächstes
+and {n} more|und {n} weitere
+You're all caught up|Alles erledigt
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|Neue starke Treffer (ab 70 Punkten) erscheinen hier mit fertigem Anschreiben. Job Hunt HQ sucht alle paar Stunden danach und immer, wenn Sie auf Stellen aktualisieren klicken.
+See all jobs|Alle Stellen ansehen
+Approved – waiting for you to press Submit|Freigegeben – warten auf Ihr Absenden
+Open the form ↗|Formular öffnen ↗
+Mark as sent|Als gesendet markieren
+{n} strong matches to review|{n} starke Treffer zu prüfen
+1 strong match to review|1 starker Treffer zu prüfen
+Letters written – approve each one in seconds|Anschreiben fertig – jeweils in Sekunden freigeben
+Review {n} strong matches|{n} starke Treffer prüfen
+Review 1 strong match|1 starken Treffer prüfen
+Marked as sent: {role} at {company}.|Als gesendet markiert: {role} bei {company}.
+Jobs for you|Jobs für Sie
+Every match, best first|Alle Treffer, die besten zuerst
+Strong matches, letters written|Starke Treffer, Anschreiben fertig
+Paste a link or an advert|Link oder Anzeige einfügen
+Your searches on every site|Ihre Suchen auf jeder Seite
+Work history, skills, answers|Werdegang, Fähigkeiten, Antworten
+Build, improve or tailor it|Erstellen, verbessern oder anpassen
+Replies from employers|Antworten von Arbeitgebern
+The browser assistant|Der Browser-Assistent

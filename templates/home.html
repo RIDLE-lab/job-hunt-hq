@@ -56,7 +56,7 @@
 <section class="card next reveal" aria-labelledby="next-h">
   <div class="card-head"><h2 id="next-h">Do this next</h2>
     {% if attention|length > 3 %}<a class="card-link" href="{{ url_for('applications_page', show='forward') }}">{{ t('All {n} moving forward', n=attention|length) }} →</a>{% endif %}</div>
-  {% set extras = [letters, ready_apps, kpis.new_today]|select|list|length %}
+  {% set extras = [review_n or letters, ready_apps, kpis.new_today]|select|list|length %}
   {% set ns = namespace(n=0) %}
   <div class="steps-grid">
     {% for a in attention[:[1, 4 - extras]|max] %}{% set ns.n = ns.n + 1 %}
@@ -65,7 +65,12 @@
       <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{% if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') %}{{ t('Practise for it') }} · {% endif %}{{ a.company }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% elif a.when %} · {{ a.when|nice_date }}{% endif %}</small></span>
     </a>
     {% endfor %}
-    {% if letters and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
+    {% if review_n and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
+    <a class="step st-interview" href="{{ url_for('review_page') }}">
+      <span class="step-ico">{{ icon('send') }}</span>
+      <span><b>{{ t('{n} strong matches to review', n=review_n) if review_n != 1 else t('1 strong match to review') }}</b><small>Letters written – approve each one in seconds</small></span>
+    </a>
+    {% elif letters and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
     <a class="step st-ready" href="{{ url_for('job_detail', job_id=letters[0].id) }}">
       <span class="step-ico">{{ icon('mail') }}</span>
       <span><b>{{ t('{n} cover letters ready', n=letters|length) if letters|length != 1 else t('1 cover letter ready') }}</b><small>{{ t('Starting with {company}', company=letters[0].company) }}</small></span>

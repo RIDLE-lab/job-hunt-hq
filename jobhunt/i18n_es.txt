@@ -809,3 +809,41 @@ Title, company or place|Puesto, empresa o lugar
 Uses your skills|Usa tus habilidades
 Only you can see these settings.|Solo tú ves estos ajustes.
 Write my cover letter|Escribir mi carta de presentación
+Review queue|Cola de revisión
+{n} strong matches ready, each with its cover letter written.|{n} coincidencias fuertes listas, cada una con su carta de presentación escrita.
+1 strong match ready, with its cover letter written.|1 coincidencia fuerte lista, con su carta de presentación escrita.
+Nothing waiting for you.|No tienes nada pendiente.
+Check it, approve it, and press Submit on the employer's form yourself.|Revísala, apruébala y pulsa tú mismo Enviar en el formulario del empleador.
+to review|por revisar
+Edit it|Editarla
+Approve and open the form ↗|Aprobar y abrir el formulario ↗
+Open the job|Abrir el empleo
+Later|Más tarde
+Did you press Submit on the employer's form?|¿Pulsaste Enviar en el formulario del empleador?
+The assistant fills it in for you – check each page before you send it.|El asistente lo rellena por ti: revisa cada página antes de enviarlo.
+Yes, mark it as sent|Sí, marcar como enviada
+Not yet – keep it on my list|Todavía no: mantenerla en mi lista
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|Al aprobar se copia la carta, se guarda el empleo como «Aún no enviada» y se abre el formulario en una pestaña nueva. No se envía nada sin ti.
+Next up|Lo siguiente
+and {n} more|y {n} más
+You're all caught up|Lo tienes todo al día
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|Las nuevas coincidencias fuertes (70 puntos o más) aparecen aquí con la carta ya escrita. Job Hunt HQ las busca cada pocas horas y cada vez que pulsas Actualizar empleos.
+See all jobs|Ver todos los empleos
+Approved – waiting for you to press Submit|Aprobadas: esperan a que pulses Enviar
+Open the form ↗|Abrir el formulario ↗
+Mark as sent|Marcar como enviada
+{n} strong matches to review|{n} coincidencias fuertes por revisar
+1 strong match to review|1 coincidencia fuerte por revisar
+Letters written – approve each one in seconds|Cartas escritas: apruébalas en segundos
+Review {n} strong matches|Revisar {n} coincidencias fuertes
+Review 1 strong match|Revisar 1 coincidencia fuerte
+Marked as sent: {role} at {company}.|Marcada como enviada: {role} en {company}.
+Jobs for you|Empleos para ti
+Every match, best first|Todas las coincidencias, las mejores primero
+Strong matches, letters written|Coincidencias fuertes, cartas escritas
+Paste a link or an advert|Pega un enlace o un anuncio
+Your searches on every site|Tus búsquedas en cada sitio
+Work history, skills, answers|Experiencia, habilidades, respuestas
+Build, improve or tailor it|Créalo, mejóralo o adáptalo
+Replies from employers|Respuestas de empleadores
+The browser assistant|El asistente del navegador

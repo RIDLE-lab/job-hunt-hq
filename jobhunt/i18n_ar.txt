@@ -1196,3 +1196,39 @@ Title, company or place|المسمّى أو الشركة أو المكان
 Uses your skills|يستخدم مهاراتك
 Only you can see these settings.|أنت فقط ترى هذه الإعدادات.
 Write my cover letter|اكتب خطاب التقديم
+Review queue|قائمة المراجعة
+{n} strong matches ready, each with its cover letter written.|{n} وظائف مطابقة بقوة جاهزة، ولكل منها خطاب تقديم مكتوب.
+1 strong match ready, with its cover letter written.|وظيفة واحدة مطابقة بقوة جاهزة، مع خطاب تقديم مكتوب.
+Nothing waiting for you.|لا شيء بانتظارك.
+Check it, approve it, and press Submit on the employer's form yourself.|راجعها ووافق عليها، ثم اضغط «إرسال» بنفسك في نموذج صاحب العمل.
+to review|للمراجعة
+Edit it|عدّله
+Approve and open the form ↗|وافق وافتح النموذج ↗
+Open the job|افتح الوظيفة
+Later|لاحقًا
+Did you press Submit on the employer's form?|هل ضغطت «إرسال» في نموذج صاحب العمل؟
+The assistant fills it in for you – check each page before you send it.|يملؤه المساعد نيابةً عنك – راجع كل صفحة قبل الإرسال.
+Yes, mark it as sent|نعم، علّمه كمُرسَل
+Not yet – keep it on my list|ليس بعد – أبقه في قائمتي
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|الموافقة تنسخ الخطاب، وتحفظ الوظيفة كـ«لم يُرسل بعد»، وتفتح النموذج في علامة تبويب جديدة. لا يُرسل شيء من دونك.
+Next up|التالي
+and {n} more|و{n} أخرى
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|تظهر هنا الوظائف المطابقة بقوة الجديدة (70 نقطة أو أكثر) مع خطاب تقديم مكتوب مسبقًا. يبحث Job Hunt HQ عنها كل بضع ساعات، وكلما ضغطت «تحديث الوظائف».
+See all jobs|عرض كل الوظائف
+Approved – waiting for you to press Submit|تمت الموافقة – بانتظار أن تضغط «إرسال»
+Open the form ↗|افتح النموذج ↗
+Mark as sent|علّمه كمُرسَل
+{n} strong matches to review|{n} وظائف مطابقة بقوة للمراجعة
+1 strong match to review|وظيفة واحدة مطابقة بقوة للمراجعة
+Letters written – approve each one in seconds|الخطابات مكتوبة – وافق على كل منها في ثوانٍ
+Review {n} strong matches|راجع {n} وظائف مطابقة بقوة
+Review 1 strong match|راجع وظيفة واحدة مطابقة بقوة
+Marked as sent: {role} at {company}.|تم وسمه كمُرسَل: {role} لدى {company}.
+Every match, best first|كل الوظائف المطابقة، الأفضل أولًا
+Strong matches, letters written|وظائف مطابقة بقوة، والخطابات مكتوبة
+Paste a link or an advert|الصق رابطًا أو إعلانًا
+Your searches on every site|عمليات بحثك في كل موقع
+Work history, skills, answers|الخبرة والمهارات والإجابات
+Build, improve or tailor it|أنشئها أو حسّنها أو خصّصها
+Replies from employers|ردود أصحاب العمل
+The browser assistant|مساعد المتصفح

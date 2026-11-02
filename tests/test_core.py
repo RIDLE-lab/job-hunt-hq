@@ -1127,6 +1127,31 @@ def test_home_globe():
     assert set(countries.CENTRES) == set(countries.COUNTRIES)
 
 
+def test_review_queue():
+    """Strong matches get a letter written ahead of time; approving saves 'not sent yet', and only you mark it sent."""
+    from jobhunt import db
+    from jobhunt.config import as_user
+    c, uid = owner_client()
+    with as_user(uid), db.session() as conn:
+        jid, _ = db.upsert_job(conn, {"source": "Test", "external_id": "rq-1", "title": "People Partner", "company": "Queue Co",
+                                      "location": "London", "url": "https://example.com/job", "description": "employee relations",
+                                      "score": 95, "status": "new"})
+        conn.commit()
+    r = c.get("/review")
+    assert r.status_code == 200 and b"Queue Co" in r.data and b"Approve and open the form" in r.data
+    with as_user(uid), db.session() as conn:
+        assert conn.execute("SELECT cover_letter FROM jobs WHERE id = ?", (jid,)).fetchone()[0]       # written for you
+    assert c.post(f"/review/{jid}/approve").status_code == 204
+    with as_user(uid), db.session() as conn:
+        assert conn.execute("SELECT status FROM applications WHERE job_id = ?", (jid,)).fetchone()[0] == "ready"
+    assert b"Queue Co" not in c.get("/review").data.split(b"Approved")[0]              # off the queue, on the waiting list
+    c.post(f"/review/{jid}/sent")
+    with as_user(uid), db.session() as conn:
+        assert conn.execute("SELECT status FROM applications WHERE job_id = ?", (jid,)).fetchone()[0] == "applied"
+        conn.execute("DELETE FROM applications WHERE job_id = ?", (jid,))
+        conn.execute("DELETE FROM jobs WHERE id = ?", (jid,))
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

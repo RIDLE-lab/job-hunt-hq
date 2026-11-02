@@ -10,7 +10,7 @@ import webbrowser
 from datetime import date, timedelta
 from pathlib import Path
 
-from flask import Flask, abort, flash, has_request_context, redirect, render_template, request, send_file, url_for
+from flask import Flask, abort, flash, has_request_context, redirect, render_template, request, send_file, session, url_for
 
 from jobhunt import db, notify
 from jobhunt.config import (DATA_DIR, GMAIL_CREDENTIALS, HOSTED, access_token, as_user, current_user_id, cv_file,
@@ -1143,6 +1143,7 @@ def dashboard():
         return redirect(url_for("jobs_page", **request.args))        # old links to the job list
     c = conn()
     o = _overview(c)
+    o["review_n"] = len(review_candidates(c))
     c.close()
     steps = _setup_steps()
     return render_template("home.html", **o, globe=_globe(o["jobs"]), setup_steps=steps,
@@ -1196,12 +1197,13 @@ def jobs_page():
     c = conn()
     jobs, f = _job_list(c, request.args)
     meta = {"last_refresh": db.get_meta(c, "last_refresh")}
+    review_n = len(review_candidates(c))
     c.close()
     total_jobs = len(jobs)
     limit = int(request.args["limit"]) if request.args.get("limit", "").isdigit() else 50
     limit = max(50, limit)
     args = {k: v for k, v in request.args.items() if v and k != "limit"}
-    return render_template("jobs.html", jobs=jobs[:limit], total_jobs=total_jobs, limit=limit, args=args, meta=meta,
+    return render_template("jobs.html", jobs=jobs[:limit], total_jobs=total_jobs, limit=limit, args=args, meta=meta, review_n=review_n,
                            strong=sum(1 for j in jobs if (j["score"] or 0) >= 70),
                            letters=sum(1 for j in jobs if j["status"] == "prepared"), **f)
 
@@ -1211,6 +1213,12 @@ def refresh():
     result = run_refresh(log=lambda m: None)
     for m in result["messages"]:
         flash(m)
+    try:
+        c = conn()
+        prepare_queue(c, limit=5)
+        c.close()
+    except Exception as e:
+        print("[review queue] couldn't prepare letters:", e)
     return redirect(url_for("dashboard"))
 
 
@@ -1435,6 +1443,109 @@ def job_skip(job_id):
     c.close()
     flash("Job hidden.")
     return redirect(url_for("jobs_page"))
+
+
+# ------------------------------------------------------------------ review queue
+# Strong matches get their cover letter written ahead of time; you go through them one by one on /review, check
+# the letter, open the employer's form (the browser assistant fills it) and press Submit there yourself. Job Hunt
+# HQ never sends an application on its own.
+REVIEW_MIN = 70
+
+
+def review_candidates(c) -> list[dict]:
+    return [dict(r) for r in c.execute(
+        "SELECT * FROM jobs WHERE status IN ('new', 'shortlisted', 'prepared') AND score >= ? "
+        "AND id NOT IN (SELECT job_id FROM applications WHERE job_id IS NOT NULL) ORDER BY score DESC, id DESC",
+        (REVIEW_MIN,))]
+
+
+def prepare_queue(c, limit: int = 10) -> int:
+    """Write cover letters for the best strong matches that don't have one yet."""
+    cfg = load_config()
+    done = 0
+    for job in review_candidates(c):
+        if done >= limit:
+            break
+        if job.get("cover_letter"):
+            continue
+        try:
+            letter, _ = write_letter(job, cfg["profile"], cv_text(cfg), cfg.get("ai"))
+        except Exception:
+            continue
+        db.update_job(c, job["id"], cover_letter=letter, status="prepared")
+        done += 1
+    c.commit()
+    return done
+
+
+def _review_order(jobs: list[dict]) -> list[dict]:
+    later = session.get("review_later") or []
+    return sorted(jobs, key=lambda j: (j["id"] in later, later.index(j["id"]) if j["id"] in later else 0))
+
+
+@app.route("/review")
+def review_page():
+    c = conn()
+    prepare_queue(c, limit=3)                   # the next few are always ready, even before the overnight run
+    queue = _review_order(review_candidates(c))
+    waiting = [dict(r) for r in c.execute(
+        "SELECT a.id, a.role, a.company, a.job_id, j.apply_url, j.url FROM applications a LEFT JOIN jobs j ON j.id = a.job_id "
+        "WHERE a.status = 'ready' ORDER BY a.updated_at DESC LIMIT 20")]
+    c.close()
+    job = queue[0] if queue else None
+    cfg = load_config()
+    return render_template("review.html", job=job, queue=queue, waiting=waiting, profile=cfg["profile"],
+                           answers=short_answers(job, cfg["profile"]) if job else [], nav_on="jobs_page")
+
+
+@app.post("/review/<int:job_id>/approve")
+def review_approve(job_id):
+    """You've checked it: it goes on your list as 'not sent yet' (the page opens the employer's form in a new tab)."""
+    c = conn()
+    job = get_job(c, job_id)
+    if not c.execute("SELECT 1 FROM applications WHERE job_id = ?", (job_id,)).fetchone():
+        db.add_application(c, job_id=job_id, company=job["company"] or "Unknown", role=job["title"],
+                           location=job["location"], salary_text=job["salary_text"], url=job["url"], status="ready")
+    db.update_job(c, job_id, status="prepared")
+    set_active_job(c, job_id)                   # so the assistant and Fill button fill this job's form
+    c.commit()
+    c.close()
+    return ("", 204)
+
+
+@app.post("/review/<int:job_id>/sent")
+def review_sent(job_id):
+    c = conn()
+    job = get_job(c, job_id)
+    row = c.execute("SELECT id FROM applications WHERE job_id = ?", (job_id,)).fetchone()
+    if row:
+        db.update_application(c, row["id"], status="applied", applied_on=date.today().isoformat())
+    else:
+        db.add_application(c, job_id=job_id, company=job["company"] or "Unknown", role=job["title"],
+                           location=job["location"], salary_text=job["salary_text"], url=job["url"],
+                           applied_on=date.today().isoformat(), status="applied")
+    db.update_job(c, job_id, status="applied")
+    c.commit()
+    c.close()
+    flash(f"Marked as sent: {job['title']} at {job['company']}.")
+    return redirect(url_for("review_page"))
+
+
+@app.post("/review/<int:job_id>/skip")
+def review_skip(job_id):
+    c = conn()
+    get_job(c, job_id)
+    db.update_job(c, job_id, status="skipped")
+    c.commit()
+    c.close()
+    return redirect(url_for("review_page"))
+
+
+@app.post("/review/<int:job_id>/later")
+def review_later(job_id):
+    later = [i for i in (session.get("review_later") or []) if i != job_id][-200:]
+    session["review_later"] = later + [job_id]
+    return redirect(url_for("review_page"))
 
 
 def save_and_prepare(data: dict, prepare: bool = True) -> tuple[int, bool]:
@@ -2389,6 +2500,8 @@ def auto_refresh_loop():
             due = not last or (datetime.now() - datetime.fromisoformat(last)).total_seconds() >= hours * 3600
             if due:
                 run_refresh(log=lambda m: print(f"[auto refresh {current_user_id()}]", m))
+                with db.session() as c:
+                    prepare_queue(c, limit=10)
 
     while True:
         try:

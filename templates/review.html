@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Review queue · Job Hunt HQ{% endblock %}
+{% block content %}
+<header class="head">
+  <div>
+    <p class="back"><a href="{{ url_for('jobs_page') }}">← All jobs</a></p>
+    <h1>Review queue</h1>
+    <p class="muted">{% if queue %}{{ t('{n} strong matches ready, each with its cover letter written.', n=queue|length) if queue|length != 1 else t('1 strong match ready, with its cover letter written.') }}{% else %}Nothing waiting for you.{% endif %}
+      Check it, approve it, and press Submit on the employer's form yourself.</p>
+  </div>
+  {% if queue %}<p class="rv-count" aria-live="polite"><b>{{ queue|length }}</b><span>to review</span></p>{% endif %}
+</header>
+
+{% if job %}
+<div class="job-layout review" data-job="{{ job.id }}">
+  <div class="job-col">
+    <section class="card rv-card">
+      <div class="rv-top">
+        <div class="score score-{{ fit_label(job.score)|lower|replace(' ', '-') }}" title="{{ fit_label(job.score) }}">{{ job.score }}</div>
+        <div class="rv-what">
+          <h2><a href="{{ url_for('job_detail', job_id=job.id) }}">{{ job.title }}</a></h2>
+          <p class="job-meta"><span class="job-co">{{ job.company }}</span>{% if job.location %}<span>{{ job.location }}</span>{% endif %}{% if job.salary_text %}<span>{{ job.salary_text }}</span>{% endif %}{% if ago(job.posted) %}<span>posted {{ ago(job.posted) }}</span>{% endif %}<span>from {{ job.source }}</span></p>
+          {% if job.score_reasons %}{% set parts = job.score_reasons.split(' · ') %}
+          <p class="reasons">{% for part in parts %}{% if part.startswith('Uses your skills: ') %}<span class="why-skills"><span class="why-lbl">Uses your skills</span>{% for sk in part[18:].split(', ') %}<span class="tag">{{ sk }}</span>{% endfor %}</span>{% else %}<span class="why">{{ part }}</span>{% endif %}{% endfor %}</p>{% endif %}
+        </div>
+      </div>
+
+      <div class="rv-actions">
+        {% set link = job.apply_url or job.url or '' %}{% if link.startswith(('https://', 'http://')) %}
+        <a class="btn btn-primary btn-big" href="{{ link }}" target="_blank" rel="noopener" data-approve="{{ url_for('review_approve', job_id=job.id) }}">Approve and open the form ↗</a>
+        {% else %}
+        <a class="btn btn-primary btn-big" href="{{ url_for('job_detail', job_id=job.id) }}">Open the job</a>
+        {% endif %}
+        <form method="post" action="{{ url_for('review_later', job_id=job.id) }}"><button class="btn">Later</button></form>
+        <form method="post" action="{{ url_for('review_skip', job_id=job.id) }}"><button class="btn btn-ghost">Not for me</button></form>
+      </div>
+      <div class="rv-sent" hidden>
+        <p><b>Did you press Submit on the employer's form?</b> The assistant fills it in for you – check each page before you send it.</p>
+        <div class="row">
+          <form method="post" action="{{ url_for('review_sent', job_id=job.id) }}"><button class="btn btn-primary btn-big">Yes, mark it as sent</button></form>
+          <a class="btn" href="{{ url_for('review_page') }}">Not yet – keep it on my list</a>
+        </div>
+      </div>
+      <p class="rv-note muted small">Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.</p>
+      <div class="rv-letter">
+        <div class="card-head"><h3>Cover letter</h3>
+          <span class="row"><button type="button" class="copy" data-copy="rv-letter">Copy</button>
+          <a class="small" href="{{ url_for('job_detail', job_id=job.id) }}#letter">Edit it</a></span></div>
+        <div class="rv-paper" id="rv-letter">{{ job.cover_letter or '' }}</div>
+      </div>
+
+    </section>
+  </div>
+
+  <aside class="job-side-col">
+    {% if queue|length > 1 %}
+    <section class="card">
+      <h2>Next up</h2>
+      <ol class="rv-next">
+        {% for q in queue[1:6] %}<li><span class="score score-{{ fit_label(q.score)|lower|replace(' ', '-') }}">{{ q.score }}</span><span><b>{{ q.title }}</b><small>{{ q.company }}</small></span></li>{% endfor %}
+      </ol>
+      {% if queue|length > 6 %}<p class="muted small">{{ t('and {n} more', n=queue|length - 6) }}</p>{% endif %}
+    </section>
+    {% endif %}
+    <section class="card" id="quick">
+      <h2>Quick answers</h2>
+      <dl class="answers">
+        {% for label, key in [('Full name','name'), ('Email','email'), ('Phone','phone'), ('Phone with country code','phone_intl'), ('Address','address'),
+                              ('LinkedIn','linkedin'), ('Notice period','notice_period'), ('Salary expectation','salary_expectation'), ('Right to work','right_to_work')] %}
+          {% if profile.get(key) %}<div><dt>{{ label }}</dt><dd><span id="ans-{{ key }}">{{ profile[key] }}</span><button type="button" class="copy" data-copy="ans-{{ key }}">Copy</button></dd></div>{% endif %}
+        {% endfor %}
+      </dl>
+    </section>
+  </aside>
+</div>
+{% else %}
+<section class="card rv-empty">
+  <h2>You're all caught up</h2>
+  <p class="muted">New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.</p>
+  <div class="row"><a class="btn btn-primary" href="{{ url_for('jobs_page') }}">See all jobs</a>
+    <a class="btn" href="{{ url_for('everywhere') }}">Search every job site</a></div>
+</section>
+{% endif %}
+
+{% if waiting %}
+<section class="card">
+  <div class="card-head"><h2>Approved – waiting for you to press Submit</h2></div>
+  <ul class="rv-waiting">
+    {% for w in waiting %}
+    <li><span><b>{{ w.role }}</b><small>{{ w.company }}</small></span>
+      <span class="row">{% set link = w.apply_url or w.url or '' %}{% if link.startswith(('https://', 'http://')) %}<a class="btn small" href="{{ link }}" target="_blank" rel="noopener">Open the form ↗</a>{% endif %}
+        {% if w.job_id %}<form method="post" action="{{ url_for('review_sent', job_id=w.job_id) }}"><button class="btn btn-primary small">Mark as sent</button></form>{% endif %}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<script>
+  /* Approve: copy the letter, open the form in a new tab, then ask here whether it was sent. */
+  (() => {
+    const f = document.querySelector('[data-approve]');
+    if (!f) return;
+    f.addEventListener('click', () => {
+      fetch(f.dataset.approve, { method: 'POST', keepalive: true, credentials: 'same-origin' });
+      const text = document.getElementById('rv-letter').textContent.trim();
+      if (text && navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+      setTimeout(() => {
+        document.querySelector('.rv-actions').hidden = true;
+        document.querySelector('.rv-note').hidden = true;
+        const s = document.querySelector('.rv-sent'); s.hidden = false; s.querySelector('button').focus();
+      }, 50);
+    });
+  })();
+</script>
+{% endblock %}

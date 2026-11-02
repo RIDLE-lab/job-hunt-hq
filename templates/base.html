@@ -20,43 +20,58 @@
 {% macro icon(n) %}<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">{% if n == 'home' %}<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>{% elif n == 'plus' %}<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>{% elif n == 'send' %}<path d="M4 12l16-8-6 16-3-7-7-1z"/>{% elif n == 'user' %}<circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/>{% elif n == 'mail' %}<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>{% elif n == 'gear' %}<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>{% elif n == 'search' %}<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>{% elif n == 'refresh' %}<path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4"/>{% elif n == 'briefcase' %}<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>{% elif n == 'file' %}<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>{% elif n == 'list' %}<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>{% elif n == 'globe' %}<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>{% elif n == 'chat' %}<path d="M4 5h16v11H9l-5 4z"/>{% elif n == 'more' %}<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>{% elif n == 'out' %}<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>{% endif %}</svg>{% endmacro %}
 <a class="skip" href="#content">Skip to content</a>
 <header class="mast">
-  <div class="mast-in">
+  <div class="mast-in topbar">
     <a class="brand" href="{{ url_for('dashboard') }}" aria-label="Job Hunt HQ – home">
       <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="11"/><circle cx="20" cy="20" r="4" class="core"/><circle cx="31" cy="12" r="3.2" class="ping"/></svg>
       <span>Job Hunt HQ</span>
     </a>
+    {% set apply_ep = 'assistant_page' if hosted else 'robot_page' %}
+    {% set jobs_on = nav_on in ('jobs_page', 'add_job', 'review_page', 'everywhere') %}
+    {% set you_on = nav_on in ('career_page', 'cv_builder', 'emails') or request.endpoint in ('emails', 'assistant_page') %}
+    <nav class="topnav" aria-label="Main">
+      <a href="{{ url_for('dashboard') }}" class="{{ 'on' if nav_on == 'dashboard' }}"{% if nav_on == 'dashboard' %} aria-current="page"{% endif %}>Home</a>
+      <details class="nav-drop{{ ' on' if jobs_on }}" data-menu>
+        <summary>Jobs<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></summary>
+        <div class="drop-pop">
+          <a href="{{ url_for('jobs_page') }}">{{ icon('briefcase') }}<span><b>Jobs for you</b><small>Every match, best first</small></span></a>
+          <a href="{{ url_for('review_page') }}">{{ icon('send') }}<span><b>Review queue</b><small>Strong matches, letters written</small></span></a>
+          <a href="{{ url_for('add_job') }}">{{ icon('plus') }}<span><b>Add a job</b><small>Paste a link or an advert</small></span></a>
+          <a href="{{ url_for('everywhere') }}">{{ icon('globe') }}<span><b>Job sites</b><small>Your searches on every site</small></span></a>
+        </div>
+      </details>
+      <a href="{{ url_for('applications_page') }}" class="{{ 'on' if nav_on == 'applications_page' }}"{% if nav_on == 'applications_page' %} aria-current="page"{% endif %}>Applications</a>
+      <a href="{{ url_for('interview_page') }}" class="{{ 'on' if nav_on == 'interview_page' }}"{% if nav_on == 'interview_page' %} aria-current="page"{% endif %}>Interview prep</a>
+      <a href="{{ url_for(apply_ep) }}" class="{{ 'on' if nav_on == apply_ep }}"{% if nav_on == apply_ep %} aria-current="page"{% endif %}>Apply for me<i class="side-dot" id="side-robot-dot" hidden></i></a>
+      <details class="nav-drop{{ ' on' if you_on }}" data-menu>
+        <summary>My career<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></summary>
+        <div class="drop-pop">
+          <a href="{{ url_for('career_page') }}">{{ icon('user') }}<span><b>My career</b><small>Work history, skills, answers</small></span></a>
+          <a href="{{ url_for('cv_builder') }}">{{ icon('file') }}<span><b>Create CV</b><small>Build, improve or tailor it</small></span></a>
+          <a href="{{ url_for('emails') }}">{{ icon('mail') }}<span><b>Emails</b><small>Replies from employers</small></span></a>
+          {% if not hosted %}<a href="{{ url_for('assistant_page') }}">{{ icon('send') }}<span><b>Assistant</b><small>The browser assistant</small></span></a>{% endif %}
+        </div>
+      </details>
+    </nav>
     <div class="mast-tools">
-      <button type="button" class="jump-box" data-palette-open aria-haspopup="dialog">{{ icon('search') }}
-        <span>Jump to a page</span><kbd>Ctrl K</kbd></button>
+      <button type="button" class="tool-btn jump-box" data-palette-open aria-haspopup="dialog" aria-label="Jump to a page">{{ icon('search') }}<kbd>Ctrl K</kbd></button>
       {% include "_lang_top.html" %}
       <form method="post" action="{{ url_for('refresh') }}" class="refresh-form" onsubmit="this.querySelector('button').classList.add('busy')">
         <button class="btn btn-signal refresh-btn" aria-label="Refresh jobs">{{ icon('refresh') }}<span class="lbl">Refresh jobs</span></button>
       </form>
-    </div>
-  </div>
-  <nav class="mainnav" aria-label="Main">
-    <div class="mast-in">
-      {% for section, items in nav %}{% for ep, label, ic in items %}
-      <a href="{{ url_for(ep) }}" class="{{ 'on' if nav_on == ep }}"{% if nav_on == ep %} aria-current="page"{% endif %}>{{ label }}{% if ep == 'robot_page' %}<i class="side-dot" id="side-robot-dot" hidden></i>{% endif %}</a>
-      {% endfor %}{% endfor %}
-      <span class="nav-gap"></span>
-      {% if is_admin %}<a href="/people" class="{{ 'on' if request.endpoint == 'people_page' }}">People</a>{% endif %}
-      {% if is_admin and feedback_new %}<a href="/feedback" class="{{ 'on' if request.endpoint == 'feedback_page' }}">Feedback <span class="fb-count">{{ feedback_new }}</span></a>{% endif %}
-      {% if not hosted %}<a href="{{ url_for('setup') }}" class="{{ 'on' if request.endpoint == 'setup' }}">Setup</a>{% endif %}
       <details class="who-menu" data-menu>
-        <summary class="who" aria-label="Your account menu"><span class="avatar">{{ me.initials }}</span><span class="who-name">{{ me.name }}</span></summary>
+        <summary class="who" aria-label="Your account menu"><span class="avatar">{{ me.initials }}</span>{% if feedback_new and is_admin %}<i class="who-dot"></i>{% endif %}</summary>
         <div class="who-pop">
-          {% if user %}<p class="muted small">Signed in as <b>{{ user.username }}</b></p>{% endif %}
+          {% if user %}<p class="who-head"><b>{{ me.name }}</b><span class="muted small">{{ user.username }}</span></p>{% endif %}
           <a href="/settings">My settings</a>
-          <a href="{{ url_for('emails') }}">Emails</a>
-          <div class="lang-pick">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</div>
-          <a href="/feedback">Feedback{% if feedback_new %} <span class="fb-count">{{ feedback_new }}</span>{% endif %}</a>
           <a href="/account">Account and password</a>
+          {% if is_admin %}<a href="/people">People</a>
+          <a href="/feedback">Feedback{% if feedback_new %} <span class="fb-count">{{ feedback_new }}</span>{% endif %}</a>{% endif %}
+          {% if not hosted %}<a href="{{ url_for('setup') }}">Setup</a>{% endif %}
           <a href="{{ url_for('logout') }}">Sign out</a>
         </div>
       </details>
     </div>
-  </nav>
+  </div>
   {% with msgs = get_flashed_messages() %}
     {% if msgs %}<div class="mast-in"><div class="flash" role="status">{% for m in msgs %}<p>{{ m }}</p>{% endfor %}<button type="button" class="flash-x" aria-label="Close message" onclick="this.parentNode.remove()">×</button></div></div>{% endif %}
   {% endwith %}
@@ -68,6 +83,7 @@
     <ul class="pal-list" id="pal-list" role="listbox">
       {% for section, items in nav %}{% for ep, label, ic in items %}
       <li role="option"><a href="{{ url_for(ep) }}">{{ icon(ic) }}<span>{{ label }}</span></a></li>{% endfor %}{% endfor %}
+      <li role="option"><a href="{{ url_for('review_page') }}">{{ icon('send') }}<span>Review queue</span></a></li>
       <li role="option"><a href="{{ url_for('everywhere') }}">{{ icon('globe') }}<span>Job sites</span></a></li>
       <li role="option"><a href="{{ url_for('emails') }}">{{ icon('mail') }}<span>Emails</span></a></li>
       <li role="option"><a href="/settings">{{ icon('gear') }}<span>My settings</span></a></li>
@@ -111,6 +127,7 @@
     <div class="tab-menu" role="menu">
       <p class="tab-menu-h">{{ me.name }}</p>
       <a role="menuitem" href="{{ url_for('assistant_page') if hosted else url_for('robot_page') }}">{{ icon('send') }}Apply for me</a>
+      <a role="menuitem" href="{{ url_for('review_page') }}">{{ icon('send') }}Review queue</a>
       <a role="menuitem" href="{{ url_for('interview_page') }}">{{ icon('chat') }}Interview prep</a>
       <a role="menuitem" href="{{ url_for('everywhere') }}">{{ icon('globe') }}Job sites</a>
       <a role="menuitem" href="{{ url_for('career_page') }}">{{ icon('user') }}My career</a>

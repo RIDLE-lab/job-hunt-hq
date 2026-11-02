@@ -809,3 +809,41 @@ Title, company or place|Cargo, empresa ou local
 Uses your skills|Usa as suas competências
 Only you can see these settings.|Só você vê estas definições.
 Write my cover letter|Escrever a minha carta de apresentação
+Review queue|Fila de revisão
+{n} strong matches ready, each with its cover letter written.|{n} correspondências fortes prontas, cada uma com a carta de apresentação escrita.
+1 strong match ready, with its cover letter written.|1 correspondência forte pronta, com a carta de apresentação escrita.
+Nothing waiting for you.|Nada à sua espera.
+Check it, approve it, and press Submit on the employer's form yourself.|Verifique, aprove e carregue você mesmo em Enviar no formulário do empregador.
+to review|por rever
+Edit it|Editar
+Approve and open the form ↗|Aprovar e abrir o formulário ↗
+Open the job|Abrir a vaga
+Later|Mais tarde
+Did you press Submit on the employer's form?|Carregou em Enviar no formulário do empregador?
+The assistant fills it in for you – check each page before you send it.|O assistente preenche-o por si – verifique cada página antes de enviar.
+Yes, mark it as sent|Sim, marcar como enviada
+Not yet – keep it on my list|Ainda não – manter na minha lista
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|Aprovar copia a carta, guarda a vaga como «Ainda não enviada» e abre o formulário num novo separador. Nada é enviado sem si.
+Next up|A seguir
+and {n} more|e mais {n}
+You're all caught up|Está tudo em dia
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|As novas correspondências fortes (70 pontos ou mais) aparecem aqui com a carta já escrita. O Job Hunt HQ procura-as de poucas em poucas horas e sempre que carrega em Atualizar vagas.
+See all jobs|Ver todas as vagas
+Approved – waiting for you to press Submit|Aprovadas – à espera que carregue em Enviar
+Open the form ↗|Abrir o formulário ↗
+Mark as sent|Marcar como enviada
+{n} strong matches to review|{n} correspondências fortes por rever
+1 strong match to review|1 correspondência forte por rever
+Letters written – approve each one in seconds|Cartas escritas – aprove cada uma em segundos
+Review {n} strong matches|Rever {n} correspondências fortes
+Review 1 strong match|Rever 1 correspondência forte
+Marked as sent: {role} at {company}.|Marcada como enviada: {role} na {company}.
+Jobs for you|Vagas para si
+Every match, best first|Todas as correspondências, as melhores primeiro
+Strong matches, letters written|Correspondências fortes, cartas escritas
+Paste a link or an advert|Cole um link ou um anúncio
+Your searches on every site|As suas pesquisas em cada site
+Work history, skills, answers|Experiência, competências, respostas
+Build, improve or tailor it|Crie, melhore ou adapte
+Replies from employers|Respostas de empregadores
+The browser assistant|O assistente do navegador

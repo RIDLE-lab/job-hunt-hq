@@ -810,3 +810,41 @@ Title, company or place|Poste, entreprise ou lieu
 Uses your skills|Utilise vos compétences
 Only you can see these settings.|Vous seul voyez ces paramètres.
 Write my cover letter|Rédiger ma lettre de motivation
+Review queue|File de relecture
+{n} strong matches ready, each with its cover letter written.|{n} offres très adaptées prêtes, chacune avec sa lettre de motivation rédigée.
+1 strong match ready, with its cover letter written.|1 offre très adaptée prête, avec sa lettre de motivation rédigée.
+Nothing waiting for you.|Rien ne vous attend.
+Check it, approve it, and press Submit on the employer's form yourself.|Vérifiez-la, approuvez-la, puis cliquez vous-même sur Envoyer dans le formulaire de l'employeur.
+to review|à relire
+Edit it|La modifier
+Approve and open the form ↗|Approuver et ouvrir le formulaire ↗
+Open the job|Ouvrir l'offre
+Later|Plus tard
+Did you press Submit on the employer's form?|Avez-vous cliqué sur Envoyer dans le formulaire de l'employeur ?
+The assistant fills it in for you – check each page before you send it.|L'assistant le remplit pour vous – vérifiez chaque page avant de l'envoyer.
+Yes, mark it as sent|Oui, marquer comme envoyée
+Not yet – keep it on my list|Pas encore – la garder dans ma liste
+Approving copies the letter, saves this job as "Not sent yet" and opens the form in a new tab. Nothing is sent without you.|Approuver copie la lettre, enregistre cette offre comme « Pas encore envoyée » et ouvre le formulaire dans un nouvel onglet. Rien n'est envoyé sans vous.
+Next up|Ensuite
+and {n} more|et {n} de plus
+You're all caught up|Vous êtes à jour
+New strong matches (a score of 70 or more) appear here with their cover letter already written. Job Hunt HQ looks for them every few hours, and whenever you press Refresh jobs.|Les nouvelles offres très adaptées (score de 70 ou plus) apparaissent ici avec leur lettre déjà rédigée. Job Hunt HQ en cherche toutes les quelques heures, et chaque fois que vous cliquez sur Actualiser les offres.
+See all jobs|Voir toutes les offres
+Approved – waiting for you to press Submit|Approuvées – en attente de votre envoi
+Open the form ↗|Ouvrir le formulaire ↗
+Mark as sent|Marquer comme envoyée
+{n} strong matches to review|{n} offres très adaptées à relire
+1 strong match to review|1 offre très adaptée à relire
+Letters written – approve each one in seconds|Lettres rédigées – approuvez-les en quelques secondes
+Review {n} strong matches|Relire {n} offres très adaptées
+Review 1 strong match|Relire 1 offre très adaptée
+Marked as sent: {role} at {company}.|Marquée comme envoyée : {role} chez {company}.
+Jobs for you|Offres pour vous
+Every match, best first|Toutes les offres, les meilleures d'abord
+Strong matches, letters written|Offres très adaptées, lettres rédigées
+Paste a link or an advert|Collez un lien ou une annonce
+Your searches on every site|Vos recherches sur chaque site
+Work history, skills, answers|Parcours, compétences, réponses
+Build, improve or tailor it|Créez-le, améliorez-le ou adaptez-le
+Replies from employers|Réponses des employeurs
+The browser assistant|L'assistant du navigateur

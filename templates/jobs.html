@@ -10,7 +10,9 @@
     {% if meta.last_refresh %}<p class="head-meta">{{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}</p>{% endif %}
   </div>
   <div class="row head-actions">
-    <a class="btn btn-signal" href="{{ url_for('everywhere') }}">Search every job site</a>
+    {% if review_n %}<a class="btn btn-signal" href="{{ url_for('review_page') }}">{{ t('Review {n} strong matches', n=review_n) if review_n != 1 else t('Review 1 strong match') }}</a>
+    <a class="btn btn-onnight" href="{{ url_for('everywhere') }}">Search every job site</a>{% else %}
+    <a class="btn btn-signal" href="{{ url_for('everywhere') }}">Search every job site</a>{% endif %}
     <a class="btn btn-onnight" href="{{ url_for('add_job') }}">Add a job</a>
   </div>
 </header>
