@@ -34,7 +34,7 @@ from jobhunt import countries, i18n  # noqa: E402
 OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
-OPEN_ENDPOINTS = {"login", "static", "manifest", "first_account", "join", "reset_password", "privacy", "set_language"}
+OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "first_account", "join", "reset_password", "privacy", "set_language"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
 TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter", "api_assistant"}
 SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy",
@@ -66,7 +66,7 @@ def sign_in_required():
     from flask import g, session
     g.user = None
     ep = request.endpoint
-    if ep in ("static", "manifest"):
+    if ep in ("static", "manifest", "favicon"):
         return None
     if HOSTED and ep in PC_ONLY_ENDPOINTS:
         if ep == "robot_page":
@@ -326,6 +326,11 @@ def account_export():
     data = accounts.export_zip(g.user["id"])
     return send_file(io.BytesIO(data), mimetype="application/zip", as_attachment=True,
                      download_name=f"Job Hunt HQ data - {g.user['username']} - {date.today().isoformat()}.zip")
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_file(Path(app.static_folder) / "favicon.ico", mimetype="image/x-icon", max_age=86400)
 
 
 @app.route("/api/place")
@@ -650,8 +655,10 @@ def people_page():
 def manifest():
     from flask import jsonify
     resp = jsonify({"name": "Job Hunt HQ", "short_name": "Job Hunt", "start_url": "/", "display": "standalone",
-                    "background_color": "#0f1724", "theme_color": "#1f3a5f",
-                    "icons": [{"src": url_for("static", filename="icon-180.png"), "sizes": "180x180", "type": "image/png"},
+                    "background_color": "#0b1240", "theme_color": "#0b1240",
+                    "icons": [{"src": url_for("static", filename="favicon.svg"), "sizes": "any", "type": "image/svg+xml"},
+                              {"src": url_for("static", filename="favicon-192.png"), "sizes": "192x192", "type": "image/png"},
+                              {"src": url_for("static", filename="icon-180.png"), "sizes": "180x180", "type": "image/png"},
                               {"src": url_for("static", filename="icon-512.png"), "sizes": "512x512", "type": "image/png"}]})
     resp.mimetype = "application/manifest+json"
     return resp
@@ -1378,7 +1385,7 @@ def assistant_download():
             if p.is_file():
                 z.write(p, f"Job Hunt HQ Assistant/{p.relative_to(folder).as_posix()}")
         z.write(Path(app.static_folder) / "fill_core.js", "Job Hunt HQ Assistant/fill_core.js")
-        z.write(Path(app.static_folder) / "icon-180.png", "Job Hunt HQ Assistant/icon.png")
+        z.write(Path(app.static_folder) / "favicon-192.png", "Job Hunt HQ Assistant/icon.png")
         z.writestr("Job Hunt HQ Assistant/config.js",
                    "/* Your connection to Job Hunt HQ – keep this private. */\nvar JHQ_CONFIG = " +
                    json.dumps({"base": base, "token": access_token()}) + ";\n")
