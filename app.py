@@ -213,6 +213,10 @@ def first_account():
         default_name = load_config().get("profile", {}).get("name", "")
     except Exception:
         default_name = ""
+    from jobhunt.config import DATA_ON_DISK
+    if not DATA_ON_DISK:
+        error = error or ("Warning: this server has no permanent disk, so accounts would be wiped at the next update. "
+                          "In Render, add a disk (Settings → Disk) before creating your account.")
     return render_template("login.html", mode="first", error=error, default_name=default_name,
                            need_code=bool(setup_code and not from_this_pc()), hosted=HOSTED)
 

@@ -13,7 +13,22 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = Path(os.environ.get("JOBHUNT_DATA") or (ROOT / "data"))
+def _data_dir() -> Path:
+    """Where everything is saved. On the website it must be the persistent disk, or every update would wipe
+    everyone's accounts – so a disk mounted at /var/data or /data is found automatically."""
+    if os.environ.get("JOBHUNT_DATA"):
+        return Path(os.environ["JOBHUNT_DATA"])
+    if os.environ.get("JOBHUNT_HOSTED") == "1":
+        for d in ("/var/data", "/data", "/opt/render/project/data"):
+            if os.path.ismount(d):
+                return Path(d)
+        return Path("/data")
+    return ROOT / "data"
+
+
+DATA_DIR = _data_dir()
+DATA_ON_DISK = os.environ.get("JOBHUNT_HOSTED") != "1" or any(
+    os.path.ismount(p) for p in [str(DATA_DIR)] + [str(q) for q in DATA_DIR.parents])
 DB_PATH = DATA_DIR / "jobhunt.db"          # before accounts existed; the owner's data moves to data/users/1/
 GMAIL_CREDENTIALS = ROOT / "credentials.json"
 HOSTED = os.environ.get("JOBHUNT_HOSTED") == "1"     # running as a website: no robot, no PC-only features
