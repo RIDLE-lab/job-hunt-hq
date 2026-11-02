@@ -798,3 +798,14 @@ Where your best matches are in {country}|Où se trouvent vos meilleures offres e
 Finding where your matches are – this map fills in shortly|Localisation de vos offres – la carte se remplit dans un instant
 None of your best matches say where in {country} they are yet|Aucune de vos meilleures offres n'indique encore où elle se trouve en {country}
 Connect your email to track replies (optional)|Connectez votre messagerie pour suivre les réponses (facultatif)
+Search pages, or type a job to look for|Cherchez une page, ou tapez un poste à rechercher
+Search jobs for|Chercher des offres :
+to move|pour se déplacer
+to open|pour ouvrir
+to close|pour fermer
+Where from|Provenance
+All sites|Tous les sites
+Filters|Filtres
+Title, company or place|Poste, entreprise ou lieu
+Uses your skills|Utilise vos compétences
+Only you can see these settings.|Vous seul voyez ces paramètres.

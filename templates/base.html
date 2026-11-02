@@ -26,18 +26,8 @@
       <span>Job Hunt HQ</span>
     </a>
     <div class="mast-tools">
-      <label class="jump-box">{{ icon('search') }}
-        <input id="jump" list="jump-pages" placeholder="Jump to a page (Ctrl+K)" aria-label="Jump to a page" autocomplete="off">
-      </label>
-      <datalist id="jump-pages">
-        {% for section, items in nav %}{% for ep, label, ic in items %}<option value="{{ label }}" data-href="{{ url_for(ep) }}">{% endfor %}{% endfor %}
-        <option value="Job sites" data-href="{{ url_for('everywhere') }}">
-        <option value="Emails" data-href="{{ url_for('emails') }}">
-        <option value="My settings" data-href="/settings">
-        <option value="Account and password" data-href="/account">
-        <option value="Feedback" data-href="/feedback">
-        {% if not hosted %}<option value="Setup" data-href="{{ url_for('setup') }}">{% endif %}
-      </datalist>
+      <button type="button" class="jump-box" data-palette-open aria-haspopup="dialog">{{ icon('search') }}
+        <span>Jump to a page</span><kbd>Ctrl K</kbd></button>
       {% include "_lang_top.html" %}
       <form method="post" action="{{ url_for('refresh') }}" class="refresh-form" onsubmit="this.querySelector('button').classList.add('busy')">
         <button class="btn btn-signal refresh-btn" aria-label="Refresh jobs">{{ icon('refresh') }}<span class="lbl">Refresh jobs</span></button>
@@ -71,6 +61,24 @@
     {% if msgs %}<div class="mast-in"><div class="flash" role="status">{% for m in msgs %}<p>{{ m }}</p>{% endfor %}<button type="button" class="flash-x" aria-label="Close message" onclick="this.parentNode.remove()">×</button></div></div>{% endif %}
   {% endwith %}
 </header>
+<dialog class="palette" id="palette" aria-label="Jump to a page">
+  <div class="pal-box">
+    <label class="pal-input">{{ icon('search') }}<input id="jump" placeholder="Search pages, or type a job to look for" autocomplete="off"
+      role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list"></label>
+    <ul class="pal-list" id="pal-list" role="listbox">
+      {% for section, items in nav %}{% for ep, label, ic in items %}
+      <li role="option"><a href="{{ url_for(ep) }}">{{ icon(ic) }}<span>{{ label }}</span></a></li>{% endfor %}{% endfor %}
+      <li role="option"><a href="{{ url_for('everywhere') }}">{{ icon('globe') }}<span>Job sites</span></a></li>
+      <li role="option"><a href="{{ url_for('emails') }}">{{ icon('mail') }}<span>Emails</span></a></li>
+      <li role="option"><a href="/settings">{{ icon('gear') }}<span>My settings</span></a></li>
+      <li role="option"><a href="/account">{{ icon('user') }}<span>Account and password</span></a></li>
+      <li role="option"><a href="/feedback">{{ icon('chat') }}<span>Feedback</span></a></li>
+      {% if not hosted %}<li role="option"><a href="{{ url_for('setup') }}">{{ icon('gear') }}<span>Setup</span></a></li>{% endif %}
+      <li role="option" class="pal-search" hidden><a href="{{ url_for('jobs_page') }}">{{ icon('briefcase') }}<span>Search jobs for</span><b class="pal-q"></b></a></li>
+    </ul>
+    <p class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></p>
+  </div>
+</dialog>
 <main class="page" id="content" tabindex="-1">
   {% block content %}{% endblock %}
   {% include "_legal_footer.html" %}
@@ -133,15 +141,36 @@
     document.addEventListener('click', (e) => menus.forEach((m) => { if (m.open && !m.contains(e.target)) m.open = false; }));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menus.forEach((m) => { if (m.open) { m.open = false; m.querySelector('summary').focus(); } }); });
   })();
-  /* Jump to a page (Ctrl+K) */
+  /* Jump to a page (Ctrl+K): a small search box over the page; arrow keys pick, Enter opens */
   (() => {
-    const box = document.getElementById('jump'); if (!box) return;
-    const go = () => { const o = [...document.querySelectorAll('#jump-pages option')]
-                         .find((x) => x.value.toLowerCase() === box.value.trim().toLowerCase());
-                       if (o) location.href = o.dataset.href; };
-    box.addEventListener('change', go);
-    box.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
-    document.addEventListener('keydown', (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); box.focus(); } });
+    const d = document.getElementById('palette'), box = document.getElementById('jump'); if (!d || !box) return;
+    const items = [...d.querySelectorAll('.pal-list li')], find = d.querySelector('.pal-search');
+    let on = 0;
+    const shown = () => items.filter((li) => !li.hidden);
+    const mark = () => shown().forEach((li, i) => li.classList.toggle('on', i === on));
+    const filter = () => {
+      const q = box.value.trim().toLowerCase();
+      items.forEach((li) => { if (li !== find) li.hidden = !!q && !li.textContent.toLowerCase().includes(q); });
+      find.hidden = !q;
+      if (q) { find.querySelector('.pal-q').textContent = box.value.trim();
+               find.querySelector('a').href = '{{ url_for("jobs_page") }}?q=' + encodeURIComponent(box.value.trim()); }
+      on = 0; mark();
+    };
+    const open = () => { box.value = ''; filter(); d.showModal(); box.focus(); };
+    document.querySelectorAll('[data-palette-open]').forEach((b) => b.addEventListener('click', open));
+    box.addEventListener('input', filter);
+    box.addEventListener('keydown', (e) => {
+      const list = shown();
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault(); on = (on + (e.key === 'ArrowDown' ? 1 : -1) + list.length) % list.length; mark();
+        list[on].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter' && list[on]) { e.preventDefault(); location.href = list[on].querySelector('a').href; }
+    });
+    items.forEach((li) => li.addEventListener('mousemove', () => { on = shown().indexOf(li); mark(); }));
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); d.open ? d.close() : open(); }
+    });
   })();
   /* Long lists of jobs / qualifications (My career) fold into one line each; click to open. */
   document.querySelectorAll('.row-card').forEach((card) => {

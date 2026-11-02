@@ -797,3 +797,14 @@ Where your best matches are in {country}|Onde estão as suas melhores correspond
 Finding where your matches are – this map fills in shortly|A localizar as suas correspondências – o mapa preenche-se em breve
 None of your best matches say where in {country} they are yet|Nenhuma das suas melhores correspondências indica ainda onde fica em {country}
 Connect your email to track replies (optional)|Ligue o seu email para acompanhar respostas (opcional)
+Search pages, or type a job to look for|Procure uma página ou escreva uma vaga
+Search jobs for|Procurar vagas:
+to move|para mover
+to open|para abrir
+to close|para fechar
+Where from|De onde
+All sites|Todos os sites
+Filters|Filtros
+Title, company or place|Cargo, empresa ou local
+Uses your skills|Usa as suas competências
+Only you can see these settings.|Só você vê estas definições.

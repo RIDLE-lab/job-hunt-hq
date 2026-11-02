@@ -16,7 +16,7 @@
       <div><label>Email<input name="email" type="email" value="{{ p.email or '' }}"></label></div>
     </div>
     <div class="two">
-      <div><label for="phone">Phone</label>
+      <div class="field"><label for="phone">Phone</label>
         <div class="phone-row">
           <select name="phone_code" aria-label="Country code">
             {% for c, name, code in dial_codes %}<option value="{{ code }}|{{ c }}" {{ 'selected' if (p.phone_code_country or p.country or 'GB') == c }}>{{ name }} ({{ code }})</option>{% endfor %}
@@ -135,6 +135,6 @@
     sel.addEventListener('change', show); show();
   })();
 </script>
-<div class="row sticky-save"><button class="btn btn-primary">Save settings</button></div>
+<div class="save-bar"><span class="muted small">Only you can see these settings.</span><button class="btn btn-primary">Save settings</button></div>
 </form>
 {% endblock %}

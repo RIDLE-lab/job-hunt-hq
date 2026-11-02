@@ -799,3 +799,14 @@ Where your best matches are in {country}|Wo Ihre besten Treffer in {country} lie
 Finding where your matches are – this map fills in shortly|Ihre Treffer werden gesucht – die Karte füllt sich gleich
 None of your best matches say where in {country} they are yet|Keiner Ihrer besten Treffer nennt bisher einen Ort in {country}
 Connect your email to track replies (optional)|E-Mail verbinden, um Antworten zu verfolgen (optional)
+Search pages, or type a job to look for|Seite suchen oder eine Stelle eingeben
+Search jobs for|Stellen suchen:
+to move|zum Wechseln
+to open|zum Öffnen
+to close|zum Schließen
+Where from|Herkunft
+All sites|Alle Seiten
+Filters|Filter
+Title, company or place|Titel, Firma oder Ort
+Uses your skills|Nutzt Ihre Fähigkeiten
+Only you can see these settings.|Nur Sie sehen diese Einstellungen.

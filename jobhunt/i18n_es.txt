@@ -797,3 +797,14 @@ Where your best matches are in {country}|Dónde están tus mejores coincidencias
 Finding where your matches are – this map fills in shortly|Buscando dónde están tus coincidencias: el mapa se completará enseguida
 None of your best matches say where in {country} they are yet|Ninguna de tus mejores coincidencias indica todavía en qué parte de {country} está
 Connect your email to track replies (optional)|Conecta tu correo para seguir respuestas (opcional)
+Search pages, or type a job to look for|Busca una página o escribe un empleo
+Search jobs for|Buscar empleos:
+to move|para moverte
+to open|para abrir
+to close|para cerrar
+Where from|De dónde
+All sites|Todos los sitios
+Filters|Filtros
+Title, company or place|Puesto, empresa o lugar
+Uses your skills|Usa tus habilidades
+Only you can see these settings.|Solo tú ves estos ajustes.

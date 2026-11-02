@@ -824,3 +824,14 @@ Where your best matches are in {country}|Waar je beste matches in {country} zitt
 Finding where your matches are – this map fills in shortly|We zoeken uit waar je matches zitten – de kaart vult zich zo
 None of your best matches say where in {country} they are yet|Geen van je beste matches zegt nog waar in {country} ze zijn
 Connect your email to track replies (optional)|Koppel je e-mail om reacties te volgen (optioneel)
+Search pages, or type a job to look for|Zoek een pagina of typ een vacature
+Search jobs for|Zoek vacatures:
+to move|om te kiezen
+to open|om te openen
+to close|om te sluiten
+Where from|Waar vandaan
+All sites|Alle sites
+Filters|Filters
+Title, company or place|Functie, bedrijf of plaats
+Uses your skills|Gebruikt je vaardigheden
+Only you can see these settings.|Alleen jij ziet deze instellingen.

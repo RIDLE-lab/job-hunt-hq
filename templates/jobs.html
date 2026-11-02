@@ -6,8 +6,8 @@
   <div>
     <h1>Jobs for you</h1>
     <p class="muted">{{ t('{n} jobs to look through, best match first.', n=total_jobs) if total_jobs != 1 else t('1 job to look through.') }}
-      {% if strong %}<b class="hl">{{ t('{n} strong fits', n=strong) if strong != 1 else t('1 strong fit') }}</b>{% endif %}{% if letters %} · {{ t('{n} cover letters ready', n=letters) if letters != 1 else t('1 cover letter ready') }}{% endif %}
-      {% if meta.last_refresh %}<span class="tiny"> · {{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}</span>{% endif %}</p>
+      {% if strong %}<b class="hl">{{ t('{n} strong fits', n=strong) if strong != 1 else t('1 strong fit') }}</b>{% endif %}{% if letters %} · {{ t('{n} cover letters ready', n=letters) if letters != 1 else t('1 cover letter ready') }}{% endif %}</p>
+    {% if meta.last_refresh %}<p class="head-meta">{{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}</p>{% endif %}
   </div>
   <div class="row head-actions">
     <a class="btn btn-signal" href="{{ url_for('everywhere') }}">Search every job site</a>
@@ -15,35 +15,42 @@
   </div>
 </header>
 
-<section class="card" id="matches">
-  <form class="filters" method="get" role="search" aria-label="Filter jobs">
+<div class="jobs-layout">
+<aside class="card filter-panel" aria-label="Filter jobs">
+  <form method="get" role="search" class="filter-form{{ ' open' if fit or posted or sort }}">
     {% if src %}<input type="hidden" name="src" value="{{ src }}">{% endif %}
-    <input type="search" name="q" value="{{ q }}" placeholder="Search title, company, place" aria-label="Search jobs">
-    <select name="fit" aria-label="Fit" onchange="this.form.submit()">
+    <label class="f-search">{{ icon('search') }}<input type="search" name="q" value="{{ q }}" placeholder="Title, company or place" aria-label="Search jobs"></label>
+    <button type="button" class="btn f-toggle" aria-expanded="{{ 'true' if fit or posted or sort else 'false' }}"
+            onclick="this.setAttribute('aria-expanded', this.form.classList.toggle('open'))">Filters{% if fit or posted or sort %} <span class="count">{{ [fit, posted, sort]|select|list|length }}</span>{% endif %}</button>
+    <label>Fit<select name="fit" onchange="this.form.submit()">
       <option value="">All fits</option>
       {% for f in ['Strong fit', 'Good fit', 'Stretch', 'Weak fit', 'Not scored'] %}
       <option value="{{ f }}" {{ 'selected' if fit == f }}>{{ f }}</option>{% endfor %}
-    </select>
-    <select name="posted" aria-label="Posted" onchange="this.form.submit()">
+    </select></label>
+    <label>Posted<select name="posted" onchange="this.form.submit()">
       {% for v, label in [('', 'Posted any time'), ('1', 'Last 24 hours'), ('3', 'Last 3 days'), ('7', 'Last week'),
                           ('14', 'Last 2 weeks'), ('30', 'Last month')] %}
       <option value="{{ v }}" {{ 'selected' if posted == v }}>{{ label }}</option>{% endfor %}
-    </select>
-    <select name="sort" aria-label="Sort" onchange="this.form.submit()">
+    </select></label>
+    <label>Sort<select name="sort" onchange="this.form.submit()">
       <option value="" {{ 'selected' if not sort }}>Best match first</option>
       <option value="newest" {{ 'selected' if sort == 'newest' }}>Newest first</option>
-    </select>
-    <button class="btn btn-primary">Search</button>
-    {% if q or fit or posted or sort or src %}<a class="btn btn-ghost" href="{{ url_for('jobs_page') }}">Clear</a>{% endif %}
+    </select></label>
+    <div class="f-actions"><button class="btn btn-primary">Search</button>
+      {% if q or fit or posted or sort or src %}<a class="btn btn-ghost" href="{{ url_for('jobs_page') }}">Clear</a>{% endif %}</div>
   </form>
   {% if sources|length > 1 or src %}
   <nav class="src-filter" aria-label="Where jobs came from">
-    <a href="{{ url_for('jobs_page', **dict(args, src=None)) }}" class="{{ 'on' if not src }}"{% if not src %} aria-current="true"{% endif %}>All</a>
+    <h2>Where from</h2>
+    <a href="{{ url_for('jobs_page', **dict(args, src=None)) }}" class="{{ 'on' if not src }}"{% if not src %} aria-current="true"{% endif %}>All sites</a>
     {% for name, n in sources %}
     <a href="{{ url_for('jobs_page', **dict(args, src=name)) }}" class="{{ 'on' if src == name }}"{% if src == name %} aria-current="true"{% endif %}>{{ name }} <span>{{ n }}</span></a>
     {% endfor %}
   </nav>
   {% endif %}
+</aside>
+
+<section class="card job-list" id="matches">
   {% if jobs %}
   <ul class="jobs">
     {% for j in jobs %}{{ job_row(j) }}{% endfor %}
@@ -57,4 +64,5 @@
     Press <b>Refresh jobs</b> at the top to search again, <a href="{{ url_for('everywhere') }}">search every job site</a>, or <a href="{{ url_for('add_job') }}">add a job</a> you found.</p>
   {% endif %}
 </section>
+</div>
 {% endblock %}

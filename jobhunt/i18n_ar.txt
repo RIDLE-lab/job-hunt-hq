@@ -1184,3 +1184,14 @@ Where your best matches are in {country}|أماكن أفضل الوظائف ال
 Finding where your matches are – this map fills in shortly|نحدّد أماكن الوظائف المطابقة لك – ستمتلئ الخريطة قريبًا
 None of your best matches say where in {country} they are yet|لم تذكر أيّ من أفضل الوظائف المطابقة لك مكانها في {country} بعد
 Connect your email to track replies (optional)|اربط بريدك الإلكتروني لمتابعة الردود (اختياري)
+Search pages, or type a job to look for|ابحث عن صفحة، أو اكتب وظيفة للبحث عنها
+Search jobs for|ابحث عن وظائف:
+to move|للتنقّل
+to open|للفتح
+to close|للإغلاق
+Where from|المصدر
+All sites|كل المواقع
+Filters|عوامل التصفية
+Title, company or place|المسمّى أو الشركة أو المكان
+Uses your skills|يستخدم مهاراتك
+Only you can see these settings.|أنت فقط ترى هذه الإعدادات.
