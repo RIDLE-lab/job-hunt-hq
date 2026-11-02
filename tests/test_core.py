@@ -981,7 +981,7 @@ def test_security_alerts_email_the_owner():
         anon = A.app.test_client()
         for i in range(9):      # someone guessing passwords
             anon.post("/login", data={"username": "nobody", "password": "x" + str(i)},
-                      headers={"Origin": "http://localhost", "X-Forwarded-For": "203.0.113.9"})
+                      headers={"Origin": "http://localhost"}, environ_overrides={"REMOTE_ADDR": "203.0.113.9"})
         for i in range(11):     # someone trying made-up assistant keys
             anon.post("/api/assistant", json={"token": "made-up-" + str(i), "action": "hello"},
                       headers={"X-Forwarded-For": "198.51.100.4"})
@@ -1055,6 +1055,32 @@ def test_arabic_right_to_left():
     assert 'lang="ar" dir="rtl"' in page and "الرئيسية" in page and "12" in page
     assert i18n.phrase("{n} new jobs came in today.", "ar", n=3) == "وصلت 3 وظائف جديدة اليوم."
     assert i18n.translate('<html lang="en-GB"><a>Home</a></html>', "fr").count("rtl") == 0
+
+
+def test_security_hardening():
+    """Headers stop framing and sniffing; sign-in only redirects to our own pages; pasted links can't reach the
+    server's own network; an invite code can only be claimed once."""
+    import app as A
+    from jobhunt import accounts
+    from jobhunt.fetch_page import _public_url
+    c, owner = owner_client()
+    r = c.get("/")
+    assert r.headers["X-Frame-Options"] == "DENY" and "frame-ancestors 'none'" in r.headers["Content-Security-Policy"]
+    assert r.headers["X-Content-Type-Options"] == "nosniff"
+    with A.app.test_request_context("/login?next=/%5Cevil.example"):
+        assert A.safe_next() == "/"
+    with A.app.test_request_context("/login?next=//evil.example"):
+        assert A.safe_next() == "/"
+    with A.app.test_request_context("/login?next=/jobs"):
+        assert A.safe_next() == "/jobs"
+    for bad in ("http://127.0.0.1/", "http://169.254.169.254/latest/meta-data", "file:///etc/passwd", "http://10.1.2.3/"):
+        try:
+            _public_url(bad)
+            raise AssertionError(bad)
+        except ValueError:
+            pass
+    code = accounts.create_invite(owner)
+    assert accounts.claim_invite(code) and not accounts.claim_invite(code)
 
 
 if __name__ == "__main__":

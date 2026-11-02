@@ -61,11 +61,14 @@ def from_this_pc() -> bool:
 
 def safe_next(default="/"):
     nxt = request.args.get("next") or request.form.get("next") or default
-    return nxt if nxt.startswith("/") and not nxt.startswith("//") else default
+    ok = nxt.startswith("/") and not nxt.startswith(("//", "/\\")) and "\\" not in nxt and not any(ord(ch) < 32 for ch in nxt)
+    return nxt if ok else default
 
 
 def client_ip() -> str:
-    return (request.headers.get("X-Forwarded-For") or request.remote_addr or "").split(",")[0].strip()
+    """The visitor's address. On the website ProxyFix takes it from Render's own proxy hop, so a visitor can't fake it
+    with their own X-Forwarded-For header (which would dodge the sign-in limits)."""
+    return (request.remote_addr or "").strip()
 
 
 @app.before_request
@@ -274,8 +277,14 @@ def join(code):
             ("Add your name." if not f["name"] else "") or accounts.username_problem(f["username"]) or \
             accounts.password_problem(f["password"], f["username"]) or \
             ("The two passwords don't match." if f["password"] != f["password2"] else "")
+        if not error and not accounts.claim_invite(code):
+            error = "That invite code isn't valid or has been used. Ask for a new one."
         if not error:
-            uid = accounts.create(f["username"], f["name"], f["password"], email=f["email"])
+            try:
+                uid = accounts.create(f["username"], f["name"], f["password"], email=f["email"])
+            except Exception:
+                accounts.release_invite(code)
+                raise
             accounts.use_invite(code, uid)
             with as_user(uid):
                 accounts.save_settings({"profile": {"name": f["name"], "email": f["email"]}, "search": {},
@@ -296,9 +305,10 @@ def reset_password(code):
         u = accounts.get(uid)
         pw, pw2 = request.form.get("password", ""), request.form.get("password2", "")
         error = accounts.password_problem(pw, u["username"]) or ("The two passwords don't match." if pw != pw2 else "")
+        if not error and not accounts.claim_reset(code):
+            error = "This reset link has expired or been used. Ask the owner for a new one."
         if not error:
             accounts.update(uid, password=pw)
-            accounts.use_reset(code)
             sign_in_as(accounts.get(uid))
             flash("Password changed.")
             return redirect(url_for("dashboard"))
@@ -514,6 +524,49 @@ def current_lang() -> str:
     return g.lang
 
 
+# The website only answers to its own names, so a forged Host header can't put someone else's address into invite and
+# password-reset links ("reset poisoning"). JOBHUNT_HOSTS can add more, comma-separated.
+ALLOWED_HOSTS = {h.strip().lower() for h in os.environ.get("JOBHUNT_HOSTS", "jhhq.co.uk,www.jhhq.co.uk").split(",") if h.strip()}
+
+
+@app.before_request
+def only_our_hostnames():
+    if not HOSTED:
+        return None
+    host = (request.host or "").split(":")[0].lower()
+    if host in ALLOWED_HOSTS or host.endswith(".onrender.com"):
+        return None
+    abort(400)
+
+
+def site_url() -> str:
+    """This website's own address, for links people are sent (never taken from what the visitor's browser claims)."""
+    if os.environ.get("JOBHUNT_URL"):
+        return os.environ["JOBHUNT_URL"].rstrip("/")
+    if HOSTED:
+        return "https://www.jhhq.co.uk"
+    return request.host_url.rstrip("/")
+
+
+@app.after_request
+def security_headers(resp):
+    h = resp.headers
+    h.setdefault("X-Content-Type-Options", "nosniff")
+    h.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    h.setdefault("X-Frame-Options", "DENY")                                        # no hidden-frame "clickjacking"
+    h.setdefault("Cross-Origin-Opener-Policy", "same-origin")
+    h.setdefault("Permissions-Policy", "camera=(), geolocation=(), payment=(), usb=(), microphone=(self)")
+    h.setdefault("Content-Security-Policy",
+                 "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
+                 "img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; "
+                 "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'")
+    if HOSTED:
+        h.setdefault("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+    if request.endpoint not in ("static", "favicon", "manifest", None):
+        h.setdefault("Cache-Control", "no-store")                                   # private pages aren't cached
+    return resp
+
+
 @app.after_request
 def translate_page(resp):
     try:
@@ -711,7 +764,7 @@ def people_page():
             return redirect(url_for("people_page"))
     return render_template("people.html", users=accounts.all_users(), invites=accounts.invites(), made=made,
                            alerts=alerts.recent(30), alerts_email=alerts.email_ready(), alert_to=alerts._to(),
-                           base=request.host_url.rstrip("/"))
+                           base=site_url())
 
 
 @app.route("/manifest.webmanifest")
@@ -1270,7 +1323,7 @@ def bookmarklet_href(filename: str = "bookmarklet.js", base: str | None = None) 
             src = f.read() + "\n" + src
     port = str(load_config().get("app", {}).get("port", 5055))
     if not base and HOSTED:
-        base = os.environ.get("JOBHUNT_URL", "").rstrip("/") or request.host_url.rstrip("/")
+        base = site_url()
     src = src.replace("__BASE__", base or f"http://127.0.0.1:{port}")
     src = src.replace("__PORT__", port)
     src = src.replace("__TOKEN__", access_token())

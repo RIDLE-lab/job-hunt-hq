@@ -243,6 +243,40 @@ def parse_smartrecruiters(d: dict, url: str) -> dict:
             "closes": "", "posted": (d.get("releasedDate") or "")[:10], "apply_url": d.get("applyUrl") or ""}
 
 
+def _public_url(url: str) -> str:
+    """Only fetch ordinary public web pages: http(s), and never this server, its network or cloud metadata addresses
+    (stops a pasted link being used to reach things inside the server – "SSRF")."""
+    import ipaddress
+    import socket
+    p = urlparse(url)
+    if p.scheme not in ("http", "https") or not p.hostname or p.username or p.password:
+        raise ValueError("That isn't a web link. Paste the link from your browser's address bar.")
+    if p.port not in (None, 80, 443):
+        raise ValueError("That link can't be read. Paste the advert text below instead.")
+    try:
+        addrs = {a[4][0] for a in socket.getaddrinfo(p.hostname, None)}
+    except socket.gaierror:
+        raise ValueError("That website couldn't be found. Check the link.")
+    for a in addrs:
+        ip = ipaddress.ip_address(a.split("%")[0])
+        if not ip.is_global or ip.is_multicast:
+            raise ValueError("That link can't be read. Paste the advert text below instead.")
+    return url
+
+
+def safe_get(url: str, **kw) -> requests.Response:
+    """requests.get for links people paste, checking every redirect too."""
+    kw.setdefault("timeout", 20)
+    for _ in range(6):
+        resp = requests.get(_public_url(url), allow_redirects=False, **kw)
+        if resp.is_redirect and resp.headers.get("location"):
+            from urllib.parse import urljoin
+            url = urljoin(url, resp.headers["location"])
+            continue
+        return resp
+    raise ValueError("That link redirects too many times.")
+
+
 def fetch_job(url: str) -> dict:
     url = canonical_url(url)
     try:
@@ -251,7 +285,7 @@ def fetch_job(url: str) -> dict:
             return job
     except (requests.RequestException, ValueError):
         pass  # fall back to reading the page itself
-    resp = requests.get(url, headers=HEADERS, timeout=20)
+    resp = safe_get(url, headers=HEADERS, timeout=20)
     if resp.status_code in (403, 429) or "captcha" in resp.text[:5000].lower():
         raise PermissionError("This site blocked the request. Use the 'Send to Job Hunt HQ' button on the job page instead.")
     resp.raise_for_status()

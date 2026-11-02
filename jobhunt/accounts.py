@@ -213,6 +213,26 @@ def invite_ok(code: str) -> bool:
     return bool(row and not row["used_by"] and row["expires_at"] > _now())
 
 
+def claim_invite(code: str) -> bool:
+    """Take an invite in one step, so two sign-ups sent at the same moment can't both use it."""
+    with connect() as c:
+        cur = c.execute("UPDATE invites SET used_by = -1, used_at = ? WHERE code = ? AND used_by IS NULL AND expires_at > ?",
+                        (_now(), (code or "").strip().upper(), _now()))
+        return cur.rowcount == 1
+
+
+def release_invite(code: str):
+    with connect() as c:
+        c.execute("UPDATE invites SET used_by = NULL, used_at = NULL WHERE code = ? AND used_by = -1", ((code or "").strip().upper(),))
+
+
+def claim_reset(code: str) -> bool:
+    with connect() as c:
+        cur = c.execute("UPDATE resets SET used_at = ? WHERE code = ? AND used_at IS NULL AND expires_at > ?",
+                        (_now(), (code or "").strip().upper(), _now()))
+        return cur.rowcount == 1
+
+
 def use_invite(code: str, user_id: int):
     with connect() as c:
         c.execute("UPDATE invites SET used_by = ?, used_at = ? WHERE code = ?", (user_id, _now(), code.strip().upper()))
