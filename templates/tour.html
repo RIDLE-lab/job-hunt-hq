@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1240">
+  <meta name="description" content="Job Hunt HQ finds jobs on every site, writes your cover letters, fills in applications, tracks every reply and helps you practise for interviews – for any kind of work.">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="icon" href="{{ url_for('static', filename='favicon-32.png') }}" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-180.png') }}">
+  <title>Job Hunt HQ – your whole job search in one place</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='tour.css') }}">
+</head>
+<body class="tour">
+<a class="skip" href="#tour">Skip to the tour</a>
+<header class="t-top">
+  <div class="t-in">
+    <a class="brand" href="{{ url_for('tour') }}"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="11"/><circle cx="20" cy="20" r="4" class="core"/><circle cx="31" cy="12" r="3.2" class="ping"/></svg><span>Job Hunt HQ</span></a>
+    <nav class="t-links" aria-label="Page">
+      <a href="#tour">The tour</a><a href="#features">Features</a><a href="#join">Join</a>
+    </nav>
+    <a class="btn btn-onnight" href="{{ url_for('login') }}">Sign in</a>
+  </div>
+</header>
+
+<section class="t-hero">
+  <div class="t-in t-hero-in">
+    <div>
+      <p class="t-eyebrow">For every kind of work · {{ n_countries }} countries · 6 languages</p>
+      <h1>Your whole job search,<br>in one place.</h1>
+      <p class="t-lead">Job Hunt HQ finds jobs on every site, scores each one against you, writes your cover letter, fills in
+        application forms, tracks every reply and helps you practise for the interview.</p>
+      <div class="row">
+        <a class="btn btn-signal t-big" href="#tour" data-play>▶ Take the 60-second tour</a>
+        <a class="btn btn-onnight t-big" href="#join">Join with an invite code</a>
+      </div>
+    </div>
+    <div class="t-hero-art" aria-hidden="true">
+      <div class="radar"><div class="radar-scope">
+        <svg viewBox="0 0 200 200" class="rings"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/><path d="M100 4v192M4 100h192"/></svg>
+        <div class="sweep"></div>
+        {% for s in [92, 88, 81, 77, 74, 70, 66, 61, 58, 54, 50, 45] %}<span class="blip{{ ' strong' if s >= 70 }}{{ ' ready' if loop.index in (2, 5) }}" data-score="{{ s }}"></span>{% endfor %}
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ the interactive tour -->
+<section class="t-in t-tour" id="tour" aria-roledescription="carousel" aria-label="How Job Hunt HQ works">
+  <div class="t-head">
+    <h2>See how it works</h2>
+    <p class="muted">Ten steps, from choosing your kind of work to walking into the interview ready. Use the arrows, or let it play.</p>
+  </div>
+  <div class="t-stage">
+    <ol class="t-bars" aria-hidden="true">{% for _ in range(10) %}<li><i></i></li>{% endfor %}</ol>
+
+    {% set slides = [
+      ('You choose', 'Any job, anywhere', 'Pick from ' ~ n_titles ~ ' job titles across ' ~ n_sectors ~ ' fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.', ['Works for career changers too', 'Places are checked as you type', n_countries ~ ' countries, each with its own job sites']),
+      ('One press', 'Jobs found and scored', 'Press Refresh jobs and it searches the job sites for you, giving every job a match score, so the best ones are at the top – with the reasons why.', ['Strong fits stand out', 'See why each job matches', 'Hide the ones that don’t suit']),
+      ('One click', 'Every job site in one place', 'Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.', ['The right sites for your country', 'Set up job alerts in a click', 'Save any advert you find']),
+      ('Done for you', 'Your cover letter, already written', 'Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.', ['Never invents experience', 'Paste any job description to get one', 'Tailored CV for each job too']),
+      ('On the application', 'The assistant fills it in', 'A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.', ['You always press Submit yourself', 'Personal questions are left to you', 'Only appears on job sites']),
+      ('Automatically', 'Every reply tracked', 'Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.', ['Nobody reads your emails', 'See what needs you next', 'Your whole year at a glance']),
+      ('Get ready', 'Practise for the interview', 'Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.', ['Answer out loud', 'Examples from your own history', 'See yourself improve']),
+      ('Stand out', 'A CV that fits', 'Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.', ['Three clean designs', 'PDF or Word', 'Suggestions to make it stronger']),
+      ('Your way', 'Your language, your phone', 'Use it in English, Français, Deutsch, Nederlands, Español or Português – on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
+      ('Yours', 'Private by design', 'Your details are only ever seen by you. Download everything or delete your account whenever you like.', ['UK GDPR rights built in', 'Nothing sold or shared', 'Invite-only accounts']),
+    ] %}
+    {% for eyebrow, title, text, points in slides %}
+    <article class="t-slide{{ ' on' if loop.first }}" data-n="{{ loop.index0 }}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of 10: {{ title }}"{% if not loop.first %} hidden{% endif %}>
+      <div class="t-copy">
+        <p class="t-step">{{ loop.index }} · {{ eyebrow }}</p>
+        <h3>{{ title }}</h3>
+        <p>{{ text }}</p>
+        <ul>{% for p in points %}<li>{{ p }}</li>{% endfor %}</ul>
+      </div>
+      <div class="t-mock" aria-hidden="true">
+        {% if loop.index0 == 0 %}
+        <div class="m-card">
+          <p class="m-label">Jobs you're looking for</p>
+          <div class="m-chips"><span>Warehouse Operative</span><span>Paralegal</span><span>Care Assistant</span><span>HR Advisor</span><span>Software Developer</span><span>Retail Supervisor</span></div>
+          <p class="m-label">Where</p>
+          <div class="m-input"><span class="m-type" data-text="Leeds"></span></div>
+          <p class="m-ok">✓ Leeds, West Yorkshire, England · within 15 miles</p>
+        </div>
+        {% elif loop.index0 == 1 %}
+        <div class="m-card">
+          {% for t, c, s in [('Warehouse Team Leader', 'Northline Logistics · Leeds', 91), ('Stock Controller', 'Brightway Retail · Bradford', 78), ('Forklift Operative', 'Harbour Freight · Wakefield', 64)] %}
+          <div class="m-job" style="--d: {{ loop.index0 * 0.25 }}s"><span class="m-score" data-to="{{ s }}">0</span><div><b>{{ t }}</b><small>{{ c }}</small></div>{% if s >= 85 %}<em>Letter ready</em>{% endif %}</div>
+          {% endfor %}
+        </div>
+        {% elif loop.index0 == 2 %}
+        <div class="m-card">
+          <p class="m-label">Warehouse Team Leader · near Leeds</p>
+          <div class="m-sites">{% for s in ['Indeed', 'LinkedIn', 'Reed', 'Totaljobs', 'CV-Library', 'Adzuna', 'Glassdoor', 'Find a job (GOV.UK)', 'Guardian Jobs', 'Specialist sites'] %}<span style="--d: {{ loop.index0 * 0.08 }}s">{{ s }} ↗</span>{% endfor %}</div>
+        </div>
+        {% elif loop.index0 == 3 %}
+        <div class="m-card m-letter">
+          <p class="m-type-long">Dear Hiring Manager,
+
+I'm applying for the Warehouse Team Leader role at Northline Logistics. For the past three years I have led a team of twelve on night shifts, kept pick accuracy above 99% and trained every new starter…</p>
+          <div class="m-btns"><span>Download PDF</span><span>Download Word</span><span>Copy</span></div>
+        </div>
+        {% elif loop.index0 == 4 %}
+        <div class="m-card m-form">
+          {% for l, v in [('Full name', 'Sam Taylor'), ('Email', 'sam@example.com'), ('Phone', '07700 900123'), ('CV', 'Sam Taylor CV.pdf ✓'), ('Cover letter', 'Cover letter – Northline.pdf ✓')] %}
+          <label>{{ l }}<span class="m-fill" style="--d: {{ loop.index0 * 0.45 }}s">{{ v }}</span></label>
+          {% endfor %}
+          <div class="m-bubble">◎</div>
+          <p class="m-note">You check it and press Submit.</p>
+        </div>
+        {% elif loop.index0 == 5 %}
+        <div class="m-card">
+          {% for who, st, cls in [('Northline Logistics', 'Interview', 'interview'), ('Brightway Retail', 'Received', 'acknowledged'), ('Harbour Freight', 'Assessment', 'assessment'), ('City Couriers', 'Offer', 'offer')] %}
+          <div class="m-mail" style="--d: {{ loop.index0 * 0.35 }}s"><b>{{ who }}</b><span class="pill pill-{{ cls }}">{{ st }}</span></div>
+          {% endfor %}
+        </div>
+        {% elif loop.index0 == 6 %}
+        <div class="m-card">
+          <p class="m-q">“Tell me about a time you had several deadlines at once.”</p>
+          <div class="m-fb"><span class="m-ring"><b data-to="8.5" data-dec="1">0</b><small>/10</small></span>
+            <div><b>Strong answer</b><div class="m-star"><i>✓ Situation</i><i>✓ Task</i><i>✓ Action</i><i>✓ Result</i></div></div></div>
+          <p class="m-tip">→ Put a number on the result if you can.</p>
+        </div>
+        {% elif loop.index0 == 7 %}
+        <div class="m-cvs">{% for d in ['Classic', 'Modern', 'Compact'] %}<div class="m-cv m-cv-{{ loop.index }}"><i></i><i></i><i></i><i></i><i></i><small>{{ d }}</small></div>{% endfor %}</div>
+        {% elif loop.index0 == 8 %}
+        <div class="m-phone"><div class="m-screen">
+          <div class="m-hello"><span>Good morning, Sam.</span><span>Bonjour, Sam.</span><span>Guten Morgen, Sam.</span><span>Goedemorgen, Sam.</span><span>Buenos días, Sam.</span><span>Bom dia, Sam.</span></div>
+          <div class="m-mini"><i></i><i></i><i></i></div>
+        </div></div>
+        {% else %}
+        <div class="m-card m-lock"><svg viewBox="0 0 24 24" class="ico"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <ul><li>Only you see your data</li><li>Download it all</li><li>Delete your account</li></ul></div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+
+    <div class="t-controls">
+      <button type="button" class="t-btn" data-prev aria-label="Previous">←</button>
+      <button type="button" class="t-btn t-play" data-toggle aria-label="Pause">❚❚</button>
+      <button type="button" class="t-btn" data-next aria-label="Next">→</button>
+      <div class="t-dots" role="tablist" aria-label="Choose a step">
+        {% for _, title, _, _ in slides %}<button type="button" role="tab" data-go="{{ loop.index0 }}" aria-label="{{ title }}"{% if loop.first %} aria-selected="true"{% endif %}><span>{{ title }}</span></button>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ everything it does -->
+<section class="t-in t-features" id="features">
+  <div class="t-head"><h2>Everything it does</h2><p class="muted">All included. No adverts.</p></div>
+  <div class="t-grid">
+    {% for title, text in [
+      ('Home summary', 'What needs you next, your best matches and where every application has got to – at a glance.'),
+      ('Job matching', 'Every job scored against your experience, skills, salary and travel, with the reasons.'),
+      ('Every job site', 'Your searches ready on all the main job boards and the specialist ones for your field.'),
+      ('Cover letters', 'Written for each job from your real experience. Edit, copy, or download as PDF or Word.'),
+      ('Browser assistant', 'Fills in application forms, attaches your CV and letter, and suggests answers. You press Submit.'),
+      ('Application tracker', 'Every application and every reply in one list, updated from Gmail automatically.'),
+      ('Interview prep', 'Practise questions for the job, speak or type your answer, get a score and tips.'),
+      ('CV builder', 'Build, import or improve your CV, pick a design, and tailor it to each job.'),
+      ('Any career', n_titles ~ ' job titles across ' ~ n_sectors ~ ' fields, and help changing career.'),
+      ('Languages and countries', '6 languages, ' ~ n_countries ~ ' countries, each with its own job sites.'),
+      ('Phone and computer', 'Use it anywhere, and add it to your phone’s home screen like an app.'),
+      ('Private and secure', 'Only you see your data. Download it or delete it at any time.'),
+    ] %}
+    <div class="t-feat"><b>{{ title }}</b><p>{{ text }}</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ============================================================ join -->
+<section class="t-join" id="join">
+  <div class="t-in t-join-in">
+    <div>
+      <h2>Join Job Hunt HQ</h2>
+      <p>Job Hunt HQ is invite-only for now. Accounts are made with a personal invite code.</p>
+      <ol class="t-steps">
+        <li><b>Get an invite code</b> – from the person who invited you, or ask for one at
+          <a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20invite%20code">{{ contact }}</a>.</li>
+        <li><b>Enter it here</b> and choose your username and password.</li>
+        <li><b>Set up in five minutes</b> – add your CV, choose the jobs you want, and you're off.</li>
+      </ol>
+    </div>
+    <form class="t-code" method="get" action="{{ url_for('join') }}">
+      <label for="code">Your invite code</label>
+      <input id="code" name="code" placeholder="ABCD-EFGH-JKLM" autocapitalize="characters" spellcheck="false" required
+             pattern="[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}" title="Three groups of four letters or numbers">
+      <button class="btn btn-signal t-big">Create my account</button>
+      <p class="muted small">Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
+      <p class="muted small">No code? <a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20invite%20code">Ask for one</a>.</p>
+    </form>
+  </div>
+</section>
+
+<section class="t-in t-faq">
+  <h2>Questions</h2>
+  {% for q, a in [
+    ('Who is it for?', 'Anyone looking for work – whatever the job, whether you’re starting out, moving up or changing career.'),
+    ('Does it apply for me automatically?', 'It does the work – finds jobs, writes letters, fills in forms – but you always check and press Submit yourself. Questions about you personally (health, diversity, criminal record) are always left for you.'),
+    ('Will it make things up about me?', 'No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.'),
+    ('Is my data safe?', 'Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.'),
+    ('Does it work on my phone?', 'Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.'),
+    ('How do I get an invite code?', 'Ask the person who told you about Job Hunt HQ, or email ' ~ contact ~ '.'),
+  ] %}
+  <details class="t-q"><summary>{{ q }}</summary><p>{{ a }}</p></details>
+  {% endfor %}
+</section>
+
+<div class="t-in">{% include "_legal_footer.html" %}
+  <p class="lang-pick small">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</p>
+</div>
+
+<script>
+(() => {
+  /* hero radar */
+  document.querySelectorAll('.t-hero .blip').forEach((b, i) => {
+    const r = Math.min(46, Math.max(7, (100 - +b.dataset.score) * 0.62)), a = (i * 137.5 - 90) * Math.PI / 180;
+    b.style.left = (50 + r * Math.cos(a)) + '%'; b.style.top = (50 + r * Math.sin(a)) + '%'; b.style.setProperty('--d', (i * .08) + 's');
+  });
+
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const slides = [...document.querySelectorAll('.t-slide')], bars = [...document.querySelectorAll('.t-bars li')];
+  const dots = [...document.querySelectorAll('.t-dots button')], toggle = document.querySelector('[data-toggle]');
+  const STEP = 7000;
+  let n = 0, playing = !calm, t0 = 0, raf = 0, inView = false;
+
+  function animate(slide) {
+    slide.querySelectorAll('[data-to]').forEach((el) => {
+      const end = +el.dataset.to, dec = +(el.dataset.dec || 0), s = performance.now();
+      const tick = (t) => { const p = calm ? 1 : Math.min(1, (t - s) / 900); el.textContent = (end * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+                            if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+    slide.querySelectorAll('.m-type').forEach((el) => {
+      const text = el.dataset.text; el.textContent = '';
+      [...text].forEach((ch, k) => setTimeout(() => { el.textContent += ch; }, calm ? 0 : 400 + k * 120));
+    });
+  }
+  function go(k, user) {
+    n = (k + slides.length) % slides.length;
+    slides.forEach((s, i) => { const on = i === n; s.hidden = !on; s.classList.toggle('on', on); });
+    dots.forEach((d, i) => d.setAttribute('aria-selected', i === n ? 'true' : 'false'));
+    bars.forEach((b, i) => b.querySelector('i').style.width = i < n ? '100%' : '0%');
+    animate(slides[n]); t0 = performance.now();
+    if (user) dots[n].scrollIntoView({ block: 'nearest', inline: 'center', behavior: calm ? 'auto' : 'smooth' });
+  }
+  function frame(t) {
+    if (playing && inView) {
+      const p = Math.min(1, (t - t0) / STEP);
+      bars[n].querySelector('i').style.width = (p * 100) + '%';
+      if (p >= 1) go(n + 1);
+    } else { t0 = t - (parseFloat(bars[n].querySelector('i').style.width) || 0) / 100 * STEP; }
+    raf = requestAnimationFrame(frame);
+  }
+  function setPlay(on) { playing = on; toggle.textContent = on ? '❚❚' : '▶'; toggle.setAttribute('aria-label', on ? 'Pause' : 'Play'); }
+  document.querySelector('[data-prev]').addEventListener('click', () => go(n - 1, true));
+  document.querySelector('[data-next]').addEventListener('click', () => go(n + 1, true));
+  toggle.addEventListener('click', () => setPlay(!playing));
+  dots.forEach((d) => d.addEventListener('click', () => { go(+d.dataset.go, true); }));
+  document.querySelectorAll('[data-play]').forEach((a) => a.addEventListener('click', () => { setPlay(true); go(0); }));
+  document.addEventListener('keydown', (e) => {
+    if (!inView || /input|textarea/i.test(document.activeElement.tagName)) return;
+    if (e.key === 'ArrowRight') go(n + 1, true); else if (e.key === 'ArrowLeft') go(n - 1, true);
+  });
+  const stage = document.querySelector('.t-stage');
+  stage.addEventListener('mouseenter', () => stage.classList.add('hover'));
+  stage.addEventListener('mouseleave', () => stage.classList.remove('hover'));
+  /* swipe on phones */
+  let sx = null;
+  stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) go(n + (dx < 0 ? 1 : -1), true); sx = null; });
+  new IntersectionObserver((es) => es.forEach((e) => { inView = e.isIntersecting; }), { threshold: .35 }).observe(stage);
+  setPlay(playing); go(0); raf = requestAnimationFrame(frame);
+})();
+</script>
+{% if lang != 'en' %}<script src="{{ url_for('static', filename='translate.js') }}" data-lang="{{ lang }}" defer></script>{% endif %}
+</body>
+</html>

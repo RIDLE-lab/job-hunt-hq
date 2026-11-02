@@ -99,6 +99,7 @@
       <p><a href="{{ url_for('login') }}">Back to sign in</a></p>
       {% endif %}
     {% endif %}
+      <p class="muted small login-note">New to Job Hunt HQ? <a href="{{ url_for('tour') }}">See what it does</a>.</p>
       <p class="muted small login-note legal-links"><a href="{{ url_for('legal', page='terms') }}">Terms</a> ·
         <a href="{{ url_for('privacy') }}">Privacy</a> · <a href="{{ url_for('legal', page='cookies') }}">Cookies</a> ·
         <a href="{{ url_for('legal', page='disclaimer') }}">Disclaimer</a> · <a href="{{ url_for('legal', page='contact') }}">Contact</a></p>

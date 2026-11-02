@@ -36,7 +36,8 @@ from jobhunt import countries, i18n  # noqa: E402
 OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
-OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language"}
+OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language",
+                  "tour"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
 TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter", "api_assistant"}
 SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy", "legal",
@@ -115,6 +116,8 @@ def sign_in_required():
         return None
     if request.path.startswith("/api/"):
         abort(401)
+    if request.path == "/" and request.method == "GET" and accounts.any_users():
+        return redirect(url_for("tour"))        # new visitors see what Job Hunt HQ does first
     return redirect(url_for("login", next=request.full_path.rstrip("?") if request.method == "GET" else "/"))
 
 
@@ -243,6 +246,14 @@ def first_account():
                           "In Render, add a disk (Settings → Disk) before creating your account.")
     return render_template("login.html", mode="first", error=error, default_name=default_name,
                            need_code=bool(setup_code and not from_this_pc()), hosted=HOSTED)
+
+
+@app.route("/tour")
+def tour():
+    """The public page: what Job Hunt HQ does (an interactive tour of every feature) and how to join with an invite code."""
+    return render_template("tour.html", contact=contact_email(), n_countries=len(countries.COUNTRIES),
+                           n_sectors=len(occupations.SECTORS), n_titles=len(occupations.ALL_TITLES),
+                           langs=i18n.LANGS, lang=current_lang(), year=date.today().year)
 
 
 @app.route("/join/<code>", methods=["GET", "POST"])
@@ -1724,7 +1735,7 @@ def interview_page():
     upcoming = [dict(r) for r in c.execute(
         f"SELECT * FROM applications WHERE status IN ({marks}) ORDER BY COALESCE(next_date, updated_at) DESC", INTERVIEW_STATUSES)]
     waiting = [dict(r) for r in c.execute(
-        "SELECT * FROM applications WHERE status IN ('applied', 'acknowledged') ORDER BY COALESCE(applied_on, updated_at) DESC LIMIT 12")]
+        "SELECT * FROM applications WHERE status IN ('applied', 'acknowledged') ORDER BY COALESCE(applied_on, updated_at) DESC LIMIT 6")]
     history = {r["target"]: dict(r) for r in c.execute(
         "SELECT target, COUNT(*) AS n, ROUND(AVG(score), 1) AS avg, MAX(score) AS best, MAX(created_at) AS last "
         "FROM interview_answers GROUP BY target")}

@@ -1034,6 +1034,19 @@ def test_interview_prep():
     assert r.status_code == 200 and r.get_json()["score"] >= 7
     assert "Recent practice" in c.get("/interview").data.decode()
 
+def test_public_tour_and_join():
+    """Visitors who aren't signed in see what Job Hunt HQ does (the tour), and can join with an invite code."""
+    import app as A
+    owner_client()
+    anon = A.app.test_client()
+    r = anon.get("/")
+    assert r.status_code == 302 and r.headers["Location"].endswith("/tour")
+    page = anon.get("/tour").data.decode()
+    assert "See how it works" in page and "Practise for the interview" in page and "Join Job Hunt HQ" in page
+    assert 'action="/join"' in page and "Sign in" in page
+    assert "invite code" in anon.get("/join?code=ABCD-EFGH-JKLM").data.decode().lower()
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

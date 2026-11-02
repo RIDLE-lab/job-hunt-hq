@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Practice: {{ label }} · Job Hunt HQ{% endblock %}
+{% block title %}Interview practice · Job Hunt HQ{% endblock %}
 {% block content %}
 <header class="head">
   <div>
@@ -9,120 +9,105 @@
   </div>
   <div class="row head-actions">
     <a class="btn btn-onnight" href="{{ url_for('interview_practice', t=target, seed=seed + 1) }}">New set of questions</a>
-    {% if job.id %}<a class="btn btn-onnight" href="{{ url_for('job_detail', job_id=job.id) }}">The advert</a>{% endif %}
   </div>
 </header>
 
 <section class="card iv-card" id="iv" aria-live="polite">
-  <nav class="iv-steps" aria-label="Questions">
-    {% for q in questions %}{% set d = done.get(q.q) %}
-    <button type="button" data-i="{{ loop.index0 }}" class="{{ 'answered' if d }}" aria-label="Question {{ loop.index }}{{ ', scored ' ~ d.score if d }}">
-      {{ loop.index }}{% if d %}<i class="s{{ (d.score or 0)|round(0, 'floor')|int }}">{{ d.score|round(0)|int }}</i>{% endif %}</button>
-    {% endfor %}
-  </nav>
-
+  <nav class="iv-steps" aria-label="Questions" id="iv-steps"></nav>
   <div class="iv-q">
-    <p class="iv-kind"><span class="pill" id="iv-kind"></span> <span class="muted small" id="iv-count"></span></p>
-    <h2 class="iv-question" id="iv-question"></h2>
-    <p class="iv-why muted small" id="iv-why"></p>
-    <details class="iv-tip"><summary>What they're looking for</summary><p id="iv-tip"></p></details>
+    <p class="iv-kind" id="iv-kind"></p>
+    <h2 id="iv-question" tabindex="-1"></h2>
     <div class="row iv-tools">
-      <button type="button" class="btn btn-ghost" id="iv-read">🔊 Read the question out</button>
+      <button type="button" class="btn btn-ghost small" id="iv-read">🔊 Read it out</button>
+      <details class="iv-tip"><summary>What they're looking for</summary><p id="iv-tip"></p><p class="muted small" id="iv-why"></p></details>
     </div>
   </div>
-
-  <label class="iv-answer-l" for="iv-answer">Your answer</label>
-  <textarea id="iv-answer" rows="9" placeholder="Type your answer – or press “Answer out loud” and speak as you would in the interview."></textarea>
+  <label for="iv-answer" class="sr-only">Your answer</label>
+  <textarea id="iv-answer" rows="9" placeholder="Type your answer here – or press “Answer out loud” and talk, as you would in the interview."></textarea>
   <div class="iv-bar">
     <button type="button" class="btn" id="iv-mic" aria-pressed="false">🎤 Answer out loud</button>
     <span class="muted small" id="iv-meter">0 words · 0:00</span>
     <span class="iv-gap"></span>
-    <button type="button" class="btn btn-primary" id="iv-rate">Get feedback</button>
+    <button type="button" class="btn btn-primary" id="iv-mark">Get feedback</button>
   </div>
   <p class="muted tiny" id="iv-mic-note" hidden></p>
 
-  <div class="iv-fb" id="iv-fb" hidden>
-    <div class="iv-fb-head">
-      <div class="iv-ring" id="iv-ring"><span id="iv-score">0</span><small>/10</small></div>
+  <div class="iv-feedback" id="iv-feedback" hidden>
+    <div class="iv-result">
+      <div class="iv-ring" id="iv-ring" style="--v:0"><span><b id="iv-score">0</b><small>/10</small></span></div>
       <div><p class="iv-verdict" id="iv-verdict"></p><p class="muted small" id="iv-len"></p>
-        <ul class="iv-star" id="iv-star" hidden>
-          <li data-k="situation">Situation</li><li data-k="task">Task</li><li data-k="action">Action</li><li data-k="result">Result</li>
-        </ul></div>
+        <div class="iv-star" id="iv-star" hidden></div></div>
     </div>
-    <div class="iv-cols">
-      <div><h3>What went well</h3><ul class="iv-good" id="iv-good"></ul></div>
-      <div><h3>To make it stronger</h3><ul class="iv-better" id="iv-better"></ul></div>
+    <div class="grid2 iv-points">
+      <div><h3>What went well</h3><ul id="iv-good"></ul></div>
+      <div><h3>To improve</h3><ul id="iv-better"></ul></div>
     </div>
-    <div id="iv-improved-box" hidden><h3>A stronger version of your answer</h3><p class="iv-improved" id="iv-improved"></p></div>
-    <div id="iv-ex-box" hidden><h3>From your own experience, you could use</h3><ul class="iv-ex" id="iv-ex"></ul>
-      <p class="muted tiny">From <a href="{{ url_for('career_page') }}">My career</a>. Add more examples there and they'll show up here.</p></div>
-    <details id="iv-draft-box" hidden><summary>See an answer built from your history</summary><p class="iv-improved" id="iv-draft"></p>
-      <p class="muted tiny">Built only from what's in your details – change it into your own words and add the specific moment.</p></details>
-    <div class="iv-bar">
+    <div id="iv-extra"></div>
+    <div class="row">
       <button type="button" class="btn" id="iv-again">Try again</button>
-      <span class="iv-gap"></span>
       <button type="button" class="btn btn-primary" id="iv-next">Next question →</button>
     </div>
   </div>
 
-  <div class="iv-done" id="iv-done" hidden>
-    <h2>Practice round done</h2>
-    <p id="iv-summary"></p>
-    <div class="row"><a class="btn btn-primary" href="{{ url_for('interview_practice', t=target, seed=seed) }}">Go through again</a>
-      <a class="btn" href="{{ url_for('interview_practice', t=target, seed=seed + 1) }}">New set of questions</a>
-      <a class="btn btn-ghost" href="{{ url_for('interview_page') }}">Back to Interview prep</a></div>
-  </div>
+  <div class="iv-summary" id="iv-summary" hidden></div>
 </section>
 
 <script>
 (() => {
-  const Q = {{ questions|tojson }};
+  const QS = {{ questions|tojson }};
   const DONE = {{ done|tojson }};
   const TARGET = {{ target|tojson }};
-  const KINDS = {opening: 'Opening', motivation: 'Motivation', competency: 'Tell me about a time…', technical: 'About the job',
-                 strengths: 'Strengths', weakness: 'Weakness', closing: 'Closing'};
+  const KIND = { opening: 'Opening question', motivation: 'Why this job', competency: 'Competency question – use STAR',
+                 technical: 'About the job itself', strengths: 'Strengths', weakness: 'Weakness', closing: 'Closing question' };
   const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => '&#' + c.charCodeAt(0) + ';');
+  let i = Math.max(0, QS.findIndex((q) => !DONE[q.q]));
   const scores = {};
-  Object.entries(DONE).forEach(([q, d]) => { scores[q] = d.score; });
-  let i = 0, started = 0, timer = null;
+  QS.forEach((q) => { if (DONE[q.q]) scores[q.q] = DONE[q.q].score; });
+  let started = 0, timer = null;
 
+  function steps() {
+    $('iv-steps').innerHTML = QS.map((q, n) => {
+      const s = scores[q.q];
+      return `<button type="button" class="iv-step${n === i ? ' on' : ''}${s != null ? ' done' : ''}" data-n="${n}"` +
+             ` aria-label="Question ${n + 1}${s != null ? ', scored ' + s : ''}"${n === i ? ' aria-current="step"' : ''}>` +
+             (s != null ? `<b class="s${Math.floor(s)}">${s}</b>` : n + 1) + '</button>';
+    }).join('');
+  }
   function show(n) {
-    i = Math.max(0, Math.min(Q.length - 1, n));
-    const q = Q[i];
-    $('iv-kind').textContent = KINDS[q.kind] || q.kind;
-    $('iv-count').textContent = `Question ${i + 1} of ${Q.length}`;
+    i = n; const q = QS[i];
+    $('iv-summary').hidden = true; $('iv').classList.remove('finished');
+    $('iv-kind').textContent = `Question ${i + 1} of ${QS.length} · ` + (KIND[q.kind] || 'Question');
     $('iv-question').textContent = q.q;
-    $('iv-why').textContent = q.why || ''; $('iv-why').hidden = !q.why;
     $('iv-tip').textContent = q.tip || '';
+    $('iv-why').textContent = q.why || '';
     $('iv-answer').value = (DONE[q.q] && DONE[q.q].answer) || '';
-    $('iv-fb').hidden = true; $('iv-done').hidden = true;
-    document.querySelectorAll('.iv-steps button').forEach((b) => b.classList.toggle('on', +b.dataset.i === i));
-    started = 0; meter();
+    $('iv-feedback').hidden = true;
+    meter(); steps(); started = 0;
+    $('iv-question').focus({ preventScroll: true });
   }
   function meter() {
-    const n = ($('iv-answer').value.match(/[A-Za-z']+/g) || []).length;
-    const s = started ? Math.round((Date.now() - started) / 1000) : 0;
-    $('iv-meter').textContent = `${n} word${n === 1 ? '' : 's'} · about ${Math.max(0, Math.round(n / 130 * 10) / 10)} min spoken` + (started ? ` · ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : '');
+    const w = ($('iv-answer').value.match(/\S+/g) || []).length;
+    const secs = started ? Math.round((Date.now() - started) / 1000) : Math.round(w / 130 * 60);
+    $('iv-meter').textContent = `${w} words · ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}` + (started ? '' : ' spoken');
   }
-  $('iv-answer').addEventListener('input', () => { if (!started) started = Date.now(); meter(); });
-  timer = setInterval(meter, 1000);
-  document.querySelectorAll('.iv-steps button').forEach((b) => b.addEventListener('click', () => show(+b.dataset.i)));
+  $('iv-answer').addEventListener('input', () => { if (!started) { started = Date.now(); timer = setInterval(meter, 1000); } meter(); });
+  $('iv-steps').addEventListener('click', (e) => { const b = e.target.closest('[data-n]'); if (b) show(+b.dataset.n); });
 
-  /* read the question out (like a real interviewer) */
+  /* read the question out loud */
   $('iv-read').addEventListener('click', () => {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(Q[i].q); u.lang = document.documentElement.lang || 'en-GB'; u.rate = 0.95;
+    const u = new SpeechSynthesisUtterance(QS[i].q); u.lang = document.documentElement.lang || 'en-GB'; u.rate = 0.95;
     speechSynthesis.speak(u);
   });
   if (!('speechSynthesis' in window)) $('iv-read').hidden = true;
 
-  /* answer out loud: the browser turns speech into text, nothing is recorded or stored as audio */
+  /* answer out loud: the browser writes down what you say */
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   let rec = null, listening = false;
-  if (!SR) { $('iv-mic').hidden = false; $('iv-mic').disabled = true; $('iv-mic').title = 'Your browser can\'t turn speech into text – try Chrome or Edge, or type your answer.'; }
+  if (!SR) { $('iv-mic').hidden = true; }
   $('iv-mic').addEventListener('click', () => {
-    if (!SR) return;
     if (listening) { rec.stop(); return; }
     rec = new SR(); rec.lang = document.documentElement.lang === 'en' ? 'en-GB' : (document.documentElement.lang || 'en-GB');
     rec.continuous = true; rec.interimResults = true;
@@ -132,57 +117,72 @@
       for (let k = 0; k < e.results.length; k++) text += e.results[k][0].transcript;
       $('iv-answer').value = base + text.trim(); meter();
     };
-    rec.onend = () => { listening = false; $('iv-mic').textContent = '🎤 Answer out loud'; $('iv-mic').setAttribute('aria-pressed', 'false'); $('iv-mic').classList.remove('live'); };
-    rec.onerror = (e) => { $('iv-mic-note').hidden = false; $('iv-mic-note').textContent = e.error === 'not-allowed' ? 'Allow the microphone for this site to answer out loud.' : 'Couldn\'t hear you – try again, or type your answer.'; };
-    rec.start(); listening = true; if (!started) started = Date.now();
-    $('iv-mic').textContent = '■ Stop'; $('iv-mic').setAttribute('aria-pressed', 'true'); $('iv-mic').classList.add('live');
-    $('iv-mic-note').hidden = false; $('iv-mic-note').textContent = 'Listening… speak as you would in the interview. Your browser turns it into text; nothing is recorded.';
+    rec.onstart = () => { listening = true; started = started || Date.now(); clearInterval(timer); timer = setInterval(meter, 1000);
+                          $('iv-mic').textContent = '⏹ Stop'; $('iv-mic').setAttribute('aria-pressed', 'true'); $('iv-mic').classList.add('rec');
+                          $('iv-mic-note').hidden = false; $('iv-mic-note').textContent = 'Listening… speak as you would in the interview. Press Stop when you finish.'; };
+    rec.onend = () => { listening = false; $('iv-mic').textContent = '🎤 Answer out loud'; $('iv-mic').setAttribute('aria-pressed', 'false');
+                        $('iv-mic').classList.remove('rec'); $('iv-mic-note').hidden = true; clearInterval(timer); };
+    rec.onerror = (e) => { $('iv-mic-note').hidden = false;
+      $('iv-mic-note').textContent = e.error === 'not-allowed' ? 'Allow the microphone for this site to answer out loud – or just type.' : 'Couldn\'t hear you – try again, or type your answer.'; };
+    rec.start();
   });
 
-  function list(el, items) { el.innerHTML = ''; (items || []).forEach((t) => { const li = document.createElement('li'); li.textContent = t; el.appendChild(li); }); }
-  $('iv-rate').addEventListener('click', async () => {
+  /* marking */
+  $('iv-mark').addEventListener('click', async () => {
+    if (listening) rec.stop();
     const answer = $('iv-answer').value.trim();
     if (!answer) { $('iv-answer').focus(); return; }
-    if (listening) rec.stop();
-    const b = $('iv-rate'); b.disabled = true; b.textContent = 'Marking…';
+    clearInterval(timer);
+    const b = $('iv-mark'); b.disabled = true; b.textContent = 'Marking…';
     try {
       const r = await fetch('{{ url_for("api_interview_rate") }}', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ target: TARGET, question: Q[i].q, kind: Q[i].kind, answer }) });
+        body: JSON.stringify({ target: TARGET, question: QS[i].q, kind: QS[i].kind, answer }) });
       const d = await r.json();
-      if (!r.ok) throw new Error(d.error || 'Something went wrong');
-      scores[Q[i].q] = d.score; DONE[Q[i].q] = { score: d.score, answer };
-      $('iv-score').textContent = d.score;
-      const ring = $('iv-ring'); ring.style.setProperty('--v', d.score * 10);
-      ring.className = 'iv-ring ' + (d.score >= 8 ? 'hi' : d.score >= 6 ? 'mid' : d.score >= 4 ? 'lo' : 'bad');
-      $('iv-verdict').textContent = d.verdict;
-      $('iv-len').textContent = `${d.words} words · about ${d.minutes} minutes spoken`;
-      $('iv-star').hidden = !d.star;
-      if (d.star) $('iv-star').querySelectorAll('li').forEach((li) => li.classList.toggle('yes', !!d.star[li.dataset.k]));
-      list($('iv-good'), d.good.length ? d.good : ['Keep going – the points on the right will lift your score.']);
-      list($('iv-better'), d.better.length ? d.better : ['Nothing major – practise saying it out loud so it flows.']);
-      $('iv-improved-box').hidden = !d.improved; $('iv-improved').textContent = d.improved || '';
-      $('iv-ex-box').hidden = !(d.examples && d.examples.length); list($('iv-ex'), d.examples);
-      $('iv-draft-box').hidden = !d.draft; $('iv-draft').textContent = d.draft || '';
-      $('iv-fb').hidden = false;
-      const step = document.querySelector(`.iv-steps button[data-i="${i}"]`);
-      step.classList.add('answered'); let tag = step.querySelector('i');
-      if (!tag) { tag = document.createElement('i'); step.appendChild(tag); }
-      tag.textContent = Math.round(d.score); tag.className = 's' + Math.floor(d.score);
-      $('iv-fb').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    } catch (e) { $('iv-mic-note').hidden = false; $('iv-mic-note').textContent = e.message; }
+      if (!r.ok) throw new Error(d.error || 'Something went wrong.');
+      scores[QS[i].q] = d.score; DONE[QS[i].q] = { score: d.score, answer };
+      feedback(d); steps();
+    } catch (err) { alertBox(err.message); }
     b.disabled = false; b.textContent = 'Get feedback';
   });
-  $('iv-again').addEventListener('click', () => { $('iv-fb').hidden = true; $('iv-answer').focus(); started = 0; });
-  $('iv-next').addEventListener('click', () => {
-    if (i < Q.length - 1) { show(i + 1); $('iv').scrollIntoView({ block: 'start' }); return; }
-    const vals = Q.map((q) => scores[q.q]).filter((v) => v != null);
-    const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 10) / 10 : 0;
-    const low = Q.filter((q) => scores[q.q] != null && scores[q.q] < 6).map((q) => '“' + q.q + '”');
-    $('iv-summary').textContent = `You answered ${vals.length} of ${Q.length} questions, with an average of ${avg}/10.` +
-      (low.length ? ' Worth another go: ' + low.slice(0, 3).join(', ') + '.' : ' Great work – practise saying them out loud until they feel natural.');
-    $('iv-fb').hidden = true; $('iv-done').hidden = false;
-  });
-  show(Math.max(0, Q.findIndex((q) => !DONE[q.q])));
+  function alertBox(m) { $('iv-mic-note').hidden = false; $('iv-mic-note').textContent = m; }
+  function feedback(d) {
+    const f = $('iv-feedback'); f.hidden = false;
+    $('iv-score').textContent = d.score;
+    const ring = $('iv-ring'); ring.style.setProperty('--v', 0);
+    ring.className = 'iv-ring ' + (d.score >= 8 ? 'hi' : d.score >= 6 ? 'mid' : d.score >= 4 ? 'lo' : 'bad');
+    requestAnimationFrame(() => requestAnimationFrame(() => ring.style.setProperty('--v', d.score * 10)));
+    $('iv-verdict').textContent = d.verdict;
+    $('iv-len').textContent = `${d.words} words · about ${d.minutes} min spoken`;
+    const st = $('iv-star');
+    if (d.star) { st.hidden = false;
+      st.innerHTML = ['situation', 'task', 'action', 'result'].map((k) => `<span class="${d.star[k] ? 'yes' : 'no'}">${d.star[k] ? '✓' : '–'} ${k[0].toUpperCase() + k.slice(1)}</span>`).join(''); }
+    else st.hidden = true;
+    $('iv-good').innerHTML = (d.good || []).map((x) => `<li>${esc(x)}</li>`).join('') || '<li class="muted">Keep going – see the tips.</li>';
+    $('iv-better').innerHTML = (d.better || []).map((x) => `<li>${esc(x)}</li>`).join('') || '<li class="muted">Nothing major – practise saying it out loud.</li>';
+    let extra = '';
+    if (d.improved) extra += `<details class="iv-more" open><summary>A stronger version of your answer</summary><p class="iv-pre">${esc(d.improved)}</p></details>`;
+    if (d.examples && d.examples.length) extra += `<details class="iv-more"${d.improved ? '' : ' open'}><summary>From your own experience, you could mention</summary><ul>${d.examples.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></details>`;
+    if (d.draft) extra += `<details class="iv-more"><summary>A starting point built from your work history</summary><p class="iv-pre">${esc(d.draft)}</p><p class="muted tiny">Only things from your own details – add the real moment and the result in your words.</p></details>`;
+    $('iv-extra').innerHTML = extra;
+    $('iv-next').textContent = i === QS.length - 1 ? 'See my results' : 'Next question →';
+    f.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+  $('iv-again').addEventListener('click', () => { $('iv-feedback').hidden = true; $('iv-answer').focus(); started = 0; });
+  $('iv-next').addEventListener('click', () => { if (i < QS.length - 1) show(i + 1); else summary(); });
+  function summary() {
+    const got = QS.filter((q) => scores[q.q] != null);
+    const avg = got.length ? (got.reduce((a, q) => a + scores[q.q], 0) / got.length).toFixed(1) : '–';
+    const weakest = got.slice().sort((a, b) => scores[a.q] - scores[b.q])[0];
+    $('iv-feedback').hidden = true; $('iv').classList.add('finished');
+    const s = $('iv-summary'); s.hidden = false;
+    s.innerHTML = `<h2>Your results</h2><p class="iv-avg"><b>${avg}</b>/10 average across ${got.length} of ${QS.length} questions</p>` +
+      `<ul class="iv-recent">${QS.map((q, n) => `<li><span class="iv-score s${Math.floor(scores[q.q] ?? 0)}">${scores[q.q] ?? '–'}</span><div><b>${esc(q.q)}</b></div></li>`).join('')}</ul>` +
+      (weakest ? `<p>Practise next: <a href="#" data-go="${QS.indexOf(weakest)}">${esc(weakest.q)}</a></p>` : '') +
+      `<p class="row"><a class="btn btn-primary" href="?t=${encodeURIComponent(TARGET)}&seed={{ seed + 1 }}">New set of questions</a>` +
+      `<a class="btn" href="{{ url_for('interview_page') }}">Back to Interview prep</a></p>`;
+    s.querySelector('[data-go]')?.addEventListener('click', (e) => { e.preventDefault(); show(+e.target.dataset.go); });
+  }
+  show(i < 0 ? 0 : i);
 })();
 </script>
 {% endblock %}

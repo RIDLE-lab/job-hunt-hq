@@ -421,9 +421,12 @@ def offline_rate(question: str, kind: str, answer: str, job: dict) -> dict:
         score += 1.5
         good.append(f"Good length ({n} words, about {max(0.5, round(n / 130, 1))} minutes).")
     if kind not in ("closing", "opening", "weakness") and q_words and on_question < 0.2:
-        key = ", ".join(sorted(q_words, key=len, reverse=True)[:3])
-        better.append(f"Make sure your example clearly fits the question – it asks about {key}. Say so in your first "
-                      "sentence (e.g. “A time I… was when…”).")
+        topic = re.sub(r"^(tell me about|describe|give (me |us )?an example of|talk me through)\s+(a time |when )?(you |when you )?",
+                       "", question.strip().rstrip("?."), flags=re.I)
+        better.append(f"Make sure your example clearly fits the question (“{topic}”). Say so in your first sentence – "
+                      "e.g. “A time I had to work under pressure was when…”." if "pressure" in question.lower() else
+                      f"Make sure your example clearly fits the question (“{topic}”). Say so in your first sentence – "
+                      "e.g. “A good example is when I…”.")
         score -= 1.5
     if advert_hits >= 3 and kind != "closing":
         good.append("You used the advert's own language.")
