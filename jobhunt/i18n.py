@@ -13,6 +13,7 @@ CODES = [c for c, _ in LANGS]
 TABLE_COLUMNS = ["en", "fr", "de", "nl", "es", "pt"]     # the columns of i18n_table.txt
 RTL = {"ar"}                                              # languages written right to left
 _TABLE: dict[str, dict[str, str]] | None = None
+_PATTERNS: dict[str, list] = {}
 
 
 def table() -> dict[str, dict[str, str]]:
@@ -37,6 +38,23 @@ def table() -> dict[str, dict[str, str]]:
                     en, tr = (x.strip() for x in line.split("|"))
                     _TABLE[code][en] = tr
     return _TABLE
+
+
+def patterns(lang: str) -> list:
+    """Table rows with gaps ("Applied {date}", "{role}: add a number…") as patterns that match the finished text."""
+    if lang not in _PATTERNS:
+        out = []
+        for en, tr in table().get(lang, {}).items():
+            names = re.findall(r"\{(\w+)\}", en)
+            if not names or len(set(names)) != len(names):
+                continue
+            rx = re.escape(en)
+            for n in names:
+                rx = rx.replace(re.escape("{" + n + "}"), rf"(?P<{n}>\d+)" if n == "n" else rf"(?P<{n}>.+?)", 1)
+            out.append((re.compile(rx), tr))
+        out.sort(key=lambda p: -len(p[0].pattern))                 # the most specific first
+        _PATTERNS[lang] = out
+    return _PATTERNS[lang]
 
 
 def pick(preferred: str | None, accept: str | None = "") -> str:
@@ -71,6 +89,15 @@ def translate(page: str, lang: str) -> str:
         head, sep, rest = raw.partition(": ")               # "Ready to submit: <job title>"
         if sep and head in t:
             return f"{t[head]}: {rest}"
+        if "{" in raw:
+            return None
+        for rx, tr_ in patterns(lang):                     # "Applied 14 Oct" -> "Applied {date}"
+            m = rx.fullmatch(raw)
+            if m:
+                try:
+                    return tr_.format(**m.groupdict())
+                except (KeyError, IndexError, ValueError):
+                    return None
         return None
 
     def tr(text: str) -> str | None:
@@ -102,7 +129,7 @@ def translate(page: str, lang: str) -> str:
         elif re.fullmatch(r"script|style|textarea|code|pre", chunk or "", re.I):
             continue
         else:
-            chunk = TEXT.sub(node, chunk)
+            chunk = TEXT.sub(node, chunk + "<")[:-1]      # text right before a <textarea> ends the chunk
             out.append(ATTR.sub(attr, chunk))
     page = "".join(out)
     return re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"' + (' dir="rtl"' if lang in RTL else ''), page, count=1)

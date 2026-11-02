@@ -1,0 +1,10 @@
+{# Language menu for the top bar: the current language, and every other one, each written in its own language. #}
+<details class="lang-top" data-menu>
+  <summary aria-label="Language: {{ (langs|selectattr(0, 'equalto', lang)|first or ('en', 'English'))[1] }}">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+    <span>{{ (langs|selectattr(0, 'equalto', lang)|first or ('en', 'English'))[1] }}</span>
+  </summary>
+  <ul>
+    {% for code, label in langs %}<li><a href="{{ url_for('set_language', code=code) }}" lang="{{ code }}"{% if lang == code %} aria-current="true"{% endif %}>{{ label }}{% if lang == code %}<span aria-hidden="true">✓</span>{% endif %}</a></li>{% endfor %}
+  </ul>
+</details>

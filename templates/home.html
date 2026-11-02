@@ -36,26 +36,28 @@
 <section class="card next reveal" aria-labelledby="next-h">
   <div class="card-head"><h2 id="next-h">Do this next</h2>
     {% if attention|length > 3 %}<a class="card-link" href="{{ url_for('applications_page', show='forward') }}">{{ t('All {n} moving forward', n=attention|length) }} →</a>{% endif %}</div>
+  {% set extras = [letters, ready_apps, kpis.new_today]|select|list|length %}
+  {% set ns = namespace(n=0) %}
   <div class="steps-grid">
-    {% for a in attention[:3] %}
+    {% for a in attention[:[1, 4 - extras]|max] %}{% set ns.n = ns.n + 1 %}
     <a class="step st-{{ a.status }}" href="{{ url_for('interview_practice', t='app:' ~ a.id) if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') else url_for('applications_page', q=a.company) }}">
       <span class="step-ico">{{ status_icon(a.status) }}</span>
       <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{% if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') %}{{ t('Practise for it') }} · {% endif %}{{ a.company }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% elif a.when %} · {{ a.when|nice_date }}{% endif %}</small></span>
     </a>
     {% endfor %}
-    {% if letters %}
+    {% if letters and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
     <a class="step st-ready" href="{{ url_for('job_detail', job_id=letters[0].id) }}">
       <span class="step-ico">{{ icon('mail') }}</span>
       <span><b>{{ t('{n} cover letters ready', n=letters|length) if letters|length != 1 else t('1 cover letter ready') }}</b><small>{{ t('Starting with {company}', company=letters[0].company) }}</small></span>
     </a>
     {% endif %}
-    {% if ready_apps %}
+    {% if ready_apps and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
     <a class="step st-ready" href="{{ url_for('applications_page', show='ready') }}">
       <span class="step-ico">{{ icon('send') }}</span>
       <span><b>{{ t('{n} applications not sent yet', n=ready_apps|length) if ready_apps|length != 1 else t('1 application not sent yet') }}</b><small>{{ ready_apps[0].role }} · {{ ready_apps[0].company }}</small></span>
     </a>
     {% endif %}
-    {% if kpis.new_today %}
+    {% if kpis.new_today and ns.n < 4 %}{% set ns.n = ns.n + 1 %}
     <a class="step" href="{{ url_for('jobs_page', sort='newest') }}">
       <span class="step-ico">{{ icon('plus') }}</span>
       <span><b>{{ t('1 new job today') if kpis.new_today == 1 else t('{n} new jobs today', n=kpis.new_today) }}</b><small>Newest first</small></span>
@@ -145,15 +147,23 @@
 </nav>
 
 <script>
-  /* Job radar: each dot is one of your best matches. The better the match, the nearer the centre. */
+  /* Job radar: each dot is one of your best matches. The better the match, the nearer the centre – spread across the
+     rings by how your matches compare with each other – and the strongest gently pulse. */
   (() => {
-    [...document.querySelectorAll('.radar .blip')].forEach((b, i) => {
-      const score = +b.dataset.score || 0;
-      const r = Math.min(46, Math.max(7, (100 - score) * 0.62));
-      const a = (i * 137.5 - 90) * Math.PI / 180;
+    const blips = [...document.querySelectorAll('.radar .blip')];
+    const scores = blips.map((b) => +b.dataset.score || 0);
+        blips.forEach((b, i) => {
+      const score = scores[i];
+      /* distance from the centre comes from the score itself (90+ sits near the middle, 50 near the edge), with a small
+         offset so equal scores don't stack; the angle steps round by the golden angle so dots never bunch up */
+      const r = Math.min(40, Math.max(8, 8 + (100 - score) * 0.64)) + (i % 3) * 2;
+      const a = (i * 137.508 - 90) * Math.PI / 180;
+      const fit = Math.max(0, Math.min(1, (score - 40) / 55));           /* 0 = weak, 1 = excellent */
       b.style.left = (50 + r * Math.cos(a)) + '%';
       b.style.top = (50 + r * Math.sin(a)) + '%';
-      b.style.setProperty('--d', (i * 0.06) + 's');
+      b.style.setProperty('--d', (i * 0.05) + 's');
+      b.style.setProperty('--pulse', (3.6 - fit * 2.2).toFixed(2) + 's');   /* better match = quicker, stronger pulse */
+      b.style.setProperty('--glow', (0.15 + fit * 0.5).toFixed(2));
     });
   })();
 </script>

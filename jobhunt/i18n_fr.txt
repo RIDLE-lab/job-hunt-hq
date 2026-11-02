@@ -1,0 +1,730 @@
+# Job Hunt HQ – fr: one 'English|translation' per line. Gaps like {n} or {company} are filled in from the page.
+Job Hunt HQ – stay on top of jobs that matter to you|Job Hunt HQ – gardez le fil des offres qui comptent pour vous
+Skip to how it works|Aller à « Comment ça marche »
+The tour|La visite
+Features|Fonctionnalités
+Questions|Questions
+Stay on top of jobs that matter to you.|Gardez le fil des offres qui comptent pour vous.
+Find the jobs that suit you most, get your cover letter written, and keep every application and interview in one place.|Trouvez les offres qui vous correspondent le mieux, obtenez votre lettre de motivation rédigée, et gardez chaque candidature et chaque entretien au même endroit.
+Join with an invite code|Rejoindre avec un code d’invitation
+See how it works|Voir comment ça marche
+Four steps, from knowing what you want to walking into the interview ready.|Quatre étapes, de savoir ce que vous voulez à l’entretien, bien préparé.
+Tell it what you want|Dites-lui ce que vous voulez
+Choose the kinds of job you’re after, where you live and how far you’ll travel. Add your CV and it learns your experience.|Choisissez les types de poste que vous recherchez, où vous habitez et jusqu’où vous êtes prêt à vous déplacer. Ajoutez votre CV et il apprend votre expérience.
+Jobs come to you|Les offres viennent à vous
+It searches the job sites for you and puts the jobs that suit you most at the top, with the reasons why.|Il cherche sur les sites d’emploi pour vous et place en tête les offres qui vous correspondent le mieux, avec les raisons.
+Apply with less effort|Postulez avec moins d’effort
+Your cover letter is already written. The assistant fills in the application form. You check it and press Submit.|Votre lettre de motivation est déjà rédigée. L’assistant remplit le formulaire de candidature. Vous vérifiez et cliquez sur Envoyer.
+Walk in prepared|Arrivez préparé
+Replies are tracked for you, so nothing is missed. Then practise the questions for that job and get tips to improve.|Les réponses sont suivies pour vous, rien ne vous échappe. Puis entraînez-vous aux questions de ce poste et recevez des conseils pour progresser.
+See it in action|Voyez-le en action
+Ten screens, one for each part of Job Hunt HQ. Go at your own pace.|Dix écrans, un pour chaque partie de Job Hunt HQ. À votre rythme.
+Any job, anywhere|Tout poste, partout
+Jobs found and matched|Offres trouvées et classées
+Every job site in one place|Tous les sites d’emploi au même endroit
+Your cover letter, already written|Votre lettre de motivation, déjà rédigée
+The assistant fills it in|L’assistant le remplit
+Every reply tracked|Chaque réponse suivie
+A CV that fits|Un CV qui correspond
+Your language, your phone|Votre langue, votre téléphone
+Private by design|Privé par conception
+Works for career changers too|Convient aussi aux reconversions
+Places are checked as you type|Les lieux sont vérifiés pendant la saisie
+Jobs you're looking for|Postes recherchés
+Where|Où
+Press Refresh jobs and it searches the job sites for you. Every job gets a match score, so the ones that suit you most are at the top – with the reasons why.|Appuyez sur Actualiser les offres et il cherche sur les sites d’emploi pour vous. Chaque offre reçoit un score de correspondance, pour que celles qui vous conviennent le mieux soient en tête – avec les raisons.
+Strong fits stand out|Les meilleures correspondances ressortent
+See why each job matches|Voyez pourquoi chaque offre correspond
+Hide the ones that don’t suit|Masquez celles qui ne vous conviennent pas
+Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.|Vos recherches, déjà remplies, sur Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs et les sites spécialisés de votre domaine.
+The right sites for your country|Les bons sites pour votre pays
+Set up job alerts in a click|Créez des alertes emploi en un clic
+Save any advert you find|Enregistrez toute annonce trouvée
+Specialist sites|Sites spécialisés
+Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.|Ouvrez une offre et la lettre de motivation vous attend – rédigée à partir de votre vraie expérience et adaptée à l’annonce. Modifiez-la, puis téléchargez-la en PDF ou Word.
+Never invents experience|N’invente jamais d’expérience
+Paste any job description to get one|Collez n’importe quelle description de poste pour en obtenir une
+Tailored CV for each job too|Un CV adapté à chaque offre aussi
+I’m applying for the Warehouse Team Leader role at Northline Logistics.|Je postule pour le poste de Chef d’équipe entrepôt chez Northline Logistics.
+For the past three years I have led a team of twelve on night shifts, kept pick accuracy above 99% and trained every new starter.|Depuis trois ans, j’encadre une équipe de douze personnes de nuit, je maintiens une précision de préparation supérieure à 99 % et je forme chaque nouvel arrivant.
+A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.|Un petit assistant apparaît sur les sites d’emploi. Il remplit vos informations, joint votre CV et votre lettre de motivation, et propose des réponses aux questions – à partir de votre propre parcours.
+You always press Submit yourself|C’est toujours vous qui cliquez sur Envoyer
+Personal questions are left to you|Les questions personnelles vous sont laissées
+Only appears on job sites|N’apparaît que sur les sites d’emploi
+You check it and press Submit.|Vous vérifiez et cliquez sur Envoyer.
+Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|Connectez Gmail et les réponses se classent toutes seules : reçue, entretien, évaluation, offre ou refus. Vos candidatures se mettent à jour sans que vous leviez le petit doigt.
+See what needs you next|Voyez ce qui vous attend ensuite
+Your whole year at a glance|Toute votre année d’un coup d’œil
+Assessment|Évaluation
+Offer|Offre
+Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.|Des questions pour ce poste précis. Tapez ou dites votre réponse et obtenez une note sur 10, une vérification STAR et des conseils clairs pour progresser.
+Answer out loud|Répondez à voix haute
+Examples from your own history|Des exemples tirés de votre parcours
+See yourself improve|Voyez vos progrès
+“Tell me about a time you had several deadlines at once.”|« Parlez-moi d’une fois où vous aviez plusieurs échéances en même temps. »
+Strong answer|Bonne réponse
+✓ Situation|✓ Situation
+✓ Task|✓ Tâche
+✓ Action|✓ Action
+✓ Result|✓ Résultat
+Tip: put a number on the result if you can.|Conseil : chiffrez le résultat si vous le pouvez.
+Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.|Créez un CV de zéro, ou importez le vôtre ou votre profil LinkedIn et améliorez-le. Choisissez un modèle, puis adaptez-le à chaque offre.
+Three clean designs|Trois modèles sobres
+PDF or Word|PDF ou Word
+Suggestions to make it stronger|Des suggestions pour le renforcer
+Classic|Classique
+Modern|Moderne
+Compact|Compact
+Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.|Utilisez-le en English, Français, Deutsch, Nederlands, Español, Português ou العربية – sur votre ordinateur ou votre téléphone.
+Add it to your home screen|Ajoutez-le à votre écran d’accueil
+Works on any device|Fonctionne sur tous les appareils
+Switch language any time|Changez de langue à tout moment
+Your details are only ever seen by you. Download everything or delete your account whenever you like.|Vos informations ne sont visibles que par vous. Téléchargez tout ou supprimez votre compte quand vous voulez.
+UK GDPR rights built in|Droits RGPD (UK GDPR) intégrés
+Nothing sold or shared|Rien n’est vendu ni partagé
+Invite-only accounts|Comptes sur invitation
+Only you see your data|Vous seul voyez vos données
+Download it all|Tout télécharger
+Delete your account|Supprimer votre compte
+Never miss the call back|Ne manquez jamais un rappel
+Replies sorted from Gmail automatically|Réponses triées automatiquement depuis Gmail
+Interview dates you can’t lose|Des dates d’entretien impossibles à perdre
+Questions for that exact job|Des questions pour ce poste précis
+Everything it does|Tout ce qu’il fait
+All included, with no adverts.|Tout est inclus, sans publicité.
+Finding work|Trouver un emploi
+Job matching|Correspondance des offres
+Every job matched to your experience, skills, salary and travel, with the reasons.|Chaque offre comparée à votre expérience, vos compétences, votre salaire et vos trajets, avec les raisons.
+Every job site|Tous les sites d’emploi
+Your searches ready on all the main job boards and the specialist ones for your field.|Vos recherches prêtes sur tous les grands sites d’emploi et les sites spécialisés de votre domaine.
+Any career|Tous les métiers
+Cover letters|Lettres de motivation
+Written for each job from your real experience. Edit, copy, or download as PDF or Word.|Rédigées pour chaque offre à partir de votre vraie expérience. Modifiez, copiez ou téléchargez en PDF ou Word.
+CV builder|Créateur de CV
+Build, import or improve your CV, pick a design, and tailor it to each job.|Créez, importez ou améliorez votre CV, choisissez un modèle et adaptez-le à chaque offre.
+Browser assistant|Assistant de navigateur
+Fills in application forms, attaches your CV and letter, and suggests answers. You press Submit.|Remplit les formulaires de candidature, joint votre CV et votre lettre, et propose des réponses. C’est vous qui cliquez sur Envoyer.
+Keeping track|Garder le fil
+Home summary|Résumé d’accueil
+What needs you next, your best matches and where every application has got to.|Ce qui vous attend, vos meilleures correspondances et où en est chaque candidature.
+Application tracker|Suivi des candidatures
+Every application and every reply in one list, updated from Gmail automatically.|Chaque candidature et chaque réponse dans une seule liste, mise à jour automatiquement depuis Gmail.
+Practise questions for the job, speak or type your answer, get a score and tips.|Entraînez-vous aux questions du poste, dites ou tapez votre réponse, obtenez une note et des conseils.
+Your way|À votre façon
+Languages and countries|Langues et pays
+Phone and computer|Téléphone et ordinateur
+Use it anywhere, and add it to your phone’s home screen like an app.|Utilisez-le partout, et ajoutez-le à l’écran d’accueil de votre téléphone comme une appli.
+Private and secure|Privé et sécurisé
+Only you see your data. Download it or delete it at any time.|Vous seul voyez vos données. Téléchargez-les ou supprimez-les à tout moment.
+Who is it for?|Pour qui ?
+Anyone looking for work – whatever the job, whether you’re starting out, moving up or changing career.|Toute personne qui cherche un emploi – quel que soit le poste, que vous débutiez, évoluiez ou changiez de métier.
+Does it apply for me automatically?|Est-ce qu’il postule automatiquement pour moi ?
+It does the work – finds jobs, writes letters, fills in forms – but you always check and press Submit yourself. Questions about you personally (health, diversity, criminal record) are always left for you.|Il fait le travail – trouve les offres, rédige les lettres, remplit les formulaires – mais c’est toujours vous qui vérifiez et cliquez sur Envoyer. Les questions personnelles (santé, diversité, casier judiciaire) vous sont toujours laissées.
+Will it make things up about me?|Va-t-il inventer des choses sur moi ?
+No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.|Non. Les lettres, réponses et suggestions de CV n’utilisent que ce que vous lui avez dit de votre propre expérience.
+Is my data safe?|Mes données sont-elles en sécurité ?
+Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.|Vous seul voyez vos informations. Personne ne lit vos e-mails – pas même ceux qui le gèrent. Vous pouvez tout télécharger ou supprimer votre compte à tout moment.
+Does it work on my phone?|Est-ce que ça marche sur mon téléphone ?
+Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.|Oui. Ouvrez-le dans le navigateur de votre téléphone et ajoutez-le à l’écran d’accueil pour l’utiliser comme une appli.
+How do I get an invite code?|Comment obtenir un code d’invitation ?
+Job Hunt HQ is invite-only for now. Accounts are made with a personal invite code.|Job Hunt HQ est sur invitation pour l’instant. Les comptes se créent avec un code d’invitation personnel.
+Your invite code|Votre code d’invitation
+Privacy|Confidentialité
+Cookies|Cookies
+Disclaimer|Avertissement
+Contact|Contact
+On this page|Sur cette page
+A closer look at Job Hunt HQ|Un aperçu de Job Hunt HQ
+Choose a screen|Choisir un écran
+Previous screen|Écran précédent
+Next screen|Écran suivant
+Three groups of four letters or numbers|Trois groupes de quatre lettres ou chiffres
+Legal|Mentions légales
+Forgotten your password? Ask the person who invited you for a reset link. Got an invite code?|Mot de passe oublié ? Demandez un lien de réinitialisation à la personne qui vous a invité. Vous avez un code d’invitation ?
+New to Job Hunt HQ?|Nouveau sur Job Hunt HQ ?
+See what it does|Voir ce qu’il fait
+Terms|Conditions
+Find roles, write applications and track every reply in one place.|Trouvez des postes, rédigez vos candidatures et suivez chaque réponse au même endroit.
+This invite code isn't valid any more – it may have been used or expired. Ask for a new one.|Ce code d’invitation n’est plus valable – il a peut-être déjà été utilisé ou a expiré. Demandez-en un nouveau.
+By creating an account you agree to the|En créant un compte, vous acceptez les
+and the|et la
+Privacy notice|Politique de confidentialité
+How Job Hunt HQ uses your information, and your rights under UK GDPR and the Data Protection Act 2018.|Comment Job Hunt HQ utilise vos informations, et vos droits selon le UK GDPR et le Data Protection Act 2018.
+Who looks after your data|Qui s’occupe de vos données
+Job Hunt HQ is run privately by its owner, who invites people to use it. The owner is responsible for your data (the “controller”). For any question or request, email|Job Hunt HQ est géré à titre privé par son propriétaire, qui invite les gens à l’utiliser. Le propriétaire est responsable de vos données (le « responsable du traitement »). Pour toute question ou demande, écrivez à
+. You can also use the|. Vous pouvez aussi utiliser le bouton
+Feedback|Avis
+button once you're signed in.|une fois connecté.
+What's stored, and why|Ce qui est conservé, et pourquoi
+Your account:|Votre compte :
+name, username and email. Your password is stored only as a secure scrambled “hash” – nobody can read it.|nom, identifiant et e-mail. Votre mot de passe n’est conservé que sous forme d’« empreinte » chiffrée sécurisée – personne ne peut le lire.
+Your details and career:|Vos informations et votre parcours :
+what you enter in My settings, My career and Create CV, and the CV you upload – used to find and score jobs, write your cover letters and CVs, and fill in application forms|ce que vous saisissez dans Mes paramètres, Mon parcours et Créer un CV, et le CV que vous importez – utilisés pour trouver et noter les offres, rédiger vos lettres et CV, et remplir les formulaires de candidature
+when you ask it to|quand vous le lui demandez
+Your jobs and applications:|Vos offres et candidatures :
+the jobs found or saved for you, your letters, and where each application has got to.|les offres trouvées ou enregistrées pour vous, vos lettres, et où en est chaque candidature.
+Gmail (only if you connect it):|Gmail (seulement si vous le connectez) :
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your Gmail.|les e-mails sont lus automatiquement, uniquement pour reconnaître les réponses à vos candidatures et les alertes emploi. Pour ceux-là, il garde l’expéditeur, l’objet, la date et un court aperçu. Tous les autres e-mails sont ignorés et rien n’en est conservé. Job Hunt HQ ne peut rien envoyer, modifier ni supprimer dans votre Gmail.
+you send, with any screenshot.|que vous envoyez, avec toute capture d’écran.
+Security records:|Registres de sécurité :
+to keep accounts safe and enforce the Acceptable use rules, the website notices things like repeated failed sign-ins, made-up assistant keys, one assistant file used from many places, very fast bulk applications, or a used invite link being tried again. When that happens it records what happened, the username and the internet (IP) address, and emails the owner. These records are only seen by the owner, are used only for security, and are deleted after 90 days. The legal basis is our|pour protéger les comptes et faire respecter les règles d’Utilisation acceptable, le site repère par exemple des échecs de connexion répétés, des clés d’assistant inventées, un même fichier d’assistant utilisé depuis de nombreux endroits, des candidatures en masse très rapides, ou un lien d’invitation déjà utilisé essayé à nouveau. Dans ce cas, il enregistre ce qui s’est passé, l’identifiant et l’adresse internet (IP), et envoie un e-mail au propriétaire. Ces registres ne sont vus que par le propriétaire, servent uniquement à la sécurité et sont supprimés après 90 jours. La base légale est notre
+legitimate interest|intérêt légitime
+in keeping the service and your data safe.|à protéger le service et vos données.
+The legal basis is your|La base légale est votre
+and providing the service you've asked for. Nothing is sold, shared with advertisers, or used to train AI. Nobody else who uses Job Hunt HQ can see anything of yours.|et la fourniture du service que vous avez demandé. Rien n’est vendu, partagé avec des annonceurs ni utilisé pour entraîner une IA. Personne d’autre utilisant Job Hunt HQ ne peut voir vos données.
+No person looks at your Gmail through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|Personne ne consulte votre Gmail via Job Hunt HQ – ni le propriétaire, ni les autres utilisateurs. Tout se fait automatiquement, et les données de chaque personne sont conservées dans un espace séparé. Les pages d’administration du propriétaire n’affichent que les noms, les identifiants et la dernière connexion.
+AI and job sites|L’IA et les sites d’emploi
+If AI writing is switched on, the advert and the relevant parts of your CV are sent to Anthropic's Claude to write a draft, and nothing else. Job searches send only the job title and place to Reed, Adzuna and the other job sites – never your personal details.|Si la rédaction par IA est activée, l’annonce et les parties pertinentes de votre CV sont envoyées à Claude d’Anthropic pour rédiger un brouillon, et rien d’autre. Les recherches d’emploi n’envoient que l’intitulé du poste et le lieu à Reed, Adzuna et aux autres sites – jamais vos informations personnelles.
+See your data|Voir vos données
+Account → Download my data|Compte → Télécharger mes données
+gives you everything in one file, straight away.|vous donne tout dans un seul fichier, immédiatement.
+Ask how it's used|Demander comment elles sont utilisées
+– email the owner or use Feedback, and you'll get an answer within one month.|– écrivez au propriétaire ou utilisez Avis, et vous aurez une réponse sous un mois.
+Correct it|Les corriger
+– change anything in My settings and My career, or ask.|– modifiez ce que vous voulez dans Mes paramètres et Mon parcours, ou demandez.
+Delete it|Les supprimer
+Account → Delete my account|Compte → Supprimer mon compte
+removes your account and everything stored for you, immediately.|supprime votre compte et tout ce qui est conservé pour vous, immédiatement.
+Take it elsewhere|Les emporter ailleurs
+– the download is a standard file you can keep or move.|– le téléchargement est un fichier standard que vous pouvez garder ou déplacer.
+Withdraw consent / object|Retirer votre consentement / vous opposer
+– disconnect Gmail in My settings at any time, or stop using the service.|– déconnectez Gmail dans Mes paramètres à tout moment, ou arrêtez d’utiliser le service.
+If you're unhappy with how your data is handled, you can complain to the Information Commissioner's Office:|Si vous n’êtes pas satisfait de la gestion de vos données, vous pouvez porter plainte auprès de l’Information Commissioner’s Office :
+How long it's kept, and where|Combien de temps, et où
+Your data is kept until you delete it or your account. It's stored on the service's server (in the EU for the website) and backed up only by the owner. Connections are encrypted (HTTPS).|Vos données sont conservées jusqu’à ce que vous les supprimiez ou supprimiez votre compte. Elles sont stockées sur le serveur du service (dans l’UE pour le site web) et sauvegardées uniquement par le propriétaire. Les connexions sont chiffrées (HTTPS).
+About these terms|À propos de ces conditions
+Cookie notice|Politique relative aux cookies
+rules. If you don't agree, please don't use it.|. Si vous n’êtes pas d’accord, merci de ne pas l’utiliser.
+Who can use it|Qui peut l’utiliser
+Accounts are by invitation only. You must be 16 or over and looking for work for yourself.|Les comptes sont uniquement sur invitation. Vous devez avoir 16 ans ou plus et chercher un emploi pour vous-même.
+We can suspend or close an account that breaks these terms, or if we need to protect the service or other people.|Nous pouvons suspendre ou fermer un compte qui enfreint ces conditions, ou si nous devons protéger le service ou d’autres personnes.
+What the service does – and doesn't|Ce que fait le service – et ce qu’il ne fait pas
+It finds and scores jobs, writes draft cover letters, CVs and answers, fills in forms when you ask it to, and tracks your applications.|Il trouve et note des offres, rédige des brouillons de lettres, de CV et de réponses, remplit les formulaires quand vous le lui demandez, et suit vos candidatures.
+Everything it writes is a draft for you to check.|Tout ce qu’il rédige est un brouillon à vérifier.
+You are responsible for every application you send.|Vous êtes responsable de chaque candidature que vous envoyez.
+Read and correct anything it fills in or writes before you submit. It never presses Submit for you.|Relisez et corrigez tout ce qu’il remplit ou rédige avant d’envoyer. Il ne clique jamais sur Envoyer à votre place.
+Only give information that's true. Never use the service to claim experience, qualifications or rights you don't have.|Ne donnez que des informations vraies. N’utilisez jamais le service pour revendiquer une expérience, des diplômes ou des droits que vous n’avez pas.
+Jobs come from third-party job sites and employers. We don't check, endorse or guarantee any job, employer, salary or advert, and we're not a recruitment agency or an employer.|Les offres proviennent de sites d’emploi et d’employeurs tiers. Nous ne vérifions, ne cautionnons ni ne garantissons aucune offre, employeur, salaire ou annonce, et nous ne sommes ni une agence de recrutement ni un employeur.
+Using the service doesn't guarantee interviews or job offers.|Utiliser le service ne garantit ni entretien ni offre d’emploi.
+Other websites|Autres sites web
+The service links to and works alongside job sites (for example Indeed, LinkedIn, Reed, CV-Library) and employers' application forms. Those sites have their own terms, which you agree to when you use them. Use the browser assistant only in ways those sites allow, and only on your own applications.|Le service renvoie vers des sites d’emploi (par exemple Indeed, LinkedIn, Reed, CV-Library) et les formulaires de candidature des employeurs, et fonctionne avec eux. Ces sites ont leurs propres conditions, que vous acceptez en les utilisant. N’utilisez l’assistant de navigateur que de la manière permise par ces sites, et uniquement pour vos propres candidatures.
+Your content|Votre contenu
+Your CV, career details, letters and answers stay yours. You let us store and process them only to provide the service to you, as described in the Privacy notice. You can download or delete them at any time from your Account page.|Votre CV, votre parcours, vos lettres et vos réponses restent à vous. Vous nous permettez de les conserver et de les traiter uniquement pour vous fournir le service, comme décrit dans la Politique de confidentialité. Vous pouvez les télécharger ou les supprimer à tout moment depuis votre page Compte.
+Availability and changes|Disponibilité et modifications
+Liability|Responsabilité
+Nothing in these terms limits liability that can't be limited by law (such as for death or personal injury caused by negligence, or fraud). Otherwise, as a free service, we aren't liable for indirect or consequential loss, for the outcome of any job application, or for content on third-party sites. See the|Rien dans ces conditions ne limite une responsabilité qui ne peut pas être limitée par la loi (comme en cas de décès ou de blessure causés par négligence, ou de fraude). Pour le reste, en tant que service gratuit, nous ne sommes pas responsables des pertes indirectes ou consécutives, du résultat d’une candidature, ni du contenu des sites tiers. Voir l’
+Law|Droit applicable
+These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction. If you live in Scotland or Northern Ireland you can also use your local courts.|Ces conditions sont régies par le droit de l’Angleterre et du pays de Galles, et les tribunaux d’Angleterre et du pays de Galles sont compétents. Si vous vivez en Écosse ou en Irlande du Nord, vous pouvez aussi saisir vos tribunaux locaux.
+The cookies we use|Les cookies que nous utilisons
+Job Hunt HQ uses only what it needs to work. There's no advertising, tracking or analytics, so there's nothing to accept or reject.|Job Hunt HQ n’utilise que ce dont il a besoin pour fonctionner. Pas de publicité, de pistage ni de statistiques, donc rien à accepter ou refuser.
+Name|Nom
+What it's for|À quoi il sert
+How long|Durée
+Keeps you signed in, and protects forms from being sent by other websites.|Vous garde connecté, et empêche d’autres sites d’envoyer des formulaires à votre place.
+Until you sign out, up to 30 days|Jusqu’à la déconnexion, 30 jours maximum
+Remembers the language you chose for the site.|Mémorise la langue choisie pour le site.
+The browser assistant keeps where you dragged its button, and the last job you looked at, in your own browser's storage. It isn't sent anywhere else.|L’assistant de navigateur garde l’endroit où vous avez déplacé son bouton, et la dernière offre consultée, dans le stockage de votre propre navigateur. Rien n’est envoyé ailleurs.
+Controlling cookies|Gérer les cookies
+You can delete cookies in your browser's settings at any time. If you block them, you won't be able to sign in.|Vous pouvez supprimer les cookies dans les paramètres de votre navigateur à tout moment. Si vous les bloquez, vous ne pourrez pas vous connecter.
+Drafts, not advice|Des brouillons, pas des conseils
+Cover letters, CVs, answers, scores and suggestions are produced automatically – sometimes with AI – from the details you give and the job advert. They can be wrong, incomplete or out of date.|Les lettres, CV, réponses, notes et suggestions sont produits automatiquement – parfois par IA – à partir des informations que vous donnez et de l’annonce. Ils peuvent être faux, incomplets ou dépassés.
+Always read, check and edit them before you use them.|Lisez-les, vérifiez-les et modifiez-les toujours avant de les utiliser.
+They aren't careers, legal, immigration or financial advice.|Ce ne sont pas des conseils d’orientation, juridiques, d’immigration ou financiers.
+Fit scores|Scores de correspondance
+A job's score is an estimate of how well the advert matches the details you entered. It isn't a prediction of whether you'll be shortlisted, and it can't see everything an employer looks for.|Le score d’une offre est une estimation de la correspondance entre l’annonce et les informations que vous avez saisies. Ce n’est pas une prédiction de présélection, et il ne voit pas tout ce qu’un employeur recherche.
+Job adverts and other sites|Annonces et autres sites
+Adverts, salaries, locations and closing dates come from third parties and can change or be removed without notice. We don't vet employers or recruiters. Be careful with any job that asks you for money, bank details or ID documents before a proper offer – report it to the job site and to|Les annonces, salaires, lieux et dates limites viennent de tiers et peuvent changer ou disparaître sans préavis. Nous ne contrôlons pas les employeurs ni les recruteurs. Méfiez-vous de toute offre qui vous demande de l’argent, des coordonnées bancaires ou des pièces d’identité avant une vraie proposition – signalez-la au site d’emploi et à
+Questions it won't answer for you|Les questions auxquelles il ne répond pas pour vous
+Personal and sensitive questions on application forms – such as health, disability, criminal record, diversity monitoring, right to work and visa status – are left for you to answer yourself, unless you've saved your own answer. What you submit is your responsibility.|Les questions personnelles et sensibles des formulaires – santé, handicap, casier judiciaire, suivi de la diversité, droit au travail, visa – vous sont laissées, sauf si vous avez enregistré votre propre réponse. Ce que vous envoyez relève de votre responsabilité.
+Accuracy of your information|Exactitude de vos informations
+The service uses only what you tell it. Keep My settings and My career up to date, and never add anything that isn't true – an employer may check it, and it could cost you an offer.|Le service n’utilise que ce que vous lui dites. Tenez Mes paramètres et Mon parcours à jour, et n’ajoutez jamais rien de faux – un employeur peut vérifier, et cela pourrait vous coûter une offre.
+Please use Job Hunt HQ fairly|Merci d’utiliser Job Hunt HQ de façon loyale
+Don't use the service to:|N’utilisez pas le service pour :
+share your invite link, account or browser-assistant file with other people.|partager votre lien d’invitation, votre compte ou le fichier de l’assistant avec d’autres personnes.
+Feedback → Report misuse or a security problem|Avis → Signaler un abus ou un problème de sécurité
+when you're signed in).|une fois connecté).
+The website automatically watches for signs of misuse, such as password guessing, a shared assistant file or bulk automated applications, and lets the owner know. Accounts that break these rules can be switched off. See the|Le site surveille automatiquement les signes d’abus, comme les tentatives de deviner un mot de passe, un fichier d’assistant partagé ou des candidatures automatisées en masse, et prévient le propriétaire. Les comptes qui enfreignent ces règles peuvent être désactivés. Voir la
+for what is recorded.|pour savoir ce qui est enregistré.
+Contact us|Nous contacter
+Get in touch|Nous écrire
+for anything about Job Hunt HQ:|pour tout ce qui concerne Job Hunt HQ :
+Help with your account or the site|Aide pour votre compte ou le site
+Data requests|Demandes concernant vos données
+– a copy of your data, corrections, deletion, or how your information is used (under UK GDPR we reply within one month)|– une copie de vos données, des corrections, une suppression, ou l’usage de vos informations (selon le UK GDPR, nous répondons sous un mois)
+Asking for an invite|Demander une invitation
+Reporting a problem, a security issue or misuse|Signaler un problème, une faille de sécurité ou un abus
+Signed in? The|Connecté ? Le bouton
+button on every page reaches us too, and you'll see our reply there.|présent sur chaque page nous joint aussi, et vous y verrez notre réponse.
+Do it yourself, straight away|Faites-le vous-même, tout de suite
+Download your data|Télécharger vos données
+– Account → Download my data|– Compte → Télécharger mes données
+– Account → Delete my account|– Compte → Supprimer mon compte
+Disconnect Gmail|Déconnecter Gmail
+– My settings → Gmail|– Mes paramètres → Gmail
+Home|Accueil
+Job Hunt HQ – home|Job Hunt HQ – accueil
+Jump to a page|Aller à une page
+Main|Principal
+Your account menu|Menu de votre compte
+Set-up progress|Avancement de la configuration
+Shortcuts|Raccourcis
+What kind of feedback|Type d’avis
+More pages|Plus de pages
+Last 24 hours|Dernières 24 heures
+Last 3 days|3 derniers jours
+Last week|Semaine dernière
+Last 2 weeks|2 dernières semaines
+Last month|Mois dernier
+date unknown|date inconnue
+Filter jobs|Filtrer les offres
+Fit|Correspondance
+Posted|Publiée
+Sort|Trier
+The site didn't say when this was posted, so it only shows under Posted any time|Le site n’a pas indiqué quand elle a été publiée, elle n’apparaît donc que sous « Publiée : n’importe quand »
+Quickest way: on the job page in LinkedIn or Indeed, click your|Le plus rapide : sur la page de l’offre dans LinkedIn ou Indeed, cliquez sur votre
+bookmark (|favori (
+set it up|le configurer
+). Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it.|). Ou collez le lien de l’offre ici – cela marche pour la plupart des sites carrière et LinkedIn, mais Indeed le bloque souvent.
+Job link|Lien de l’offre
+Get job|Récupérer l’offre
+Get job and apply for me|Récupérer l’offre et postuler pour moi
+If the link can't be read, fill in the details below and paste the advert text, then press Get job again.|Si le lien ne peut pas être lu, remplissez les informations ci-dessous et collez le texte de l’annonce, puis appuyez à nouveau sur Récupérer l’offre.
+Advert text|Texte de l’annonce
+A small helper that floats on every job site – Indeed, LinkedIn, Reed, NHS Jobs, Workday and the rest. On an advert it scores the job against your details. On an application form it fills in what it can, suggests answers from your own work history and examples, and attaches your CV and letter. It never presses Submit – you always do that.|Un petit assistant qui flotte sur chaque site d’emploi – Indeed, LinkedIn, Reed, NHS Jobs, Workday et les autres. Sur une annonce, il note l’offre selon vos informations. Sur un formulaire, il remplit ce qu’il peut, propose des réponses tirées de votre parcours et de vos exemples, et joint votre CV et votre lettre. Il ne clique jamais sur Envoyer – c’est toujours vous.
+It's already connected to|Il est déjà relié au compte de
+account – don't share the file.|– ne partagez pas le fichier.
+Unzip it|Décompressez-le
+: right-click the download →|: clic droit sur le téléchargement →
+Extract All|Extraire tout
+. Keep the folder somewhere safe, like Documents.|. Gardez le dossier en lieu sûr, par exemple dans Documents.
+Open your browser's extensions page – type this in the address bar:|Ouvrez la page des extensions de votre navigateur – tapez ceci dans la barre d’adresse :
+Switch on|Activez
+Developer mode|le mode développeur
+(top right).|(en haut à droite).
+Click|Cliquez sur
+Load unpacked|Charger l’extension non empaquetée
+and choose the|et choisissez le dossier
+Pin it: click the jigsaw icon → pin|Épinglez-le : cliquez sur l’icône de puzzle → épingler
+– the round Job Hunt HQ button shows your fit score. Click it to see why, and|– le bouton rond Job Hunt HQ affiche votre score de correspondance. Cliquez dessus pour voir pourquoi, et
+Save it and write my cover letter|L’enregistrer et rédiger ma lettre de motivation
+Fill this page for me|Remplir cette page pour moi
+fills your details and attaches your CV and letter.|remplit vos informations et joint votre CV et votre lettre.
+Suggest answers|Proposer des réponses
+Put it in the form|Le mettre dans le formulaire
+– e.g. “Which of my experiences best fits this role?”|– par ex. « Laquelle de mes expériences correspond le mieux à ce poste ? »
+(needs AI switched on by the owner)|(nécessite l’IA activée par le propriétaire)
+, and it's tracked in Applications.|, et elle est suivie dans Candidatures.
+It only appears on job boards, employers' careers pages and application forms – never on sites like YouTube, Google or social media, and it sends nothing to Job Hunt HQ from other sites. Showing up somewhere it shouldn't? Open it and choose|Il n’apparaît que sur les sites d’emploi, les pages carrière des employeurs et les formulaires de candidature – jamais sur des sites comme YouTube, Google ou les réseaux sociaux, et il n’envoie rien à Job Hunt HQ depuis d’autres sites. Il apparaît là où il ne devrait pas ? Ouvrez-le et choisissez
+Don't show on this site|Ne pas afficher sur ce site
+. You can still open it anywhere with its button in your browser's toolbar.|. Vous pouvez toujours l’ouvrir n’importe où avec son bouton dans la barre d’outils du navigateur.
+Drag the button anywhere on the screen. Press|Déplacez le bouton n’importe où sur l’écran. Appuyez sur
+at the top of the panel to minimise it to a small dot – it stays small on every page until you click it again. Questions about you personally (health, criminal record, diversity) are always left for you to answer. Answers only use what's in your own details – check each one before you submit.|en haut du panneau pour le réduire à un petit point – il reste petit sur toutes les pages jusqu’à ce que vous cliquiez dessus. Les questions personnelles (santé, casier judiciaire, diversité) vous sont toujours laissées. Les réponses n’utilisent que vos propres informations – vérifiez chacune avant d’envoyer.
+Practise the questions you're likely to be asked for each job. Type or say your answer and get a score out of 10, what went well, and exactly what to improve – using examples from your own experience.|Entraînez-vous aux questions qu’on vous posera probablement pour chaque poste. Tapez ou dites votre réponse et obtenez une note sur 10, ce qui a bien marché, et exactement quoi améliorer – avec des exemples tirés de votre expérience.
+No interviews yet. When an application moves to|Pas encore d’entretien. Quand une candidature passe à
+(automatically from Gmail, or by changing its status on|(automatiquement depuis Gmail, ou en changeant son statut sur
+), it appears here with questions for that job. Meanwhile, try a|), elle apparaît ici avec des questions pour ce poste. En attendant, essayez un
+quick practice|entraînement rapide
+Get ahead|Prenez de l’avance
+Practise for jobs you've applied for, before they call.|Entraînez-vous pour les postes où vous avez postulé, avant qu’on vous appelle.
+Questions for this job.|Des questions pour ce poste.
+From the advert, your kind of work, and the questions every interviewer asks.|Tirées de l’annonce, de votre type de métier et des questions que pose chaque recruteur.
+Answer your way.|Répondez à votre façon.
+Type it, or press|Tapez-la, ou appuyez sur
+and talk – it writes down what you say. It can read the question out too.|et parlez – il écrit ce que vous dites. Il peut aussi lire la question à voix haute.
+Get marked.|Soyez noté.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what|Une note sur 10 sur ce qu’écoutent les recruteurs : un vrai exemple, la structure STAR (Situation, Tâche, Action, Résultat), ce que
+did, a result, the right length.|avez fait, un résultat, la bonne longueur.
+Improve.|Progressez.
+Specific tips, and examples from your own work history you could use. Try again and watch your score go up.|Des conseils précis, et des exemples tirés de votre parcours que vous pourriez utiliser. Réessayez et voyez votre note monter.
+Marking uses Job Hunt HQ's built-in interview coach.|La notation utilise le coach d’entretien intégré de Job Hunt HQ.
+← Interview prep|← Préparation aux entretiens
+🔊 Read it out|🔊 Lire à voix haute
+🎤 Answer out loud|🎤 Répondre à voix haute
+To improve|À améliorer
+Next question →|Question suivante →
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your Gmail. Open one to see every email about it.|Chaque poste pour lequel vous avez postulé cette année : ceux envoyés via Job Hunt HQ, et ceux trouvés dans votre Gmail. Ouvrez-en un pour voir chaque e-mail le concernant.
+Import my 2026 history from Gmail|Importer mon historique 2026 depuis Gmail
+Re-read everything|Tout relire
++ Add an application|+ Ajouter une candidature
+Employer|Employeur
+Applied on|Date de candidature
+Status|Statut
+No emails about this one yet.|Pas encore d’e-mail pour celle-ci.
+Not an application|Pas une candidature
+Search role or employer|Rechercher un poste ou un employeur
+Search applications|Rechercher dans les candidatures
+e.g. HR Officer|ex. Chargé RH
+e.g. South Essex College|ex. South Essex College
+Recruitment emails found in Gmail, sorted automatically. If one is sorted wrongly, change the application's status on the|E-mails de recrutement trouvés dans Gmail, triés automatiquement. Si l’un est mal classé, changez le statut de la candidature sur la page
+No emails yet.|Pas encore d’e-mail.
+, then press|, puis appuyez sur
+What Apply for me uses to fill "My Experience" pages: work history, education, skills and languages. It started from your CV. Keep it up to date, and every later application uses it.|Ce qu’« Postuler pour moi » utilise pour remplir les pages « Mon expérience » : parcours professionnel, formation, compétences et langues. Tiré au départ de votre CV. Tenez-le à jour, chaque candidature suivante l’utilise.
+Newest first. Dates as MM/YYYY. Leave "To" empty if you still work there. The robot types these into Workday's “My Experience” page (and similar forms) exactly as written here.|Le plus récent d’abord. Dates au format MM/AAAA. Laissez « À » vide si vous y travaillez encore. Le robot saisit ces données telles quelles dans la page « Mon expérience » de Workday (et formulaires similaires).
+Exact start (dd/mm/yyyy)|Début exact (jj/mm/aaaa)
+Exact end (dd/mm/yyyy)|Fin exacte (jj/mm/aaaa)
+Reason for leaving|Motif du départ
+Employed through an agency?|Employé via une agence ?
+Sections on this page|Sections de cette page
+MM/YYYY|MM/AAAA
+for forms that want the day|pour les formulaires qui demandent le jour
+e.g. Fixed-term contract ended|ex. Fin de CDD
+Agency name, if any|Nom de l’agence, le cas échéant
+Only on forms that ask for my full employment history (left off Workday-style “relevant roles” sections)|Seulement sur les formulaires qui demandent tout mon parcours professionnel (exclu des sections « postes pertinents » type Workday)
+Education and qualifications|Formation et diplômes
+School or university|École ou université
+From (year)|De (année)
+To (year)|À (année)
+Expected end (if in progress)|Fin prévue (si en cours)
+Result / grade|Résultat / mention
+Form choice: degree|Choix du formulaire : diplôme
+Form choice: field of study|Choix du formulaire : domaine d’études
+Level|Niveau
+Master’s / MBA|Master / MBA
+Bachelor’s|Licence
+Professional (CIPD etc.)|Professionnel (CIPD, etc.)
+School / college|École / lycée
+Only on forms that ask for my full education history|Seulement sur les formulaires qui demandent toute ma formation
+Competency answers|Réponses par compétence
+Add a competency|Ajouter une compétence
+For forms with a box per competency (“Leadership”, “Communication”, “Planning and organising”…). The robot offers the matching answer for you to check and tailor. Tags are other words a form might use for the same competency.|Pour les formulaires avec une case par compétence (« Leadership », « Communication », « Planification et organisation »…). Le robot propose la réponse correspondante, à vérifier et adapter. Les étiquettes sont d’autres mots qu’un formulaire peut utiliser pour la même compétence.
+Competency|Compétence
+Tags|Étiquettes
+YYYY|AAAA
+e.g. 2:2, Pass, Pending|ex. mention Bien, Réussi, En attente
+e.g. Masters Degree|ex. Master
+e.g. Human Resources Management|ex. Gestion des ressources humaines
+Add an example|Ajouter un exemple
+Your real stories for “Describe a time when…” and “Give an example…” questions. The robot picks the one that best fits each question and writes the answer in the right order (situation, task, action, result, what you'd do differently). Tags are the words a question might use. Keep them true – an interviewer will ask you about them.|Vos vraies histoires pour les questions « Décrivez une situation où… » et « Donnez un exemple… ». Le robot choisit celle qui correspond le mieux à chaque question et rédige la réponse dans le bon ordre (situation, tâche, action, résultat, ce que vous feriez autrement). Les étiquettes sont les mots qu’une question peut utiliser. Restez véridique – un recruteur vous interrogera dessus.
+Title|Titre
+Skills, certifications and languages|Compétences, certifications et langues
+(one per line, or separated by commas – added to Workday's Skills box)|(une par ligne, ou séparées par des virgules – ajoutées à la case Compétences de Workday)
+(one per line: Language – level)|(une par ligne : Langue – niveau)
+Answers the robot remembers|Réponses mémorisées par le robot
+None yet. When the robot asks you a question and you tick “Remember”, it appears here.|Aucune pour l’instant. Quand le robot vous pose une question et que vous cochez « Mémoriser », elle apparaît ici.
+Only on forms that ask for my full employment history|Seulement sur les formulaires qui demandent tout mon parcours professionnel
+e.g. stakeholder, influence, change|ex. parties prenantes, influence, changement
+Fill in each step, pick a design, and download it as PDF or Word – or tailored to a job you're applying for. Everything here is also used by My career, letters and application forms.|Remplissez chaque étape, choisissez un modèle et téléchargez-le en PDF ou Word – ou adapté à un poste visé. Tout ce qui est ici sert aussi à Mon parcours, aux lettres et aux formulaires de candidature.
+(under your name – usually the job you're aiming for)|(sous votre nom – généralement le poste que vous visez)
+Profile|Profil
+(3–4 sentences: who you are, your strongest experience, what you want next)|(3–4 phrases : qui vous êtes, votre expérience la plus forte, ce que vous voulez ensuite)
+Steps|Étapes
+e.g. HR Administrator|ex. Assistant RH
+Name, phone, email, location and links come from|Le nom, le téléphone, l’e-mail, le lieu et les liens viennent de
+Upload it and any empty steps fill in from it – then check and improve each one.|Importez-le et les étapes vides se remplissent à partir de lui – puis vérifiez et améliorez chacune.
+Write a short profile (3–4 sentences): who you are, your strongest experience, and what you want next.|Rédigez un court profil (3–4 phrases) : qui vous êtes, votre expérience la plus forte, et ce que vous voulez ensuite.
+Open the PDF|Ouvrir le PDF
+Certifications|Certifications
+United Kingdom|Royaume-Uni
+on the advert to score it, write your letter and track it.|sur l’annonce pour la noter, rédiger votre lettre et la suivre.
+Each refresh searches these and scores every job against your details.|Chaque actualisation les recherche et note chaque offre selon vos informations.
+– not set up on this server yet|– pas encore configuré sur ce serveur
+– on|– activé
+– connect Gmail in|– connectez Gmail dans
+LinkedIn and Indeed don't let other apps search their jobs directly, so Job Hunt HQ reads the job-alert emails they send you instead. Switch alerts on below and they'll appear in your jobs after each refresh.|LinkedIn et Indeed ne laissent pas d’autres applis chercher directement leurs offres, donc Job Hunt HQ lit plutôt les e-mails d’alerte qu’ils vous envoient. Activez les alertes ci-dessous et elles apparaîtront dans vos offres après chaque actualisation.
+– open each search, then press|– ouvrez chaque recherche, puis appuyez sur
+Set alert|Créer une alerte
+(LinkedIn) or|(LinkedIn) ou
+Get new jobs by email|Recevoir les nouvelles offres par e-mail
+(Indeed):|(Indeed) :
+– on LinkedIn: your profile →|– sur LinkedIn : votre profil →
+Resources|Ressources
+Save to PDF|Enregistrer en PDF
+. On Indeed:|. Sur Indeed :
+→ download your CV. Then upload it on|→ téléchargez votre CV. Puis importez-le sur
+: your work history, education and skills fill in for you.|: votre parcours, votre formation et vos compétences se remplissent pour vous.
+so application forms and your CV include them.|pour que les formulaires de candidature et votre CV les incluent.
+Use the|Utilisez l’
+browser assistant|assistant de navigateur
+Place|Lieu
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page.|Ce que les gens vous ont dit – problèmes, idées et questions. Marquez chacun comme prévu ou fait, et répondez : ils voient votre réponse sur leur propre page Avis.
+Everyone’s feedback|Les avis de tout le monde
+New|Nouveau
+Planned|Prévu
+Not doing|Pas prévu
+No open feedback.|Aucun avis en cours.
+Ireland|Irlande
+France|France
+Germany|Allemagne
+Netherlands|Pays-Bas
+Belgium|Belgique
+Spain|Espagne
+Portugal|Portugal
+Italy|Italie
+Poland|Pologne
+Step {n} of {m}|Étape {n} sur {m}
+{job}: add a number if you have one – how many, how much, how often, or by what percentage.|{job} : ajoutez un chiffre si vous en avez un – combien de personnes, quel montant, à quelle fréquence ou de quel pourcentage.
+{job}: split long points – one achievement per line reads better.|{job} : coupez les points trop longs – une réalisation par ligne se lit mieux.
+Applied {date}|Candidature le {date}
+waiting {n} days|en attente depuis {n} jours
+Search near {place}|Rechercher près de {place}
+Last updated {date}. Questions? Email|Dernière mise à jour : {date}. Des questions ? Écrivez à
+Last updated {date}.|Dernière mise à jour : {date}.
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest – plus the specialist sites for {fields}. Found one you like? Click|Vos intitulés de poste, déjà recherchés sur Indeed, LinkedIn, Reed, CV-Library, Totaljobs et les autres – plus les sites spécialisés pour {fields}. Vous en avez trouvé une qui vous plaît ? Cliquez sur
+Austria|Autriche
+Switzerland|Suisse
+United States|États-Unis
+Canada|Canada
+Australia|Australie
+United Arab Emirates|Émirats arabes unis
+Language|Langue
+Administration and office|Administration et bureau
+Accountancy and finance|Comptabilité et finance
+Banking, insurance and financial services|Banque, assurance et services financiers
+Customer service and call centre|Service client et centre d’appels
+Sales and business development|Vente et développement commercial
+Marketing, PR and communications|Marketing, RP et communication
+IT, software and data|Informatique, logiciels et données
+Design, creative and media|Design, création et médias
+Education and teaching|Éducation et enseignement
+Healthcare and nursing|Santé et soins infirmiers
+Social care and support work|Aide sociale et accompagnement
+HR and recruitment|RH et recrutement
+Hospitality, catering and food|Hôtellerie, restauration et alimentation
+Retail|Commerce de détail
+Warehouse, logistics and driving|Entrepôt, logistique et conduite
+Construction and trades|Construction et métiers du bâtiment
+Engineering and manufacturing|Ingénierie et industrie
+Automotive and motor trade|Automobile et commerce automobile
+Science, pharma and laboratory|Sciences, pharmacie et laboratoire
+Public sector, government and civil service|Secteur public, administration et fonction publique
+Charity and not-for-profit|Associatif et à but non lucratif
+Security, emergency services and armed forces|Sécurité, services d’urgence et forces armées
+Cleaning and facilities|Nettoyage et services généraux
+Leisure, sport, travel and tourism|Loisirs, sport, voyage et tourisme
+Aviation and airports|Aviation et aéroports
+Property and housing|Immobilier et logement
+Procurement and purchasing|Achats et approvisionnement
+Environment, energy and agriculture|Environnement, énergie et agriculture
+Management, projects and consulting|Management, projets et conseil
+Hair, beauty and wellbeing|Coiffure, beauté et bien-être
+Languages and translation|Langues et traduction
+Field of work|Domaine d’activité
+Search job titles|Rechercher des intitulés de poste
+(one per line: place, miles)|(un par ligne : lieu, miles)
+Minimum salary (£)|Salaire minimum (£)
+app password|mot de passe d’application
+: go to|: allez sur
+(2-Step Verification must be on), create one called “Job Hunt HQ”, and paste the 16 letters here.|(la validation en deux étapes doit être activée), créez-en un nommé « Job Hunt HQ » et collez ici les 16 lettres.
+You can disconnect any time by removing the app password here (or deleting it in your Google account), download everything that's stored with|Vous pouvez vous déconnecter à tout moment en supprimant le mot de passe d’application ici (ou dans votre compte Google), télécharger tout ce qui est conservé avec
+, and ask how your data is used, have it corrected or deleted under UK GDPR – see|, et demander comment vos données sont utilisées, les faire corriger ou supprimer selon le UK GDPR – voir
+App password|Mot de passe d’application
+Add jobs from my LinkedIn and Indeed job-alert emails|Ajouter les offres de mes e-mails d’alerte LinkedIn et Indeed
+Who can use Job Hunt HQ. Only people with an invite code can make an account, and everyone's jobs, CV, letters and emails are private to them – you can't see theirs and they can't see yours.|Qui peut utiliser Job Hunt HQ. Seules les personnes ayant un code d’invitation peuvent créer un compte, et les offres, CV, lettres et e-mails de chacun lui sont privés – vous ne voyez pas les leurs et ils ne voient pas les vôtres.
+Invite someone|Inviter quelqu’un
+Create invite|Créer une invitation
+Accounts|Comptes
+Joined|Inscrit le
+Last signed in|Dernière connexion
+Owner|Propriétaire
+Security and misuse alerts|Alertes de sécurité et d’abus
+Job Hunt HQ watches for signs that the|Job Hunt HQ surveille les signes que les règles d’
+rules are being broken: password guessing, made-up assistant keys, an assistant file used from lots of places (shared), bulk automated applications, a used invite link tried again, and anything people report.|sont enfreintes : tentatives de deviner un mot de passe, clés d’assistant inventées, un fichier d’assistant utilisé depuis de nombreux endroits (partagé), candidatures automatisées en masse, un lien d’invitation utilisé réessayé, et tout ce que les gens signalent.
+Email alerts aren't switched on yet|Les alertes par e-mail ne sont pas encore activées
+– they're only listed here. Add the email settings on the server to have them sent to your contact address.|– elles sont seulement listées ici. Ajoutez les paramètres e-mail sur le serveur pour les recevoir à votre adresse de contact.
+Nothing so far.|Rien pour l’instant.
+Who it's for (just for you), e.g. Amira from uni|Pour qui (visible par vous seul), ex. Amira de la fac
+Account|Compte
+Changing your password signs you out everywhere else.|Changer votre mot de passe vous déconnecte partout ailleurs.
+Download everything that's yours – jobs, applications, emails, My career, settings, letters and your CV – as one zip. Keep it as a backup, or use it to move to the Job Hunt HQ website.|Téléchargez tout ce qui vous appartient – offres, candidatures, e-mails, Mon parcours, paramètres, lettres et votre CV – en un seul zip. Gardez-le en sauvegarde, ou utilisez-le pour passer au site Job Hunt HQ.
+How your data is used, and your rights under UK GDPR:|Comment vos données sont utilisées, et vos droits selon le UK GDPR :
+Progress|Progression
+e.g. Manchester, M1 2AB, Lyon, Rotterdam|ex. Manchester, M1 2AB, Lyon, Rotterdam
+e.g. Available immediately, 1 month|ex. Disponible immédiatement, 1 mois
+e.g. British citizen – no sponsorship needed|ex. Citoyen britannique – aucun parrainage nécessaire
+← All jobs|← Toutes les offres
+posting date unknown|date de publication inconnue
+Opens the application in a browser window the app controls. It clicks Apply, fills each step and uploads your CV and letter. It asks you when it needs you, and stops for you to press Submit.|Ouvre la candidature dans une fenêtre de navigateur contrôlée par l’appli. Il clique sur Postuler, remplit chaque étape et joint votre CV et votre lettre. Il vous sollicite quand il a besoin de vous, et s’arrête pour que vous cliquiez sur Envoyer.
+Or do it yourself in 4 steps|Ou faites-le vous-même en 4 étapes
+Your cover letter is ready|Votre lettre de motivation est prête
+– read it below, with your answers, and personalise anything in [brackets].|– lisez-la ci-dessous, avec vos réponses, et personnalisez tout ce qui est entre [crochets].
+Write it again|La réécrire
+Open the application|Ouvrir la candidature
+, then click your|, puis cliquez sur votre
+bookmark on the form (or copy the answers on the right).|favori sur le formulaire (ou copiez les réponses à droite).
+Open advert ↗|Ouvrir l’annonce ↗
+Click the advert's Apply button to reach the employer's form. When you use the Fill button there, its link is saved here.|Cliquez sur le bouton Postuler de l’annonce pour atteindre le formulaire de l’employeur. Quand vous y utilisez le bouton Remplir, son lien est enregistré ici.
+and the cover letter (save it as a Word file below if the form wants a file).|et la lettre de motivation (enregistrez-la en Word ci-dessous si le formulaire demande un fichier).
+Tailored CV (PDF)|CV adapté (PDF)
+Tailored CV (Word)|CV adapté (Word)
+Your CV with the skills and achievements this advert asks for put first – nothing added.|Votre CV avec en premier les compétences et réalisations demandées par cette annonce – rien d’ajouté.
+Submit, then mark it here.|Envoyez, puis indiquez-le ici.
+Quick answers|Réponses rapides
+Address|Adresse
+Ready-to-paste answers|Réponses prêtes à coller
+Written for this advert from your CV. Personalise anything in [brackets] before you paste it.|Rédigées pour cette annonce à partir de votre CV. Personnalisez tout ce qui est entre [crochets] avant de coller.
+Why do you want this role?|Pourquoi voulez-vous ce poste ?
+Summary of relevant experience|Résumé de l’expérience pertinente
+Key skills|Compétences clés
+Qualifications|Diplômes
+Open the advert and click Send to Job Hunt HQ to pick up its date|Ouvrez l’annonce et cliquez sur Envoyer à Job Hunt HQ pour récupérer sa date
+Save to my Cover Letters folder|Enregistrer dans mon dossier Lettres de motivation
+Edit it here, then download it to attach, or press|Modifiez-la ici, puis téléchargez-la pour la joindre, ou appuyez sur
+to paste it into a cover-letter box. The browser assistant can also put it in the box or attach it to the form for you.|pour la coller dans une case de lettre de motivation. L’assistant de navigateur peut aussi la mettre dans la case ou la joindre au formulaire pour vous.
+Read it through before you send it, and add anything specific from the advert.|Relisez-la avant de l’envoyer, et ajoutez quelque chose de précis tiré de l’annonce.
+Paste the job description|Coller la description du poste
+Copy the advert from the job page and paste it here. The app re-scores the job, writes your cover letter for it and saves the letter in your Cover Letters folder.|Copiez l’annonce depuis la page de l’offre et collez-la ici. L’appli renote l’offre, rédige votre lettre de motivation et l’enregistre dans votre dossier Lettres de motivation.
+Read it and write my cover letter|La lire et rédiger ma lettre de motivation
+Showing|Affichage de
+No jobs to review|Aucune offre à examiner
+for this filter|pour ce filtre
+Most saved LinkedIn and Indeed jobs have no posting date, so set Posted to "any time" to see them|La plupart des offres LinkedIn et Indeed enregistrées n’ont pas de date de publication : réglez Publiée sur « n’importe quand » pour les voir
+Press|Appuyez sur
+at the top to search again,|en haut pour relancer la recherche,
+search every job site|chercher sur tous les sites d’emploi
+, or|, ou
+add a job|ajoutez une offre
+you found.|que vous avez trouvée.
+remove any you don't have|retirez celles que vous n’avez pas
+No jobs yet. Press|Pas encore d’offres. Appuyez sur
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page|Ce que les gens vous ont dit – problèmes, idées et questions. Marquez chacun comme prévu ou fait, et répondez : ils voient votre réponse sur leur propre page Avis
+Tell us what's wrong, what's missing or what you like. You'll see replies here|Dites-nous ce qui ne va pas, ce qui manque ou ce qui vous plaît. Vous verrez les réponses ici
+(they'll see this)|(ils le verront)
+Reply:|Réponse :
+Quickest way: on any job advert, press the round|Le plus rapide : sur n’importe quelle annonce, appuyez sur le bouton rond
+Job Hunt HQ assistant|Assistant Job Hunt HQ
+button and choose|et choisissez
+get the assistant|obtenir l’assistant
+Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it|Ou collez le lien de l’offre ici – cela marche pour la plupart des sites carrière et LinkedIn, mais Indeed le bloque souvent
+Next:|Ensuite :
+Found in your Gmail|Trouvé dans votre Gmail
+Nothing here|Rien ici
+for “|pour «
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at|Gardez votre mot de passe privé – vous êtes responsable de ce qui se passe sur votre compte. Prévenez-nous immédiatement à
+if you think someone else has used it|si vous pensez que quelqu’un d’autre l’a utilisé
+If you see something that breaks these rules, or a security problem, tell us at|Si vous voyez quelque chose qui enfreint ces règles, ou un problème de sécurité, prévenez-nous à
+(or use|(ou utilisez
+{titles} job titles across {fields} fields, and help changing career.|{titles} intitulés de poste dans {fields} domaines, et de l’aide pour changer de métier.
+Pick from {titles} job titles across {fields} fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.|Choisissez parmi {titles} intitulés de poste dans {fields} domaines – entrepôt, aide à la personne, droit, informatique, commerce, RH et plus – ou tapez le vôtre. Indiquez où vous habitez et jusqu’où vous êtes prêt à vous déplacer.
+{langs} languages, including Arabic, and {countries} countries, each with its own job sites.|{langs} langues, dont l’arabe, et {countries} pays, chacun avec ses propres sites d’emploi.
+Ask the person who told you about Job Hunt HQ, or email {email}.|Demandez à la personne qui vous a parlé de Job Hunt HQ, ou écrivez à {email}.
+Step|Étape
+Newest first. Put|Le plus récent d’abord. Mettez
+one achievement per line|une réalisation par ligne
+No jobs yet – press “Add a job”. Placements, part-time work and volunteering all count.|Pas encore de poste – appuyez sur « Ajouter un poste ». Stages, temps partiel et bénévolat comptent tous.
+Highest qualification first. Leave “To” empty if you're still studying, and add the expected year.|Le diplôme le plus élevé d’abord. Laissez « À » vide si vous étudiez encore, et ajoutez l’année prévue.
+Expected (if in progress)|Prévu (si en cours)
+No qualifications yet – press “Add a qualification”.|Pas encore de diplôme – appuyez sur « Ajouter un diplôme ».
+(one per line – use the words job adverts use: tools, systems, methods)|(une par ligne – utilisez les mots des annonces : outils, systèmes, méthodes)
+Save and choose a design|Enregistrer et choisir un modèle
+Word uses the Classic layout so it stays easy to edit.|Word utilise la mise en page Classique pour rester facile à modifier.
+Your applications keep using|Vos candidatures continuent d’utiliser
+from Documents.|depuis Documents.
+Now attached|Désormais joint
+Puts the skills and achievements the advert asks for first. Nothing is added or changed – it only reorders what you've written, so every word is still true.|Met en premier les compétences et réalisations demandées par l’annonce. Rien n’est ajouté ni modifié – il réordonne seulement ce que vous avez écrit, donc chaque mot reste vrai.
+Tailored PDF|PDF adapté
+Tailored Word|Word adapté
+Shortlist a job first, then come back – or use “Tailored CV” on any job's page.|Présélectionnez d’abord une offre, puis revenez – ou utilisez « CV adapté » sur la page de n’importe quelle offre.
+Find roles, write applications and track every reply in one place|Trouvez des postes, rédigez vos candidatures et suivez chaque réponse au même endroit
+Your job search, wherever you are|Votre recherche d’emploi, où que vous soyez
+You're the first person here, so you'll be the owner: everything already in Job Hunt HQ becomes yours, and only you can invite other people.|Vous êtes la première personne ici, vous serez donc le propriétaire : tout ce qui est déjà dans Job Hunt HQ devient à vous, et vous seul pouvez inviter d’autres personnes.
+Set-up code|Code de configuration
+(from the server's settings)|(dans les paramètres du serveur)
+Moving from your PC?|Vous venez de votre PC ?
+(optional: the zip from Account → Download my data)|(facultatif : le zip de Compte → Télécharger mes données)
+Choose a new password|Choisissez un nouveau mot de passe
+For|Pour
+. Other devices will be signed out.|. Les autres appareils seront déconnectés.
+Nothing waiting to hear back.|Aucune réponse en attente.
+{n} answers practised|{n} réponses travaillées
+average {s}/10|moyenne {s}/10
+of 3|sur 3
+Up to|Jusqu’à
+miles from|miles de
+a year, optional|par an, facultatif
+(comma-separated – used to score how well each job fits)|(séparées par des virgules – servent à noter la correspondance de chaque offre)
+PDF or Word. Job Hunt HQ attaches it to applications, and reads your work history, education and skills into My career so forms and letters can use them. You can check and edit everything afterwards.|PDF ou Word. Job Hunt HQ le joint à vos candidatures, et lit votre parcours, votre formation et vos compétences dans Mon parcours pour que les formulaires et les lettres puissent les utiliser. Vous pouvez tout vérifier et modifier ensuite.
+Step by step, with a choice of designs – download it as PDF or Word, and get a version tailored to each job.|Étape par étape, avec un choix de modèles – téléchargez-le en PDF ou Word, et obtenez une version adaptée à chaque offre.
+Read from your CV:|Lu dans votre CV :
+Check them on|Vérifiez-les sur
+any time.|à tout moment.
+Keep going – see the tips.|Continuez – voyez les conseils.
+Nothing major – practise saying it out loud.|Rien de majeur – entraînez-vous à la dire à voix haute.
+A stronger version of your answer|Une version plus forte de votre réponse
+From your own experience, you could mention|D’après votre expérience, vous pourriez mentionner
+A starting point built from your work history|Un point de départ construit à partir de votre parcours
+Only things from your own details – add the real moment and the result in your words.|Uniquement à partir de vos informations – ajoutez le vrai moment et le résultat avec vos mots.
+Your results|Vos résultats
+Practise next:|À travailler ensuite :
+other job|autre offre
+Set|Défini
+On|Activé
+Invite ready|Invitation prête
+Send this link to the person you're inviting. It works once and expires in 14 days.|Envoyez ce lien à la personne que vous invitez. Il ne fonctionne qu’une fois et expire dans 14 jours.
+Password reset link for|Lien de réinitialisation du mot de passe pour
+Send this link to|Envoyez ce lien à
+It works once and expires in 48 hours|Il ne fonctionne qu’une fois et expire dans 48 heures
+Or they can go to|Ou ils peuvent aller sur
+/join and type the code|/join et saisir le code
+Code|Code
+Made|Créé
+Used by|Utilisé par
+Switched off|Désactivé
+Hasn't finished setting up yet|N’a pas encore terminé la configuration
+Password reset link|Lien de réinitialisation du mot de passe
+New assistant key|Nouvelle clé d’assistant
+Each one is emailed to|Chacune est envoyée par e-mail à
+at most once every 6 hours per problem).|au plus une fois toutes les 6 heures par problème).
+– they're only listed here. Add the email settings on the server to have them sent to|– elles sont seulement listées ici. Ajoutez les paramètres e-mail sur le serveur pour les envoyer à
+When|Quand
+What|Quoi
+Details|Détails
+Situation|Situation
+Task – your role|Tâche – votre rôle
+Action – what you did|Action – ce que vous avez fait
+Result|Résultat
+What you'd do differently|Ce que vous feriez autrement
+Questions you answered with “Remember” ticked. Change an answer or delete it, and the robot asks you again next time.|Les questions auxquelles vous avez répondu avec « Mémoriser » coché. Modifiez ou supprimez une réponse, et le robot vous la reposera la prochaine fois.
+Save answers|Enregistrer les réponses
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest|Vos intitulés de poste, déjà recherchés sur Indeed, LinkedIn, Reed, CV-Library, Totaljobs et les autres
+– plus the specialist sites for|– plus les sites spécialisés pour
+Found one you like? Click|Vous en avez trouvé une qui vous plaît ? Cliquez sur
+Add the jobs you want in|Ajoutez les postes que vous voulez dans
+– pick from every kind of work.|– choisissez parmi tous les types de métier.
+read from your Gmail|lus depuis votre Gmail
+connect Gmail in|connectez Gmail dans
+Your details, job search and settings are on|Vos informations, votre recherche et vos paramètres sont dans
+Deletes your account and everything stored for you – jobs, applications, emails read from Gmail, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|Supprime votre compte et tout ce qui est conservé pour vous – offres, candidatures, e-mails lus depuis Gmail, CV, lettres, paramètres et avis. C’est irréversible, alors téléchargez vos données d’abord si vous voulez une copie.
+Type DELETE|Tapez DELETE
+For any question or request, email|Pour toute question ou demande, écrivez à
+You can also use the|Vous pouvez aussi utiliser le bouton
+Apply in 4 steps|Postuler en 4 étapes
+Application link|Lien de candidature
+(the employer's own form, saved when you last used the Fill button):|(le formulaire de l’employeur, enregistré la dernière fois que vous avez utilisé le bouton Remplir) :
+Open application form ↗|Ouvrir le formulaire de candidature ↗
+Advert ↗|Annonce ↗
+✓ Saved:|✓ Enregistré :
+Open in Word|Ouvrir dans Word
+Open folder|Ouvrir le dossier
+No cover letter yet. Press|Pas encore de lettre de motivation. Appuyez sur
+Your CV appears here as you fill in each step.|Votre CV apparaît ici à mesure que vous remplissez chaque étape.
+Type|Type
+Matched to|Correspond à
+Get an invite code from the person who invited you.|Obtenez un code d’invitation auprès de la personne qui vous a invité.
+Enter it here and choose your username and password.|Saisissez-le ici et choisissez votre identifiant et votre mot de passe.
+Add your CV and choose the jobs you want. It takes about five minutes.|Ajoutez votre CV et choisissez les postes que vous voulez. Cela prend environ cinq minutes.
+No code yet? Email {email} and ask for one.|Pas encore de code ? Écrivez à {email} pour en demander un.
+When an employer replies, Job Hunt HQ notices. The application moves to Interview, the date goes on your Home page, and practice questions for that job are ready before you are.|Quand un employeur répond, Job Hunt HQ le remarque. La candidature passe à Entretien, la date s’affiche sur votre page d’accueil, et les questions d’entraînement pour ce poste sont prêtes avant vous.
+Photos:|Photos :
+Join|Rejoindre
+Language: {lang}|Langue : {lang}
+Status for {role}|Statut pour {role}
+{n} countries, each with its own job sites|{n} pays, chacun avec ses propres sites d’emploi
+Why do you want to work for {company}?|Pourquoi voulez-vous travailler chez {company} ?
+{role} at {company}, {n} match|{role} chez {company}, correspondance {n}
+Job Hunt HQ (“the service”, “we”) is a personal job-search assistant run by Rashid Idle in the United Kingdom. Using it means you accept these terms, our|Job Hunt HQ (« le service », « nous ») est un assistant personnel de recherche d’emploi géré par Rashid Idle au Royaume-Uni. L’utiliser signifie que vous acceptez ces conditions, notre
+and|et
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at {email} if you think someone else has used it.|Gardez votre mot de passe privé – vous êtes responsable de ce qui se passe sur votre compte. Prévenez-nous immédiatement à {email} si vous pensez que quelqu’un d’autre l’a utilisé.
+The service is provided free of charge, “as is”, and may sometimes be unavailable, change, or stop. We'll try to give notice of big changes. We may update these terms; the date at the top shows when they last changed, and continuing to use the service means you accept the update.|Le service est fourni gratuitement, « en l’état », et peut parfois être indisponible, changer ou s’arrêter. Nous essaierons de prévenir des changements importants. Nous pouvons mettre à jour ces conditions ; la date en haut indique la dernière modification, et continuer à utiliser le service vaut acceptation de la mise à jour.
+Reads every job email since 1 January – replies, interviews, offers and what you sent – and adds anything missing here. It can take 10–20 minutes; you can keep using the app.|Lit chaque e-mail lié à l’emploi depuis le 1er janvier – réponses, entretiens, offres et ce que vous avez envoyé – et ajoute ici ce qui manque. Cela peut prendre 10 à 20 minutes ; vous pouvez continuer à utiliser l’appli.
+Connect Gmail and Job Hunt HQ reads replies from employers – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. You need a Gmail|Connectez Gmail et Job Hunt HQ lit les réponses des employeurs – accusés de réception, entretiens, refus, offres – et tient vos Candidatures à jour. Il ne fait que lire ; il n’envoie ni ne supprime jamais rien. Il vous faut un
+Your emails stay private.|Vos e-mails restent privés.
+Nobody reads your Gmail through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your Gmail.|Personne ne lit votre Gmail via Job Hunt HQ – ni le propriétaire, ni les autres utilisateurs. Il est lu automatiquement, uniquement pour repérer les e-mails liés à vos candidatures ; pour ceux-là, il garde l’expéditeur, l’objet, la date et un court aperçu pour tenir votre page Candidatures à jour. Tous les autres e-mails sont ignorés et rien n’en est conservé. Il ne peut rien envoyer, modifier ni supprimer dans votre Gmail.
+– on any advert it scores the job and saves it; on the application form it fills in what it can and attaches your CV and cover letter.|– sur n’importe quelle annonce, il note l’offre et l’enregistre ; sur le formulaire, il remplit ce qu’il peut et joint votre CV et votre lettre de motivation.
+It's already connected to|Il est déjà relié à
+your|votre
+account – don't share the file.|compte – ne partagez pas le fichier.
+drafts each question from your own experience; edit it, then|rédige chaque réponse à partir de votre propre expérience ; modifiez-la, puis
+Outside {area} – too far from {place}|En dehors de {area} – trop loin de {place}
+Hidden: too far from {place}|Masquée : trop loin de {place}
+· {user}. Your details, job search and settings are on|· {user}. Vos informations, votre recherche et vos paramètres sont dans
+you|vous

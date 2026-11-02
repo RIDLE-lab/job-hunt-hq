@@ -517,3 +517,186 @@ Three groups of four letters or numbers|ثلاث مجموعات من أربعة 
 Legal|قانوني
 Play|تشغيل
 Ask the person who told you about Job Hunt HQ, or email {email}.|اسأل الشخص الذي أخبرك عن Job Hunt HQ، أو راسلنا على {email}.
+
+# welcome page and app, Nov 2026
+Job Hunt HQ – stay on top of jobs that matter to you|Job Hunt HQ – تابِع الوظائف التي تهمّك
+Skip to how it works|انتقل إلى طريقة العمل
+Stay on top of jobs that matter to you.|تابِع الوظائف التي تهمّك.
+Find the jobs that suit you most, get your cover letter written, and keep every application and interview in one place.|اعثر على الوظائف الأنسب لك، واحصل على خطاب التقديم جاهزًا، واحتفظ بكل طلب وكل مقابلة في مكان واحد.
+Four steps, from knowing what you want to walking into the interview ready.|أربع خطوات، من معرفة ما تريده إلى دخول المقابلة وأنت مستعد.
+Tell it what you want|أخبره بما تريد
+Choose the kinds of job you’re after, where you live and how far you’ll travel. Add your CV and it learns your experience.|اختر أنواع الوظائف التي تبحث عنها، ومكان سكنك، والمسافة التي تقبل التنقل إليها. أضف سيرتك الذاتية فيتعرّف على خبرتك.
+Jobs come to you|الوظائف تأتي إليك
+It searches the job sites for you and puts the jobs that suit you most at the top, with the reasons why.|يبحث في مواقع التوظيف نيابةً عنك ويضع الوظائف الأنسب لك في الأعلى، مع الأسباب.
+Apply with less effort|قدّم بجهد أقل
+Your cover letter is already written. The assistant fills in the application form. You check it and press Submit.|خطاب التقديم مكتوب مسبقًا. والمساعد يملأ نموذج الطلب. أنت تراجعه وتضغط «إرسال».
+Walk in prepared|ادخل المقابلة مستعدًا
+Replies are tracked for you, so nothing is missed. Then practise the questions for that job and get tips to improve.|تُتابَع الردود نيابةً عنك فلا يفوتك شيء. ثم تدرّب على أسئلة تلك الوظيفة واحصل على نصائح للتحسّن.
+See it in action|شاهده أثناء العمل
+Ten screens, one for each part of Job Hunt HQ. Go at your own pace.|عشر شاشات، واحدة لكل جزء من Job Hunt HQ. بالسرعة التي تناسبك.
+Jobs found and matched|وظائف موجودة ومطابَقة
+Press Refresh jobs and it searches the job sites for you. Every job gets a match score, so the ones that suit you most are at the top – with the reasons why.|اضغط «تحديث الوظائف» فيبحث في مواقع التوظيف نيابةً عنك. تحصل كل وظيفة على درجة توافق، فتظهر الأنسب لك في الأعلى – مع الأسباب.
+Specialist sites|مواقع متخصصة
+I’m applying for the Warehouse Team Leader role at Northline Logistics.|أتقدّم لوظيفة قائد فريق المستودع في Northline Logistics.
+For the past three years I have led a team of twelve on night shifts, kept pick accuracy above 99% and trained every new starter.|على مدى السنوات الثلاث الماضية قدتُ فريقًا من اثني عشر شخصًا في المناوبات الليلية، وحافظتُ على دقة التجهيز فوق 99% ودرّبتُ كل موظف جديد.
+Tip: put a number on the result if you can.|نصيحة: ضع رقمًا للنتيجة إن استطعت.
+Never miss the call back|لا تفوّت أي اتصال
+Replies sorted from Gmail automatically|ردود مرتّبة تلقائيًا من Gmail
+Interview dates you can’t lose|مواعيد مقابلات لن تضيع منك
+Questions for that exact job|أسئلة لتلك الوظيفة بالذات
+All included, with no adverts.|كل شيء مشمول، بلا إعلانات.
+Finding work|البحث عن عمل
+Every job matched to your experience, skills, salary and travel, with the reasons.|كل وظيفة مطابَقة مع خبرتك ومهاراتك وراتبك وتنقّلك، مع الأسباب.
+Keeping track|المتابعة
+What needs you next, your best matches and where every application has got to.|ما يحتاج إليك الآن، وأفضل الوظائف المطابقة لك، وأين وصل كل طلب.
+Your way|على طريقتك
+On this page|في هذه الصفحة
+A closer look at Job Hunt HQ|نظرة أقرب على Job Hunt HQ
+Choose a screen|اختر شاشة
+Previous screen|الشاشة السابقة
+Next screen|الشاشة التالية
+Forgotten your password? Ask the person who invited you for a reset link. Got an invite code?|نسيت كلمة المرور؟ اطلب رابط إعادة تعيين من الشخص الذي دعاك. لديك رمز دعوة؟
+New to Job Hunt HQ?|جديد في Job Hunt HQ؟
+See what it does|اطّلع على ما يفعله
+Terms|الشروط
+Find roles, write applications and track every reply in one place.|اعثر على الوظائف، واكتب طلباتك، وتابع كل رد في مكان واحد.
+This invite code isn't valid any more – it may have been used or expired. Ask for a new one.|رمز الدعوة هذا لم يعد صالحًا – ربما استُخدم أو انتهت صلاحيته. اطلب رمزًا جديدًا.
+By creating an account you agree to the|بإنشاء حساب فإنك توافق على
+and the|و
+Privacy notice|إشعار الخصوصية
+Job Hunt HQ – home|Job Hunt HQ – الرئيسية
+Jump to a page|انتقل إلى صفحة
+Main|الرئيسية
+Your account menu|قائمة حسابك
+Set-up progress|تقدّم الإعداد
+Shortcuts|اختصارات
+What kind of feedback|نوع الملاحظة
+More pages|صفحات أخرى
+Last 24 hours|آخر 24 ساعة
+Last 3 days|آخر 3 أيام
+Last week|الأسبوع الماضي
+Last 2 weeks|آخر أسبوعين
+Last month|الشهر الماضي
+date unknown|تاريخ غير معروف
+Filter jobs|تصفية الوظائف
+Fit|التوافق
+Posted|تاريخ النشر
+Sort|ترتيب
+The site didn't say when this was posted, so it only shows under Posted any time|لم يذكر الموقع متى نُشرت هذه الوظيفة، لذا تظهر فقط ضمن «نُشرت في أي وقت»
+Job link|رابط الوظيفة
+Get job|جلب الوظيفة
+Get job and apply for me|جلب الوظيفة والتقديم عني
+Advert text|نص الإعلان
+Save it and write my cover letter|احفظها واكتب خطاب التقديم
+Fill this page for me|املأ هذه الصفحة عني
+Suggest answers|اقترح إجابات
+Put it in the form|ضعها في النموذج
+Don't show on this site|لا تظهر على هذا الموقع
+quick practice|تدريب سريع
+Practise for jobs you've applied for, before they call.|تدرّب على الوظائف التي قدّمت عليها قبل أن يتصلوا بك.
+← Interview prep|← التحضير للمقابلة
+🔊 Read it out|🔊 اقرأها بصوت عالٍ
+🎤 Answer out loud|🎤 أجب بصوت عالٍ
+Import my 2026 history from Gmail|استيراد سجلّي لعام 2026 من Gmail
+Re-read everything|إعادة قراءة كل شيء
++ Add an application|+ إضافة طلب
+Employer|جهة العمل
+Applied on|تاريخ التقديم
+No emails about this one yet.|لا رسائل عن هذا الطلب بعد.
+Not an application|ليس طلبًا
+Search role or employer|ابحث عن وظيفة أو جهة عمل
+Search applications|البحث في الطلبات
+e.g. HR Officer|مثال: موظف موارد بشرية
+No emails yet.|لا رسائل بعد.
+United Kingdom|المملكة المتحدة
+New|جديد
+Planned|مخطّط له
+Not doing|لن يُنفَّذ
+No open feedback.|لا ملاحظات مفتوحة.
+Step {n} of {m}|الخطوة {n} من {m}
+Applied {date}|قُدّم في {date}
+waiting {n} days|بانتظار الرد منذ {n} يومًا
+Search near {place}|البحث قرب {place}
+Language|اللغة
+Field of work|مجال العمل
+Search job titles|ابحث عن المسميات الوظيفية
+Minimum salary (£)|الحد الأدنى للراتب (£)
+Invite someone|ادعُ شخصًا
+Create invite|إنشاء دعوة
+Accounts|الحسابات
+Joined|تاريخ الانضمام
+Last signed in|آخر تسجيل دخول
+Owner|المالك
+Security and misuse alerts|تنبيهات الأمان وإساءة الاستخدام
+Nothing so far.|لا شيء حتى الآن.
+Changing your password signs you out everywhere else.|تغيير كلمة المرور يسجّل خروجك من كل مكان آخر.
+Progress|التقدّم
+← All jobs|← كل الوظائف
+posting date unknown|تاريخ النشر غير معروف
+Or do it yourself in 4 steps|أو نفّذها بنفسك في 4 خطوات
+Your cover letter is ready|خطاب التقديم جاهز
+Write it again|اكتبه من جديد
+Open the application|افتح الطلب
+Open advert ↗|افتح الإعلان ↗
+Tailored CV (PDF)|سيرة ذاتية مخصّصة (PDF)
+Tailored CV (Word)|سيرة ذاتية مخصّصة (Word)
+Quick answers|إجابات سريعة
+Address|العنوان
+Ready-to-paste answers|إجابات جاهزة للّصق
+Why do you want this role?|لماذا تريد هذه الوظيفة؟
+Summary of relevant experience|ملخّص الخبرة ذات الصلة
+Key skills|المهارات الأساسية
+Qualifications|المؤهلات
+Paste the job description|الصق وصف الوظيفة
+Read it and write my cover letter|اقرأه واكتب خطاب التقديم
+Showing|عرض
+No jobs to review|لا وظائف للمراجعة
+for this filter|لهذا الفلتر
+Press|اضغط
+add a job|أضف وظيفة
+Reply:|الرد:
+Next:|التالي:
+Found in your Gmail|موجود في Gmail
+Nothing here|لا شيء هنا
+Step|الخطوة
+Save and choose a design|احفظ واختر تصميمًا
+Tailored PDF|PDF مخصّص
+Tailored Word|Word مخصّص
+Choose a new password|اختر كلمة مرور جديدة
+Nothing waiting to hear back.|لا شيء بانتظار الرد.
+{n} answers practised|تدرّبت على {n} إجابات
+average {s}/10|المتوسط {s}/10
+Keep going – see the tips.|واصل – اطّلع على النصائح.
+Nothing major – practise saying it out loud.|لا شيء كبير – تدرّب على قولها بصوت عالٍ.
+A stronger version of your answer|نسخة أقوى من إجابتك
+From your own experience, you could mention|من خبرتك، يمكنك أن تذكر
+Practise next:|تدرّب بعد ذلك على:
+Invite ready|الدعوة جاهزة
+When|متى
+What|ماذا
+Details|التفاصيل
+Situation|الموقف
+Task – your role|المهمة – دورك
+Action – what you did|الإجراء – ما فعلته
+Result|النتيجة
+What you'd do differently|ما الذي كنت ستفعله بشكل مختلف
+Save answers|حفظ الإجابات
+Type DELETE|اكتب DELETE
+Apply in 4 steps|قدّم في 4 خطوات
+Application link|رابط الطلب
+Open application form ↗|افتح نموذج الطلب ↗
+Advert ↗|الإعلان ↗
+✓ Saved:|✓ تم الحفظ:
+Your CV appears here as you fill in each step.|تظهر سيرتك الذاتية هنا أثناء ملء كل خطوة.
+Type|النوع
+Matched to|مطابق لـ
+Get an invite code from the person who invited you.|احصل على رمز دعوة من الشخص الذي دعاك.
+Enter it here and choose your username and password.|أدخله هنا واختر اسم المستخدم وكلمة المرور.
+Add your CV and choose the jobs you want. It takes about five minutes.|أضف سيرتك الذاتية واختر الوظائف التي تريدها. يستغرق ذلك نحو خمس دقائق.
+No code yet? Email {email} and ask for one.|ليس لديك رمز بعد؟ راسل {email} واطلب رمزًا.
+When an employer replies, Job Hunt HQ notices. The application moves to Interview, the date goes on your Home page, and practice questions for that job are ready before you are.|عندما يردّ صاحب العمل، يلاحظ Job Hunt HQ ذلك. ينتقل الطلب إلى «مقابلة»، ويظهر الموعد في صفحتك الرئيسية، وتكون أسئلة التدريب لتلك الوظيفة جاهزة قبلك.
+Photos:|الصور:
+Language: {lang}|اللغة: {lang}
+Status for {role}|حالة {role}
+Why do you want to work for {company}?|لماذا تريد العمل لدى {company}؟
+{role} at {company}, {n} match|{role} لدى {company}، توافق {n}

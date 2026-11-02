@@ -1,18 +1,21 @@
 /* Job Hunt HQ – "Signal" theme.
    A night-blue masthead and page header, one highly legible typeface throughout, and two signal colours:
    cyan for "good / go" and coral for "needs you now". Everything below the header is calm, cool paper. */
-/* Atkinson Hyperlegible Next (Braille Institute) – designed for readers with low vision and easy to read with dyslexia:
-   every letter is distinct (I l 1, O 0, b d p q). SIL Open Font Licence – see fonts/AtkinsonHyperlegibleNext-OFL.txt. */
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-ext-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-ext-600-normal.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-ext-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-800-normal.woff2) format("woff2"); font-weight: 800; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-ext-800-normal.woff2) format("woff2"); font-weight: 800; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-ext-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+/* IBM Plex Sans – a clear, open sans-serif that reads well for people with low vision or dyslexia, with a matching
+   Arabic design (IBM Plex Sans Arabic) under the same name. SIL Open Font Licence – see fonts/IBMPlexSans-OFL.txt. */
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-ext-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-ext-500-normal.woff2) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-ext-600-normal.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-ext-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-arabic-arabic-600-normal.woff2) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC; }
 :root {
   --night: #0b1240;
   --night-2: #17248f;
@@ -34,9 +37,9 @@
   --info: #2443e0; --info-bg: #e4e9ff;
   --idle: #5a6283; --idle-bg: #eceff7;
   --radius: 8px;
-  --serif: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-  --sans: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-  --cond: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --serif: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --cond: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --wide: 1200px;
   color-scheme: light;
 }
@@ -1034,8 +1037,7 @@ main.page:focus { outline: none; }
 }
 
 /* ---------------------------------------------------------------- Arabic and other right-to-left languages */
-:root[lang="ar"] { --serif: "Noto Naskh Arabic", "Amiri", "Geeza Pro", "Traditional Arabic", "Times New Roman", serif;
-                   --sans: "Segoe UI", "Noto Sans Arabic", "Geeza Pro", Tahoma, system-ui, sans-serif; --cond: var(--sans); }
+:root[lang="ar"] { --serif: "IBM Plex Sans", "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif; --sans: var(--serif); --cond: var(--serif); }
 :root[lang="ar"] body { line-height: 1.7; }
 :root[lang="ar"] h1, :root[lang="ar"] h2, :root[lang="ar"] h3 { line-height: 1.35; font-weight: 700; }
 :root[lang="ar"] .hero h1 { line-height: 1.25; }
@@ -1072,7 +1074,7 @@ main.page:focus { outline: none; }
 @media (max-width: 700px) { [dir="rtl"] .hero-home .figures { margin-right: 0; padding-right: 0; margin-left: -16px; padding-left: 16px; } }
 
 
-/* ---------------------------------------------------------------- readability (accessibility feedback, Nov 2026)
+/* ---------------------------------------------------------------- readability (accessibility feedback from testers, Nov 2026)
    One clear typeface everywhere; slightly larger text and more line spacing; no tightly squeezed or widely spaced
    letters; small print never below a readable size. */
 body { font-size: 16.5px; line-height: 1.62; }
@@ -1088,3 +1090,59 @@ h2 { font-weight: 700; }
 .muted { color: #4f5778; }
 .reasons, .meta { line-height: 1.55; }
 @media (max-width: 700px) { body { font-size: 16.5px; } .hero h1, .hero-home h1 { font-size: 2.3rem; } }
+
+
+/* ---------------------------------------------------------------- tester feedback, Nov 2026 (2) */
+/* radar: the fading trail now sits behind the sweep line (it was leading it), and matches pulse by how well they fit */
+.sweep { background: conic-gradient(from 0deg, transparent 0deg 290deg, rgba(59,227,204,0) 290deg, rgba(59,227,204,.30) 359deg, rgba(59,227,204,.85) 360deg); }
+.blip { animation: blip-in .5s var(--d, 0s) both cubic-bezier(.2,.8,.3,1.4); }
+.blip.strong::after, .blip.ready::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid currentColor;
+  color: rgba(59,227,204,var(--glow, .4)); animation: blip-pulse var(--pulse, 2.5s) ease-out infinite; }
+.blip.ready::after { color: rgba(255,92,138,var(--glow, .4)); }
+@keyframes blip-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.6); opacity: 0; } }
+
+/* the figures on Home: room to breathe, one row on wide screens */
+.figures { display: grid; grid-template-columns: repeat(5, max-content); column-gap: clamp(20px, 3vw, 40px); row-gap: 18px; }
+.figures > * { padding: 0 !important; border: 0 !important; }
+.figures dt { white-space: nowrap; font-weight: 500; }
+.figures dd { font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 600; }
+@media (max-width: 1100px) and (min-width: 701px) { .figures { grid-template-columns: repeat(3, max-content); } }
+@media (max-width: 700px) {
+  .hero-home .figures { grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; margin: 22px 0 0; padding: 0; column-gap: 12px; row-gap: 16px; }
+  .hero-home .figures dd { font-size: 1.6rem; }
+}
+
+/* notes and disclaimers: a calm panel with an icon, not a coloured stripe */
+.privacy-note { background: var(--panel-2); border: 1px solid var(--line); border-left: 1px solid var(--line); border-radius: 10px;
+  padding: 14px 16px 14px 48px; position: relative; color: var(--ink); }
+.privacy-note::before { content: ""; position: absolute; left: 16px; top: 16px; width: 18px; height: 18px; background: var(--ok);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E") center / contain no-repeat; }
+.mast .flash { border-left: 0; background: rgba(255,255,255,.08); border-radius: 10px; }
+.row-card { border-left: 1px solid var(--line); }
+.iv-improved { border-left: 0; border: 1px solid var(--line); }
+[dir="rtl"] .privacy-note { padding: 14px 48px 14px 16px; }
+[dir="rtl"] .privacy-note::before { left: auto; right: 16px; }
+[dir="rtl"] .row-card { border-right: 1px solid var(--line); }
+
+/* language switcher in the top bar */
+.lang-top { position: relative; }
+.lang-top > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.18); color: #fff; font: 500 .95rem var(--sans); cursor: pointer; }
+.lang-top > summary::-webkit-details-marker { display: none; }
+.lang-top > summary:hover { border-color: rgba(255,255,255,.45); }
+.lang-top > summary .ico { width: 18px; height: 18px; }
+.lang-top ul { position: absolute; right: 0; top: calc(100% + 8px); z-index: 30; list-style: none; margin: 0; padding: 6px; min-width: 180px;
+  background: #fff; border-radius: 10px; box-shadow: 0 16px 40px rgba(11,18,64,.3); }
+.lang-top li a { display: flex; justify-content: space-between; padding: 9px 12px; border-radius: 6px; color: var(--ink); text-decoration: none; font: 500 1rem var(--sans); }
+.lang-top li a:hover { background: var(--panel-2); }
+.lang-top li a[aria-current] { background: var(--night); color: #fff; }
+[dir="rtl"] .lang-top ul { right: auto; left: 0; }
+@media (max-width: 700px) { .lang-top > summary span { display: none; } .lang-top > summary { padding: 0 10px; height: 42px; } }
+/* "Do this next": up to four, in even rows (no lone card on its own line) */
+.next .steps-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+@media (max-width: 1000px) and (min-width: 701px) { .next .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* calmer surfaces (design review, Nov 2026): one shadow for the lead card only, no hover lifts, no tiny capitals */
+.card.next, .head + .card, .head + .grid2 > .card:first-child, .head + .card-stack > .card:first-child { box-shadow: 0 1px 0 rgba(11,18,64,.06), 0 12px 28px -22px rgba(11,18,64,.35); }
+.shortcuts a:hover, .step:hover { transform: none; box-shadow: none; }
+.tab-menu-h { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: .9rem; }

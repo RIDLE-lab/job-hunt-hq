@@ -1,0 +1,730 @@
+# Job Hunt HQ – nl: one 'English|translation' per line. Gaps like {n} or {company} are filled in from the page.
+Job Hunt HQ – stay on top of jobs that matter to you|Job Hunt HQ – houd de vacatures bij die voor jou tellen
+Skip to how it works|Ga naar Hoe het werkt
+The tour|De rondleiding
+Features|Functies
+Questions|Vragen
+Stay on top of jobs that matter to you.|Houd de vacatures bij die voor jou tellen.
+Find the jobs that suit you most, get your cover letter written, and keep every application and interview in one place.|Vind de vacatures die het best bij je passen, laat je motivatiebrief schrijven en houd elke sollicitatie en elk gesprek op één plek.
+Join with an invite code|Meedoen met een uitnodigingscode
+See how it works|Bekijk hoe het werkt
+Four steps, from knowing what you want to walking into the interview ready.|Vier stappen, van weten wat je wilt tot goed voorbereid het gesprek in.
+Tell it what you want|Vertel wat je wilt
+Choose the kinds of job you’re after, where you live and how far you’ll travel. Add your CV and it learns your experience.|Kies het soort werk dat je zoekt, waar je woont en hoe ver je wilt reizen. Voeg je cv toe en het leert je ervaring kennen.
+Jobs come to you|De vacatures komen naar jou
+It searches the job sites for you and puts the jobs that suit you most at the top, with the reasons why.|Het doorzoekt de vacaturesites voor je en zet de best passende vacatures bovenaan, met de redenen erbij.
+Apply with less effort|Solliciteer met minder moeite
+Your cover letter is already written. The assistant fills in the application form. You check it and press Submit.|Je motivatiebrief is al geschreven. De assistent vult het sollicitatieformulier in. Jij controleert het en klikt op Verzenden.
+Walk in prepared|Goed voorbereid naar binnen
+Replies are tracked for you, so nothing is missed. Then practise the questions for that job and get tips to improve.|Reacties worden voor je bijgehouden, zodat je niets mist. Oefen daarna de vragen voor die baan en krijg tips om beter te worden.
+See it in action|Zie het in actie
+Ten screens, one for each part of Job Hunt HQ. Go at your own pace.|Tien schermen, één voor elk onderdeel van Job Hunt HQ. In je eigen tempo.
+Any job, anywhere|Elke baan, overal
+Jobs found and matched|Vacatures gevonden en gematcht
+Every job site in one place|Elke vacaturesite op één plek
+Your cover letter, already written|Je motivatiebrief, al geschreven
+The assistant fills it in|De assistent vult het in
+Every reply tracked|Elke reactie bijgehouden
+A CV that fits|Een cv dat past
+Your language, your phone|Jouw taal, jouw telefoon
+Private by design|Privé vanaf het begin
+Works for career changers too|Werkt ook als je van loopbaan wisselt
+Places are checked as you type|Plaatsen worden gecontroleerd terwijl je typt
+Jobs you're looking for|Banen die je zoekt
+Where|Waar
+Press Refresh jobs and it searches the job sites for you. Every job gets a match score, so the ones that suit you most are at the top – with the reasons why.|Druk op Vacatures vernieuwen en het doorzoekt de vacaturesites voor je. Elke vacature krijgt een matchscore, zodat de best passende bovenaan staan – met de redenen erbij.
+Strong fits stand out|Sterke matches vallen op
+See why each job matches|Zie waarom elke vacature past
+Hide the ones that don’t suit|Verberg wat niet past
+Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.|Je zoekopdrachten, al ingevuld, op Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs en de gespecialiseerde sites voor jouw vakgebied.
+The right sites for your country|De juiste sites voor jouw land
+Set up job alerts in a click|Vacaturemeldingen met één klik
+Save any advert you find|Bewaar elke vacature die je vindt
+Specialist sites|Gespecialiseerde sites
+Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.|Open een vacature en de motivatiebrief staat klaar – geschreven vanuit je echte ervaring en afgestemd op de vacature. Pas hem aan en download hem als PDF of Word.
+Never invents experience|Verzint nooit ervaring
+Paste any job description to get one|Plak een functieomschrijving en je krijgt er een
+Tailored CV for each job too|Ook een aangepast cv voor elke vacature
+I’m applying for the Warehouse Team Leader role at Northline Logistics.|Ik solliciteer naar de functie van Teamleider magazijn bij Northline Logistics.
+For the past three years I have led a team of twelve on night shifts, kept pick accuracy above 99% and trained every new starter.|De afgelopen drie jaar heb ik een team van twaalf geleid in de nachtdienst, de orderpicknauwkeurigheid boven 99% gehouden en elke nieuwe collega ingewerkt.
+A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.|Op vacaturesites verschijnt een kleine helper. Die vult je gegevens in, voegt je cv en motivatiebrief toe en stelt antwoorden op de vragen voor – vanuit je eigen ervaring.
+You always press Submit yourself|Jij klikt altijd zelf op Verzenden
+Personal questions are left to you|Persoonlijke vragen laat het aan jou
+Only appears on job sites|Verschijnt alleen op vacaturesites
+You check it and press Submit.|Jij controleert het en klikt op Verzenden.
+Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|Koppel Gmail en reacties sorteren zichzelf: ontvangen, gesprek, assessment, aanbod of afwijzing. Je sollicitaties werken zichzelf bij zonder dat je er iets voor hoeft te doen.
+See what needs you next|Zie wat er nu van je nodig is
+Your whole year at a glance|Je hele jaar in één oogopslag
+Assessment|Assessment
+Offer|Aanbod
+Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.|Vragen voor precies die baan. Typ of spreek je antwoord in en krijg een score uit 10, een STAR-check en duidelijke tips om beter te worden.
+Answer out loud|Antwoord hardop
+Examples from your own history|Voorbeelden uit je eigen ervaring
+See yourself improve|Zie jezelf vooruitgaan
+“Tell me about a time you had several deadlines at once.”|“Vertel over een keer dat je meerdere deadlines tegelijk had.”
+Strong answer|Sterk antwoord
+✓ Situation|✓ Situatie
+✓ Task|✓ Taak
+✓ Action|✓ Actie
+✓ Result|✓ Resultaat
+Tip: put a number on the result if you can.|Tip: zet er een getal bij het resultaat als dat kan.
+Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.|Maak een cv vanaf nul, of upload het jouwe of je LinkedIn-profiel en verbeter het. Kies een ontwerp en stem het af op elke vacature.
+Three clean designs|Drie strakke ontwerpen
+PDF or Word|PDF of Word
+Suggestions to make it stronger|Suggesties om het sterker te maken
+Classic|Klassiek
+Modern|Modern
+Compact|Compact
+Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.|Gebruik het in het English, Français, Deutsch, Nederlands, Español, Português of العربية – op je computer of je telefoon.
+Add it to your home screen|Zet het op je beginscherm
+Works on any device|Werkt op elk apparaat
+Switch language any time|Wissel op elk moment van taal
+Your details are only ever seen by you. Download everything or delete your account whenever you like.|Je gegevens zijn alleen voor jou zichtbaar. Download alles of verwijder je account wanneer je wilt.
+UK GDPR rights built in|AVG-rechten (UK GDPR) ingebouwd
+Nothing sold or shared|Niets verkocht of gedeeld
+Invite-only accounts|Accounts alleen op uitnodiging
+Only you see your data|Alleen jij ziet je gegevens
+Download it all|Alles downloaden
+Delete your account|Je account verwijderen
+Never miss the call back|Mis nooit meer een terugbelverzoek
+Replies sorted from Gmail automatically|Reacties automatisch uit Gmail gesorteerd
+Interview dates you can’t lose|Gespreksdata die je niet kwijtraakt
+Questions for that exact job|Vragen voor precies die baan
+Everything it does|Alles wat het doet
+All included, with no adverts.|Alles inbegrepen, zonder advertenties.
+Finding work|Werk vinden
+Job matching|Vacatures matchen
+Every job matched to your experience, skills, salary and travel, with the reasons.|Elke vacature gematcht met je ervaring, vaardigheden, salaris en reistijd, met de redenen erbij.
+Every job site|Elke vacaturesite
+Your searches ready on all the main job boards and the specialist ones for your field.|Je zoekopdrachten klaar op alle grote vacaturesites en de gespecialiseerde sites voor jouw vakgebied.
+Any career|Elk beroep
+Cover letters|Motivatiebrieven
+Written for each job from your real experience. Edit, copy, or download as PDF or Word.|Voor elke vacature geschreven vanuit je echte ervaring. Bewerk, kopieer of download als PDF of Word.
+CV builder|Cv-maker
+Build, import or improve your CV, pick a design, and tailor it to each job.|Maak, importeer of verbeter je cv, kies een ontwerp en stem het af op elke vacature.
+Browser assistant|Browserassistent
+Fills in application forms, attaches your CV and letter, and suggests answers. You press Submit.|Vult sollicitatieformulieren in, voegt je cv en brief toe en stelt antwoorden voor. Jij klikt op Verzenden.
+Keeping track|Overzicht houden
+Home summary|Overzicht op Home
+What needs you next, your best matches and where every application has got to.|Wat er nu van je nodig is, je beste matches en hoe het met elke sollicitatie staat.
+Application tracker|Sollicitatietracker
+Every application and every reply in one list, updated from Gmail automatically.|Elke sollicitatie en elke reactie in één lijst, automatisch bijgewerkt vanuit Gmail.
+Practise questions for the job, speak or type your answer, get a score and tips.|Oefen vragen voor de baan, spreek of typ je antwoord, krijg een score en tips.
+Your way|Op jouw manier
+Languages and countries|Talen en landen
+Phone and computer|Telefoon en computer
+Use it anywhere, and add it to your phone’s home screen like an app.|Gebruik het overal en zet het als een app op het beginscherm van je telefoon.
+Private and secure|Privé en veilig
+Only you see your data. Download it or delete it at any time.|Alleen jij ziet je gegevens. Download of verwijder ze wanneer je wilt.
+Who is it for?|Voor wie is het?
+Anyone looking for work – whatever the job, whether you’re starting out, moving up or changing career.|Iedereen die werk zoekt – welke baan ook, of je nu begint, doorgroeit of van loopbaan wisselt.
+Does it apply for me automatically?|Solliciteert het automatisch voor mij?
+It does the work – finds jobs, writes letters, fills in forms – but you always check and press Submit yourself. Questions about you personally (health, diversity, criminal record) are always left for you.|Het doet het werk – vindt vacatures, schrijft brieven, vult formulieren in – maar jij controleert altijd en klikt zelf op Verzenden. Persoonlijke vragen (gezondheid, diversiteit, strafblad) laat het altijd aan jou.
+Will it make things up about me?|Verzint het dingen over mij?
+No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.|Nee. Brieven, antwoorden en cv-suggesties gebruiken alleen wat jij over je eigen ervaring hebt verteld.
+Is my data safe?|Zijn mijn gegevens veilig?
+Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.|Alleen jij ziet je gegevens. Niemand leest je e-mails – zelfs de beheerders niet. Je kunt alles downloaden of je account verwijderen wanneer je wilt.
+Does it work on my phone?|Werkt het op mijn telefoon?
+Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.|Ja. Open het in de browser van je telefoon en zet het op je beginscherm om het als app te gebruiken.
+How do I get an invite code?|Hoe krijg ik een uitnodigingscode?
+Job Hunt HQ is invite-only for now. Accounts are made with a personal invite code.|Job Hunt HQ is voorlopig alleen op uitnodiging. Accounts maak je met een persoonlijke uitnodigingscode.
+Your invite code|Je uitnodigingscode
+Privacy|Privacy
+Cookies|Cookies
+Disclaimer|Disclaimer
+Contact|Contact
+On this page|Op deze pagina
+A closer look at Job Hunt HQ|Een kijkje in Job Hunt HQ
+Choose a screen|Kies een scherm
+Previous screen|Vorig scherm
+Next screen|Volgend scherm
+Three groups of four letters or numbers|Drie groepen van vier letters of cijfers
+Legal|Juridisch
+Forgotten your password? Ask the person who invited you for a reset link. Got an invite code?|Wachtwoord vergeten? Vraag de persoon die je heeft uitgenodigd om een resetlink. Heb je een uitnodigingscode?
+New to Job Hunt HQ?|Nieuw bij Job Hunt HQ?
+See what it does|Bekijk wat het doet
+Terms|Voorwaarden
+Find roles, write applications and track every reply in one place.|Vind functies, schrijf sollicitaties en volg elke reactie op één plek.
+This invite code isn't valid any more – it may have been used or expired. Ask for a new one.|Deze uitnodigingscode is niet meer geldig – hij is misschien al gebruikt of verlopen. Vraag om een nieuwe.
+By creating an account you agree to the|Door een account aan te maken ga je akkoord met de
+and the|en de
+Privacy notice|Privacyverklaring
+How Job Hunt HQ uses your information, and your rights under UK GDPR and the Data Protection Act 2018.|Hoe Job Hunt HQ je gegevens gebruikt, en je rechten onder de UK GDPR en de Data Protection Act 2018.
+Who looks after your data|Wie er voor je gegevens zorgt
+Job Hunt HQ is run privately by its owner, who invites people to use it. The owner is responsible for your data (the “controller”). For any question or request, email|Job Hunt HQ wordt privé beheerd door de eigenaar, die mensen uitnodigt om het te gebruiken. De eigenaar is verantwoordelijk voor je gegevens (de “verwerkingsverantwoordelijke”). Voor vragen of verzoeken mail je naar
+. You can also use the|. Je kunt ook de knop
+Feedback|Feedback
+button once you're signed in.|gebruiken zodra je bent ingelogd.
+What's stored, and why|Wat er wordt bewaard, en waarom
+Your account:|Je account:
+name, username and email. Your password is stored only as a secure scrambled “hash” – nobody can read it.|naam, gebruikersnaam en e-mail. Je wachtwoord wordt alleen als veilige versleutelde “hash” opgeslagen – niemand kan het lezen.
+Your details and career:|Je gegevens en loopbaan:
+what you enter in My settings, My career and Create CV, and the CV you upload – used to find and score jobs, write your cover letters and CVs, and fill in application forms|wat je invult bij Mijn instellingen, Mijn loopbaan en Cv maken, en het cv dat je uploadt – gebruikt om vacatures te vinden en te scoren, je brieven en cv's te schrijven en sollicitatieformulieren in te vullen
+when you ask it to|als je daarom vraagt
+Your jobs and applications:|Je vacatures en sollicitaties:
+the jobs found or saved for you, your letters, and where each application has got to.|de vacatures die voor je zijn gevonden of bewaard, je brieven, en hoe het met elke sollicitatie staat.
+Gmail (only if you connect it):|Gmail (alleen als je het koppelt):
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your Gmail.|e-mails worden automatisch gelezen, alleen om reacties op je sollicitaties en vacaturemeldingen te herkennen. Daarvan bewaart het de afzender, het onderwerp, de datum en een korte preview. Alle andere e-mails worden genegeerd en daarvan wordt niets bewaard. Job Hunt HQ kan niets verzenden, wijzigen of verwijderen in je Gmail.
+you send, with any screenshot.|die je stuurt, met eventuele screenshot.
+Security records:|Beveiligingsgegevens:
+to keep accounts safe and enforce the Acceptable use rules, the website notices things like repeated failed sign-ins, made-up assistant keys, one assistant file used from many places, very fast bulk applications, or a used invite link being tried again. When that happens it records what happened, the username and the internet (IP) address, and emails the owner. These records are only seen by the owner, are used only for security, and are deleted after 90 days. The legal basis is our|om accounts te beschermen en de regels voor acceptabel gebruik te handhaven, merkt de website dingen op zoals herhaalde mislukte inlogpogingen, verzonnen assistentsleutels, één assistentbestand dat vanaf veel plekken wordt gebruikt, zeer snelle massasollicitaties of een al gebruikte uitnodigingslink die opnieuw wordt geprobeerd. Dan legt het vast wat er gebeurde, de gebruikersnaam en het internet-(IP-)adres, en mailt het de eigenaar. Alleen de eigenaar ziet deze gegevens, ze worden alleen voor beveiliging gebruikt en na 90 dagen verwijderd. De rechtsgrond is ons
+legitimate interest|gerechtvaardigd belang
+in keeping the service and your data safe.|om de dienst en je gegevens veilig te houden.
+The legal basis is your|De rechtsgrond is je
+and providing the service you've asked for. Nothing is sold, shared with advertisers, or used to train AI. Nobody else who uses Job Hunt HQ can see anything of yours.|en het leveren van de dienst waar je om hebt gevraagd. Niets wordt verkocht, gedeeld met adverteerders of gebruikt om AI te trainen. Niemand anders die Job Hunt HQ gebruikt, kan iets van jou zien.
+No person looks at your Gmail through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|Niemand kijkt via Job Hunt HQ in je Gmail – niet de eigenaar en niet andere gebruikers. Alles gebeurt automatisch, en de gegevens van ieder worden apart bewaard. De beheerpagina's van de eigenaar tonen alleen namen, gebruikersnamen en wanneer mensen voor het laatst inlogden.
+AI and job sites|AI en vacaturesites
+If AI writing is switched on, the advert and the relevant parts of your CV are sent to Anthropic's Claude to write a draft, and nothing else. Job searches send only the job title and place to Reed, Adzuna and the other job sites – never your personal details.|Als schrijven met AI aanstaat, worden de vacature en de relevante delen van je cv naar Claude van Anthropic gestuurd om een concept te schrijven, en verder niets. Zoekopdrachten sturen alleen de functietitel en de plaats naar Reed, Adzuna en andere vacaturesites – nooit je persoonlijke gegevens.
+See your data|Je gegevens inzien
+Account → Download my data|Account → Mijn gegevens downloaden
+gives you everything in one file, straight away.|geeft je alles in één bestand, meteen.
+Ask how it's used|Vragen hoe ze worden gebruikt
+– email the owner or use Feedback, and you'll get an answer within one month.|– mail de eigenaar of gebruik Feedback, en je krijgt binnen een maand antwoord.
+Correct it|Corrigeren
+– change anything in My settings and My career, or ask.|– wijzig alles bij Mijn instellingen en Mijn loopbaan, of vraag het.
+Delete it|Verwijderen
+Account → Delete my account|Account → Mijn account verwijderen
+removes your account and everything stored for you, immediately.|verwijdert je account en alles wat voor je is bewaard, meteen.
+Take it elsewhere|Meenemen naar elders
+– the download is a standard file you can keep or move.|– de download is een standaardbestand dat je kunt bewaren of verplaatsen.
+Withdraw consent / object|Toestemming intrekken / bezwaar maken
+– disconnect Gmail in My settings at any time, or stop using the service.|– ontkoppel Gmail op elk moment bij Mijn instellingen, of stop met de dienst.
+If you're unhappy with how your data is handled, you can complain to the Information Commissioner's Office:|Ben je niet tevreden over hoe met je gegevens wordt omgegaan, dan kun je een klacht indienen bij het Information Commissioner’s Office:
+How long it's kept, and where|Hoe lang, en waar
+Your data is kept until you delete it or your account. It's stored on the service's server (in the EU for the website) and backed up only by the owner. Connections are encrypted (HTTPS).|Je gegevens worden bewaard tot je ze of je account verwijdert. Ze staan op de server van de dienst (voor de website in de EU) en worden alleen door de eigenaar geback-upt. Verbindingen zijn versleuteld (HTTPS).
+About these terms|Over deze voorwaarden
+Cookie notice|Cookieverklaring
+rules. If you don't agree, please don't use it.|. Ben je het er niet mee eens, gebruik het dan niet.
+Who can use it|Wie het mag gebruiken
+Accounts are by invitation only. You must be 16 or over and looking for work for yourself.|Accounts zijn alleen op uitnodiging. Je moet 16 jaar of ouder zijn en voor jezelf werk zoeken.
+We can suspend or close an account that breaks these terms, or if we need to protect the service or other people.|We kunnen een account schorsen of sluiten dat deze voorwaarden schendt, of als we de dienst of andere mensen moeten beschermen.
+What the service does – and doesn't|Wat de dienst doet – en niet doet
+It finds and scores jobs, writes draft cover letters, CVs and answers, fills in forms when you ask it to, and tracks your applications.|Het vindt en scoort vacatures, schrijft conceptbrieven, -cv's en -antwoorden, vult formulieren in als je daarom vraagt, en houdt je sollicitaties bij.
+Everything it writes is a draft for you to check.|Alles wat het schrijft is een concept dat je moet controleren.
+You are responsible for every application you send.|Jij bent verantwoordelijk voor elke sollicitatie die je verstuurt.
+Read and correct anything it fills in or writes before you submit. It never presses Submit for you.|Lees en verbeter alles wat het invult of schrijft voordat je verstuurt. Het klikt nooit voor je op Verzenden.
+Only give information that's true. Never use the service to claim experience, qualifications or rights you don't have.|Geef alleen informatie die klopt. Gebruik de dienst nooit om ervaring, diploma's of rechten te claimen die je niet hebt.
+Jobs come from third-party job sites and employers. We don't check, endorse or guarantee any job, employer, salary or advert, and we're not a recruitment agency or an employer.|Vacatures komen van externe vacaturesites en werkgevers. We controleren, onderschrijven of garanderen geen enkele vacature, werkgever, salaris of advertentie, en we zijn geen uitzendbureau of werkgever.
+Using the service doesn't guarantee interviews or job offers.|Het gebruik van de dienst garandeert geen gesprekken of aanbiedingen.
+Other websites|Andere websites
+The service links to and works alongside job sites (for example Indeed, LinkedIn, Reed, CV-Library) and employers' application forms. Those sites have their own terms, which you agree to when you use them. Use the browser assistant only in ways those sites allow, and only on your own applications.|De dienst linkt naar en werkt samen met vacaturesites (bijvoorbeeld Indeed, LinkedIn, Reed, CV-Library) en sollicitatieformulieren van werkgevers. Die sites hebben eigen voorwaarden, waarmee je akkoord gaat als je ze gebruikt. Gebruik de browserassistent alleen zoals die sites toestaan, en alleen voor je eigen sollicitaties.
+Your content|Je inhoud
+Your CV, career details, letters and answers stay yours. You let us store and process them only to provide the service to you, as described in the Privacy notice. You can download or delete them at any time from your Account page.|Je cv, loopbaangegevens, brieven en antwoorden blijven van jou. Je staat ons toe ze alleen op te slaan en te verwerken om je de dienst te leveren, zoals beschreven in de Privacyverklaring. Je kunt ze op elk moment downloaden of verwijderen via je Accountpagina.
+Availability and changes|Beschikbaarheid en wijzigingen
+Liability|Aansprakelijkheid
+Nothing in these terms limits liability that can't be limited by law (such as for death or personal injury caused by negligence, or fraud). Otherwise, as a free service, we aren't liable for indirect or consequential loss, for the outcome of any job application, or for content on third-party sites. See the|Niets in deze voorwaarden beperkt aansprakelijkheid die wettelijk niet beperkt kan worden (zoals bij overlijden of letsel door nalatigheid, of fraude). Verder zijn we als gratis dienst niet aansprakelijk voor indirecte of gevolgschade, voor de uitkomst van een sollicitatie of voor inhoud op sites van derden. Zie de
+Law|Toepasselijk recht
+These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction. If you live in Scotland or Northern Ireland you can also use your local courts.|Op deze voorwaarden is het recht van Engeland en Wales van toepassing, en de rechtbanken van Engeland en Wales zijn bevoegd. Woon je in Schotland of Noord-Ierland, dan kun je ook naar je eigen rechtbank.
+The cookies we use|De cookies die we gebruiken
+Job Hunt HQ uses only what it needs to work. There's no advertising, tracking or analytics, so there's nothing to accept or reject.|Job Hunt HQ gebruikt alleen wat nodig is om te werken. Geen advertenties, tracking of analytics, dus niets te accepteren of te weigeren.
+Name|Naam
+What it's for|Waarvoor
+How long|Hoe lang
+Keeps you signed in, and protects forms from being sent by other websites.|Houdt je ingelogd en beschermt formulieren tegen verzending door andere websites.
+Until you sign out, up to 30 days|Tot je uitlogt, maximaal 30 dagen
+Remembers the language you chose for the site.|Onthoudt de taal die je voor de site hebt gekozen.
+The browser assistant keeps where you dragged its button, and the last job you looked at, in your own browser's storage. It isn't sent anywhere else.|De browserassistent bewaart waar je zijn knop naartoe hebt gesleept, en de laatste vacature die je bekeek, in de opslag van je eigen browser. Het wordt nergens anders heen gestuurd.
+Controlling cookies|Cookies beheren
+You can delete cookies in your browser's settings at any time. If you block them, you won't be able to sign in.|Je kunt cookies op elk moment verwijderen in de instellingen van je browser. Als je ze blokkeert, kun je niet inloggen.
+Drafts, not advice|Concepten, geen advies
+Cover letters, CVs, answers, scores and suggestions are produced automatically – sometimes with AI – from the details you give and the job advert. They can be wrong, incomplete or out of date.|Brieven, cv's, antwoorden, scores en suggesties worden automatisch gemaakt – soms met AI – uit de gegevens die je geeft en de vacature. Ze kunnen fout, onvolledig of verouderd zijn.
+Always read, check and edit them before you use them.|Lees, controleer en bewerk ze altijd voordat je ze gebruikt.
+They aren't careers, legal, immigration or financial advice.|Het is geen loopbaan-, juridisch, immigratie- of financieel advies.
+Fit scores|Matchscores
+A job's score is an estimate of how well the advert matches the details you entered. It isn't a prediction of whether you'll be shortlisted, and it can't see everything an employer looks for.|De score van een vacature is een schatting van hoe goed de vacature past bij de gegevens die je invulde. Het voorspelt niet of je op de shortlist komt, en het ziet niet alles waar een werkgever op let.
+Job adverts and other sites|Vacatures en andere sites
+Adverts, salaries, locations and closing dates come from third parties and can change or be removed without notice. We don't vet employers or recruiters. Be careful with any job that asks you for money, bank details or ID documents before a proper offer – report it to the job site and to|Vacatures, salarissen, locaties en sluitingsdata komen van derden en kunnen zonder bericht veranderen of verdwijnen. We controleren geen werkgevers of recruiters. Wees voorzichtig met een baan die om geld, bankgegevens of identiteitsbewijzen vraagt vóór een echt aanbod – meld het bij de vacaturesite en bij
+Questions it won't answer for you|Vragen die het niet voor je beantwoordt
+Personal and sensitive questions on application forms – such as health, disability, criminal record, diversity monitoring, right to work and visa status – are left for you to answer yourself, unless you've saved your own answer. What you submit is your responsibility.|Persoonlijke en gevoelige vragen op sollicitatieformulieren – zoals gezondheid, beperking, strafblad, diversiteitsmonitoring, werkvergunning en visum – laat het aan jou, tenzij je je eigen antwoord hebt opgeslagen. Wat je verstuurt is jouw verantwoordelijkheid.
+Accuracy of your information|Juistheid van je gegevens
+The service uses only what you tell it. Keep My settings and My career up to date, and never add anything that isn't true – an employer may check it, and it could cost you an offer.|De dienst gebruikt alleen wat jij vertelt. Houd Mijn instellingen en Mijn loopbaan bij en voeg nooit iets toe wat niet klopt – een werkgever kan het controleren en het kan je een aanbod kosten.
+Please use Job Hunt HQ fairly|Gebruik Job Hunt HQ eerlijk
+Don't use the service to:|Gebruik de dienst niet om:
+share your invite link, account or browser-assistant file with other people.|je uitnodigingslink, account of assistentbestand met anderen te delen.
+Feedback → Report misuse or a security problem|Feedback → Misbruik of beveiligingsprobleem melden
+when you're signed in).|als je bent ingelogd).
+The website automatically watches for signs of misuse, such as password guessing, a shared assistant file or bulk automated applications, and lets the owner know. Accounts that break these rules can be switched off. See the|De website let automatisch op tekenen van misbruik, zoals wachtwoorden raden, een gedeeld assistentbestand of geautomatiseerde massasollicitaties, en laat het de eigenaar weten. Accounts die deze regels breken, kunnen worden uitgeschakeld. Zie de
+for what is recorded.|voor wat er wordt vastgelegd.
+Contact us|Contact opnemen
+Get in touch|Neem contact op
+for anything about Job Hunt HQ:|voor alles over Job Hunt HQ:
+Help with your account or the site|Hulp met je account of de site
+Data requests|Verzoeken over gegevens
+– a copy of your data, corrections, deletion, or how your information is used (under UK GDPR we reply within one month)|– een kopie van je gegevens, correcties, verwijdering of hoe je gegevens worden gebruikt (onder de UK GDPR antwoorden we binnen een maand)
+Asking for an invite|Een uitnodiging vragen
+Reporting a problem, a security issue or misuse|Een probleem, beveiligingsprobleem of misbruik melden
+Signed in? The|Ingelogd? De knop
+button on every page reaches us too, and you'll see our reply there.|op elke pagina bereikt ons ook, en daar zie je ons antwoord.
+Do it yourself, straight away|Doe het zelf, meteen
+Download your data|Je gegevens downloaden
+– Account → Download my data|– Account → Mijn gegevens downloaden
+– Account → Delete my account|– Account → Mijn account verwijderen
+Disconnect Gmail|Gmail ontkoppelen
+– My settings → Gmail|– Mijn instellingen → Gmail
+Home|Home
+Job Hunt HQ – home|Job Hunt HQ – home
+Jump to a page|Ga naar een pagina
+Main|Hoofdmenu
+Your account menu|Je accountmenu
+Set-up progress|Voortgang instellen
+Shortcuts|Snelkoppelingen
+What kind of feedback|Soort feedback
+More pages|Meer pagina's
+Last 24 hours|Afgelopen 24 uur
+Last 3 days|Afgelopen 3 dagen
+Last week|Afgelopen week
+Last 2 weeks|Afgelopen 2 weken
+Last month|Afgelopen maand
+date unknown|datum onbekend
+Filter jobs|Vacatures filteren
+Fit|Match
+Posted|Geplaatst
+Sort|Sorteren
+The site didn't say when this was posted, so it only shows under Posted any time|De site gaf niet aan wanneer dit is geplaatst, dus het verschijnt alleen onder Geplaatst: altijd
+Quickest way: on the job page in LinkedIn or Indeed, click your|Snelste manier: klik op de vacaturepagina in LinkedIn of Indeed op je
+bookmark (|bladwijzer (
+set it up|instellen
+). Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it.|). Of plak de link van de vacature hier – dat werkt voor de meeste carrièresites en LinkedIn, al blokkeert Indeed het vaak.
+Job link|Link naar vacature
+Get job|Vacature ophalen
+Get job and apply for me|Vacature ophalen en voor mij solliciteren
+If the link can't be read, fill in the details below and paste the advert text, then press Get job again.|Als de link niet gelezen kan worden, vul dan de gegevens hieronder in, plak de vacaturetekst en druk opnieuw op Vacature ophalen.
+Advert text|Vacaturetekst
+A small helper that floats on every job site – Indeed, LinkedIn, Reed, NHS Jobs, Workday and the rest. On an advert it scores the job against your details. On an application form it fills in what it can, suggests answers from your own work history and examples, and attaches your CV and letter. It never presses Submit – you always do that.|Een kleine helper die op elke vacaturesite zweeft – Indeed, LinkedIn, Reed, NHS Jobs, Workday en de rest. Op een vacature scoort hij de baan op basis van jouw gegevens. Op een sollicitatieformulier vult hij in wat hij kan, stelt antwoorden voor uit je eigen ervaring en voorbeelden, en voegt je cv en brief toe. Hij klikt nooit op Verzenden – dat doe jij altijd.
+It's already connected to|Hij is al gekoppeld aan het account van
+account – don't share the file.|– deel het bestand niet.
+Unzip it|Pak het uit
+: right-click the download →|: klik met rechts op de download →
+Extract All|Alles uitpakken
+. Keep the folder somewhere safe, like Documents.|. Bewaar de map op een veilige plek, zoals Documenten.
+Open your browser's extensions page – type this in the address bar:|Open de extensiepagina van je browser – typ dit in de adresbalk:
+Switch on|Zet
+Developer mode|de ontwikkelaarsmodus aan
+(top right).|(rechtsboven).
+Click|Klik op
+Load unpacked|Uitgepakte extensie laden
+and choose the|en kies de map
+Pin it: click the jigsaw icon → pin|Vastzetten: klik op het puzzelstukje → vastzetten
+– the round Job Hunt HQ button shows your fit score. Click it to see why, and|– de ronde Job Hunt HQ-knop toont je matchscore. Klik erop om te zien waarom, en
+Save it and write my cover letter|Opslaan en mijn motivatiebrief schrijven
+Fill this page for me|Deze pagina voor mij invullen
+fills your details and attaches your CV and letter.|vult je gegevens in en voegt je cv en brief toe.
+Suggest answers|Antwoorden voorstellen
+Put it in the form|In het formulier zetten
+– e.g. “Which of my experiences best fits this role?”|– bijv. “Welke van mijn ervaringen past het best bij deze functie?”
+(needs AI switched on by the owner)|(vereist dat de eigenaar AI heeft aangezet)
+, and it's tracked in Applications.|, en het wordt bijgehouden bij Sollicitaties.
+It only appears on job boards, employers' careers pages and application forms – never on sites like YouTube, Google or social media, and it sends nothing to Job Hunt HQ from other sites. Showing up somewhere it shouldn't? Open it and choose|Hij verschijnt alleen op vacaturesites, carrièrepagina's van werkgevers en sollicitatieformulieren – nooit op sites als YouTube, Google of sociale media, en hij stuurt vanaf andere sites niets naar Job Hunt HQ. Verschijnt hij ergens waar dat niet hoort? Open hem en kies
+Don't show on this site|Niet tonen op deze site
+. You can still open it anywhere with its button in your browser's toolbar.|. Je kunt hem nog steeds overal openen met zijn knop in de werkbalk van je browser.
+Drag the button anywhere on the screen. Press|Sleep de knop waar je maar wilt op het scherm. Druk op
+at the top of the panel to minimise it to a small dot – it stays small on every page until you click it again. Questions about you personally (health, criminal record, diversity) are always left for you to answer. Answers only use what's in your own details – check each one before you submit.|bovenaan het paneel om hem tot een stipje te verkleinen – hij blijft op elke pagina klein tot je er weer op klikt. Persoonlijke vragen (gezondheid, strafblad, diversiteit) laat hij altijd aan jou. Antwoorden gebruiken alleen je eigen gegevens – controleer ze allemaal voordat je verstuurt.
+Practise the questions you're likely to be asked for each job. Type or say your answer and get a score out of 10, what went well, and exactly what to improve – using examples from your own experience.|Oefen de vragen die je waarschijnlijk krijgt voor elke baan. Typ of spreek je antwoord in en krijg een score uit 10, wat goed ging en precies wat beter kan – met voorbeelden uit je eigen ervaring.
+No interviews yet. When an application moves to|Nog geen gesprekken. Wanneer een sollicitatie naar
+(automatically from Gmail, or by changing its status on|(automatisch vanuit Gmail, of door de status te wijzigen bij
+), it appears here with questions for that job. Meanwhile, try a|) gaat, verschijnt hij hier met vragen voor die baan. Probeer intussen een
+quick practice|snelle oefening
+Get ahead|Ga alvast aan de slag
+Practise for jobs you've applied for, before they call.|Oefen voor banen waarop je hebt gesolliciteerd, voordat ze bellen.
+Questions for this job.|Vragen voor deze baan.
+From the advert, your kind of work, and the questions every interviewer asks.|Uit de vacature, je soort werk en de vragen die elke interviewer stelt.
+Answer your way.|Antwoord op jouw manier.
+Type it, or press|Typ het, of druk op
+and talk – it writes down what you say. It can read the question out too.|en praat – het schrijft op wat je zegt. Het kan de vraag ook voorlezen.
+Get marked.|Krijg een beoordeling.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what|Een score uit 10 op waar interviewers op letten: een echt voorbeeld, de STAR-opbouw (Situatie, Taak, Actie, Resultaat), wat
+did, a result, the right length.|deed, een resultaat, de juiste lengte.
+Improve.|Word beter.
+Specific tips, and examples from your own work history you could use. Try again and watch your score go up.|Concrete tips, en voorbeelden uit je eigen werkervaring die je kunt gebruiken. Probeer opnieuw en zie je score stijgen.
+Marking uses Job Hunt HQ's built-in interview coach.|De beoordeling gebruikt de ingebouwde gesprekscoach van Job Hunt HQ.
+← Interview prep|← Gesprekstraining
+🔊 Read it out|🔊 Voorlezen
+🎤 Answer out loud|🎤 Hardop antwoorden
+To improve|Te verbeteren
+Next question →|Volgende vraag →
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your Gmail. Open one to see every email about it.|Elke functie waarop je dit jaar hebt gesolliciteerd: die je via Job Hunt HQ verstuurde, en die in je Gmail zijn gevonden. Open er een om elke e-mail erover te zien.
+Import my 2026 history from Gmail|Mijn geschiedenis van 2026 uit Gmail importeren
+Re-read everything|Alles opnieuw lezen
++ Add an application|+ Sollicitatie toevoegen
+Employer|Werkgever
+Applied on|Gesolliciteerd op
+Status|Status
+No emails about this one yet.|Nog geen e-mails over deze.
+Not an application|Geen sollicitatie
+Search role or employer|Zoek functie of werkgever
+Search applications|Sollicitaties doorzoeken
+e.g. HR Officer|bijv. HR-medewerker
+e.g. South Essex College|bijv. South Essex College
+Recruitment emails found in Gmail, sorted automatically. If one is sorted wrongly, change the application's status on the|Wervingsmails uit Gmail, automatisch gesorteerd. Staat er een verkeerd, wijzig dan de status van de sollicitatie op de pagina
+No emails yet.|Nog geen e-mails.
+, then press|, druk dan op
+What Apply for me uses to fill "My Experience" pages: work history, education, skills and languages. It started from your CV. Keep it up to date, and every later application uses it.|Wat Solliciteer voor mij gebruikt om “Mijn ervaring”-pagina's in te vullen: werkervaring, opleiding, vaardigheden en talen. Het begon met je cv. Houd het bij, elke volgende sollicitatie gebruikt het.
+Newest first. Dates as MM/YYYY. Leave "To" empty if you still work there. The robot types these into Workday's “My Experience” page (and similar forms) exactly as written here.|Nieuwste eerst. Datums als MM/JJJJ. Laat “Tot” leeg als je er nog werkt. De robot typt dit precies zo in de “Mijn ervaring”-pagina van Workday (en vergelijkbare formulieren).
+Exact start (dd/mm/yyyy)|Exacte begindatum (dd/mm/jjjj)
+Exact end (dd/mm/yyyy)|Exacte einddatum (dd/mm/jjjj)
+Reason for leaving|Reden van vertrek
+Employed through an agency?|Via een uitzendbureau in dienst?
+Sections on this page|Onderdelen op deze pagina
+MM/YYYY|MM/JJJJ
+for forms that want the day|voor formulieren die de dag vragen
+e.g. Fixed-term contract ended|bijv. Tijdelijk contract afgelopen
+Agency name, if any|Naam van het bureau, indien van toepassing
+Only on forms that ask for my full employment history (left off Workday-style “relevant roles” sections)|Alleen op formulieren die mijn volledige werkgeschiedenis vragen (niet in Workday-achtige onderdelen “relevante functies”)
+Education and qualifications|Opleiding en diploma's
+School or university|School of universiteit
+From (year)|Van (jaar)
+To (year)|Tot (jaar)
+Expected end (if in progress)|Verwacht einde (indien bezig)
+Result / grade|Resultaat / cijfer
+Form choice: degree|Formulierkeuze: diploma
+Form choice: field of study|Formulierkeuze: studierichting
+Level|Niveau
+Master’s / MBA|Master / MBA
+Bachelor’s|Bachelor
+Professional (CIPD etc.)|Beroepsopleiding (CIPD enz.)
+School / college|School / mbo
+Only on forms that ask for my full education history|Alleen op formulieren die mijn volledige opleidingsgeschiedenis vragen
+Competency answers|Antwoorden per competentie
+Add a competency|Competentie toevoegen
+For forms with a box per competency (“Leadership”, “Communication”, “Planning and organising”…). The robot offers the matching answer for you to check and tailor. Tags are other words a form might use for the same competency.|Voor formulieren met een vak per competentie (“Leidinggeven”, “Communicatie”, “Plannen en organiseren”…). De robot biedt het passende antwoord aan om te controleren en aan te passen. Tags zijn andere woorden die een formulier voor dezelfde competentie kan gebruiken.
+Competency|Competentie
+Tags|Tags
+YYYY|JJJJ
+e.g. 2:2, Pass, Pending|bijv. 7,5, Geslaagd, In afwachting
+e.g. Masters Degree|bijv. Master
+e.g. Human Resources Management|bijv. Human Resource Management
+Add an example|Voorbeeld toevoegen
+Your real stories for “Describe a time when…” and “Give an example…” questions. The robot picks the one that best fits each question and writes the answer in the right order (situation, task, action, result, what you'd do differently). Tags are the words a question might use. Keep them true – an interviewer will ask you about them.|Je echte verhalen voor vragen als “Beschrijf een moment waarop…” en “Geef een voorbeeld…”. De robot kiest per vraag het best passende verhaal en schrijft het antwoord in de juiste volgorde (situatie, taak, actie, resultaat, wat je anders zou doen). Tags zijn woorden die een vraag kan gebruiken. Houd ze waar – een interviewer vraagt ernaar.
+Title|Titel
+Skills, certifications and languages|Vaardigheden, certificaten en talen
+(one per line, or separated by commas – added to Workday's Skills box)|(één per regel, of gescheiden door komma's – toegevoegd aan het vak Vaardigheden van Workday)
+(one per line: Language – level)|(één per regel: Taal – niveau)
+Answers the robot remembers|Antwoorden die de robot onthoudt
+None yet. When the robot asks you a question and you tick “Remember”, it appears here.|Nog geen. Als de robot je een vraag stelt en je “Onthouden” aanvinkt, verschijnt die hier.
+Only on forms that ask for my full employment history|Alleen op formulieren die mijn volledige werkgeschiedenis vragen
+e.g. stakeholder, influence, change|bijv. stakeholder, invloed, verandering
+Fill in each step, pick a design, and download it as PDF or Word – or tailored to a job you're applying for. Everything here is also used by My career, letters and application forms.|Vul elke stap in, kies een ontwerp en download het als PDF of Word – of afgestemd op een baan waarop je solliciteert. Alles hier wordt ook gebruikt door Mijn loopbaan, brieven en sollicitatieformulieren.
+(under your name – usually the job you're aiming for)|(onder je naam – meestal de functie waar je naar streeft)
+Profile|Profiel
+(3–4 sentences: who you are, your strongest experience, what you want next)|(3–4 zinnen: wie je bent, je sterkste ervaring, wat je hierna wilt)
+Steps|Stappen
+e.g. HR Administrator|bijv. HR-administrateur
+Name, phone, email, location and links come from|Naam, telefoon, e-mail, plaats en links komen uit
+Upload it and any empty steps fill in from it – then check and improve each one.|Upload het en lege stappen worden ermee ingevuld – controleer en verbeter daarna elke stap.
+Write a short profile (3–4 sentences): who you are, your strongest experience, and what you want next.|Schrijf een kort profiel (3–4 zinnen): wie je bent, je sterkste ervaring en wat je hierna wilt.
+Open the PDF|PDF openen
+Certifications|Certificaten
+United Kingdom|Verenigd Koninkrijk
+on the advert to score it, write your letter and track it.|op de vacature om hem te scoren, je brief te schrijven en hem bij te houden.
+Each refresh searches these and scores every job against your details.|Elke verversing doorzoekt deze en scoort elke vacature op basis van je gegevens.
+– not set up on this server yet|– nog niet ingesteld op deze server
+– on|– aan
+– connect Gmail in|– koppel Gmail bij
+LinkedIn and Indeed don't let other apps search their jobs directly, so Job Hunt HQ reads the job-alert emails they send you instead. Switch alerts on below and they'll appear in your jobs after each refresh.|LinkedIn en Indeed laten andere apps hun vacatures niet direct doorzoeken, dus Job Hunt HQ leest in plaats daarvan de vacaturemeldingen die ze je mailen. Zet hieronder meldingen aan en ze verschijnen na elke verversing bij je vacatures.
+– open each search, then press|– open elke zoekopdracht en druk dan op
+Set alert|Melding instellen
+(LinkedIn) or|(LinkedIn) of
+Get new jobs by email|Nieuwe vacatures per e-mail ontvangen
+(Indeed):|(Indeed):
+– on LinkedIn: your profile →|– op LinkedIn: je profiel →
+Resources|Bronnen
+Save to PDF|Opslaan als PDF
+. On Indeed:|. Op Indeed:
+→ download your CV. Then upload it on|→ download je cv. Upload het daarna op
+: your work history, education and skills fill in for you.|: je werkervaring, opleiding en vaardigheden worden voor je ingevuld.
+so application forms and your CV include them.|zodat sollicitatieformulieren en je cv ze bevatten.
+Use the|Gebruik de
+browser assistant|browserassistent
+Place|Plaats
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page.|Wat mensen je hebben verteld – problemen, ideeën en vragen. Markeer elk als gepland of klaar en antwoord: ze zien je antwoord op hun eigen Feedbackpagina.
+Everyone’s feedback|Ieders feedback
+New|Nieuw
+Planned|Gepland
+Not doing|Doen we niet
+No open feedback.|Geen openstaande feedback.
+Ireland|Ierland
+France|Frankrijk
+Germany|Duitsland
+Netherlands|Nederland
+Belgium|België
+Spain|Spanje
+Portugal|Portugal
+Italy|Italië
+Poland|Polen
+Step {n} of {m}|Stap {n} van {m}
+{job}: add a number if you have one – how many, how much, how often, or by what percentage.|{job}: voeg een getal toe als je dat hebt – hoeveel, hoe vaak of met welk percentage.
+{job}: split long points – one achievement per line reads better.|{job}: splits lange punten – één prestatie per regel leest beter.
+Applied {date}|Gesolliciteerd op {date}
+waiting {n} days|{n} dagen aan het wachten
+Search near {place}|Zoeken bij {place}
+Last updated {date}. Questions? Email|Laatst bijgewerkt: {date}. Vragen? Mail naar
+Last updated {date}.|Laatst bijgewerkt: {date}.
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest – plus the specialist sites for {fields}. Found one you like? Click|Je functietitels, al gezocht op Indeed, LinkedIn, Reed, CV-Library, Totaljobs en de rest – plus de gespecialiseerde sites voor {fields}. Iets gevonden dat je bevalt? Klik op
+Austria|Oostenrijk
+Switzerland|Zwitserland
+United States|Verenigde Staten
+Canada|Canada
+Australia|Australië
+United Arab Emirates|Verenigde Arabische Emiraten
+Language|Taal
+Administration and office|Administratie en kantoor
+Accountancy and finance|Boekhouding en financiën
+Banking, insurance and financial services|Bankwezen, verzekeringen en financiële dienstverlening
+Customer service and call centre|Klantenservice en callcenter
+Sales and business development|Verkoop en business development
+Marketing, PR and communications|Marketing, pr en communicatie
+IT, software and data|IT, software en data
+Design, creative and media|Design, creatief en media
+Education and teaching|Onderwijs en lesgeven
+Healthcare and nursing|Gezondheidszorg en verpleging
+Social care and support work|Zorg en begeleiding
+HR and recruitment|HR en werving
+Hospitality, catering and food|Horeca, catering en voeding
+Retail|Detailhandel
+Warehouse, logistics and driving|Magazijn, logistiek en rijden
+Construction and trades|Bouw en vakmanschap
+Engineering and manufacturing|Techniek en productie
+Automotive and motor trade|Automotive en autohandel
+Science, pharma and laboratory|Wetenschap, farma en laboratorium
+Public sector, government and civil service|Publieke sector, overheid en ambtenarij
+Charity and not-for-profit|Goede doelen en non-profit
+Security, emergency services and armed forces|Beveiliging, hulpdiensten en krijgsmacht
+Cleaning and facilities|Schoonmaak en facilitair
+Leisure, sport, travel and tourism|Vrije tijd, sport, reizen en toerisme
+Aviation and airports|Luchtvaart en luchthavens
+Property and housing|Vastgoed en wonen
+Procurement and purchasing|Inkoop en aanbesteding
+Environment, energy and agriculture|Milieu, energie en landbouw
+Management, projects and consulting|Management, projecten en advies
+Hair, beauty and wellbeing|Kapsalon, schoonheid en welzijn
+Languages and translation|Talen en vertaling
+Field of work|Vakgebied
+Search job titles|Functietitels zoeken
+(one per line: place, miles)|(één per regel: plaats, mijl)
+Minimum salary (£)|Minimumsalaris (£)
+app password|app-wachtwoord
+: go to|: ga naar
+(2-Step Verification must be on), create one called “Job Hunt HQ”, and paste the 16 letters here.|(verificatie in twee stappen moet aanstaan), maak er een aan met de naam “Job Hunt HQ” en plak de 16 letters hier.
+You can disconnect any time by removing the app password here (or deleting it in your Google account), download everything that's stored with|Je kunt altijd ontkoppelen door het app-wachtwoord hier te verwijderen (of in je Google-account), alles downloaden wat is bewaard via
+, and ask how your data is used, have it corrected or deleted under UK GDPR – see|, en vragen hoe je gegevens worden gebruikt, ze laten corrigeren of verwijderen onder de UK GDPR – zie
+App password|App-wachtwoord
+Add jobs from my LinkedIn and Indeed job-alert emails|Vacatures uit mijn LinkedIn- en Indeed-meldingen toevoegen
+Who can use Job Hunt HQ. Only people with an invite code can make an account, and everyone's jobs, CV, letters and emails are private to them – you can't see theirs and they can't see yours.|Wie Job Hunt HQ kan gebruiken. Alleen mensen met een uitnodigingscode kunnen een account maken, en ieders vacatures, cv, brieven en e-mails zijn privé – jij ziet die van hen niet en zij die van jou niet.
+Invite someone|Iemand uitnodigen
+Create invite|Uitnodiging maken
+Accounts|Accounts
+Joined|Lid sinds
+Last signed in|Laatst ingelogd
+Owner|Eigenaar
+Security and misuse alerts|Beveiligings- en misbruikmeldingen
+Job Hunt HQ watches for signs that the|Job Hunt HQ let op tekenen dat de regels voor
+rules are being broken: password guessing, made-up assistant keys, an assistant file used from lots of places (shared), bulk automated applications, a used invite link tried again, and anything people report.|worden overtreden: wachtwoorden raden, verzonnen assistentsleutels, een assistentbestand vanaf veel plekken (gedeeld), geautomatiseerde massasollicitaties, een gebruikte uitnodigingslink die opnieuw wordt geprobeerd, en alles wat mensen melden.
+Email alerts aren't switched on yet|E-mailmeldingen staan nog niet aan
+– they're only listed here. Add the email settings on the server to have them sent to your contact address.|– ze staan alleen hier. Voeg de e-mailinstellingen toe op de server om ze naar je contactadres te laten sturen.
+Nothing so far.|Nog niets.
+Who it's for (just for you), e.g. Amira from uni|Voor wie (alleen voor jou), bijv. Amira van de uni
+Account|Account
+Changing your password signs you out everywhere else.|Je wachtwoord wijzigen logt je overal anders uit.
+Download everything that's yours – jobs, applications, emails, My career, settings, letters and your CV – as one zip. Keep it as a backup, or use it to move to the Job Hunt HQ website.|Download alles wat van jou is – vacatures, sollicitaties, e-mails, Mijn loopbaan, instellingen, brieven en je cv – als één zip. Bewaar het als back-up, of gebruik het om naar de Job Hunt HQ-website over te stappen.
+How your data is used, and your rights under UK GDPR:|Hoe je gegevens worden gebruikt, en je rechten onder de UK GDPR:
+Progress|Voortgang
+e.g. Manchester, M1 2AB, Lyon, Rotterdam|bijv. Manchester, M1 2AB, Lyon, Rotterdam
+e.g. Available immediately, 1 month|bijv. Direct beschikbaar, 1 maand
+e.g. British citizen – no sponsorship needed|bijv. Brits staatsburger – geen sponsoring nodig
+← All jobs|← Alle vacatures
+posting date unknown|plaatsingsdatum onbekend
+Opens the application in a browser window the app controls. It clicks Apply, fills each step and uploads your CV and letter. It asks you when it needs you, and stops for you to press Submit.|Opent de sollicitatie in een browservenster dat de app bestuurt. Hij klikt op Solliciteren, vult elke stap in en uploadt je cv en brief. Hij vraagt het je als hij je nodig heeft, en stopt zodat jij op Verzenden klikt.
+Or do it yourself in 4 steps|Of doe het zelf in 4 stappen
+Your cover letter is ready|Je motivatiebrief is klaar
+– read it below, with your answers, and personalise anything in [brackets].|– lees hem hieronder, met je antwoorden, en pas alles tussen [haakjes] aan.
+Write it again|Opnieuw schrijven
+Open the application|Sollicitatie openen
+, then click your|, klik dan op je
+bookmark on the form (or copy the answers on the right).|bladwijzer op het formulier (of kopieer de antwoorden rechts).
+Open advert ↗|Vacature openen ↗
+Click the advert's Apply button to reach the employer's form. When you use the Fill button there, its link is saved here.|Klik op de knop Solliciteren in de vacature om bij het formulier van de werkgever te komen. Gebruik je daar de knop Invullen, dan wordt de link hier bewaard.
+and the cover letter (save it as a Word file below if the form wants a file).|en de motivatiebrief (sla hem hieronder op als Word-bestand als het formulier een bestand wil).
+Tailored CV (PDF)|Aangepast cv (PDF)
+Tailored CV (Word)|Aangepast cv (Word)
+Your CV with the skills and achievements this advert asks for put first – nothing added.|Je cv met de vaardigheden en prestaties die deze vacature vraagt bovenaan – niets toegevoegd.
+Submit, then mark it here.|Verzend, en markeer het dan hier.
+Quick answers|Snelle antwoorden
+Address|Adres
+Ready-to-paste answers|Antwoorden om te plakken
+Written for this advert from your CV. Personalise anything in [brackets] before you paste it.|Voor deze vacature geschreven vanuit je cv. Pas alles tussen [haakjes] aan voordat je plakt.
+Why do you want this role?|Waarom wil je deze functie?
+Summary of relevant experience|Samenvatting van relevante ervaring
+Key skills|Belangrijkste vaardigheden
+Qualifications|Diploma's
+Open the advert and click Send to Job Hunt HQ to pick up its date|Open de vacature en klik op Naar Job Hunt HQ sturen om de datum op te halen
+Save to my Cover Letters folder|Opslaan in mijn map Motivatiebrieven
+Edit it here, then download it to attach, or press|Bewerk hem hier en download hem om bij te voegen, of druk op
+to paste it into a cover-letter box. The browser assistant can also put it in the box or attach it to the form for you.|om hem in een vak voor de motivatiebrief te plakken. De browserassistent kan hem ook in het vak zetten of aan het formulier toevoegen.
+Read it through before you send it, and add anything specific from the advert.|Lees hem door voordat je verstuurt, en voeg iets specifieks uit de vacature toe.
+Paste the job description|Plak de functieomschrijving
+Copy the advert from the job page and paste it here. The app re-scores the job, writes your cover letter for it and saves the letter in your Cover Letters folder.|Kopieer de vacature van de pagina en plak hem hier. De app scoort de baan opnieuw, schrijft je motivatiebrief en bewaart die in je map Motivatiebrieven.
+Read it and write my cover letter|Lezen en mijn motivatiebrief schrijven
+Showing|Toont
+No jobs to review|Geen vacatures om te bekijken
+for this filter|voor dit filter
+Most saved LinkedIn and Indeed jobs have no posting date, so set Posted to "any time" to see them|De meeste bewaarde LinkedIn- en Indeed-vacatures hebben geen plaatsingsdatum, zet Geplaatst op “altijd” om ze te zien
+Press|Druk op
+at the top to search again,|bovenaan om opnieuw te zoeken,
+search every job site|elke vacaturesite doorzoeken
+, or|, of
+add a job|voeg een vacature toe
+you found.|die je hebt gevonden.
+remove any you don't have|verwijder wat je niet hebt
+No jobs yet. Press|Nog geen vacatures. Druk op
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page|Wat mensen je hebben verteld – problemen, ideeën en vragen. Markeer elk als gepland of klaar en antwoord: ze zien je antwoord op hun eigen Feedbackpagina
+Tell us what's wrong, what's missing or what you like. You'll see replies here|Vertel ons wat er mis is, wat er ontbreekt of wat je goed vindt. Je ziet antwoorden hier
+(they'll see this)|(dit zien ze)
+Reply:|Antwoord:
+Quickest way: on any job advert, press the round|Snelste manier: druk op een vacature op de ronde knop
+Job Hunt HQ assistant|Job Hunt HQ-assistent
+button and choose|en kies
+get the assistant|de assistent downloaden
+Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it|Of plak de link van de vacature hier – dat werkt voor de meeste carrièresites en LinkedIn, al blokkeert Indeed het vaak
+Next:|Volgende:
+Found in your Gmail|Gevonden in je Gmail
+Nothing here|Niets hier
+for “|voor “
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at|Houd je wachtwoord privé – jij bent verantwoordelijk voor wat er in je account gebeurt. Laat het ons meteen weten via
+if you think someone else has used it|als je denkt dat iemand anders het heeft gebruikt
+If you see something that breaks these rules, or a security problem, tell us at|Zie je iets dat deze regels breekt, of een beveiligingsprobleem, laat het ons weten via
+(or use|(of gebruik
+{titles} job titles across {fields} fields, and help changing career.|{titles} functietitels in {fields} vakgebieden, en hulp bij het wisselen van loopbaan.
+Pick from {titles} job titles across {fields} fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.|Kies uit {titles} functietitels in {fields} vakgebieden – magazijn, zorg, recht, IT, detailhandel, HR en meer – of typ je eigen. Vertel waar je woont en hoe ver je wilt reizen.
+{langs} languages, including Arabic, and {countries} countries, each with its own job sites.|{langs} talen, waaronder Arabisch, en {countries} landen, elk met eigen vacaturesites.
+Ask the person who told you about Job Hunt HQ, or email {email}.|Vraag het aan wie je over Job Hunt HQ vertelde, of mail naar {email}.
+Step|Stap
+Newest first. Put|Nieuwste eerst. Zet
+one achievement per line|één prestatie per regel
+No jobs yet – press “Add a job”. Placements, part-time work and volunteering all count.|Nog geen banen – druk op “Baan toevoegen”. Stages, deeltijdwerk en vrijwilligerswerk tellen allemaal.
+Highest qualification first. Leave “To” empty if you're still studying, and add the expected year.|Hoogste diploma eerst. Laat “Tot” leeg als je nog studeert, en voeg het verwachte jaar toe.
+Expected (if in progress)|Verwacht (indien bezig)
+No qualifications yet – press “Add a qualification”.|Nog geen diploma's – druk op “Diploma toevoegen”.
+(one per line – use the words job adverts use: tools, systems, methods)|(één per regel – gebruik de woorden uit vacatures: tools, systemen, methodes)
+Save and choose a design|Opslaan en een ontwerp kiezen
+Word uses the Classic layout so it stays easy to edit.|Word gebruikt de klassieke opmaak, zodat het makkelijk te bewerken blijft.
+Your applications keep using|Je sollicitaties blijven gebruiken:
+from Documents.|uit Documenten.
+Now attached|Nu bijgevoegd
+Puts the skills and achievements the advert asks for first. Nothing is added or changed – it only reorders what you've written, so every word is still true.|Zet de vaardigheden en prestaties die de vacature vraagt vooraan. Er wordt niets toegevoegd of veranderd – alleen wat je schreef wordt anders geordend, dus elk woord klopt nog.
+Tailored PDF|Aangepaste PDF
+Tailored Word|Aangepaste Word
+Shortlist a job first, then come back – or use “Tailored CV” on any job's page.|Zet eerst een vacature op je shortlist en kom dan terug – of gebruik “Aangepast cv” op de pagina van een vacature.
+Find roles, write applications and track every reply in one place|Vind functies, schrijf sollicitaties en volg elke reactie op één plek
+Your job search, wherever you are|Je zoektocht naar werk, waar je ook bent
+You're the first person here, so you'll be the owner: everything already in Job Hunt HQ becomes yours, and only you can invite other people.|Je bent de eerste hier, dus jij wordt de eigenaar: alles wat al in Job Hunt HQ staat wordt van jou, en alleen jij kunt anderen uitnodigen.
+Set-up code|Instelcode
+(from the server's settings)|(uit de serverinstellingen)
+Moving from your PC?|Kom je van je pc?
+(optional: the zip from Account → Download my data)|(optioneel: de zip uit Account → Mijn gegevens downloaden)
+Choose a new password|Kies een nieuw wachtwoord
+For|Voor
+. Other devices will be signed out.|. Andere apparaten worden uitgelogd.
+Nothing waiting to hear back.|Niets wacht op antwoord.
+{n} answers practised|{n} antwoorden geoefend
+average {s}/10|gemiddeld {s}/10
+of 3|van 3
+Up to|Tot
+miles from|mijl van
+a year, optional|per jaar, optioneel
+(comma-separated – used to score how well each job fits)|(gescheiden door komma's – gebruikt om te scoren hoe goed elke vacature past)
+PDF or Word. Job Hunt HQ attaches it to applications, and reads your work history, education and skills into My career so forms and letters can use them. You can check and edit everything afterwards.|PDF of Word. Job Hunt HQ voegt het toe aan sollicitaties en leest je werkervaring, opleiding en vaardigheden in Mijn loopbaan, zodat formulieren en brieven ze kunnen gebruiken. Je kunt daarna alles controleren en bewerken.
+Step by step, with a choice of designs – download it as PDF or Word, and get a version tailored to each job.|Stap voor stap, met een keuze aan ontwerpen – download het als PDF of Word en krijg een versie op maat voor elke vacature.
+Read from your CV:|Uit je cv gelezen:
+Check them on|Controleer ze op
+any time.|wanneer je wilt.
+Keep going – see the tips.|Ga door – bekijk de tips.
+Nothing major – practise saying it out loud.|Niets groots – oefen het hardop.
+A stronger version of your answer|Een sterkere versie van je antwoord
+From your own experience, you could mention|Uit je eigen ervaring zou je kunnen noemen
+A starting point built from your work history|Een beginpunt gebouwd uit je werkervaring
+Only things from your own details – add the real moment and the result in your words.|Alleen uit je eigen gegevens – voeg het echte moment en het resultaat toe in je eigen woorden.
+Your results|Je resultaten
+Practise next:|Oefen hierna:
+other job|andere vacature
+Set|Ingesteld
+On|Aan
+Invite ready|Uitnodiging klaar
+Send this link to the person you're inviting. It works once and expires in 14 days.|Stuur deze link naar wie je uitnodigt. Hij werkt één keer en verloopt na 14 dagen.
+Password reset link for|Wachtwoordresetlink voor
+Send this link to|Stuur deze link naar
+It works once and expires in 48 hours|Hij werkt één keer en verloopt na 48 uur
+Or they can go to|Of ze gaan naar
+/join and type the code|/join en typen de code
+Code|Code
+Made|Gemaakt
+Used by|Gebruikt door
+Switched off|Uitgeschakeld
+Hasn't finished setting up yet|Nog niet klaar met instellen
+Password reset link|Wachtwoordresetlink
+New assistant key|Nieuwe assistentsleutel
+Each one is emailed to|Elke melding wordt gemaild naar
+at most once every 6 hours per problem).|hoogstens één keer per 6 uur per probleem).
+– they're only listed here. Add the email settings on the server to have them sent to|– ze staan alleen hier. Voeg de e-mailinstellingen toe op de server om ze te sturen naar
+When|Wanneer
+What|Wat
+Details|Details
+Situation|Situatie
+Task – your role|Taak – jouw rol
+Action – what you did|Actie – wat je deed
+Result|Resultaat
+What you'd do differently|Wat je anders zou doen
+Questions you answered with “Remember” ticked. Change an answer or delete it, and the robot asks you again next time.|Vragen die je beantwoordde met “Onthouden” aangevinkt. Wijzig of verwijder een antwoord, en de robot vraagt het de volgende keer opnieuw.
+Save answers|Antwoorden opslaan
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest|Je functietitels, al gezocht op Indeed, LinkedIn, Reed, CV-Library, Totaljobs en de rest
+– plus the specialist sites for|– plus de gespecialiseerde sites voor
+Found one you like? Click|Iets gevonden dat je bevalt? Klik op
+Add the jobs you want in|Voeg de banen die je wilt toe bij
+– pick from every kind of work.|– kies uit elk soort werk.
+read from your Gmail|gelezen uit je Gmail
+connect Gmail in|koppel Gmail bij
+Your details, job search and settings are on|Je gegevens, zoekopdracht en instellingen staan bij
+Deletes your account and everything stored for you – jobs, applications, emails read from Gmail, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|Verwijdert je account en alles wat voor je is bewaard – vacatures, sollicitaties, e-mails uit Gmail, cv, brieven, instellingen en feedback. Dit kan niet ongedaan worden gemaakt, dus download eerst je gegevens als je een kopie wilt.
+Type DELETE|Typ DELETE
+For any question or request, email|Voor vragen of verzoeken mail je naar
+You can also use the|Je kunt ook de knop gebruiken:
+Apply in 4 steps|Solliciteer in 4 stappen
+Application link|Sollicitatielink
+(the employer's own form, saved when you last used the Fill button):|(het eigen formulier van de werkgever, bewaard toen je de knop Invullen voor het laatst gebruikte):
+Open application form ↗|Sollicitatieformulier openen ↗
+Advert ↗|Vacature ↗
+✓ Saved:|✓ Opgeslagen:
+Open in Word|Openen in Word
+Open folder|Map openen
+No cover letter yet. Press|Nog geen motivatiebrief. Druk op
+Your CV appears here as you fill in each step.|Je cv verschijnt hier terwijl je elke stap invult.
+Type|Soort
+Matched to|Gematcht met
+Get an invite code from the person who invited you.|Vraag een uitnodigingscode aan de persoon die je heeft uitgenodigd.
+Enter it here and choose your username and password.|Vul hem hier in en kies je gebruikersnaam en wachtwoord.
+Add your CV and choose the jobs you want. It takes about five minutes.|Voeg je cv toe en kies de banen die je wilt. Dat duurt ongeveer vijf minuten.
+No code yet? Email {email} and ask for one.|Nog geen code? Mail naar {email} en vraag er een aan.
+When an employer replies, Job Hunt HQ notices. The application moves to Interview, the date goes on your Home page, and practice questions for that job are ready before you are.|Als een werkgever reageert, merkt Job Hunt HQ dat op. De sollicitatie gaat naar Gesprek, de datum komt op je Home-pagina, en oefenvragen voor die baan staan klaar voordat jij dat bent.
+Photos:|Foto's:
+Join|Meedoen
+Language: {lang}|Taal: {lang}
+Status for {role}|Status voor {role}
+{n} countries, each with its own job sites|{n} landen, elk met eigen vacaturesites
+Why do you want to work for {company}?|Waarom wil je bij {company} werken?
+{role} at {company}, {n} match|{role} bij {company}, match {n}
+Job Hunt HQ (“the service”, “we”) is a personal job-search assistant run by Rashid Idle in the United Kingdom. Using it means you accept these terms, our|Job Hunt HQ (“de dienst”, “wij”) is een persoonlijke assistent voor het zoeken naar werk, beheerd door Rashid Idle in het Verenigd Koninkrijk. Door het te gebruiken ga je akkoord met deze voorwaarden, onze
+and|en
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at {email} if you think someone else has used it.|Houd je wachtwoord privé – jij bent verantwoordelijk voor wat er in je account gebeurt. Laat het ons meteen weten via {email} als je denkt dat iemand anders het heeft gebruikt.
+The service is provided free of charge, “as is”, and may sometimes be unavailable, change, or stop. We'll try to give notice of big changes. We may update these terms; the date at the top shows when they last changed, and continuing to use the service means you accept the update.|De dienst is gratis en wordt geleverd “zoals hij is”, en kan soms onbeschikbaar zijn, veranderen of stoppen. We proberen grote wijzigingen vooraf te melden. We kunnen deze voorwaarden bijwerken; de datum bovenaan toont wanneer ze voor het laatst zijn gewijzigd, en als je de dienst blijft gebruiken ga je akkoord met de wijziging.
+Reads every job email since 1 January – replies, interviews, offers and what you sent – and adds anything missing here. It can take 10–20 minutes; you can keep using the app.|Leest elke vacature-e-mail sinds 1 januari – reacties, gesprekken, aanbiedingen en wat je verstuurde – en voegt hier toe wat ontbreekt. Dat kan 10–20 minuten duren; je kunt de app gewoon blijven gebruiken.
+Connect Gmail and Job Hunt HQ reads replies from employers – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. You need a Gmail|Koppel Gmail en Job Hunt HQ leest reacties van werkgevers – ontvangstbevestigingen, gesprekken, afwijzingen, aanbiedingen – en houdt je Sollicitaties bij. Het leest alleen; het verstuurt of verwijdert nooit iets. Je hebt een Gmail-
+Your emails stay private.|Je e-mails blijven privé.
+Nobody reads your Gmail through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your Gmail.|Niemand leest je Gmail via Job Hunt HQ – niet de eigenaar en niet andere gebruikers. Het wordt automatisch gelezen, alleen om e-mails over je sollicitaties te herkennen; daarvan bewaart het de afzender, het onderwerp, de datum en een korte preview zodat je Sollicitaties-pagina bijgewerkt blijft. Alle andere e-mails worden genegeerd en daarvan wordt niets bewaard. Het kan niets verzenden, wijzigen of verwijderen in je Gmail.
+– on any advert it scores the job and saves it; on the application form it fills in what it can and attaches your CV and cover letter.|– op elke vacature scoort hij de baan en bewaart hem; op het sollicitatieformulier vult hij in wat hij kan en voegt je cv en motivatiebrief toe.
+It's already connected to|Hij is al gekoppeld aan
+your|jouw
+account – don't share the file.|account – deel het bestand niet.
+drafts each question from your own experience; edit it, then|schrijft elk antwoord vanuit je eigen ervaring; pas het aan en kies dan
+Outside {area} – too far from {place}|Buiten {area} – te ver van {place}
+Hidden: too far from {place}|Verborgen: te ver van {place}
+· {user}. Your details, job search and settings are on|· {user}. Je gegevens, zoekopdracht en instellingen staan bij
+you|jij

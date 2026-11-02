@@ -9,7 +9,7 @@ import webbrowser
 from datetime import date, timedelta
 from pathlib import Path
 
-from flask import Flask, abort, flash, redirect, render_template, request, send_file, url_for
+from flask import Flask, abort, flash, has_request_context, redirect, render_template, request, send_file, url_for
 
 from jobhunt import db, notify
 from jobhunt.config import (DATA_DIR, GMAIL_CREDENTIALS, HOSTED, access_token, as_user, current_user_id, cv_file,
@@ -800,7 +800,9 @@ def nice_date(iso) -> str:
         d = date.fromisoformat(str(iso or "")[:10])
     except ValueError:
         return str(iso or "")
-    return f"{d.day} {d:%b}" + ("" if d.year == date.today().year else f" {d.year}")
+    lang = current_lang() if has_request_context() else "en"
+    month = i18n.MONTHS[lang].split()[d.month - 1] if lang in i18n.MONTHS else f"{d:%b}"
+    return f"{d.day} {month}" + ("" if d.year == date.today().year else f" {d.year}")
 
 
 def ago(iso) -> str:

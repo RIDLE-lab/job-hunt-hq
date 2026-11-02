@@ -38,6 +38,7 @@
         <option value="Feedback" data-href="/feedback">
         {% if not hosted %}<option value="Setup" data-href="{{ url_for('setup') }}">{% endif %}
       </datalist>
+      {% include "_lang_top.html" %}
       <form method="post" action="{{ url_for('refresh') }}" class="refresh-form" onsubmit="this.querySelector('button').classList.add('busy')">
         <button class="btn btn-signal refresh-btn" aria-label="Refresh jobs">{{ icon('refresh') }}<span class="lbl">Refresh jobs</span></button>
       </form>
