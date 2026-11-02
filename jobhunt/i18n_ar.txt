@@ -700,3 +700,430 @@ Language: {lang}|اللغة: {lang}
 Status for {role}|حالة {role}
 Why do you want to work for {company}?|لماذا تريد العمل لدى {company}؟
 {role} at {company}, {n} match|{role} لدى {company}، توافق {n}
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.|لا مقابلات بعد. عندما ينتقل طلب إلى «الفرز الأولي» أو «التقييم» أو «المقابلة» – من Gmail أو عندما تغيّر حالته – يظهر هنا مع أسئلة لتلك الوظيفة.
+Try a quick practice|جرّب تدريبًا سريعًا
+Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.|اكتبها، أو اضغط «أجب بصوت عالٍ» وتحدّث – فيكتب ما تقوله. ويمكنه أيضًا قراءة السؤال بصوت عالٍ.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|درجة من 10 على ما يبحث عنه المحاورون: مثال حقيقي، وبنية STAR (الموقف، المهمة، الإجراء، النتيجة)، وما فعلته أنت بنفسك، ونتيجة، والطول المناسب.
+Add this job|أضف هذه الوظيفة
+Add it and apply for me|أضفها وقدّم عني
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|إذا تعذّرت قراءة الرابط، املأ التفاصيل أدناه والصق نص الإعلان، ثم اضغط «أضف هذه الوظيفة» مرة أخرى.
+The closer to the centre, the better the match|كلما اقتربت من المركز، كان التوافق أفضل
+Waiting to hear back|بانتظار الرد
+How Job Hunt HQ uses your information, and your rights under UK GDPR and the Data Protection Act 2018.|كيف يستخدم Job Hunt HQ معلوماتك، وحقوقك بموجب UK GDPR وقانون حماية البيانات لعام 2018.
+Who looks after your data|من يعتني ببياناتك
+Job Hunt HQ is run privately by its owner, who invites people to use it. The owner is responsible for your data (the “controller”). For any question or request, email|يديره مالكه بشكل خاص، وهو من يدعو الناس لاستخدامه. المالك مسؤول عن بياناتك («المتحكّم»). لأي سؤال أو طلب، راسل
+. You can also use the|. يمكنك أيضًا استخدام زر
+button once you're signed in.|بعد تسجيل الدخول.
+What's stored, and why|ما الذي يُحفَظ ولماذا
+Your account:|حسابك:
+name, username and email. Your password is stored only as a secure scrambled “hash” – nobody can read it.|الاسم واسم المستخدم والبريد الإلكتروني. تُحفَظ كلمة المرور فقط على شكل «تجزئة» مشفّرة وآمنة – لا يمكن لأحد قراءتها.
+Your details and career:|بياناتك ومسيرتك:
+what you enter in My settings, My career and Create CV, and the CV you upload – used to find and score jobs, write your cover letters and CVs, and fill in application forms|ما تُدخله في «إعداداتي» و«مسيرتي» و«إنشاء سيرة ذاتية»، والسيرة الذاتية التي ترفعها – تُستخدم للعثور على الوظائف وتقييمها، وكتابة خطاباتك وسيرك الذاتية، وملء نماذج التقديم
+when you ask it to|عندما تطلب ذلك
+Your jobs and applications:|وظائفك وطلباتك:
+the jobs found or saved for you, your letters, and where each application has got to.|الوظائف التي عُثر عليها أو حُفظت لك، وخطاباتك، وأين وصل كل طلب.
+Gmail (only if you connect it):|Gmail (فقط إذا ربطته):
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your Gmail.|تُقرأ الرسائل تلقائيًا، فقط للتعرّف على الردود على طلباتك ورسائل تنبيهات الوظائف. ويُحتفظ منها بالمرسل والموضوع والتاريخ ومعاينة قصيرة. تُتجاهل كل الرسائل الأخرى ولا يُحفظ منها شيء. لا يستطيع Job Hunt HQ إرسال أي شيء أو تغييره أو حذفه في Gmail.
+you send, with any screenshot.|التي ترسلها، مع أي لقطة شاشة.
+Security records:|سجلات الأمان:
+to keep accounts safe and enforce the Acceptable use rules, the website notices things like repeated failed sign-ins, made-up assistant keys, one assistant file used from many places, very fast bulk applications, or a used invite link being tried again. When that happens it records what happened, the username and the internet (IP) address, and emails the owner. These records are only seen by the owner, are used only for security, and are deleted after 90 days. The legal basis is our|لحماية الحسابات وتطبيق قواعد الاستخدام المقبول، يلاحظ الموقع أمورًا مثل تكرار محاولات الدخول الفاشلة، أو مفاتيح مساعد مختلَقة، أو ملف مساعد واحد يُستخدم من أماكن كثيرة، أو طلبات جماعية سريعة جدًا، أو تجربة رابط دعوة مستخدَم مرة أخرى. عندها يسجّل ما حدث واسم المستخدم وعنوان الإنترنت (IP)، ويراسل المالك. لا يرى هذه السجلات إلا المالك، وتُستخدم للأمان فقط، وتُحذف بعد 90 يومًا. الأساس القانوني هو
+legitimate interest|مصلحتنا المشروعة
+in keeping the service and your data safe.|في الحفاظ على أمان الخدمة وبياناتك.
+The legal basis is your|الأساس القانوني هو
+and providing the service you've asked for. Nothing is sold, shared with advertisers, or used to train AI. Nobody else who uses Job Hunt HQ can see anything of yours.|وتقديم الخدمة التي طلبتها. لا يُباع شيء ولا يُشارَك مع المعلنين ولا يُستخدم لتدريب الذكاء الاصطناعي. لا يمكن لأي مستخدم آخر لـ Job Hunt HQ رؤية أي شيء يخصّك.
+No person looks at your Gmail through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|لا يطّلع أي شخص على Gmail الخاص بك عبر Job Hunt HQ – لا المالك ولا المستخدمون الآخرون. كل شيء يجري تلقائيًا، وبيانات كل شخص محفوظة في مخزن منفصل. صفحات إدارة المالك لا تعرض إلا الأسماء وأسماء المستخدمين وآخر تسجيل دخول.
+AI and job sites|الذكاء الاصطناعي ومواقع التوظيف
+If AI writing is switched on, the advert and the relevant parts of your CV are sent to Anthropic's Claude to write a draft, and nothing else. Job searches send only the job title and place to Reed, Adzuna and the other job sites – never your personal details.|إذا كانت الكتابة بالذكاء الاصطناعي مفعّلة، يُرسَل الإعلان والأجزاء ذات الصلة من سيرتك إلى Claude من Anthropic لكتابة مسودة، ولا شيء غير ذلك. عمليات البحث ترسل فقط المسمى الوظيفي والمكان إلى Reed وAdzuna ومواقع التوظيف الأخرى – ولا ترسل بياناتك الشخصية أبدًا.
+See your data|اطّلع على بياناتك
+Account → Download my data|الحساب ← تنزيل بياناتي
+gives you everything in one file, straight away.|يعطيك كل شيء في ملف واحد، فورًا.
+Ask how it's used|اسأل كيف تُستخدم
+– email the owner or use Feedback, and you'll get an answer within one month.|– راسل المالك أو استخدم الملاحظات، وستتلقى ردًا خلال شهر.
+Correct it|صحّحها
+– change anything in My settings and My career, or ask.|– غيّر ما تشاء في «إعداداتي» و«مسيرتي»، أو اطلب ذلك.
+Delete it|احذفها
+Account → Delete my account|الحساب ← حذف حسابي
+removes your account and everything stored for you, immediately.|يحذف حسابك وكل ما حُفظ لك، فورًا.
+Take it elsewhere|انقلها إلى مكان آخر
+– the download is a standard file you can keep or move.|– الملف المنزَّل ملف قياسي يمكنك الاحتفاظ به أو نقله.
+Withdraw consent / object|سحب الموافقة / الاعتراض
+– disconnect Gmail in My settings at any time, or stop using the service.|– افصل Gmail من «إعداداتي» في أي وقت، أو توقّف عن استخدام الخدمة.
+If you're unhappy with how your data is handled, you can complain to the Information Commissioner's Office:|إذا لم تكن راضيًا عن طريقة التعامل مع بياناتك، يمكنك تقديم شكوى إلى مكتب مفوّض المعلومات (ICO):
+How long it's kept, and where|مدة الاحتفاظ ومكانه
+Your data is kept until you delete it or your account. It's stored on the service's server (in the EU for the website) and backed up only by the owner. Connections are encrypted (HTTPS).|تُحفظ بياناتك حتى تحذفها أو تحذف حسابك. وهي مخزّنة على خادم الخدمة (في الاتحاد الأوروبي للموقع)، ولا يأخذ نسخًا احتياطية منها إلا المالك. الاتصالات مشفّرة (HTTPS).
+About these terms|عن هذه الشروط
+Cookie notice|إشعار ملفات تعريف الارتباط
+rules. If you don't agree, please don't use it.|. إذا كنت لا توافق، فلا تستخدمه من فضلك.
+Who can use it|من يمكنه استخدامه
+Accounts are by invitation only. You must be 16 or over and looking for work for yourself.|الحسابات بالدعوة فقط. يجب أن يكون عمرك 16 عامًا أو أكثر وأن تبحث عن عمل لنفسك.
+We can suspend or close an account that breaks these terms, or if we need to protect the service or other people.|يمكننا تعليق أو إغلاق أي حساب يخالف هذه الشروط، أو إذا احتجنا إلى حماية الخدمة أو أشخاص آخرين.
+What the service does – and doesn't|ما تفعله الخدمة – وما لا تفعله
+It finds and scores jobs, writes draft cover letters, CVs and answers, fills in forms when you ask it to, and tracks your applications.|تعثر على الوظائف وتقيّمها، وتكتب مسودات خطابات التقديم والسير الذاتية والإجابات، وتملأ النماذج عندما تطلب، وتتابع طلباتك.
+Everything it writes is a draft for you to check.|كل ما تكتبه مسودة عليك مراجعتها.
+You are responsible for every application you send.|أنت مسؤول عن كل طلب ترسله.
+Read and correct anything it fills in or writes before you submit. It never presses Submit for you.|اقرأ وصحّح كل ما تملؤه أو تكتبه قبل الإرسال. لا تضغط «إرسال» نيابةً عنك أبدًا.
+Only give information that's true. Never use the service to claim experience, qualifications or rights you don't have.|قدّم معلومات صحيحة فقط. لا تستخدم الخدمة أبدًا لادّعاء خبرة أو مؤهلات أو حقوق ليست لديك.
+Jobs come from third-party job sites and employers. We don't check, endorse or guarantee any job, employer, salary or advert, and we're not a recruitment agency or an employer.|تأتي الوظائف من مواقع توظيف وأصحاب عمل خارجيين. لا نتحقق من أي وظيفة أو صاحب عمل أو راتب أو إعلان ولا نضمنه، ولسنا وكالة توظيف ولا صاحب عمل.
+Using the service doesn't guarantee interviews or job offers.|استخدام الخدمة لا يضمن مقابلات أو عروض عمل.
+Other websites|مواقع أخرى
+The service links to and works alongside job sites (for example Indeed, LinkedIn, Reed, CV-Library) and employers' application forms. Those sites have their own terms, which you agree to when you use them. Use the browser assistant only in ways those sites allow, and only on your own applications.|ترتبط الخدمة بمواقع التوظيف (مثل Indeed وLinkedIn وReed وCV-Library) ونماذج التقديم لدى أصحاب العمل وتعمل معها. لتلك المواقع شروطها الخاصة التي توافق عليها عند استخدامها. استخدم مساعد المتصفح فقط بالطرق التي تسمح بها تلك المواقع، ولطلباتك أنت فقط.
+Your content|محتواك
+Your CV, career details, letters and answers stay yours. You let us store and process them only to provide the service to you, as described in the Privacy notice. You can download or delete them at any time from your Account page.|سيرتك الذاتية وبيانات مسيرتك وخطاباتك وإجاباتك تبقى ملكك. تسمح لنا بحفظها ومعالجتها فقط لتقديم الخدمة لك، كما هو موضح في إشعار الخصوصية. يمكنك تنزيلها أو حذفها في أي وقت من صفحة الحساب.
+Availability and changes|التوفر والتغييرات
+Liability|المسؤولية
+Nothing in these terms limits liability that can't be limited by law (such as for death or personal injury caused by negligence, or fraud). Otherwise, as a free service, we aren't liable for indirect or consequential loss, for the outcome of any job application, or for content on third-party sites. See the|لا شيء في هذه الشروط يحدّ من المسؤولية التي لا يجوز الحدّ منها قانونًا (مثل الوفاة أو الإصابة الناتجة عن الإهمال، أو الاحتيال). وفيما عدا ذلك، وبما أنها خدمة مجانية، لسنا مسؤولين عن الخسائر غير المباشرة أو التبعية، ولا عن نتيجة أي طلب وظيفة، ولا عن المحتوى في مواقع الأطراف الأخرى. راجع
+Law|القانون
+These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction. If you live in Scotland or Northern Ireland you can also use your local courts.|تخضع هذه الشروط لقانون إنجلترا وويلز، وتختص بها محاكم إنجلترا وويلز. إذا كنت تعيش في اسكتلندا أو أيرلندا الشمالية فيمكنك أيضًا اللجوء إلى محاكمك المحلية.
+The cookies we use|ملفات تعريف الارتباط التي نستخدمها
+Job Hunt HQ uses only what it needs to work. There's no advertising, tracking or analytics, so there's nothing to accept or reject.|لا يستخدم Job Hunt HQ إلا ما يحتاجه ليعمل. لا إعلانات ولا تتبّع ولا تحليلات، لذا لا يوجد ما تقبله أو ترفضه.
+Name|الاسم
+What it's for|الغرض منه
+How long|المدة
+Keeps you signed in, and protects forms from being sent by other websites.|يُبقيك مسجّل الدخول، ويحمي النماذج من أن تُرسَل من مواقع أخرى.
+Until you sign out, up to 30 days|حتى تسجّل الخروج، بحد أقصى 30 يومًا
+Remembers the language you chose for the site.|يتذكّر اللغة التي اخترتها للموقع.
+The browser assistant keeps where you dragged its button, and the last job you looked at, in your own browser's storage. It isn't sent anywhere else.|يحفظ مساعد المتصفح مكان زرّه الذي سحبته إليه، وآخر وظيفة شاهدتها، في تخزين متصفحك أنت. ولا يُرسَل ذلك إلى أي مكان آخر.
+Controlling cookies|التحكّم في ملفات تعريف الارتباط
+You can delete cookies in your browser's settings at any time. If you block them, you won't be able to sign in.|يمكنك حذف ملفات تعريف الارتباط من إعدادات متصفحك في أي وقت. إذا حظرتها فلن تتمكن من تسجيل الدخول.
+Drafts, not advice|مسودات، لا نصائح
+Cover letters, CVs, answers, scores and suggestions are produced automatically – sometimes with AI – from the details you give and the job advert. They can be wrong, incomplete or out of date.|تُنتَج خطابات التقديم والسير الذاتية والإجابات والدرجات والاقتراحات تلقائيًا – أحيانًا بالذكاء الاصطناعي – من البيانات التي تقدّمها ومن إعلان الوظيفة. قد تكون خاطئة أو ناقصة أو قديمة.
+Always read, check and edit them before you use them.|اقرأها وتحقّق منها وعدّلها دائمًا قبل استخدامها.
+They aren't careers, legal, immigration or financial advice.|ليست نصيحة مهنية أو قانونية أو بشأن الهجرة أو مالية.
+Fit scores|درجات التوافق
+A job's score is an estimate of how well the advert matches the details you entered. It isn't a prediction of whether you'll be shortlisted, and it can't see everything an employer looks for.|درجة الوظيفة تقدير لمدى توافق الإعلان مع البيانات التي أدخلتها. وهي ليست توقعًا لاختيارك في القائمة المختصرة، ولا ترى كل ما يبحث عنه صاحب العمل.
+Job adverts and other sites|إعلانات الوظائف والمواقع الأخرى
+Adverts, salaries, locations and closing dates come from third parties and can change or be removed without notice. We don't vet employers or recruiters. Be careful with any job that asks you for money, bank details or ID documents before a proper offer – report it to the job site and to|تأتي الإعلانات والرواتب والمواقع ومواعيد الإغلاق من أطراف أخرى، وقد تتغير أو تُحذف دون إشعار. لا نتحقق من أصحاب العمل أو جهات التوظيف. احذر من أي وظيفة تطلب منك مالًا أو بيانات بنكية أو وثائق هوية قبل عرض حقيقي – وأبلِغ عنها موقع التوظيف و
+Questions it won't answer for you|أسئلة لا يجيب عنها نيابةً عنك
+Personal and sensitive questions on application forms – such as health, disability, criminal record, diversity monitoring, right to work and visa status – are left for you to answer yourself, unless you've saved your own answer. What you submit is your responsibility.|الأسئلة الشخصية والحساسة في نماذج التقديم – مثل الصحة والإعاقة والسجل الجنائي ومراقبة التنوع والحق في العمل والتأشيرة – تُترك لتجيب عنها بنفسك، ما لم تكن قد حفظت إجابتك الخاصة. ما ترسله مسؤوليتك.
+Accuracy of your information|دقة معلوماتك
+The service uses only what you tell it. Keep My settings and My career up to date, and never add anything that isn't true – an employer may check it, and it could cost you an offer.|لا تستخدم الخدمة إلا ما تخبرها به. حافظ على تحديث «إعداداتي» و«مسيرتي»، ولا تضف أبدًا شيئًا غير صحيح – فقد يتحقق منه صاحب العمل، وقد يكلّفك ذلك عرضًا.
+Please use Job Hunt HQ fairly|من فضلك استخدم Job Hunt HQ بإنصاف
+Don't use the service to:|لا تستخدم الخدمة من أجل:
+share your invite link, account or browser-assistant file with other people.|مشاركة رابط دعوتك أو حسابك أو ملف مساعد المتصفح مع أشخاص آخرين.
+Feedback → Report misuse or a security problem|الملاحظات ← الإبلاغ عن إساءة استخدام أو مشكلة أمنية
+when you're signed in).|بعد تسجيل الدخول).
+The website automatically watches for signs of misuse, such as password guessing, a shared assistant file or bulk automated applications, and lets the owner know. Accounts that break these rules can be switched off. See the|يراقب الموقع تلقائيًا علامات إساءة الاستخدام، مثل تخمين كلمات المرور أو ملف مساعد مشترك أو طلبات آلية جماعية، ويُبلغ المالك. يمكن إيقاف الحسابات التي تخالف هذه القواعد. راجع
+for what is recorded.|لمعرفة ما يُسجَّل.
+Contact us|اتصل بنا
+Get in touch|تواصل معنا
+for anything about Job Hunt HQ:|لأي شيء يتعلق بـ Job Hunt HQ:
+Help with your account or the site|المساعدة في حسابك أو الموقع
+Data requests|طلبات البيانات
+– a copy of your data, corrections, deletion, or how your information is used (under UK GDPR we reply within one month)|– نسخة من بياناتك، أو تصحيحات، أو حذف، أو كيفية استخدام معلوماتك (بموجب UK GDPR نرد خلال شهر)
+Asking for an invite|طلب دعوة
+Reporting a problem, a security issue or misuse|الإبلاغ عن مشكلة أو ثغرة أمنية أو إساءة استخدام
+Signed in? The|مسجّل الدخول؟ زر
+button on every page reaches us too, and you'll see our reply there.|الموجود في كل صفحة يصل إلينا أيضًا، وسترى ردّنا هناك.
+Do it yourself, straight away|افعلها بنفسك، فورًا
+Download your data|نزّل بياناتك
+– Account → Download my data|– الحساب ← تنزيل بياناتي
+– Account → Delete my account|– الحساب ← حذف حسابي
+Disconnect Gmail|افصل Gmail
+– My settings → Gmail|– إعداداتي ← Gmail
+Quickest way: on the job page in LinkedIn or Indeed, click your|أسرع طريقة: في صفحة الوظيفة على LinkedIn أو Indeed، انقر على
+bookmark (|إشارتك المرجعية (
+set it up|إعدادها
+). Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it.|). أو الصق رابط الوظيفة هنا – يعمل مع معظم مواقع الوظائف وLinkedIn، لكن Indeed يحظره غالبًا.
+A small helper that floats on every job site – Indeed, LinkedIn, Reed, NHS Jobs, Workday and the rest. On an advert it scores the job against your details. On an application form it fills in what it can, suggests answers from your own work history and examples, and attaches your CV and letter. It never presses Submit – you always do that.|مساعد صغير يطفو على كل موقع توظيف – Indeed وLinkedIn وReed وNHS Jobs وWorkday وغيرها. في الإعلان يقيّم الوظيفة وفق بياناتك. وفي نموذج التقديم يملأ ما يستطيع، ويقترح إجابات من خبرتك وأمثلتك، ويرفق سيرتك الذاتية وخطابك. لا يضغط «إرسال» أبدًا – أنت من يفعل ذلك دائمًا.
+Unzip it|فُكّ ضغطه
+: right-click the download →|: انقر بالزر الأيمن على الملف المنزَّل ←
+Extract All|استخراج الكل
+. Keep the folder somewhere safe, like Documents.|. احتفظ بالمجلد في مكان آمن، مثل «المستندات».
+Open your browser's extensions page – type this in the address bar:|افتح صفحة الإضافات في متصفحك – اكتب هذا في شريط العنوان:
+Switch on|فعّل
+Developer mode|وضع المطوّر
+(top right).|(أعلى اليمين).
+Click|انقر
+Load unpacked|تحميل إضافة غير مضغوطة
+and choose the|واختر مجلد
+Pin it: click the jigsaw icon → pin|ثبّته: انقر على أيقونة قطعة الأحجية ← تثبيت
+– the round Job Hunt HQ button shows your fit score. Click it to see why, and|– يُظهر زر Job Hunt HQ الدائري درجة توافقك. انقر عليه لترى السبب، ثم
+fills your details and attaches your CV and letter.|يملأ بياناتك ويرفق سيرتك الذاتية وخطابك.
+– e.g. “Which of my experiences best fits this role?”|– مثلًا: «أيّ من خبراتي يناسب هذه الوظيفة أكثر؟»
+(needs AI switched on by the owner)|(يتطلب أن يفعّل المالك الذكاء الاصطناعي)
+, and it's tracked in Applications.|، وتتم متابعته في «الطلبات».
+It only appears on job boards, employers' careers pages and application forms – never on sites like YouTube, Google or social media, and it sends nothing to Job Hunt HQ from other sites. Showing up somewhere it shouldn't? Open it and choose|لا يظهر إلا على مواقع التوظيف وصفحات الوظائف لدى أصحاب العمل ونماذج التقديم – لا يظهر أبدًا على مواقع مثل YouTube أو Google أو وسائل التواصل، ولا يرسل أي شيء إلى Job Hunt HQ من مواقع أخرى. هل يظهر حيث لا ينبغي؟ افتحه واختر
+. You can still open it anywhere with its button in your browser's toolbar.|. يمكنك دائمًا فتحه في أي مكان عبر زره في شريط أدوات المتصفح.
+Drag the button anywhere on the screen. Press|اسحب الزر إلى أي مكان على الشاشة. اضغط
+at the top of the panel to minimise it to a small dot – it stays small on every page until you click it again. Questions about you personally (health, criminal record, diversity) are always left for you to answer. Answers only use what's in your own details – check each one before you submit.|أعلى اللوحة لتصغيرها إلى نقطة صغيرة – وتبقى صغيرة في كل صفحة حتى تنقر عليها مرة أخرى. الأسئلة الشخصية (الصحة، السجل الجنائي، التنوع) تُترك دائمًا لتجيب عنها بنفسك. الإجابات لا تستخدم إلا بياناتك – راجع كل واحدة قبل الإرسال.
+Practise the questions you're likely to be asked for each job. Type or say your answer and get a score out of 10, what went well, and exactly what to improve – using examples from your own experience.|تدرّب على الأسئلة التي يُرجّح أن تُطرح عليك لكل وظيفة. اكتب إجابتك أو قلها، واحصل على درجة من 10، وما أحسنت فيه، وما الذي تحسّنه بالضبط – بأمثلة من خبرتك.
+Questions for this job.|أسئلة لهذه الوظيفة.
+From the advert, your kind of work, and the questions every interviewer asks.|من الإعلان، ونوع عملك، والأسئلة التي يطرحها كل محاور.
+Answer your way.|أجب على طريقتك.
+Get marked.|احصل على تقييم.
+Improve.|تحسّن.
+Specific tips, and examples from your own work history you could use. Try again and watch your score go up.|نصائح محددة، وأمثلة من خبرتك يمكنك استخدامها. حاول مجددًا وشاهد درجتك ترتفع.
+Marking uses Job Hunt HQ's built-in interview coach.|يعتمد التقييم على مدرّب المقابلات المدمج في Job Hunt HQ.
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your Gmail. Open one to see every email about it.|كل وظيفة قدّمت عليها هذا العام: ما أرسلته عبر Job Hunt HQ، وما وُجد في Gmail. افتح أيًّا منها لترى كل رسائلها.
+e.g. South Essex College|مثال: South Essex College
+Recruitment emails found in Gmail, sorted automatically. If one is sorted wrongly, change the application's status on the|رسائل التوظيف الموجودة في Gmail، مرتّبة تلقائيًا. إذا رُتّبت رسالة بشكل خاطئ، غيّر حالة الطلب في صفحة
+, then press|، ثم اضغط
+What Apply for me uses to fill "My Experience" pages: work history, education, skills and languages. It started from your CV. Keep it up to date, and every later application uses it.|ما يستخدمه «قدّم عني» لملء صفحات «خبرتي»: الخبرة العملية والتعليم والمهارات واللغات. بدأ من سيرتك الذاتية. حافظ على تحديثه، فكل طلب لاحق يستخدمه.
+Newest first. Dates as MM/YYYY. Leave "To" empty if you still work there. The robot types these into Workday's “My Experience” page (and similar forms) exactly as written here.|الأحدث أولًا. التواريخ بصيغة MM/YYYY. اترك «إلى» فارغًا إذا كنت لا تزال تعمل هناك. يكتب الروبوت هذه البيانات في صفحة «My Experience» في Workday (والنماذج المشابهة) كما هي تمامًا.
+Exact start (dd/mm/yyyy)|تاريخ البدء بالضبط (dd/mm/yyyy)
+Exact end (dd/mm/yyyy)|تاريخ الانتهاء بالضبط (dd/mm/yyyy)
+Reason for leaving|سبب المغادرة
+Employed through an agency?|هل كنت موظفًا عبر وكالة؟
+Sections on this page|أقسام هذه الصفحة
+MM/YYYY|MM/YYYY
+for forms that want the day|للنماذج التي تطلب اليوم
+e.g. Fixed-term contract ended|مثال: انتهاء عقد محدد المدة
+Agency name, if any|اسم الوكالة، إن وُجدت
+Only on forms that ask for my full employment history (left off Workday-style “relevant roles” sections)|فقط في النماذج التي تطلب سجلّي الوظيفي الكامل (لا يُدرج في أقسام «الوظائف ذات الصلة» على طريقة Workday)
+Education and qualifications|التعليم والمؤهلات
+School or university|المدرسة أو الجامعة
+From (year)|من (السنة)
+To (year)|إلى (السنة)
+Expected end (if in progress)|تاريخ الانتهاء المتوقع (إن كان جاريًا)
+Result / grade|النتيجة / التقدير
+Form choice: degree|خيار النموذج: الدرجة العلمية
+Form choice: field of study|خيار النموذج: مجال الدراسة
+Level|المستوى
+Master’s / MBA|ماجستير / MBA
+Bachelor’s|بكالوريوس
+Professional (CIPD etc.)|مهني (CIPD وغيرها)
+School / college|مدرسة / كلية
+Only on forms that ask for my full education history|فقط في النماذج التي تطلب سجلّي التعليمي الكامل
+Competency answers|إجابات الكفاءات
+Add a competency|أضف كفاءة
+For forms with a box per competency (“Leadership”, “Communication”, “Planning and organising”…). The robot offers the matching answer for you to check and tailor. Tags are other words a form might use for the same competency.|للنماذج التي فيها خانة لكل كفاءة («القيادة»، «التواصل»، «التخطيط والتنظيم»…). يقدّم الروبوت الإجابة المطابقة لتراجعها وتكيّفها. الوسوم كلمات أخرى قد يستخدمها النموذج للكفاءة نفسها.
+Competency|الكفاءة
+Tags|الوسوم
+YYYY|YYYY
+e.g. 2:2, Pass, Pending|مثال: 2:2، ناجح، قيد الانتظار
+e.g. Masters Degree|مثال: Masters Degree
+e.g. Human Resources Management|مثال: إدارة الموارد البشرية
+Add an example|أضف مثالًا
+Your real stories for “Describe a time when…” and “Give an example…” questions. The robot picks the one that best fits each question and writes the answer in the right order (situation, task, action, result, what you'd do differently). Tags are the words a question might use. Keep them true – an interviewer will ask you about them.|قصصك الحقيقية لأسئلة «صِف موقفًا…» و«أعطِ مثالًا…». يختار الروبوت الأنسب لكل سؤال ويكتب الإجابة بالترتيب الصحيح (الموقف، المهمة، الإجراء، النتيجة، وما كنت ستفعله بشكل مختلف). الوسوم هي الكلمات التي قد يستخدمها السؤال. اجعلها صادقة – فسيسألك المحاور عنها.
+Title|العنوان
+Skills, certifications and languages|المهارات والشهادات واللغات
+(one per line, or separated by commas – added to Workday's Skills box)|(واحدة في كل سطر، أو مفصولة بفواصل – تُضاف إلى خانة المهارات في Workday)
+(one per line: Language – level)|(واحدة في كل سطر: اللغة – المستوى)
+Answers the robot remembers|إجابات يتذكّرها الروبوت
+None yet. When the robot asks you a question and you tick “Remember”, it appears here.|لا شيء بعد. عندما يسألك الروبوت سؤالًا وتضع علامة على «تذكّر»، يظهر هنا.
+Only on forms that ask for my full employment history|فقط في النماذج التي تطلب سجلّي الوظيفي الكامل
+e.g. stakeholder, influence, change|مثال: أصحاب المصلحة، التأثير، التغيير
+Fill in each step, pick a design, and download it as PDF or Word – or tailored to a job you're applying for. Everything here is also used by My career, letters and application forms.|املأ كل خطوة، واختر تصميمًا، ونزّلها بصيغة PDF أو Word – أو مخصّصة لوظيفة تتقدّم إليها. كل ما هنا يُستخدم أيضًا في «مسيرتي» والخطابات ونماذج التقديم.
+(under your name – usually the job you're aiming for)|(تحت اسمك – عادةً الوظيفة التي تسعى إليها)
+Profile|الملف التعريفي
+(3–4 sentences: who you are, your strongest experience, what you want next)|(3–4 جمل: من أنت، وأقوى خبراتك، وما تريده بعد ذلك)
+Steps|الخطوات
+e.g. HR Administrator|مثال: إداري موارد بشرية
+Name, phone, email, location and links come from|الاسم والهاتف والبريد والموقع والروابط تأتي من
+Upload it and any empty steps fill in from it – then check and improve each one.|ارفعها وستُملأ أي خطوات فارغة منها – ثم راجع كل خطوة وحسّنها.
+Write a short profile (3–4 sentences): who you are, your strongest experience, and what you want next.|اكتب ملفًا تعريفيًا قصيرًا (3–4 جمل): من أنت، وأقوى خبراتك، وما تريده بعد ذلك.
+Open the PDF|افتح ملف PDF
+Certifications|الشهادات
+on the advert to score it, write your letter and track it.|على الإعلان لتقييمه وكتابة خطابك ومتابعته.
+Each refresh searches these and scores every job against your details.|كل تحديث يبحث في هذه المواقع ويقيّم كل وظيفة وفق بياناتك.
+– not set up on this server yet|– لم يُعدّ على هذا الخادم بعد
+– on|– مفعّل
+– connect Gmail in|– اربط Gmail في
+LinkedIn and Indeed don't let other apps search their jobs directly, so Job Hunt HQ reads the job-alert emails they send you instead. Switch alerts on below and they'll appear in your jobs after each refresh.|لا يسمح LinkedIn وIndeed للتطبيقات الأخرى بالبحث في وظائفهما مباشرة، لذا يقرأ Job Hunt HQ رسائل التنبيهات التي يرسلانها إليك بدلًا من ذلك. فعّل التنبيهات أدناه وستظهر في وظائفك بعد كل تحديث.
+– open each search, then press|– افتح كل بحث، ثم اضغط
+Set alert|إنشاء تنبيه
+(LinkedIn) or|(LinkedIn) أو
+Get new jobs by email|تلقَّ الوظائف الجديدة بالبريد
+(Indeed):|(Indeed):
+– on LinkedIn: your profile →|– على LinkedIn: ملفك ←
+Resources|الموارد
+Save to PDF|الحفظ بصيغة PDF
+. On Indeed:|. على Indeed:
+→ download your CV. Then upload it on|← نزّل سيرتك الذاتية. ثم ارفعها في
+: your work history, education and skills fill in for you.|: تُملأ خبرتك وتعليمك ومهاراتك نيابةً عنك.
+so application forms and your CV include them.|لكي تتضمنها نماذج التقديم وسيرتك الذاتية.
+Use the|استخدم
+browser assistant|مساعد المتصفح
+Place|المكان
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page.|ما قاله لك الناس – مشكلات وأفكار وأسئلة. ضع علامة «مخطّط له» أو «تم» على كلٍّ منها وردّ عليه: سيرون ردّك في صفحة الملاحظات الخاصة بهم.
+Everyone’s feedback|ملاحظات الجميع
+Ireland|أيرلندا
+France|فرنسا
+Germany|ألمانيا
+Netherlands|هولندا
+Belgium|بلجيكا
+Spain|إسبانيا
+Portugal|البرتغال
+Italy|إيطاليا
+Poland|بولندا
+{job}: add a number if you have one – how many, how much, how often, or by what percentage.|{job}: أضف رقمًا إن وُجد – كم عددًا، أو كم مبلغًا، أو كم مرة، أو بأي نسبة.
+{job}: split long points – one achievement per line reads better.|{job}: قسّم النقاط الطويلة – إنجاز واحد في كل سطر أسهل للقراءة.
+Last updated {date}. Questions? Email|آخر تحديث: {date}. أسئلة؟ راسل
+Last updated {date}.|آخر تحديث: {date}.
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest – plus the specialist sites for {fields}. Found one you like? Click|مسمياتك الوظيفية، مبحوث عنها مسبقًا على Indeed وLinkedIn وReed وCV-Library وTotaljobs وغيرها – إضافة إلى المواقع المتخصصة في {fields}. وجدت وظيفة تعجبك؟ انقر
+Austria|النمسا
+Switzerland|سويسرا
+United States|الولايات المتحدة
+Canada|كندا
+Australia|أستراليا
+United Arab Emirates|الإمارات العربية المتحدة
+Administration and office|الإدارة والأعمال المكتبية
+Accountancy and finance|المحاسبة والمالية
+Banking, insurance and financial services|البنوك والتأمين والخدمات المالية
+Customer service and call centre|خدمة العملاء ومراكز الاتصال
+Sales and business development|المبيعات وتطوير الأعمال
+Marketing, PR and communications|التسويق والعلاقات العامة والاتصال
+IT, software and data|تقنية المعلومات والبرمجيات والبيانات
+Design, creative and media|التصميم والإبداع والإعلام
+Education and teaching|التعليم والتدريس
+Healthcare and nursing|الرعاية الصحية والتمريض
+Social care and support work|الرعاية الاجتماعية والدعم
+HR and recruitment|الموارد البشرية والتوظيف
+Hospitality, catering and food|الضيافة والتموين والأغذية
+Retail|البيع بالتجزئة
+Warehouse, logistics and driving|المستودعات والخدمات اللوجستية والقيادة
+Construction and trades|البناء والحِرف
+Engineering and manufacturing|الهندسة والتصنيع
+Automotive and motor trade|السيارات وتجارتها
+Science, pharma and laboratory|العلوم والأدوية والمختبرات
+Public sector, government and civil service|القطاع العام والحكومة والخدمة المدنية
+Charity and not-for-profit|المنظمات الخيرية وغير الربحية
+Security, emergency services and armed forces|الأمن وخدمات الطوارئ والقوات المسلحة
+Cleaning and facilities|التنظيف وإدارة المرافق
+Leisure, sport, travel and tourism|الترفيه والرياضة والسفر والسياحة
+Aviation and airports|الطيران والمطارات
+Property and housing|العقارات والإسكان
+Procurement and purchasing|المشتريات والتوريد
+Environment, energy and agriculture|البيئة والطاقة والزراعة
+Management, projects and consulting|الإدارة والمشاريع والاستشارات
+Hair, beauty and wellbeing|تصفيف الشعر والتجميل والعافية
+Languages and translation|اللغات والترجمة
+(one per line: place, miles)|(واحد في كل سطر: المكان، الأميال)
+app password|كلمة مرور التطبيق
+: go to|: اذهب إلى
+(2-Step Verification must be on), create one called “Job Hunt HQ”, and paste the 16 letters here.|(يجب تفعيل التحقق بخطوتين)، وأنشئ واحدة باسم «Job Hunt HQ»، والصق الأحرف الستة عشر هنا.
+You can disconnect any time by removing the app password here (or deleting it in your Google account), download everything that's stored with|يمكنك قطع الاتصال في أي وقت بإزالة كلمة مرور التطبيق من هنا (أو حذفها من حساب Google)، وتنزيل كل ما هو محفوظ عبر
+, and ask how your data is used, have it corrected or deleted under UK GDPR – see|، والسؤال عن كيفية استخدام بياناتك وطلب تصحيحها أو حذفها بموجب UK GDPR – راجع
+App password|كلمة مرور التطبيق
+Add jobs from my LinkedIn and Indeed job-alert emails|أضف وظائف من رسائل تنبيهات LinkedIn وIndeed
+Who can use Job Hunt HQ. Only people with an invite code can make an account, and everyone's jobs, CV, letters and emails are private to them – you can't see theirs and they can't see yours.|من يمكنه استخدام Job Hunt HQ. لا يمكن إنشاء حساب إلا لمن لديه رمز دعوة، ووظائف كل شخص وسيرته وخطاباته ورسائله خاصة به – لا ترى ما لديهم ولا يرون ما لديك.
+Job Hunt HQ watches for signs that the|يراقب Job Hunt HQ علامات مخالفة قواعد
+rules are being broken: password guessing, made-up assistant keys, an assistant file used from lots of places (shared), bulk automated applications, a used invite link tried again, and anything people report.|: تخمين كلمات المرور، ومفاتيح مساعد مختلَقة، وملف مساعد يُستخدم من أماكن كثيرة (مشارَك)، وطلبات آلية جماعية، وتجربة رابط دعوة مستخدَم مرة أخرى، وأي شيء يبلّغ عنه الناس.
+Email alerts aren't switched on yet|تنبيهات البريد الإلكتروني غير مفعّلة بعد
+– they're only listed here. Add the email settings on the server to have them sent to your contact address.|– تُعرض هنا فقط. أضف إعدادات البريد على الخادم لتُرسَل إلى عنوانك.
+Who it's for (just for you), e.g. Amira from uni|لمن هي (لك فقط)، مثال: أميرة من الجامعة
+Download everything that's yours – jobs, applications, emails, My career, settings, letters and your CV – as one zip. Keep it as a backup, or use it to move to the Job Hunt HQ website.|نزّل كل ما يخصّك – الوظائف والطلبات والرسائل و«مسيرتي» والإعدادات والخطابات وسيرتك الذاتية – في ملف zip واحد. احتفظ به نسخة احتياطية، أو استخدمه للانتقال إلى موقع Job Hunt HQ.
+How your data is used, and your rights under UK GDPR:|كيف تُستخدم بياناتك، وحقوقك بموجب UK GDPR:
+e.g. Manchester, M1 2AB, Lyon, Rotterdam|مثال: Manchester أو M1 2AB أو Lyon أو Rotterdam
+e.g. Available immediately, 1 month|مثال: متاح فورًا، شهر واحد
+e.g. British citizen – no sponsorship needed|مثال: مواطن بريطاني – لا حاجة إلى كفالة
+Opens the application in a browser window the app controls. It clicks Apply, fills each step and uploads your CV and letter. It asks you when it needs you, and stops for you to press Submit.|يفتح الطلب في نافذة متصفح يتحكّم بها التطبيق. ينقر «تقديم»، ويملأ كل خطوة، ويرفع سيرتك وخطابك. يسألك عندما يحتاج إليك، ويتوقف لتضغط أنت «إرسال».
+– read it below, with your answers, and personalise anything in [brackets].|– اقرأه أدناه مع إجاباتك، وخصّص أي شيء بين [قوسين].
+, then click your|، ثم انقر
+bookmark on the form (or copy the answers on the right).|إشارتك المرجعية في النموذج (أو انسخ الإجابات على اليمين).
+Click the advert's Apply button to reach the employer's form. When you use the Fill button there, its link is saved here.|انقر زر «تقديم» في الإعلان للوصول إلى نموذج صاحب العمل. عندما تستخدم زر الملء هناك، يُحفظ رابطه هنا.
+and the cover letter (save it as a Word file below if the form wants a file).|وخطاب التقديم (احفظه كملف Word أدناه إن طلب النموذج ملفًا).
+Your CV with the skills and achievements this advert asks for put first – nothing added.|سيرتك الذاتية مع تقديم المهارات والإنجازات التي يطلبها هذا الإعلان أولًا – دون إضافة أي شيء.
+Submit, then mark it here.|أرسِل، ثم ضع علامة هنا.
+Written for this advert from your CV. Personalise anything in [brackets] before you paste it.|مكتوبة لهذا الإعلان من سيرتك الذاتية. خصّص أي شيء بين [قوسين] قبل اللصق.
+Open the advert and click Send to Job Hunt HQ to pick up its date|افتح الإعلان وانقر «إرسال إلى Job Hunt HQ» لجلب تاريخه
+Save to my Cover Letters folder|احفظه في مجلد خطابات التقديم
+Edit it here, then download it to attach, or press|عدّله هنا، ثم نزّله لإرفاقه، أو اضغط
+to paste it into a cover-letter box. The browser assistant can also put it in the box or attach it to the form for you.|للصقه في خانة خطاب التقديم. ويمكن لمساعد المتصفح أيضًا وضعه في الخانة أو إرفاقه بالنموذج نيابةً عنك.
+Read it through before you send it, and add anything specific from the advert.|اقرأه كاملًا قبل الإرسال، وأضف شيئًا محددًا من الإعلان.
+Copy the advert from the job page and paste it here. The app re-scores the job, writes your cover letter for it and saves the letter in your Cover Letters folder.|انسخ الإعلان من صفحة الوظيفة والصقه هنا. يعيد التطبيق تقييم الوظيفة ويكتب خطاب التقديم لها ويحفظه في مجلد خطابات التقديم.
+Most saved LinkedIn and Indeed jobs have no posting date, so set Posted to "any time" to see them|معظم وظائف LinkedIn وIndeed المحفوظة بلا تاريخ نشر، لذا اضبط «تاريخ النشر» على «أي وقت» لرؤيتها
+at the top to search again,|في الأعلى للبحث مجددًا،
+search every job site|ابحث في كل مواقع التوظيف
+, or|، أو
+you found.|وجدتها.
+remove any you don't have|احذف ما لا تملكه منها
+No jobs yet. Press|لا وظائف بعد. اضغط
+What people have told you – problems, ideas and questions. Mark each one as planned or done, and reply: they see your reply on their own Feedback page|ما قاله لك الناس – مشكلات وأفكار وأسئلة. ضع علامة «مخطّط له» أو «تم» على كلٍّ منها وردّ عليه: سيرون ردّك في صفحة الملاحظات الخاصة بهم
+Tell us what's wrong, what's missing or what you like. You'll see replies here|أخبرنا بما لا يعمل، أو ما ينقص، أو ما يعجبك. سترى الردود هنا
+(they'll see this)|(سيرون هذا)
+Quickest way: on any job advert, press the round|أسرع طريقة: في أي إعلان وظيفة، اضغط الزر الدائري
+Job Hunt HQ assistant|مساعد Job Hunt HQ
+button and choose|واختر
+get the assistant|احصل على المساعد
+Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it|أو الصق رابط الوظيفة هنا – يعمل مع معظم مواقع الوظائف وLinkedIn، لكن Indeed يحظره غالبًا
+for “|عن «
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at|حافظ على سرية كلمة مرورك – أنت مسؤول عمّا يحدث في حسابك. أخبرنا فورًا على
+if you think someone else has used it|إذا ظننت أن شخصًا آخر استخدمها
+If you see something that breaks these rules, or a security problem, tell us at|إذا رأيت ما يخالف هذه القواعد، أو مشكلة أمنية، أخبرنا على
+(or use|(أو استخدم
+Newest first. Put|الأحدث أولًا. اكتب
+one achievement per line|إنجازًا واحدًا في كل سطر
+No jobs yet – press “Add a job”. Placements, part-time work and volunteering all count.|لا وظائف بعد – اضغط «أضف وظيفة». التدريب والعمل الجزئي والتطوع كلها تُحتسب.
+Highest qualification first. Leave “To” empty if you're still studying, and add the expected year.|أعلى مؤهل أولًا. اترك «إلى» فارغًا إن كنت لا تزال تدرس، وأضف السنة المتوقعة.
+Expected (if in progress)|المتوقّع (إن كان جاريًا)
+No qualifications yet – press “Add a qualification”.|لا مؤهلات بعد – اضغط «أضف مؤهلًا».
+(one per line – use the words job adverts use: tools, systems, methods)|(واحدة في كل سطر – استخدم كلمات إعلانات الوظائف: أدوات، أنظمة، أساليب)
+Word uses the Classic layout so it stays easy to edit.|يستخدم Word التصميم الكلاسيكي ليبقى سهل التعديل.
+Your applications keep using|طلباتك تستمر في استخدام
+from Documents.|من «المستندات».
+Now attached|مُرفَق الآن
+Puts the skills and achievements the advert asks for first. Nothing is added or changed – it only reorders what you've written, so every word is still true.|يقدّم المهارات والإنجازات التي يطلبها الإعلان أولًا. لا يُضاف شيء ولا يُغيَّر – بل يُعاد ترتيب ما كتبته فقط، فتبقى كل كلمة صحيحة.
+Shortlist a job first, then come back – or use “Tailored CV” on any job's page.|ضع وظيفة في القائمة المختصرة أولًا ثم عُد – أو استخدم «سيرة ذاتية مخصّصة» في صفحة أي وظيفة.
+Find roles, write applications and track every reply in one place|اعثر على الوظائف، واكتب طلباتك، وتابع كل رد في مكان واحد
+Your job search, wherever you are|بحثك عن عمل، أينما كنت
+You're the first person here, so you'll be the owner: everything already in Job Hunt HQ becomes yours, and only you can invite other people.|أنت أول شخص هنا، لذا ستكون المالك: كل ما في Job Hunt HQ يصبح لك، ولا يمكن لأحد غيرك دعوة الآخرين.
+Set-up code|رمز الإعداد
+(from the server's settings)|(من إعدادات الخادم)
+Moving from your PC?|تنتقل من حاسوبك؟
+(optional: the zip from Account → Download my data)|(اختياري: ملف zip من الحساب ← تنزيل بياناتي)
+For|لـ
+. Other devices will be signed out.|. سيُسجَّل الخروج من الأجهزة الأخرى.
+of 3|من 3
+Up to|حتى
+miles from|ميلًا من
+a year, optional|سنويًا، اختياري
+(comma-separated – used to score how well each job fits)|(مفصولة بفواصل – تُستخدم لتقييم مدى توافق كل وظيفة)
+PDF or Word. Job Hunt HQ attaches it to applications, and reads your work history, education and skills into My career so forms and letters can use them. You can check and edit everything afterwards.|PDF أو Word. يرفقها Job Hunt HQ بالطلبات، ويقرأ خبرتك وتعليمك ومهاراتك إلى «مسيرتي» لتستخدمها النماذج والخطابات. يمكنك مراجعة كل شيء وتعديله بعد ذلك.
+Step by step, with a choice of designs – download it as PDF or Word, and get a version tailored to each job.|خطوة بخطوة، مع تصاميم متعددة – نزّلها بصيغة PDF أو Word، واحصل على نسخة مخصّصة لكل وظيفة.
+Read from your CV:|مقروء من سيرتك الذاتية:
+Check them on|راجعها في
+any time.|في أي وقت.
+A starting point built from your work history|نقطة بداية مبنية من خبرتك العملية
+Only things from your own details – add the real moment and the result in your words.|من بياناتك فقط – أضف اللحظة الحقيقية والنتيجة بكلماتك.
+other job|وظيفة أخرى
+Set|مُعدّ
+On|مفعّل
+Send this link to the person you're inviting. It works once and expires in 14 days.|أرسل هذا الرابط إلى الشخص الذي تدعوه. يعمل مرة واحدة وتنتهي صلاحيته بعد 14 يومًا.
+Password reset link for|رابط إعادة تعيين كلمة المرور لـ
+Send this link to|أرسل هذا الرابط إلى
+It works once and expires in 48 hours|يعمل مرة واحدة وتنتهي صلاحيته بعد 48 ساعة
+Or they can go to|أو يمكنه الذهاب إلى
+/join and type the code|/join وكتابة الرمز
+Code|الرمز
+Made|أُنشئ
+Used by|استخدمه
+Switched off|موقوف
+Hasn't finished setting up yet|لم يُكمل الإعداد بعد
+Password reset link|رابط إعادة تعيين كلمة المرور
+New assistant key|مفتاح مساعد جديد
+Each one is emailed to|يُرسَل كلٌّ منها بالبريد إلى
+at most once every 6 hours per problem).|مرة واحدة على الأكثر كل 6 ساعات لكل مشكلة).
+– they're only listed here. Add the email settings on the server to have them sent to|– تُعرض هنا فقط. أضف إعدادات البريد على الخادم لتُرسَل إلى
+Questions you answered with “Remember” ticked. Change an answer or delete it, and the robot asks you again next time.|الأسئلة التي أجبت عنها مع تحديد «تذكّر». غيّر إجابة أو احذفها، وسيسألك الروبوت مجددًا في المرة القادمة.
+Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest|مسمياتك الوظيفية، مبحوث عنها مسبقًا على Indeed وLinkedIn وReed وCV-Library وTotaljobs وغيرها
+– plus the specialist sites for|– إضافة إلى المواقع المتخصصة في
+Found one you like? Click|وجدت وظيفة تعجبك؟ انقر
+Add the jobs you want in|أضف الوظائف التي تريدها في
+– pick from every kind of work.|– اختر من كل أنواع العمل.
+read from your Gmail|مقروءة من Gmail
+connect Gmail in|اربط Gmail في
+Your details, job search and settings are on|بياناتك وبحثك وإعداداتك موجودة في
+Deletes your account and everything stored for you – jobs, applications, emails read from Gmail, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|يحذف حسابك وكل ما حُفظ لك – الوظائف والطلبات والرسائل المقروءة من Gmail والسيرة الذاتية والخطابات والإعدادات والملاحظات. لا يمكن التراجع عن ذلك، فنزّل بياناتك أولًا إن أردت نسخة.
+For any question or request, email|لأي سؤال أو طلب، راسل
+You can also use the|يمكنك أيضًا استخدام زر
+(the employer's own form, saved when you last used the Fill button):|(نموذج صاحب العمل نفسه، المحفوظ آخر مرة استخدمت فيها زر الملء):
+Open in Word|افتح في Word
+Open folder|افتح المجلد
+No cover letter yet. Press|لا خطاب تقديم بعد. اضغط
+Job Hunt HQ (“the service”, “we”) is a personal job-search assistant run by Rashid Idle in the United Kingdom. Using it means you accept these terms, our|Job Hunt HQ («الخدمة»، «نحن») مساعد شخصي للبحث عن عمل يديره رشيد إدل في المملكة المتحدة. استخدامه يعني قبولك هذه الشروط، و
+and|و
+Keep your password private – you're responsible for what happens in your account. Tell us straight away at {email} if you think someone else has used it.|حافظ على سرية كلمة مرورك – أنت مسؤول عمّا يحدث في حسابك. أخبرنا فورًا على {email} إذا ظننت أن شخصًا آخر استخدمها.
+The service is provided free of charge, “as is”, and may sometimes be unavailable, change, or stop. We'll try to give notice of big changes. We may update these terms; the date at the top shows when they last changed, and continuing to use the service means you accept the update.|تُقدَّم الخدمة مجانًا «كما هي»، وقد لا تكون متاحة أحيانًا أو تتغير أو تتوقف. سنحاول الإشعار بالتغييرات الكبيرة. قد نحدّث هذه الشروط؛ يوضح التاريخ في الأعلى آخر تغيير، واستمرارك في استخدام الخدمة يعني قبولك التحديث.
+Reads every job email since 1 January – replies, interviews, offers and what you sent – and adds anything missing here. It can take 10–20 minutes; you can keep using the app.|يقرأ كل رسالة متعلقة بالوظائف منذ 1 يناير – الردود والمقابلات والعروض وما أرسلته – ويضيف هنا كل ما ينقص. قد يستغرق ذلك 10–20 دقيقة؛ ويمكنك مواصلة استخدام التطبيق.
+Connect Gmail and Job Hunt HQ reads replies from employers – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. You need a Gmail|اربط Gmail وسيقرأ Job Hunt HQ ردود أصحاب العمل – الإشعارات بالاستلام والمقابلات والرفض والعروض – ويُبقي «طلباتك» محدَّثة. إنه يقرأ فقط؛ ولا يرسل أو يحذف أي شيء أبدًا. تحتاج إلى Gmail
+Nobody reads your Gmail through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your Gmail.|لا أحد يقرأ Gmail الخاص بك عبر Job Hunt HQ – لا المالك ولا أي مستخدم آخر. يُقرأ تلقائيًا، فقط لرصد الرسائل المتعلقة بطلباتك؛ ويُحتفظ منها بالمرسل والموضوع والتاريخ ومعاينة قصيرة لتبقى صفحة الطلبات محدَّثة. تُتجاهل كل الرسائل الأخرى ولا يُحفظ منها شيء. لا يستطيع إرسال أي شيء أو تغييره أو حذفه في Gmail.
+– on any advert it scores the job and saves it; on the application form it fills in what it can and attaches your CV and cover letter.|– في أي إعلان يقيّم الوظيفة ويحفظها؛ وفي نموذج التقديم يملأ ما يستطيع ويرفق سيرتك الذاتية وخطاب التقديم.
+drafts each question from your own experience; edit it, then|يصوغ كل إجابة من خبرتك؛ عدّلها، ثم
+Outside {area} – too far from {place}|خارج {area} – بعيد جدًا عن {place}
+Hidden: too far from {place}|مخفية: بعيدة جدًا عن {place}
+· {user}. Your details, job search and settings are on|· {user}. بياناتك وبحثك وإعداداتك موجودة في
+you|أنت
+It's already linked to your account, so don't share the file.|إنه مرتبط بحسابك مسبقًا، لذا لا تشارك الملف.
+from {source}|من {source}
+closes {date}|يُغلق في {date}

@@ -728,3 +728,16 @@ Outside {area} – too far from {place}|En dehors de {area} – trop loin de {pl
 Hidden: too far from {place}|Masquée : trop loin de {place}
 · {user}. Your details, job search and settings are on|· {user}. Vos informations, votre recherche et vos paramètres sont dans
 you|vous
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.|Pas encore d’entretien. Quand une candidature passe à Présélection, Évaluation ou Entretien – via Gmail, ou quand vous changez son statut – elle apparaît ici avec des questions pour ce poste.
+Try a quick practice|Essayer un entraînement rapide
+Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.|Tapez-la, ou appuyez sur Répondre à voix haute et parlez – il écrit ce que vous dites. Il peut aussi lire la question à voix haute.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|Une note sur 10 sur ce qu’écoutent les recruteurs : un vrai exemple, la structure STAR (Situation, Tâche, Action, Résultat), ce que vous avez fait vous-même, un résultat, la bonne longueur.
+Add this job|Ajouter cette offre
+Add it and apply for me|L’ajouter et postuler pour moi
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|Si le lien ne peut pas être lu, remplissez les informations ci-dessous et collez le texte de l’annonce, puis appuyez à nouveau sur Ajouter cette offre.
+The closer to the centre, the better the match|Plus c’est près du centre, meilleure est la correspondance
+Waiting to hear back|En attente de réponse
+It's already linked to your account, so don't share the file.|Il est déjà relié à votre compte, alors ne partagez pas le fichier.
+Interview prep|Entretiens
+from {source}|depuis {source}
+closes {date}|clôture le {date}

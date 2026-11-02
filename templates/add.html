@@ -11,10 +11,10 @@
     <label for="f-url">Job link</label>
     <div class="row" style="margin:0">
       <input id="f-url" name="url" type="url" value="{{ form.get('url', '') }}" placeholder="https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…" style="flex:1; min-width:0">
-      <button class="btn btn-primary">Get job</button>
-      {% if not hosted %}<button class="btn" formaction="{{ url_for('robot_link') }}">Get job and apply for me</button>{% endif %}
+      <button class="btn btn-primary">Add this job</button>
+      {% if not hosted %}<button class="btn" formaction="{{ url_for('robot_link') }}">Add it and apply for me</button>{% endif %}
     </div>
-    <p class="muted small">If the link can't be read, fill in the details below and paste the advert text, then press Get job again.</p>
+    <p class="muted small">If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.</p>
     <div class="two">
       <div><label for="f-title">Job title</label><input id="f-title" name="title" value="{{ form.get('title', '') }}"></div>
       <div><label for="f-company">Company</label><input id="f-company" name="company" value="{{ form.get('company', '') }}"></div>

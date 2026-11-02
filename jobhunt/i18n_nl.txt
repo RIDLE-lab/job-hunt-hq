@@ -728,3 +728,42 @@ Outside {area} – too far from {place}|Buiten {area} – te ver van {place}
 Hidden: too far from {place}|Verborgen: te ver van {place}
 · {user}. Your details, job search and settings are on|· {user}. Je gegevens, zoekopdracht en instellingen staan bij
 you|jij
+# informal "je" everywhere, to match the rest of the Dutch text
+You sent|Door jou verstuurd
+Job title matches your HR / people background|De functietitel past bij je HR-achtergrond
+Exactly the kind of role you're looking for|Precies het soort functie dat je zoekt
+Close to the roles you're looking for|Lijkt op de functies die je zoekt
+Not one of the job titles you chose|Niet een van de functietitels die je koos
+A step up from your level|Een stap boven je niveau
+More junior than you're aiming for|Juniorder dan je nastreeft
+Pays below your minimum|Betaalt minder dan je minimum
+Pays below your expectation|Betaalt minder dan je verwacht
+Jobs for you|Vacatures voor jou
+You're all caught up|Je bent helemaal bij
+Have a look at your best matches below, or press Refresh jobs.|Bekijk hieronder je beste matches, of druk op Vacatures vernieuwen.
+Add your name and where you live|Voeg je naam en woonplaats toe
+Choose the jobs you're looking for|Kies de functies die je zoekt
+Upload or create your CV|Upload of maak je cv
+Add your work history (it writes better letters)|Voeg je werkervaring toe (dan worden je brieven beter)
+Your applications|Je sollicitaties
+Paste a link or advert – it scores it and writes your letter|Plak een link of vacature – het scoort hem en schrijft je brief
+Fills in application forms for you|Vult sollicitatieformulieren voor je in
+Build, improve or tailor your CV|Maak, verbeter of pas je cv aan
+Your searches on every job site, ready to open|Je zoekopdrachten op elke vacaturesite, klaar om te openen
+Changes are kept when you press Save.|Wijzigingen worden bewaard als je op Opslaan drukt.
+Your interviews|Je sollicitatiegesprekken
+Get ready early|Bereid je vroeg voor
+Your answer|Je antwoord
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.|Nog geen gesprekken. Zodra een sollicitatie naar Voorselectie, Assessment of Gesprek gaat – via Gmail, of als je de status wijzigt – verschijnt hij hier met vragen voor die baan.
+Try a quick practice|Probeer een snelle oefening
+Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.|Typ het, of druk op Hardop antwoorden en praat – het schrijft op wat je zegt. Het kan de vraag ook voorlezen.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|Een score uit 10 op waar interviewers op letten: een echt voorbeeld, de STAR-opbouw (Situatie, Taak, Actie, Resultaat), wat je zelf deed, een resultaat, de juiste lengte.
+Add this job|Deze vacature toevoegen
+Add it and apply for me|Toevoegen en voor mij solliciteren
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|Als de link niet gelezen kan worden, vul dan de gegevens hieronder in, plak de vacaturetekst en druk opnieuw op Deze vacature toevoegen.
+The closer to the centre, the better the match|Hoe dichter bij het midden, hoe beter de match
+Waiting to hear back|Wacht op reactie
+It's already linked to your account, so don't share the file.|Hij is al aan je account gekoppeld, dus deel het bestand niet.
+Interview prep|Gesprekstraining
+from {source}|via {source}
+closes {date}|sluit op {date}

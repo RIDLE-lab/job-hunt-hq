@@ -1732,7 +1732,7 @@ def mark_applied(job_id: int, page: str = ""):
 # ------------------------------------------------------------------ applications
 APP_GROUPS = [
     ("all", "All", None),
-    ("waiting", "Still waiting to hear", ("applied", "acknowledged")),
+    ("waiting", "Waiting to hear back", ("applied", "acknowledged")),
     ("forward", "Moving forward", ("pre_screen", "assessment", "interview", "second_stage")),
     ("offer", "Job offers", ("offer",)),
     ("rejected", "Rejected", ("rejected",)),

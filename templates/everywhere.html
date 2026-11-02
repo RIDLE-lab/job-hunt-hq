@@ -5,7 +5,7 @@
   <h1>Every job site, one place</h1>
   <p class="back">{{ country }}</p>
   <p class="muted">Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest{% if sectors %}
-    – plus the specialist sites for {{ sectors|join(', ')|lower }}{% endif %}. Found one you like? Click
+    – plus the specialist sites for {% for x in sectors %}{{ x if x[:2].isupper() else x[:1]|lower ~ x[1:] }}{{ ', ' if not loop.last }}{% endfor %}{% endif %}. Found one you like? Click
     <b>Send to Job Hunt HQ</b> on the advert to score it, write your letter and track it.</p>
 </div></section>
 

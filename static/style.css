@@ -1146,3 +1146,20 @@ h2 { font-weight: 700; }
 .card.next, .head + .card, .head + .grid2 > .card:first-child, .head + .card-stack > .card:first-child { box-shadow: 0 1px 0 rgba(11,18,64,.06), 0 12px 28px -22px rgba(11,18,64,.35); }
 .shortcuts a:hover, .step:hover { transform: none; box-shadow: none; }
 .tab-menu-h { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: .9rem; }
+/* page review, Nov 2026 */
+input[type="file"] { max-width: 100%; min-width: 0; }
+body:has(.save-bar, .sticky-save) .fb-fab { bottom: 86px; }
+.section-nav, .app-tabs, .t-tabs { scroll-padding-inline: 16px; }
+@media (max-width: 700px) {
+  .iv-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(34px, 1fr)); gap: 4px; margin-inline: 0; padding: 0; overflow: visible; }
+  .iv-steps button { min-width: 0; padding: 0; height: 36px; }
+  .section-nav, .app-tabs { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+}
+[dir="rtl"] .section-nav, [dir="rtl"] .app-tabs { -webkit-mask-image: linear-gradient(270deg, #000 85%, transparent); mask-image: linear-gradient(270deg, #000 85%, transparent); }
+/* longer menu words in other languages still fit on one line */
+:root:not([lang|="en"]) .mainnav a { font-size: .93rem; }
+@media (max-width: 1400px) { :root:not([lang|="en"]) .mainnav .mast-in { gap: 14px; } }
+/* phone numbers, emails and links always read left to right, even in Arabic */
+[dir="rtl"] input[type="tel"], [dir="rtl"] input[type="email"], [dir="rtl"] input[type="url"], [dir="rtl"] input[name="phone"],
+[dir="rtl"] input[name*="linkedin"], [dir="rtl"] input[name*="github"] { direction: ltr; text-align: right; }
+@media (max-width: 1500px) { :root:not([lang|="en"]) .who-name { display: none; } }

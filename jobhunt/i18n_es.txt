@@ -728,3 +728,15 @@ Outside {area} – too far from {place}|Fuera de {area}: demasiado lejos de {pla
 Hidden: too far from {place}|Oculto: demasiado lejos de {place}
 · {user}. Your details, job search and settings are on|· {user}. Tus datos, tu búsqueda y tus ajustes están en
 you|tú
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.|Aún no hay entrevistas. Cuando una candidatura pase a Preselección, Prueba o Entrevista (desde Gmail o al cambiar su estado), aparecerá aquí con preguntas para ese empleo.
+Try a quick practice|Prueba una práctica rápida
+Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.|Escríbela o pulsa Responder en voz alta y habla: escribe lo que dices. También puede leer la pregunta en voz alta.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|Una nota sobre 10 en lo que escuchan los entrevistadores: un ejemplo real, la estructura STAR (Situación, Tarea, Acción, Resultado), lo que hiciste tú, un resultado y la longitud adecuada.
+Add this job|Añadir este empleo
+Add it and apply for me|Añadirlo y solicitar por mí
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|Si no se puede leer el enlace, rellena los datos de abajo y pega el texto del anuncio; luego pulsa Añadir este empleo otra vez.
+The closer to the centre, the better the match|Cuanto más cerca del centro, mejor encaja
+Waiting to hear back|Esperando respuesta
+It's already linked to your account, so don't share the file.|Ya está vinculado a tu cuenta, así que no compartas el archivo.
+from {source}|de {source}
+closes {date}|cierra el {date}

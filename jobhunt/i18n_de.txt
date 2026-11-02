@@ -728,3 +728,17 @@ Outside {area} – too far from {place}|Außerhalb von {area} – zu weit von {p
 Hidden: too far from {place}|Ausgeblendet: zu weit von {place}
 · {user}. Your details, job search and settings are on|· {user}. Ihre Angaben, Ihre Jobsuche und Einstellungen finden Sie unter
 you|Sie
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.|Noch keine Gespräche. Sobald eine Bewerbung zu Vorauswahl, Test oder Vorstellungsgespräch wechselt – über Gmail oder wenn Sie den Status ändern –, erscheint sie hier mit Fragen zu dieser Stelle.
+Try a quick practice|Schnelles Training starten
+Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.|Tippen Sie sie ein oder drücken Sie „Laut antworten“ und sprechen Sie – es schreibt mit, was Sie sagen. Es kann die Frage auch vorlesen.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|Eine Note von 10 dafür, worauf Interviewer achten: ein echtes Beispiel, die STAR-Form (Situation, Aufgabe, Handlung, Ergebnis), was Sie selbst getan haben, ein Ergebnis, die richtige Länge.
+Add this job|Diese Stelle hinzufügen
+Add it and apply for me|Hinzufügen und für mich bewerben
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|Wenn der Link nicht gelesen werden kann, füllen Sie die Angaben unten aus, fügen Sie den Anzeigentext ein und tippen Sie erneut auf „Diese Stelle hinzufügen“.
+The closer to the centre, the better the match|Je näher an der Mitte, desto besser passt die Stelle
+Waiting to hear back|Wartet auf Antwort
+It's already linked to your account, so don't share the file.|Er ist bereits mit Ihrem Konto verbunden – teilen Sie die Datei also nicht.
+Interview prep|Interviewtraining
+Create CV|Lebenslauf
+from {source}|von {source}
+closes {date}|Bewerbungsschluss {date}

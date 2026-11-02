@@ -31,9 +31,8 @@
     {% endfor %}
   </ul>
   {% else %}
-  <p class="empty">No interviews yet. When an application moves to <b>Pre-screening</b>, <b>Assessment</b> or <b>Interview</b>
-    (automatically from Gmail, or by changing its status on <a href="{{ url_for('applications_page') }}">Applications</a>),
-    it appears here with questions for that job. Meanwhile, try a <a href="{{ url_for('interview_practice', t='general') }}">quick practice</a>.</p>
+  <p class="empty">No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.</p>
+  <p><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Try a quick practice</a></p>
   {% endif %}
 </section>
 
@@ -54,8 +53,8 @@
     <h2 id="how-h">How it works</h2>
     <ol class="iv-how">
       <li><b>Questions for this job.</b> From the advert, your kind of work, and the questions every interviewer asks.</li>
-      <li><b>Answer your way.</b> Type it, or press <i>Answer out loud</i> and talk – it writes down what you say. It can read the question out too.</li>
-      <li><b>Get marked.</b> A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what <i>you</i> did, a result, the right length.</li>
+      <li><b>Answer your way.</b> Type it, or press Answer out loud and talk – it writes down what you say. It can read the question out too.</li>
+      <li><b>Get marked.</b> A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.</li>
       <li><b>Improve.</b> Specific tips, and examples from your own work history you could use. Try again and watch your score go up.</li>
     </ol>
     {% if not ai %}<p class="muted tiny">Marking uses Job Hunt HQ's built-in interview coach.</p>{% endif %}
