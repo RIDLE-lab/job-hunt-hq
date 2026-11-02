@@ -903,6 +903,47 @@ def test_legal_pages():
     assert b"Terms of use" in c.get("/privacy").data
 
 
+def test_cover_letter_everywhere():
+    """A pasted job gets a cover letter you can edit, copy, download as PDF or Word, and the assistant can hand over."""
+    import base64
+    import io
+
+    import app as A
+    from docx import Document
+
+    from jobhunt import accounts, career, persona
+    from jobhunt.config import access_token, as_user
+    owner_client()
+    uid = accounts.create("cl" + os.urandom(3).hex(), "Cleo Letter", "a-long-password-13")
+    accounts.update(uid, setup_done=1)
+    with as_user(uid):
+        accounts.save_settings({"profile": {"name": "Cleo Letter", "email": "cleo@example.com"},
+                                "search": {"keywords": ["Office Manager"]}, "prefs": {}}, uid)
+        career.save({**career.load(), "experience": [{"title": "Office Administrator", "company": "Acme", "end": "",
+                     "description": "Ran the office diary for 20 staff.\\nManaged supplier invoices and orders."}]})
+        persona._CACHE.clear()
+        token = access_token()
+    c = A.app.test_client()
+    post = lambda body: c.post("/api/assistant", json={"token": token, **body}).json
+    job = post({"action": "job", "save": True, "url": "https://mail.example/msg", "title": "Office Manager", "company": "Bright Co",
+                "description": "We need an Office Manager to run the office diary, manage suppliers and invoices. " * 5})["job"]
+    text = post({"action": "letter", "job_id": job["id"]})["text"]
+    assert "Bright Co" in text and "Dear" in text
+    post({"action": "letter_save", "job_id": job["id"], "text": text + "\\n\\nP.S. Edited by me."})
+    pdf = post({"action": "letter_file", "job_id": job["id"], "fmt": "pdf"})
+    assert base64.b64decode(pdf["b64"])[:5] == b"%PDF-" and pdf["name"].endswith("Bright Co.pdf")
+    word = post({"action": "letter_file", "job_id": job["id"], "fmt": "docx"})
+    doc = Document(io.BytesIO(base64.b64decode(word["b64"])))
+    assert any("Edited by me" in p.text for p in doc.paragraphs)
+    with c.session_transaction() as s:
+        s["uid"], s["sv"] = uid, accounts.get(uid)["session_version"]
+    r = c.post(f"/job/{job['id']}/letter.docx", data={"cover_letter": "Dear Bright Co,\\n\\nMy own words."},
+               headers={"Origin": "http://localhost"})
+    assert r.data[:2] == b"PK" and "Cleo Letter Cover Letter - Bright Co.docx" in r.headers["Content-Disposition"]
+    assert c.get(f"/job/{job['id']}/letter.pdf").data[:5] == b"%PDF-"
+    assert post({"action": "letter", "job_id": job["id"]})["text"].endswith("My own words.")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

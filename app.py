@@ -975,6 +975,41 @@ def job_docx(job_id):
     return redirect(url_for("job_detail", job_id=job_id, saved=path.name) + "#letter")
 
 
+def letter_file(job: dict, letter: str, profile: dict, fmt: str) -> tuple[bytes, str, str]:
+    """The cover letter as a ready-to-attach PDF or Word file: (bytes, file name, type)."""
+    company = safe_filename(job.get("company") or job.get("title") or "Job")
+    base = f"{profile.get('name') or 'My'} Cover Letter - {company}"
+    if fmt == "docx":
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            path = save_docx(letter, job, profile, td, base + ".docx")
+            data = path.read_bytes()
+        return data, base + ".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    return letter_pdf(letter, profile), base + ".pdf", "application/pdf"
+
+
+@app.route("/job/<int:job_id>/letter.<fmt>", methods=["GET", "POST"])
+def job_letter_download(job_id, fmt):
+    """Download the cover letter as PDF or Word – any edits in the box are saved first."""
+    if fmt not in ("pdf", "docx"):
+        abort(404)
+    cfg, c = load_config(), conn()
+    job = get_job(c, job_id)
+    if request.method == "POST" and request.form.get("cover_letter", "").strip():
+        same_site_only()
+        job["cover_letter"] = request.form["cover_letter"]
+        db.update_job(c, job_id, cover_letter=job["cover_letter"])
+        c.commit()
+    if not job.get("cover_letter"):
+        job["cover_letter"], _ = write_letter(job, cfg["profile"], cv_text(cfg), cfg.get("ai"))
+        db.update_job(c, job_id, cover_letter=job["cover_letter"])
+        c.commit()
+    c.close()
+    import io
+    data, name, mime = letter_file(job, job["cover_letter"], cfg["profile"], fmt)
+    return send_file(io.BytesIO(data), mimetype=mime, as_attachment=True, download_name=name)
+
+
 def letters_folder(cfg) -> Path:
     folder = cfg["profile"].get("cover_letter_folder") or ""
     if not folder or not Path(folder).anchor and os.name == "nt":
@@ -1375,6 +1410,22 @@ def api_assistant():
             return {"ok": True, "answer": text, "note": "Written with AI from your details – check it before using it."}
         return {"ok": True, "answer": _ask_offline(question, job, cfg),
                 "note": "Answered from your own details and the advert."}
+    if action in ("letter", "letter_save", "letter_file"):
+        c = conn()
+        job = get_job(c, int(d.get("job_id") or 0))
+        if action == "letter_save" or (action == "letter_file" and (d.get("text") or "").strip()):
+            job["cover_letter"] = (d.get("text") or "")[:20000]
+            db.update_job(c, job["id"], cover_letter=job["cover_letter"])
+        if d.get("rewrite") or not job.get("cover_letter"):
+            job["cover_letter"], _ = write_letter(job, profile, cv_text(cfg), cfg.get("ai"))
+            db.update_job(c, job["id"], cover_letter=job["cover_letter"])
+        c.commit()
+        c.close()
+        if action == "letter_file":
+            import base64
+            data, name, mime = letter_file(job, job["cover_letter"], profile, d.get("fmt", "pdf"))
+            return {"ok": True, "b64": base64.b64encode(data).decode(), "name": name, "type": mime}
+        return {"ok": True, "text": job["cover_letter"]}
     if action == "applied":
         mark_applied(int(d.get("job_id") or 0), str(d.get("page") or ""))
         return {"ok": True}

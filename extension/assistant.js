@@ -180,7 +180,7 @@
   });
   chrome.runtime.onMessage.addListener(function (m) { if (m.type === "toggle") toggle(); });
 
-  var state = { me: null, job: null, page: null, form: null, pack: null, answers: {}, msg: "" };
+  var state = { me: null, job: null, page: null, form: null, pack: null, answers: {}, msg: "", letter: null, lmsg: "" };
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
   function toggle(open) {
     var show = open === undefined ? panel.hidden : open;
@@ -210,6 +210,42 @@
     }).catch(function (e) { state.msg = e.message; });
   }
 
+  /* ---------------------------------------------------------------- the cover letter on the page */
+  var lastField = null;
+  document.addEventListener("focusin", function (e) {
+    var el = e.target;
+    if (el && (el.tagName === "TEXTAREA" || el.isContentEditable) && !host.contains(el)) lastField = el;
+  }, true);
+  function labelOf(el) {
+    var t = "";
+    if (el.labels && el.labels[0]) t = el.labels[0].innerText;
+    t += " " + (el.getAttribute("aria-label") || "") + " " + (el.getAttribute("placeholder") || "") + " " + (el.name || "") + " " + (el.id || "");
+    var box = el.closest("[class*=question], [class*=field], .form-group, fieldset, li, div");
+    if (box) t += " " + (box.innerText || "").slice(0, 200);
+    return t.toLowerCase();
+  }
+  var LETTER = /cover(ing)?\s*letter|supporting (statement|information)|personal statement|letter of (application|motivation)|motivation/;
+  function letterBox() {
+    var boxes = Array.prototype.filter.call(document.querySelectorAll("textarea, [contenteditable=true]"), function (el) {
+      return !host.contains(el) && el.offsetParent !== null;
+    });
+    return boxes.find(function (el) { return LETTER.test(labelOf(el)); }) || lastField ||
+           (boxes.length === 1 ? boxes[0] : null);
+  }
+  function letterUpload() {
+    var files = Array.prototype.filter.call(document.querySelectorAll("input[type=file]"), function (el) { return !el.disabled; });
+    return files.find(function (el) { return LETTER.test(labelOf(el)) || /letter/.test(labelOf(el)); }) ||
+           (files.length >= 2 ? files[1] : null);
+  }
+  function setField(el, value) {
+    if (el.isContentEditable) { el.focus(); el.innerText = value; el.dispatchEvent(new Event("input", { bubbles: true })); return; }
+    var proto = el.tagName === "TEXTAREA" ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+    Object.getOwnPropertyDescriptor(proto, "value").set.call(el, value);
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+    el.style.outline = "3px solid #3be3cc";
+  }
+
   /* ---------------------------------------------------------------- the panel */
   function render() {
     var h = "<div class='hd'><b>Job Hunt HQ" + (state.me && state.me.first ? " · Hi " + esc(state.me.first) : "") + "</b>" +
@@ -226,6 +262,32 @@
                  : "<button class='b' data-a='save'>Save it and write my cover letter</button>") + "</div>";
     } else if (state.page && looksLikeJob(state.page)) {
       h += "<div class='sec'><p class='h'>" + esc(state.page.title) + "</p><button class='b' data-a='save'>Save it and score it</button></div>";
+    }
+    if (j && j.id) {
+      h += "<div class='sec'><p class='h'>Cover letter</p>";
+      if (state.letter == null) {
+        h += "<button class='b g' data-a='letter'>Show my cover letter for this job</button>";
+      } else {
+        h += "<textarea data-letter style='min-height:180px'>" + esc(state.letter) + "</textarea>" +
+             "<div><button class='b s' data-a='lcopy'>Copy</button>" +
+             "<button class='b s' data-a='lput'>Put it in the letter box</button>" +
+             "<button class='b s' data-a='lattach'>Attach as PDF</button></div>" +
+             "<div><button class='b g s' data-a='ldl' data-f='pdf'>Download PDF</button>" +
+             "<button class='b g s' data-a='ldl' data-f='docx'>Download Word</button>" +
+             "<button class='b g s' data-a='lsave'>Save my edits</button>" +
+             "<button class='b g s' data-a='lnew'>Write it again</button></div>" +
+             (state.lmsg ? "<div class='ok'>" + esc(state.lmsg) + "</div>" : "") +
+             "<p class='muted'>Edit it here first if you like – your changes are used everywhere.</p>";
+      }
+      h += "</div>";
+    }
+    if (!j || !j.id) {
+      h += "<div class='sec'><details" + (state.pasteOpen ? " open" : "") + "><summary class='h' style='cursor:pointer'>Paste a job description</summary>" +
+           "<p class='muted'>From anywhere – an email, a PDF, a website. I'll score it and write your cover letter.</p>" +
+           "<input data-pt placeholder='Job title' value='" + esc((state.page && state.page.title) || "") + "' style='width:100%;margin-top:6px;padding:7px;border:1px solid #dce1ee;border-radius:8px'>" +
+           "<input data-pc placeholder='Employer' value='" + esc((state.page && state.page.company) || "") + "' style='width:100%;margin-top:6px;padding:7px;border:1px solid #dce1ee;border-radius:8px'>" +
+           "<textarea data-pd placeholder='Paste the job description here'></textarea>" +
+           "<button class='b' data-a='paste'>Save it and write my cover letter</button></details></div>";
     }
     if (state.form && state.form.form) {
       var qs = state.form.questions;
@@ -301,6 +363,67 @@
       b.textContent = res === "ok" ? "✓ In the form" : res === "robot" ? "Pick it from the list on the page" : "Couldn't find that box – copy it in";
       return;
     }
+    if (a === "letter" || a === "lnew") {
+      b.textContent = a === "lnew" ? "Writing…" : "Loading…";
+      return api({ action: "letter", job_id: state.job.id, rewrite: a === "lnew" })
+        .then(function (r) { state.letter = r.text; state.lmsg = a === "lnew" ? "Written again from your details." : ""; render(); })
+        .catch(function (err) { state.msg = err.message; render(); });
+    }
+    var box = panel.querySelector("[data-letter]");
+    var text = box ? box.value : (state.letter || "");
+    if (a === "lcopy") {
+      navigator.clipboard.writeText(text).then(function () { b.textContent = "✓ Copied"; }, function () { box.select(); document.execCommand("copy"); b.textContent = "✓ Copied"; });
+      return;
+    }
+    if (a === "lsave") {
+      return api({ action: "letter_save", job_id: state.job.id, text: text })
+        .then(function () { state.letter = text; state.lmsg = "Saved."; render(); });
+    }
+    if (a === "lput") {
+      var target = letterBox();
+      if (!target) { state.letter = text; state.lmsg = "Click inside the form's cover-letter box first, then press this again."; return render(); }
+      setField(target, text);
+      state.letter = text; state.lmsg = "✓ Put in the form – check it reads right.";
+      return render();
+    }
+    if (a === "lattach" || a === "ldl") {
+      b.textContent = "Preparing…";
+      var fmt = a === "lattach" ? "pdf" : b.getAttribute("data-f");
+      return api({ action: "letter_file", job_id: state.job.id, text: text, fmt: fmt }).then(function (r) {
+        var bin = atob(r.b64), arr = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+        var blob = new Blob([arr], { type: r.type });
+        state.letter = text;
+        if (a === "ldl") {
+          var url = URL.createObjectURL(blob), link = document.createElement("a");
+          link.href = url; link.download = r.name; document.body.appendChild(link); link.click(); link.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+          state.lmsg = "✓ Downloaded " + r.name;
+        } else {
+          var input = letterUpload();
+          if (!input) { state.lmsg = "There's no upload box for a cover letter on this page – use Download PDF instead."; return render(); }
+          var dt = new DataTransfer();
+          dt.items.add(new File([blob], r.name, { type: r.type }));
+          input.files = dt.files;
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+          state.lmsg = "✓ Attached " + r.name + " to the form.";
+        }
+        render();
+      }).catch(function (err) { state.msg = err.message; render(); });
+    }
+    if (a === "paste") {
+      var t = panel.querySelector("[data-pt]").value.trim(), co = panel.querySelector("[data-pc]").value.trim(),
+          ds = panel.querySelector("[data-pd]").value.trim();
+      if (!t || ds.length < 80) { state.pasteOpen = true; state.msg = "Add the job title and paste the full description."; return render(); }
+      b.textContent = "Writing your letter…";
+      return api({ action: "job", save: true, url: location.href, title: t, company: co, description: ds }).then(function (r) {
+        state.job = r.job; state.letter = null;
+        if (r.job) store.set("lastJob", Object.assign({}, r.job, { at: Date.now() }));
+        return api({ action: "letter", job_id: r.job.id });
+      }).then(function (r) { state.letter = r.text; state.lmsg = "Here's your cover letter."; render(); })
+        .catch(function (err) { state.msg = err.message; render(); });
+    }
     if (a === "applied") {
       b.textContent = "Saving…";
       return api({ action: "applied", job_id: state.job.id, page: location.href })
@@ -327,7 +450,7 @@
     var len = (document.body && document.body.innerText || "").length;
     if (location.href !== lastUrl || Math.abs(len - lastLen) > 2000) {
       lastUrl = location.href; lastLen = len;
-      state.answers = {}; state.filled = "";
+      state.answers = {}; state.filled = ""; state.letter = null; state.lmsg = "";
       look();
     }
   }, 2000);

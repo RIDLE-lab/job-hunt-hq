@@ -101,8 +101,12 @@
     <textarea id="cover_letter" name="cover_letter" rows="22">{{ job.cover_letter }}</textarea>
     <div class="row">
       <button class="btn">Save changes</button>
-      <button class="btn" formaction="{{ url_for('job_docx', job_id=job.id) }}">Save as Word file</button>
+      <button class="btn" formaction="{{ url_for('job_letter_download', job_id=job.id, fmt='pdf') }}">Download PDF</button>
+      <button class="btn" formaction="{{ url_for('job_letter_download', job_id=job.id, fmt='docx') }}">Download Word</button>
+      {% if not hosted %}<button class="btn btn-ghost" formaction="{{ url_for('job_docx', job_id=job.id) }}">Save to my Cover Letters folder</button>{% endif %}
     </div>
+    <p class="muted small">Edit it here, then download it to attach, or press <b>Copy</b> to paste it into a cover-letter box.
+      The browser assistant can also put it in the box or attach it to the form for you.</p>
   </form>
   {% if saved %}
   <div class="saved" role="status">
