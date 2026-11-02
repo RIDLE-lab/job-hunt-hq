@@ -493,8 +493,11 @@ def test_accounts_keep_data_apart():
         s["uid"], s["sv"] = sam["id"], sam["session_version"]
     accounts.update(sam["id"], setup_done=1)
     assert c2.get("/people").status_code == 403
-    assert b"Owner Only Job" not in c2.get("/").data
-    assert b"Owner Only Job" in c1.get("/").data
+    assert b"Owner Only Job" not in c2.get("/jobs").data
+    assert b"Owner Only Job" in c1.get("/jobs").data
+    home = c1.get("/").data.decode()
+    assert "Do this next" in home and "Best matches" in home and "Your applications" in home
+    assert c1.get("/?q=owner").headers["Location"].startswith("/jobs")      # old job-list links still work
     # wrong password, unknown user, and signing out other devices after a password change
     assert accounts.check_login("samtest", "nope")[0] is None
     assert accounts.check_login("samtest", "a-long-password-1")[0]

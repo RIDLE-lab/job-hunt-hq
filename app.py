@@ -717,12 +717,15 @@ def manifest():
 
 # Sidebar: (section, [(endpoint, label, icon)]) – the same groups as the GSI HRIS layout.
 NAV = [
-    ("Overview", [("dashboard", "Dashboard", "home")]),
-    ("Applying", [("everywhere", "Job sites", "search"), ("assistant_page", "Assistant", "send"), ("add_job", "Add a job", "plus"), ("robot_page", "Apply for me", "send"),
-                  ("applications_page", "Applications", "send")]),
+    ("Overview", [("dashboard", "Home", "home"), ("jobs_page", "Jobs", "briefcase")]),
+    ("Applying", [("applications_page", "Applications", "list"), ("assistant_page", "Assistant", "send"),
+                  ("robot_page", "Apply for me", "send"), ("add_job", "Add a job", "plus")]),
     ("You", [("career_page", "My career", "user"), ("cv_builder", "Create CV", "file"), ("emails", "Emails", "mail")]),
 ]
-CRUMBS = {"dashboard": ("Overview", "Dashboard"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
+# Pages that live under a menu item (so the right one is highlighted).
+NAV_PARENT = {"job_detail": "jobs_page", "everywhere": "jobs_page", "import_page": "add_job", "settings_page": "",
+              "account_page": "", "job_letter_download": "jobs_page"}
+CRUMBS = {"dashboard": ("Overview", "Home"), "jobs_page": ("Overview", "Jobs"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
           "robot_page": ("Applying", "Apply for me"), "career_page": ("You", "My career"), "emails": ("You", "Emails"),
           "setup": ("Settings", "Setup"), "import_page": ("Applying", "Import"),
           "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"), "everywhere": ("Applying", "Job sites"), "assistant_page": ("Applying", "Assistant"),
@@ -756,6 +759,7 @@ def helpers():
             "occupations": OCCUPATIONS_JSON, "all_titles": occupations.ALL_TITLES,
             "langs": i18n.LANGS, "lang": current_lang(), "countries": countries.COUNTRIES,
             "currency": countries.currency((cfg_profile() or {}).get("country") or "GB"),
+            "nav_on": NAV_PARENT.get(request.endpoint, request.endpoint),
             "nav": [(sec, [("assistant_page", "Apply for me", "send") if (HOSTED and i[0] == "assistant_page") else i
                            for i in items if not (HOSTED and i[0] in PC_ONLY_ENDPOINTS)]) for sec, items in NAV]}
 
@@ -803,15 +807,10 @@ def conn():
 
 
 # ------------------------------------------------------------------ dashboard
-@app.route("/")
-def dashboard():
-    c = conn()
-    q = request.args.get("q", "").strip().lower()
-    fit = request.args.get("fit", "")
-    apps = [dict(r) for r in c.execute(
-        "SELECT * FROM applications ORDER BY CASE status WHEN 'interview' THEN 0 WHEN 'second_stage' THEN 0 WHEN 'offer' THEN 0 "
-        "WHEN 'assessment' THEN 1 WHEN 'pre_screen' THEN 1 WHEN 'ready' THEN 2 ELSE 3 END, "
-        "COALESCE(applied_on, '9999') DESC, updated_at DESC")]
+def _job_list(c, a):
+    """The jobs to review, with the filters from the Jobs page (search, fit, posted, source, sort)."""
+    q = (a.get("q") or "").strip().lower()
+    fit, posted, sort, src = a.get("fit", ""), a.get("posted", ""), a.get("sort", ""), a.get("src", "")
     jobs = [dict(r) for r in c.execute(
         "SELECT * FROM jobs WHERE status IN ('new', 'shortlisted', 'prepared') "
         "AND id NOT IN (SELECT job_id FROM applications WHERE job_id IS NOT NULL) "
@@ -820,73 +819,113 @@ def dashboard():
         jobs = [j for j in jobs if q in f"{j['title']} {j['company']} {j['location']}".lower()]
     if fit:
         jobs = [j for j in jobs if fit_label(j["score"]) == fit]
-    # How recently each job was posted (or first seen, when the site doesn't say).
     today = date.today()
-    for j in jobs:
+    for j in jobs:       # how recently each job was posted (or first seen, when the site doesn't say)
         try:
             j["age"] = (today - date.fromisoformat((j.get("posted") or "")[:10])).days
         except ValueError:
-            j["age"] = None   # the site didn't say when it was posted
-    posted = request.args.get("posted", "")
+            j["age"] = None
     if posted.isdigit():
         jobs = [j for j in jobs if j["age"] is not None and j["age"] <= int(posted)]
-    sort = request.args.get("sort", "")
     if sort == "newest":
         jobs.sort(key=lambda j: (j["age"] if j["age"] is not None else 9999, -(j["score"] or 0)))
-    # Where the jobs came from, with counts (after the other filters), so no source gets buried.
     sources = {}
     for j in jobs:
         sources[j["source"]] = sources.get(j["source"], 0) + 1
     sources = sorted(sources.items(), key=lambda kv: (kv[0] not in ("LinkedIn", "Indeed"), -kv[1]))
-    src = request.args.get("src", "")
     if src:
         jobs = [j for j in jobs if j["source"] == src]
-    total_jobs = len(jobs)
-    limit = max(50, int(request.args.get("limit", "50") or 50) if request.args.get("limit", "").isdigit() else 50)
-    shown = jobs[:limit]
-    events = [dict(r) for r in c.execute(
-        "SELECT e.*, a.company AS app_company, a.role AS app_role FROM events e "
-        "LEFT JOIN applications a ON a.id = e.application_id "
-        "WHERE e.category NOT IN ('other', 'job_alert') ORDER BY e.received_at DESC LIMIT 12")]
+    return jobs, {"q": q, "fit": fit, "posted": posted, "sort": sort, "src": src, "sources": sources}
 
+
+def _overview(c) -> dict:
+    """Everything the Home page sums up: your figures, what needs you next, best matches, replies, the pipeline."""
+    apps = [dict(r) for r in c.execute(
+        "SELECT * FROM applications ORDER BY CASE status WHEN 'interview' THEN 0 WHEN 'second_stage' THEN 0 WHEN 'offer' THEN 0 "
+        "WHEN 'assessment' THEN 1 WHEN 'pre_screen' THEN 1 WHEN 'ready' THEN 2 ELSE 3 END, "
+        "COALESCE(applied_on, '9999') DESC, updated_at DESC")]
+    jobs, _ = _job_list(c, {})
     counts = {s: 0 for s, _ in db.APP_STATUSES}
     for a in apps:
         counts[a["status"]] = counts.get(a["status"], 0) + 1
-    submitted = sum(v for k, v in counts.items() if k not in ("ready",))
-    kpis = {
-        "applied": submitted,
-        "waiting": counts["applied"] + counts["acknowledged"],
-        "progressing": counts["pre_screen"] + counts["assessment"] + counts["interview"] + counts["second_stage"] + counts["offer"],
-        "rejected": counts["rejected"],
-        "matches": total_jobs,
-        "new_today": len([j for j in jobs if j["status"] == "new" and j["created_at"][:10] == date.today().isoformat()]),
-    }
-    attention = [a for a in apps if a["status"] in ("interview", "second_stage", "assessment", "pre_screen", "offer", "ready")]
-    # Group next steps by the month you last heard about each one (newest first); this month and last stay open.
+    submitted = sum(v for k, v in counts.items() if k != "ready")
+    heard = submitted - counts["applied"]
+    today = date.today().isoformat()
+    kpis = {"applied": submitted, "waiting": counts["applied"] + counts["acknowledged"],
+            "progressing": counts["pre_screen"] + counts["assessment"] + counts["interview"] + counts["second_stage"] + counts["offer"],
+            "rejected": counts["rejected"], "matches": len(jobs),
+            "new_today": len([j for j in jobs if j["status"] == "new" and (j["created_at"] or "")[:10] == today]),
+            "this_week": sum(1 for a in apps if (a.get("applied_on") or "") >= (date.today() - timedelta(days=6)).isoformat()),
+            "reply_rate": round(100 * heard / submitted) if submitted else 0,
+            "strong": sum(1 for j in jobs if (j["score"] or 0) >= 70)}
     last = {r["application_id"]: r["m"] for r in c.execute(
         "SELECT application_id, MAX(received_at) AS m FROM events WHERE application_id IS NOT NULL GROUP BY application_id")}
-    months = {}
+    attention = [a for a in apps if a["status"] in ("offer", "interview", "second_stage", "assessment", "pre_screen")]
     for a in attention:
         a["when"] = (last.get(a["id"]) or a.get("applied_on") or a.get("updated_at") or "")[:10]
-        months.setdefault(a["when"][:7] or "0000-00", []).append(a)
-    this_month = date.today().strftime("%Y-%m")
-    prev = date.today().replace(day=1) - timedelta(days=1)
-    attention_months = []
-    for key in sorted(months, reverse=True):
-        try:
-            label = date.fromisoformat(key + "-01").strftime("%B %Y")
-        except ValueError:
-            label = "Date unknown"
-        attention_months.append({"key": key, "label": label + (" · this month" if key == this_month else ""),
-                                 "steps": sorted(months[key], key=lambda a: a["when"], reverse=True),
-                                 "open": key >= prev.strftime("%Y-%m")})
+    attention.sort(key=lambda a: (a.get("next_date") or "9999", "" if a["status"] == "offer" else a["when"]), reverse=False)
+    attention.sort(key=lambda a: a["when"], reverse=True)
+    letters = [j for j in jobs if j["status"] == "prepared"]
+    events = [dict(r) for r in c.execute(
+        "SELECT e.*, a.company AS app_company, a.role AS app_role FROM events e "
+        "LEFT JOIN applications a ON a.id = e.application_id "
+        "WHERE e.category NOT IN ('other', 'job_alert') ORDER BY e.received_at DESC LIMIT 4")]
+    pipeline = [(key, label, sum(counts.get(s, 0) for s in sts)) for key, label, sts in APP_GROUPS if sts and key != "withdrawn"]
     meta = {"last_refresh": db.get_meta(c, "last_refresh"), "last_gmail": db.get_meta(c, "last_gmail_sync")}
+    return {"apps": apps, "jobs": jobs, "kpis": kpis, "counts": counts, "attention": attention, "letters": letters,
+            "events": events, "pipeline": pipeline, "pipeline_max": max([n for _, _, n in pipeline] + [1]), "meta": meta,
+            "ready_apps": [a for a in apps if a["status"] == "ready"]}
+
+
+def _setup_steps() -> list[dict]:
+    """The few things that make Job Hunt HQ work well, and whether each is done – shown on Home until they all are."""
+    cfg = load_config()
+    prof, search = cfg.get("profile") or {}, cfg.get("search") or {}
+    try:
+        has_cv = cv_file(prof) is not None
+    except Exception:
+        has_cv = False
+    try:
+        from jobhunt import career as _career
+        has_career = bool((_career.load() or {}).get("experience"))
+    except Exception:
+        has_career = False
+    return [
+        {"done": bool(prof.get("name") and prof.get("location")), "label": "Add your name and where you live", "href": "/settings"},
+        {"done": bool(search.get("keywords")), "label": "Choose the jobs you're looking for", "href": "/settings"},
+        {"done": has_cv, "label": "Upload or create your CV", "href": url_for("cv_builder")},
+        {"done": has_career, "label": "Add your work history (it writes better letters)", "href": url_for("career_page")},
+        {"done": bool((cfg.get("gmail") or {}).get("enabled")), "label": "Connect Gmail to track replies (optional)",
+         "href": "/settings#gmail"},
+    ]
+
+
+@app.route("/")
+def dashboard():
+    """Home: a short summary of where your job hunt is, and what to do next."""
+    if any(request.args.get(k) for k in ("q", "fit", "posted", "sort", "src", "limit")):
+        return redirect(url_for("jobs_page", **request.args))        # old links to the job list
+    c = conn()
+    o = _overview(c)
     c.close()
+    steps = _setup_steps()
+    return render_template("home.html", **o, setup_steps=steps, setup_done=sum(s["done"] for s in steps))
+
+
+@app.route("/jobs")
+def jobs_page():
+    """Every job found for you, best match first, with filters."""
+    c = conn()
+    jobs, f = _job_list(c, request.args)
+    meta = {"last_refresh": db.get_meta(c, "last_refresh")}
+    c.close()
+    total_jobs = len(jobs)
+    limit = int(request.args["limit"]) if request.args.get("limit", "").isdigit() else 50
+    limit = max(50, limit)
     args = {k: v for k, v in request.args.items() if v and k != "limit"}
-    return render_template("dashboard.html", apps=apps, jobs=shown, events=events, kpis=kpis, counts=counts,
-                           attention=attention, attention_months=attention_months, meta=meta, q=q, fit=fit, posted=posted, sort=sort,
-                           sources=sources, src=src, total_jobs=total_jobs, limit=limit, args=args,
-                           cfg=load_config())
+    return render_template("jobs.html", jobs=jobs[:limit], total_jobs=total_jobs, limit=limit, args=args, meta=meta,
+                           strong=sum(1 for j in jobs if (j["score"] or 0) >= 70),
+                           letters=sum(1 for j in jobs if j["status"] == "prepared"), **f)
 
 
 @app.post("/refresh")
@@ -1106,7 +1145,7 @@ def job_applied(job_id):
     c.commit()
     c.close()
     flash(f"Marked as applied: {job['title']} at {job['company']}.")
-    return redirect(url_for("dashboard"))
+    return redirect(url_for("jobs_page"))
 
 
 @app.post("/job/<int:job_id>/skip")
@@ -1117,7 +1156,7 @@ def job_skip(job_id):
     c.commit()
     c.close()
     flash("Job hidden.")
-    return redirect(url_for("dashboard"))
+    return redirect(url_for("jobs_page"))
 
 
 def save_and_prepare(data: dict, prepare: bool = True) -> tuple[int, bool]:
@@ -1195,7 +1234,7 @@ def api_import():
             _, created = save_and_prepare(item, prepare=False)   # letters are written when you open a job
             added += created
             updated += not created
-        return {"job_url": url_for("dashboard", posted="1" if data.get("recent") else None, sort="newest") + "#matches",
+        return {"job_url": url_for("jobs_page", posted="1" if data.get("recent") else None, sort="newest"),
                 "added": added, "updated": updated}
     data = {k: str(v or "").strip() for k, v in data.items()}
     if not data.get("title"):

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "_job_row.html" import job_row with context %}
+{% block title %}Jobs · Job Hunt HQ{% endblock %}
+{% block content %}
+<header class="head">
+  <div>
+    <h1>Jobs for you</h1>
+    <p class="muted">{{ t('{n} jobs to look through, best match first.', n=total_jobs) if total_jobs != 1 else t('1 job to look through.') }}
+      {% if strong %}<b class="hl">{{ t('{n} strong fits', n=strong) if strong != 1 else t('1 strong fit') }}</b>{% endif %}{% if letters %} · {{ t('{n} cover letters ready', n=letters) if letters != 1 else t('1 cover letter ready') }}{% endif %}
+      {% if meta.last_refresh %}<span class="tiny"> · {{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}</span>{% endif %}</p>
+  </div>
+  <div class="row head-actions">
+    <a class="btn btn-signal" href="{{ url_for('everywhere') }}">Search every job site</a>
+    <a class="btn btn-onnight" href="{{ url_for('add_job') }}">Add a job</a>
+  </div>
+</header>
+
+<section class="card" id="matches">
+  <form class="filters" method="get" role="search" aria-label="Filter jobs">
+    {% if src %}<input type="hidden" name="src" value="{{ src }}">{% endif %}
+    <input type="search" name="q" value="{{ q }}" placeholder="Search title, company, place" aria-label="Search jobs">
+    <select name="fit" aria-label="Fit" onchange="this.form.submit()">
+      <option value="">All fits</option>
+      {% for f in ['Strong fit', 'Good fit', 'Stretch', 'Weak fit', 'Not scored'] %}
+      <option value="{{ f }}" {{ 'selected' if fit == f }}>{{ f }}</option>{% endfor %}
+    </select>
+    <select name="posted" aria-label="Posted" onchange="this.form.submit()">
+      {% for v, label in [('', 'Posted any time'), ('1', 'Last 24 hours'), ('3', 'Last 3 days'), ('7', 'Last week'),
+                          ('14', 'Last 2 weeks'), ('30', 'Last month')] %}
+      <option value="{{ v }}" {{ 'selected' if posted == v }}>{{ label }}</option>{% endfor %}
+    </select>
+    <select name="sort" aria-label="Sort" onchange="this.form.submit()">
+      <option value="" {{ 'selected' if not sort }}>Best match first</option>
+      <option value="newest" {{ 'selected' if sort == 'newest' }}>Newest first</option>
+    </select>
+    <button class="btn btn-primary">Search</button>
+    {% if q or fit or posted or sort or src %}<a class="btn btn-ghost" href="{{ url_for('jobs_page') }}">Clear</a>{% endif %}
+  </form>
+  {% if sources|length > 1 or src %}
+  <nav class="src-filter" aria-label="Where jobs came from">
+    <a href="{{ url_for('jobs_page', **dict(args, src=None)) }}" class="{{ 'on' if not src }}"{% if not src %} aria-current="true"{% endif %}>All</a>
+    {% for name, n in sources %}
+    <a href="{{ url_for('jobs_page', **dict(args, src=name)) }}" class="{{ 'on' if src == name }}"{% if src == name %} aria-current="true"{% endif %}>{{ name }} <span>{{ n }}</span></a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  {% if jobs %}
+  <ul class="jobs">
+    {% for j in jobs %}{{ job_row(j) }}{% endfor %}
+  </ul>
+  {% if total_jobs > jobs|length %}
+  <p class="more"><a class="btn btn-ghost" href="{{ url_for('jobs_page', **dict(args, limit=limit + 50)) }}">Show 50 more</a>
+    <span class="muted small">Showing {{ jobs|length }} of {{ total_jobs }}</span></p>
+  {% endif %}
+  {% else %}
+  <p class="empty">No jobs to review{% if q or fit or posted or src %} for this filter{% endif %}.{% if posted and src in ('LinkedIn', 'Indeed') %} Most saved LinkedIn and Indeed jobs have no posting date, so set Posted to "any time" to see them.{% endif %}
+    Press <b>Refresh jobs</b> at the top to search again, <a href="{{ url_for('everywhere') }}">search every job site</a>, or <a href="{{ url_for('add_job') }}">add a job</a> you found.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -3,7 +3,7 @@
 {% block content %}
 <section class="head"><div>
   <h1>Add a job</h1>
-  <p class="muted">Quickest way: on the job page in LinkedIn or Indeed, click your <b>Send to Job Hunt HQ</b> bookmark (<a href="{{ url_for('setup') }}#button">set it up</a>).
+  <p class="muted">{% if hosted %}Quickest way: on any job advert, press the round <b>Job Hunt HQ assistant</b> button and choose <b>Save</b> (<a href="{{ url_for('assistant_page') }}">get the assistant</a>).{% else %}Quickest way: on the job page in LinkedIn or Indeed, click your <b>Send to Job Hunt HQ</b> bookmark (<a href="{{ url_for('setup') }}#button">set it up</a>).{% endif %}
   Or paste the job's link here – this works for most career sites and LinkedIn, though Indeed often blocks it.</p>
 </div></section>
 <section class="card">

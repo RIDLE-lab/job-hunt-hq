@@ -292,3 +292,54 @@ Contact|Contact|Kontakt|Contact|Contacto|Contacto
 Designed and built by Rashid Idle, with the assistance of Claude|Conçu et développé par Rashid Idle, avec l’aide de Claude|Entworfen und entwickelt von Rashid Idle, mit Unterstützung von Claude|Ontworpen en gebouwd door Rashid Idle, met hulp van Claude|Diseñado y desarrollado por Rashid Idle, con la ayuda de Claude|Concebido e desenvolvido por Rashid Idle, com a ajuda de Claude
 About this page, or anything else in Job Hunt HQ.|À propos de cette page, ou de tout autre élément de Job Hunt HQ.|Zu dieser Seite oder zu allem anderen in Job Hunt HQ.|Over deze pagina, of iets anders in Job Hunt HQ.|Sobre esta página o cualquier otra cosa de Job Hunt HQ.|Sobre esta página ou qualquer outra coisa no Job Hunt HQ.
 Report misuse or a security problem|Signaler un abus ou un problème de sécurité|Missbrauch oder Sicherheitsproblem melden|Misbruik of beveiligingsprobleem melden|Informar de un uso indebido o un problema de seguridad|Denunciar uso indevido ou um problema de segurança
+# Home and Jobs pages (Nov 2026)
+Home|Accueil|Start|Home|Inicio|Início
+Search|Rechercher|Suchen|Zoeken|Buscar|Pesquisar
+Clear|Effacer|Zurücksetzen|Wissen|Borrar|Limpar
+Still waiting to hear|En attente de réponse|Warten auf Antwort|Wacht op antwoord|Esperando respuesta|À espera de resposta
+Job offers|Offres reçues|Jobangebote|Jobaanbiedingen|Ofertas de trabajo|Propostas de emprego
+Not sent yet|Pas encore envoyée|Noch nicht abgeschickt|Nog niet verstuurd|Aún no enviada|Ainda não enviada
+Latest replies|Dernières réponses|Neueste Antworten|Laatste reacties|Últimas respuestas|Últimas respostas
+Best matches|Meilleures offres|Beste Treffer|Beste matches|Mejores ofertas|Melhores vagas
+My examples|Mes exemples|Meine Beispiele|Mijn voorbeelden|Mis ejemplos|Os meus exemplos
+Show 50 more|Afficher 50 de plus|50 weitere anzeigen|Toon er nog 50|Mostrar 50 más|Mostrar mais 50
+Posted any time|Publiée à tout moment|Jederzeit veröffentlicht|Op elk moment geplaatst|Publicada en cualquier momento|Publicada a qualquer altura
+Search title, company, place|Poste, entreprise, lieu|Titel, Firma, Ort suchen|Zoek functie, bedrijf, plaats|Buscar puesto, empresa, lugar|Pesquisar cargo, empresa, local
+Jobs for you|Offres pour vous|Jobs für Sie|Vacatures voor u|Ofertas para ti|Vagas para si
+{n} jobs to look through, best match first.|{n} offres à examiner, les meilleures d’abord.|{n} Jobs zum Durchsehen, die besten zuerst.|{n} vacatures om door te nemen, beste match eerst.|{n} ofertas por revisar, las mejores primero.|{n} vagas para analisar, as melhores primeiro.
+1 job to look through.|1 offre à examiner.|1 Job zum Durchsehen.|1 vacature om door te nemen.|1 oferta por revisar.|1 vaga para analisar.
+{n} strong fits|{n} très bons profils|{n} sehr passend|{n} sterke matches|{n} muy adecuadas|{n} muito adequadas
+1 strong fit|1 très bon profil|1 sehr passend|1 sterke match|1 muy adecuada|1 muito adequada
+{n} cover letters ready|{n} lettres de motivation prêtes|{n} Anschreiben fertig|{n} motivatiebrieven klaar|{n} cartas de presentación listas|{n} cartas de apresentação prontas
+1 cover letter ready|1 lettre de motivation prête|1 Anschreiben fertig|1 motivatiebrief klaar|1 carta de presentación lista|1 carta de apresentação pronta
+Search every job site|Chercher sur tous les sites d’emploi|Alle Jobbörsen durchsuchen|Zoek op alle vacaturesites|Buscar en todos los portales|Pesquisar em todos os sites de emprego
+Do this next|À faire ensuite|Als Nächstes|Volgende stap|Lo siguiente|A seguir
+All {n} moving forward|Les {n} en cours|Alle {n} in Bearbeitung|Alle {n} in behandeling|Las {n} en marcha|As {n} em curso
+Starting with {company}|En commençant par {company}|Beginnend mit {company}|Te beginnen met {company}|Empezando por {company}|A começar por {company}
+{n} applications not sent yet|{n} candidatures pas encore envoyées|{n} Bewerbungen noch nicht abgeschickt|{n} sollicitaties nog niet verstuurd|{n} candidaturas aún sin enviar|{n} candidaturas ainda por enviar
+1 application not sent yet|1 candidature pas encore envoyée|1 Bewerbung noch nicht abgeschickt|1 sollicitatie nog niet verstuurd|1 candidatura aún sin enviar|1 candidatura ainda por enviar
+You're all caught up|Vous êtes à jour|Alles erledigt|U bent helemaal bij|Lo tienes todo al día|Está tudo em dia
+Have a look at your best matches below, or press Refresh jobs.|Regardez vos meilleures offres ci-dessous, ou appuyez sur Actualiser.|Sehen Sie sich unten Ihre besten Treffer an oder tippen Sie auf Aktualisieren.|Bekijk hieronder uw beste matches, of druk op Vernieuwen.|Mira tus mejores ofertas abajo o pulsa Actualizar.|Veja as suas melhores vagas abaixo ou carregue em Atualizar.
+Get the most out of Job Hunt HQ|Tirez le meilleur de Job Hunt HQ|Holen Sie das Beste aus Job Hunt HQ heraus|Haal het meeste uit Job Hunt HQ|Saca el máximo partido a Job Hunt HQ|Tire o máximo partido do Job Hunt HQ
+{done} of {all} done|{done} sur {all} faits|{done} von {all} erledigt|{done} van {all} klaar|{done} de {all} hechos|{done} de {all} feitos
+Add your name and where you live|Ajoutez votre nom et votre lieu de résidence|Name und Wohnort angeben|Voeg uw naam en woonplaats toe|Añade tu nombre y dónde vives|Adicione o seu nome e onde vive
+Choose the jobs you're looking for|Choisissez les postes que vous cherchez|Wählen Sie die gesuchten Jobs|Kies de functies die u zoekt|Elige los puestos que buscas|Escolha as funções que procura
+Upload or create your CV|Importez ou créez votre CV|Lebenslauf hochladen oder erstellen|Upload of maak uw cv|Sube o crea tu CV|Carregue ou crie o seu CV
+Add your work history (it writes better letters)|Ajoutez votre parcours (pour de meilleures lettres)|Berufserfahrung angeben (bessere Anschreiben)|Voeg uw werkervaring toe (betere brieven)|Añade tu experiencia (mejores cartas)|Adicione a sua experiência (melhores cartas)
+Connect Gmail to track replies (optional)|Connectez Gmail pour suivre les réponses (facultatif)|Gmail verbinden, um Antworten zu verfolgen (optional)|Koppel Gmail om reacties te volgen (optioneel)|Conecta Gmail para seguir respuestas (opcional)|Ligue o Gmail para acompanhar respostas (opcional)
+See all {n} jobs|Voir les {n} offres|Alle {n} Jobs ansehen|Alle {n} vacatures bekijken|Ver las {n} ofertas|Ver as {n} vagas
+Your applications|Vos candidatures|Ihre Bewerbungen|Uw sollicitaties|Tus candidaturas|As suas candidaturas
+Open →|Ouvrir →|Öffnen →|Openen →|Abrir →|Abrir →
+All emails →|Tous les e-mails →|Alle E-Mails →|Alle e-mails →|Todos los correos →|Todos os e-mails →
+{n} sent this week|{n} envoyées cette semaine|{n} diese Woche abgeschickt|{n} deze week verstuurd|{n} enviadas esta semana|{n} enviadas esta semana
+{n}% have had a reply|{n} % ont reçu une réponse|{n} % haben eine Antwort|{n}% heeft een reactie gehad|{n} % han recibido respuesta|{n}% tiveram resposta
+Connect Gmail|Connecter Gmail|Gmail verbinden|Gmail koppelen|Conectar Gmail|Ligar o Gmail
+Connect Gmail in My settings|Connectez Gmail dans Mes paramètres|Gmail in Meine Einstellungen verbinden|Koppel Gmail in Mijn instellingen|Conecta Gmail en Mis ajustes|Ligue o Gmail nas Minhas definições
+Paste a link or advert – it scores it and writes your letter|Collez un lien ou une annonce – il l’évalue et écrit votre lettre|Link oder Anzeige einfügen – wird bewertet und das Anschreiben geschrieben|Plak een link of vacature – hij beoordeelt hem en schrijft uw brief|Pega un enlace o anuncio: lo puntúa y escribe tu carta|Cole um link ou anúncio – avalia-o e escreve a sua carta
+Fills in application forms for you|Remplit les formulaires de candidature pour vous|Füllt Bewerbungsformulare für Sie aus|Vult sollicitatieformulieren voor u in|Rellena los formularios por ti|Preenche os formulários por si
+Build, improve or tailor your CV|Créez, améliorez ou adaptez votre CV|Lebenslauf erstellen, verbessern oder anpassen|Maak, verbeter of pas uw cv aan|Crea, mejora o adapta tu CV|Crie, melhore ou adapte o seu CV
+Your searches on every job site, ready to open|Vos recherches sur chaque site d’emploi, prêtes à ouvrir|Ihre Suchen auf jeder Jobbörse, bereit zum Öffnen|Uw zoekopdrachten op elke vacaturesite, klaar om te openen|Tus búsquedas en cada portal, listas para abrir|As suas pesquisas em cada site de emprego, prontas a abrir
+Skip to content|Aller au contenu|Zum Inhalt springen|Naar de inhoud|Ir al contenido|Saltar para o conteúdo
+Changes are kept when you press Save.|Les modifications sont gardées quand vous appuyez sur Enregistrer.|Änderungen werden beim Speichern übernommen.|Wijzigingen worden bewaard als u op Opslaan drukt.|Los cambios se guardan al pulsar Guardar.|As alterações ficam guardadas quando carrega em Guardar.
+Remembered answers|Réponses mémorisées|Gespeicherte Antworten|Onthouden antwoorden|Respuestas guardadas|Respostas guardadas
+Competencies|Compétences clés|Kompetenzen|Competenties|Competencias|Competências

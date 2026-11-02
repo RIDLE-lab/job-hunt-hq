@@ -9,8 +9,13 @@
   </div>
 </section>
 
+<nav class="section-nav" aria-label="Sections on this page">
+  <a href="#experience">Work experience</a><a href="#education">Education</a><a href="#competencies">Competencies</a>
+  <a href="#examples">My examples</a><a href="#skills">Skills and languages</a><a href="#answers">Remembered answers</a>
+</nav>
+
 <form method="post" class="career">
-<section class="card">
+<section class="card" id="experience">
   <div class="card-head"><h2>Work experience</h2><button type="button" class="btn btn-ghost" data-add="exp">Add a job</button></div>
   <p class="muted small">Newest first. Dates as MM/YYYY. Leave "To" empty if you still work there. The robot types these into
     Workday's “My Experience” page (and similar forms) exactly as written here.</p>
@@ -37,7 +42,7 @@
   </div>
 </section>
 
-<section class="card">
+<section class="card" id="education">
   <div class="card-head"><h2>Education and qualifications</h2><button type="button" class="btn btn-ghost" data-add="edu">Add a qualification</button></div>
   <div class="rows" id="edu-rows">
     {% for e in career.education %}{% set i = loop.index0 %}
@@ -108,7 +113,7 @@
   <p><button class="btn btn-primary">Save my career details</button></p>
 </section>
 
-<section class="card">
+<section class="card" id="skills">
   <h2>Skills, certifications and languages</h2>
   <label>Skills <span class="muted small">(one per line, or separated by commas – added to Workday's Skills box)</span>
     <textarea name="skills" rows="5">{{ career.skills|join('\n') }}</textarea></label>
@@ -118,6 +123,7 @@
 {% endfor %}</textarea></label>
   <p><button class="btn btn-primary">Save my career details</button></p>
 </section>
+<div class="save-bar"><span class="muted small">Changes are kept when you press Save.</span><button class="btn btn-primary">Save my career details</button></div>
 </form>
 
 <section class="card" id="answers">

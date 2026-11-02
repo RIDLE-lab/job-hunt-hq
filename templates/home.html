@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% from "_status.html" import status_icon %}
+{% from "_job_row.html" import job_row with context %}
+{% block title %}Home · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="hero hero-home">
+  <div class="hero-text">
+    <p class="hero-date">{{ today_label }}{% if meta.last_refresh %} · {{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}{% endif %}</p>
+    <h1>{{ greeting }}, {{ me.first }}.</h1>
+    <p class="hero-sub">{% if kpis.new_today %}{{ t('1 new job came in today.' if kpis.new_today == 1 else '{n} new jobs came in today.', n=kpis.new_today) }} {% endif %}{{ t(('1 match' if kpis.matches == 1 else '{m} matches') ~ ' to look through, and ' ~ ('1 application' if kpis.waiting == 1 else '{w} applications') ~ ' waiting to hear back.', m=kpis.matches, w=kpis.waiting) }}</p>
+    <dl class="figures">
+      <a href="{{ url_for('jobs_page') }}"><dt>To review</dt><dd data-count="{{ kpis.matches }}">{{ kpis.matches }}</dd></a>
+      <a href="{{ url_for('applications_page') }}"><dt>Applied</dt><dd data-count="{{ kpis.applied }}">{{ kpis.applied }}</dd></a>
+      <a href="{{ url_for('applications_page', show='waiting') }}"><dt>Waiting</dt><dd data-count="{{ kpis.waiting }}">{{ kpis.waiting }}</dd></a>
+      <a class="good" href="{{ url_for('applications_page', show='forward') }}"><dt>Moving forward</dt><dd data-count="{{ kpis.progressing }}">{{ kpis.progressing }}</dd></a>
+      <a class="bad" href="{{ url_for('applications_page', show='rejected') }}"><dt>Rejected</dt><dd data-count="{{ kpis.rejected }}">{{ kpis.rejected }}</dd></a>
+    </dl>
+  </div>
+  <figure class="radar" aria-label="Your best matches">
+    <div class="radar-scope">
+      <svg viewBox="0 0 200 200" aria-hidden="true" class="rings">
+        <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/>
+        <path d="M100 4v192M4 100h192"/>
+      </svg>
+      <div class="sweep" aria-hidden="true"></div>
+      {% for j in jobs[:18] %}
+      <a class="blip{{ ' ready' if j.status == 'prepared' }}{{ ' strong' if (j.score or 0) >= 70 }}" data-score="{{ j.score or 0 }}" href="{{ url_for('job_detail', job_id=j.id) }}"
+         aria-label="{{ j.title }} at {{ j.company }}, {{ j.score or 'no' }} match"><span class="tip">{{ j.title }}<small>{{ j.company }} · {{ j.score or '–' }}</small></span></a>
+      {% endfor %}
+    </div>
+    <figcaption><span><i class="k ready"></i>Letter ready</span><span><i class="k strong"></i>Strong fit</span><span><i class="k"></i>Other matches</span><em>Closer to the centre = better match</em></figcaption>
+  </figure>
+</section>
+
+{# ---------- what to do next: never more than four things #}
+<section class="card next reveal" aria-labelledby="next-h">
+  <div class="card-head"><h2 id="next-h">Do this next</h2>
+    {% if attention|length > 3 %}<a class="card-link" href="{{ url_for('applications_page', show='forward') }}">{{ t('All {n} moving forward', n=attention|length) }} →</a>{% endif %}</div>
+  <div class="steps-grid">
+    {% for a in attention[:3] %}
+    <a class="step st-{{ a.status }}" href="{{ url_for('applications_page', q=a.company) }}">
+      <span class="step-ico">{{ status_icon(a.status) }}</span>
+      <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{{ a.company }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% elif a.when %} · {{ a.when|nice_date }}{% endif %}</small></span>
+    </a>
+    {% endfor %}
+    {% if letters %}
+    <a class="step st-ready" href="{{ url_for('job_detail', job_id=letters[0].id) }}">
+      <span class="step-ico">{{ icon('mail') }}</span>
+      <span><b>{{ t('{n} cover letters ready', n=letters|length) if letters|length != 1 else t('1 cover letter ready') }}</b><small>{{ t('Starting with {company}', company=letters[0].company) }}</small></span>
+    </a>
+    {% endif %}
+    {% if ready_apps %}
+    <a class="step st-ready" href="{{ url_for('applications_page', show='ready') }}">
+      <span class="step-ico">{{ icon('send') }}</span>
+      <span><b>{{ t('{n} applications not sent yet', n=ready_apps|length) if ready_apps|length != 1 else t('1 application not sent yet') }}</b><small>{{ ready_apps[0].role }} · {{ ready_apps[0].company }}</small></span>
+    </a>
+    {% endif %}
+    {% if kpis.new_today %}
+    <a class="step" href="{{ url_for('jobs_page', sort='newest') }}">
+      <span class="step-ico">{{ icon('plus') }}</span>
+      <span><b>{{ t('1 new job today') if kpis.new_today == 1 else t('{n} new jobs today', n=kpis.new_today) }}</b><small>Newest first</small></span>
+    </a>
+    {% endif %}
+    {% if not (attention or letters or ready_apps or kpis.new_today) %}
+    <a class="step" href="{{ url_for('jobs_page') }}">
+      <span class="step-ico">{{ icon('search') }}</span>
+      <span><b>You're all caught up</b><small>Have a look at your best matches below, or press Refresh jobs.</small></span>
+    </a>
+    {% endif %}
+  </div>
+</section>
+
+{% if setup_done < setup_steps|length %}
+<section class="card setup-card reveal" aria-labelledby="setup-h">
+  <div class="card-head"><h2 id="setup-h">Get the most out of Job Hunt HQ</h2>
+    <span class="muted small">{{ t('{done} of {all} done', done=setup_done, all=setup_steps|length) }}</span></div>
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ setup_steps|length }}" aria-valuenow="{{ setup_done }}"
+       aria-label="Set-up progress"><i style="--w: {{ (100 * setup_done / setup_steps|length)|round }}%"></i></div>
+  <ul class="setup-list">
+    {% for s in setup_steps %}
+    <li class="{{ 'done' if s.done }}">{% if s.done %}<span>{{ s.label }}</span>{% else %}<a href="{{ s.href }}">{{ s.label }}</a>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<div class="home-grid">
+  <section class="card reveal" aria-labelledby="best-h">
+    <div class="card-head"><h2 id="best-h">Best matches</h2>
+      {% if kpis.strong %}<span class="pill pill-interview">{{ t('{n} strong fits', n=kpis.strong) if kpis.strong != 1 else t('1 strong fit') }}</span>{% endif %}</div>
+    {% if jobs %}
+    <ul class="jobs">{% for j in jobs[:6] %}{{ job_row(j, compact=True) }}{% endfor %}</ul>
+    <p class="card-foot"><a class="btn btn-primary" href="{{ url_for('jobs_page') }}">{{ t('See all {n} jobs', n=kpis.matches) }}</a>
+      <a class="btn btn-ghost" href="{{ url_for('everywhere') }}">Search every job site</a></p>
+    {% else %}
+    <p class="empty">No jobs yet. Press <b>Refresh jobs</b>, <a href="{{ url_for('everywhere') }}">search every job site</a>, or <a href="{{ url_for('add_job') }}">add a job</a> you found.</p>
+    {% endif %}
+  </section>
+
+  <div class="stack">
+    <section class="card reveal" aria-labelledby="pipe-h">
+      <div class="card-head"><h2 id="pipe-h">Your applications</h2>
+        <a class="card-link" href="{{ url_for('applications_page') }}">Open →</a></div>
+      <ul class="pipeline">
+        {% for key, label, n in pipeline %}
+        <li><a href="{{ url_for('applications_page', show=key) }}" class="pipe-{{ key }}">
+          <span class="pipe-label">{{ label }}</span>
+          <span class="pipe-bar"><i style="--w: {{ (100 * n / pipeline_max)|round }}%"></i></span>
+          <b class="num">{{ n }}</b></a></li>
+        {% endfor %}
+      </ul>
+      <p class="pipe-facts muted small">{{ t('{n} sent this week', n=kpis.this_week) }} · {{ t('{n}% have had a reply', n=kpis.reply_rate) }}</p>
+    </section>
+
+    <section class="card reveal" aria-labelledby="replies-h">
+      <div class="card-head"><h2 id="replies-h">Latest replies</h2>
+        {% if events %}<a class="card-link" href="{{ url_for('emails') }}">All emails →</a>{% endif %}</div>
+      {% if events %}
+      <ul class="events">
+        {% for e in events %}
+        <li class="reply st-{{ e.category }}">
+          <span class="reply-ico">{{ status_icon(e.category) }}</span>
+          <div class="reply-main">
+            <span class="reply-st">{{ email_labels.get(e.category, e.category|replace('_', ' ')|capitalize) }}</span>
+            <strong>{{ e.app_company or e.sender.split('<')[0] }}</strong>
+            <div class="muted small reply-subj">{{ e.subject }}</div>
+            <div class="muted tiny">{{ e.received_at[:16].replace('T', ' ') }}</div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="empty">Replies from employers show here once Gmail is connected. <a href="/settings#gmail">Connect Gmail</a>.</p>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<nav class="shortcuts reveal" aria-label="Shortcuts">
+  <a href="{{ url_for('add_job') }}">{{ icon('plus') }}<b>Add a job</b><small>Paste a link or advert – it scores it and writes your letter</small></a>
+  <a href="{{ url_for('assistant_page') if hosted else url_for('robot_page') }}">{{ icon('send') }}<b>Apply for me</b><small>Fills in application forms for you</small></a>
+  <a href="{{ url_for('cv_builder') }}">{{ icon('file') }}<b>Create CV</b><small>Build, improve or tailor your CV</small></a>
+  <a href="{{ url_for('everywhere') }}">{{ icon('search') }}<b>Job sites</b><small>Your searches on every job site, ready to open</small></a>
+</nav>
+
+<script>
+  /* Job radar: each dot is one of your best matches. The better the match, the nearer the centre. */
+  (() => {
+    [...document.querySelectorAll('.radar .blip')].forEach((b, i) => {
+      const score = +b.dataset.score || 0;
+      const r = Math.min(46, Math.max(7, (100 - score) * 0.62));
+      const a = (i * 137.5 - 90) * Math.PI / 180;
+      b.style.left = (50 + r * Math.cos(a)) + '%';
+      b.style.top = (50 + r * Math.sin(a)) + '%';
+      b.style.setProperty('--d', (i * 0.06) + 's');
+    });
+  })();
+</script>
+{% endblock %}

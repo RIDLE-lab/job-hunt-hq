@@ -53,8 +53,8 @@
     <li><b>Add your profile links</b> in <a href="{{ url_for('settings_page') }}">My settings</a> so application forms and your CV include them.
       {% if profile.linkedin %}<br>LinkedIn: <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">{{ profile.linkedin|replace('https://', '') }}</a>{% endif %}
       {% if profile.indeed %}<br>Indeed: <a href="{{ profile.indeed }}" target="_blank" rel="noopener">{{ profile.indeed|replace('https://', '') }}</a>{% endif %}</li>
-    <li><b>Use the browser buttons</b> (see <a href="{{ url_for('setup') }}">Setup</a>) – <i>Send to Job Hunt HQ</i> on any LinkedIn or
-      Indeed advert, and <i>Fill this application</i> on the form.</li>
+    <li><b>Use the <a href="{{ url_for('assistant_page') }}">browser assistant</a></b> – on any advert it scores the job and saves it;
+      on the application form it fills in what it can and attaches your CV and cover letter.</li>
   </ol>
 </section>
 </div>

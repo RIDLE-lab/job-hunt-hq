@@ -1,0 +1,15 @@
+{% macro job_row(j, compact=False) %}
+<li class="job{{ ' compact' if compact }}">
+  <div class="score score-{{ fit_label(j.score)|lower|replace(' ', '-') }}" title="{{ fit_label(j.score) }}">{{ j.score if j.score is not none else '–' }}</div>
+  <div class="job-main">
+    <a href="{{ url_for('job_detail', job_id=j.id) }}" class="job-title">{{ j.title }}</a>
+    <div class="muted small">{{ j.company }}{% if j.location %} · {{ j.location }}{% endif %}{% if j.salary_text and not compact %} · {{ j.salary_text }}{% endif %}
+      {% if j.age is not none %} · <span class="age{{ ' age-new' if j.age <= 1 }}" title="Posted {{ j.posted }}">{{ 'today' if j.age <= 0 else 'yesterday' if j.age == 1 else j.age ~ ' days ago' if j.age < 14 else (j.age // 7) ~ ' weeks ago' if j.age < 60 else (j.age // 30) ~ ' months ago' }}</span>{% elif not compact %} · <span class="age" title="The site didn't say when this was posted, so it only shows under Posted any time">date unknown</span>{% endif %}</div>
+    {% if j.score_reasons and not compact %}<div class="reasons small">{{ j.score_reasons }}</div>{% endif %}
+  </div>
+  <div class="job-side small">
+    {% if not compact %}<span class="src">{{ j.source }}</span>{% endif %}
+    {% if j.status == 'prepared' %}<span class="pill pill-ready">Letter ready</span>{% endif %}
+  </div>
+</li>
+{% endmacro %}

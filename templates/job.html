@@ -4,7 +4,7 @@
 {% block content %}
 <section class="head">
   <div>
-    <p class="back"><a href="{{ url_for('dashboard') }}">← All jobs</a></p>
+    <p class="back"><a href="{{ url_for('jobs_page') }}">← All jobs</a></p>
     <h1>{{ job.title }}</h1>
     <p class="muted">{{ job.company }}{% if job.location %} · {{ job.location }}{% endif %}{% if job.salary_text %} · {{ job.salary_text }}{% endif %}
       {% if job.closes %} · closes {{ job.closes }}{% endif %} · from {{ job.source }}
