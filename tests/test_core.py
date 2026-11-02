@@ -954,6 +954,59 @@ def test_cover_letter_everywhere():
     assert post({"action": "letter", "job_id": job["id"]})["text"].endswith("My own words.")
 
 
+def test_security_alerts_email_the_owner():
+    """Signs of misuse are recorded and emailed to the contact address – once per problem, never breaking the page."""
+    import time as _t
+    from unittest import mock
+
+    import app as A
+    from jobhunt import accounts, alerts
+    c, owner = owner_client()
+    sent = []
+
+    class FakeSMTP:
+        def __init__(self, host, port, timeout=30):
+            assert host == "smtp.example.test"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def login(self, user, pw): assert user == "info@jhhq.co.uk" and pw == "pw"
+        def send_message(self, msg): sent.append(msg)
+
+    env = {"JOBHUNT_SMTP_HOST": "smtp.example.test", "JOBHUNT_SMTP_PASSWORD": "pw", "JOBHUNT_CONTACT": "info@jhhq.co.uk"}
+    with mock.patch.dict(os.environ, env), mock.patch("jobhunt.alerts.smtplib.SMTP_SSL", FakeSMTP):
+        assert alerts.email_ready()
+        anon = A.app.test_client()
+        for i in range(9):      # someone guessing passwords
+            anon.post("/login", data={"username": "nobody", "password": "x" + str(i)},
+                      headers={"Origin": "http://localhost", "X-Forwarded-For": "203.0.113.9"})
+        for i in range(11):     # someone trying made-up assistant keys
+            anon.post("/api/assistant", json={"token": "made-up-" + str(i), "action": "hello"},
+                      headers={"X-Forwarded-For": "198.51.100.4"})
+        uid = accounts.create("sharer" + os.urandom(2).hex(), "Sam Share", "a-long-password-12")
+        for n in range(5):      # one person's assistant file used from five different networks
+            alerts.assistant_used(uid, "sam", f"10.{n}.1.5")
+        alerts.assistant_used(uid, "sam", "10.9.1.5")       # already told – no second email
+        r = c.post("/feedback", data={"kind": "report", "message": "Someone is using my CV", "page": "/"},
+                   headers={"Origin": "http://localhost"})
+        assert r.status_code == 302
+        deadline = _t.time() + 5
+        while len(sent) < 4 and _t.time() < deadline:
+            _t.sleep(0.05)
+    subjects = [m["Subject"] for m in sent]
+    assert len(sent) == 4, subjects
+    assert any("guessing passwords" in s for s in subjects) and any("assistant keys" in s for s in subjects)
+    assert any("may have been shared" in s for s in subjects) and any("reported misuse" in s for s in subjects)
+    assert all(m["To"] == "info@jhhq.co.uk" for m in sent)
+    page = c.get("/people").data.decode()
+    assert "Security and misuse alerts" in page and "Someone is using my CV" in page and "New assistant key" in page
+    assert "203.0.113.9" in page
+    # without email settings, alerts are still listed but nothing is sent
+    with mock.patch.dict(os.environ, {"JOBHUNT_SMTP_HOST": "", "JOBHUNT_SMTP_PASSWORD": ""}):
+        assert not alerts.email_ready()
+        assert alerts.raise_alert("report", "Test", "detail", key="no-email") is False
+    assert "Security records" in A.app.test_client().get("/privacy").data.decode()
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

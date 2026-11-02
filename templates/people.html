@@ -64,6 +64,7 @@
         <td class="actions">
           {% if not p.is_admin %}
           <form method="post"><input type="hidden" name="user_id" value="{{ p.id }}"><input type="hidden" name="action" value="reset"><button class="btn btn-ghost small">Password reset link</button></form>
+          <form method="post"><input type="hidden" name="user_id" value="{{ p.id }}"><input type="hidden" name="action" value="newkey"><button class="btn btn-ghost small" title="Their current browser assistant stops working; they download it again">New assistant key</button></form>
           <form method="post"><input type="hidden" name="user_id" value="{{ p.id }}"><input type="hidden" name="action" value="{{ 'off' if p.active else 'on' }}"><button class="btn btn-ghost small{{ ' danger' if p.active }}">{{ 'Switch off' if p.active else 'Switch back on' }}</button></form>
           {% endif %}
         </td>
@@ -71,5 +72,23 @@
     {% endfor %}
     </tbody>
   </table></div>
+</section>
+<section class="card" id="alerts">
+  <h2>Security and misuse alerts{% if alerts %}<span class="count">{{ alerts|length }}</span>{% endif %}</h2>
+  <p class="muted">Job Hunt HQ watches for signs that the <a href="{{ url_for('legal', page='acceptable-use') }}">Acceptable use</a> rules are being broken:
+    password guessing, made-up assistant keys, an assistant file used from lots of places (shared), bulk automated applications,
+    a used invite link tried again, and anything people report.
+    {% if alerts_email %}Each one is emailed to <b>{{ alert_to }}</b> (at most once every 6 hours per problem).
+    {% else %}<b>Email alerts aren't switched on yet</b> – they're only listed here. Add the email settings on the server to have them sent to {{ alert_to or 'your contact address' }}.{% endif %}</p>
+  {% if alerts %}
+  <div class="table-wrap"><table>
+    <thead><tr><th>When</th><th>What</th><th>Details</th></tr></thead>
+    <tbody>
+    {% for a in alerts %}
+      <tr><td class="num">{{ a.at|replace('T', ' ') }}</td><td><b>{{ a.title }}</b></td><td class="muted" style="white-space:pre-line">{{ a.detail }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<p class="empty">Nothing so far.</p>{% endif %}
 </section>
 {% endblock %}

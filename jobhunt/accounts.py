@@ -195,6 +195,17 @@ def invites() -> list[dict]:
             "ORDER BY i.created_at DESC LIMIT 50")]
 
 
+def invite_used(code: str) -> bool:
+    with connect() as c:
+        row = c.execute("SELECT used_by FROM invites WHERE code = ?", ((code or "").strip().upper(),)).fetchone()
+    return bool(row and row["used_by"])
+
+
+def username_exists(username: str) -> bool:
+    with connect() as c:
+        return c.execute("SELECT 1 FROM users WHERE username = ?", ((username or "").strip().lower(),)).fetchone() is not None
+
+
 def invite_ok(code: str) -> bool:
     code = (code or "").strip().upper()
     with connect() as c:
@@ -418,7 +429,8 @@ def import_zip(user_id: int, data: bytes) -> int:
 
 
 # ------------------------------------------------------------------ feedback from the people using it
-FEEDBACK_KINDS = [("problem", "Something's wrong"), ("idea", "An idea"), ("question", "A question"), ("praise", "Something I like")]
+FEEDBACK_KINDS = [("problem", "Something's wrong"), ("idea", "An idea"), ("question", "A question"), ("praise", "Something I like"),
+                  ("report", "Report misuse or a security problem")]
 FEEDBACK_STATUS = [("new", "New"), ("planned", "Planned"), ("done", "Done"), ("wont", "Not doing")]
 FEEDBACK_DIR = DATA_DIR / "feedback"
 

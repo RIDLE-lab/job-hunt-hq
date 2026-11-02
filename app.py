@@ -28,6 +28,7 @@ app.config.update(SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_HTTPONLY=True, P
 
 # ------------------------------------------------------------------ accounts and signing in
 from jobhunt import accounts  # noqa: E402
+from jobhunt import alerts  # noqa: E402
 from jobhunt import occupations  # noqa: E402
 from jobhunt import countries, i18n  # noqa: E402
 
@@ -61,6 +62,10 @@ def safe_next(default="/"):
     return nxt if nxt.startswith("/") and not nxt.startswith("//") else default
 
 
+def client_ip() -> str:
+    return (request.headers.get("X-Forwarded-For") or request.remote_addr or "").split(",")[0].strip()
+
+
 @app.before_request
 def sign_in_required():
     from flask import g, session
@@ -83,9 +88,15 @@ def sign_in_required():
             return None
         uid = accounts.user_for_token(token)
         if not uid:
+            if token:
+                alerts.note("bad_token", alerts.network(client_ip()), "Someone is trying assistant keys that don't exist",
+                            f"{{n}} requests in {{minutes}} minutes from {client_ip()} used a browser-assistant key "
+                            "that doesn't belong to anyone. Someone may be guessing keys or testing the website's security.")
             abort(403)
         g.ctx = set_user(uid)
         g.user = accounts.get(uid)
+        if ep == "api_assistant" and g.user:
+            alerts.assistant_used(uid, g.user["username"], client_ip())
         return None
     if not accounts.any_users():                # first run: the owner makes their account
         if ep == "first_account":
@@ -155,8 +166,17 @@ def login():
         same_site_only()
         import time
         time.sleep(0.6)                  # slows down anyone guessing
-        u, error = accounts.check_login(request.form.get("username", ""), request.form.get("password", ""),
+        tried = (request.form.get("username", "") or "").strip().lower()[:60]
+        u, error = accounts.check_login(tried, request.form.get("password", ""),
                                         request.headers.get("X-Forwarded-For", request.remote_addr or ""))
+        if not u:
+            alerts.note("failed_login", alerts.network(client_ip()), "Someone may be guessing passwords",
+                        f"{{n}} failed sign-ins in {{minutes}} minutes from {client_ip()} (last username tried: "
+                        f"{tried or 'blank'}). The website already makes them wait 15 minutes after a few tries.")
+            if tried and accounts.username_exists(tried):
+                alerts.note("failed_login", "u:" + tried, f"Repeated failed sign-ins to {tried}'s account",
+                            f"{{n}} failed sign-ins to the account {tried} in {{minutes}} minutes "
+                            f"(latest from {client_ip()}). Someone may be trying to get into their account.")
         if u:
             sign_in_as(u)
             return redirect(safe_next())
@@ -234,6 +254,10 @@ def join(code):
         same_site_only()
         f = {k: request.form.get(k, "").strip() for k in ("name", "email", "username", "password", "password2")}
         f["username"] = f["username"].lower()
+        if code and not accounts.invite_ok(code) and accounts.invite_used(code):
+            alerts.raise_alert("used_invite", "A used invite link was tried again",
+                               f"Someone at {client_ip()} tried to make an account with the invite code {code}, which "
+                               "has already been used. The person you invited may have shared their link.", key=code)
         error = ("That invite code isn't valid or has been used. Ask for a new one." if not accounts.invite_ok(code) else "") or \
             ("Add your name." if not f["name"] else "") or accounts.username_problem(f["username"]) or \
             accounts.password_problem(f["password"], f["username"]) or \
@@ -414,7 +438,10 @@ def feedback_page():
                 image = (data, ext)
             else:
                 flash("The screenshot needs to be a PNG, JPG, WebP or GIF image – your message was still sent.")
-        accounts.add_feedback(u["id"], request.form.get("kind", "idea"), message, back, image)
+        fid = accounts.add_feedback(u["id"], request.form.get("kind", "idea"), message, back, image)
+        if request.form.get("kind") == "report":
+            alerts.raise_alert("report", f"{u['name']} ({u['username']}) reported misuse or a security problem",
+                               f"Page: {back or '-'}\n\n{message[:3000]}", key=str(fid))
         flash("Thanks – your feedback has been sent." if not u["is_admin"] else "Noted.")
         return redirect(back if back.startswith("/") and not back.startswith("//") else url_for("feedback_page"))
     show = request.args.get("show", "open")
@@ -658,12 +685,20 @@ def people_page():
             if uid != g.user["id"]:
                 accounts.update(uid, active=1 if action == "on" else 0)
                 flash("Account switched " + ("on." if action == "on" else "off. They can't sign in any more."))
+        elif action == "newkey":
+            uid = int(request.form.get("user_id", 0))
+            with as_user(uid):
+                from jobhunt.config import user_dir
+                (user_dir() / "access_token.txt").unlink(missing_ok=True)
+                access_token()
+            flash("Their old browser assistant has stopped working. They need to download the assistant again.")
         elif action == "reset":
             uid = int(request.form.get("user_id", 0))
             made = {"kind": "reset", "code": accounts.create_reset(uid), "who": (accounts.get(uid) or {}).get("username")}
         if not made:
             return redirect(url_for("people_page"))
     return render_template("people.html", users=accounts.all_users(), invites=accounts.invites(), made=made,
+                           alerts=alerts.recent(30), alerts_email=alerts.email_ready(), alert_to=alerts._to(),
                            base=request.host_url.rstrip("/"))
 
 
@@ -1375,6 +1410,17 @@ def api_assistant():
                                     "score": job.get("score"), "fit": _fit(job.get("score") or 0), "reasons": reasons[:5],
                                     "status": job.get("status"), "has_letter": bool(job.get("cover_letter")),
                                     "link": url_for("job_detail", job_id=job["id"], _external=True)}}
+    if action in ("pack", "applied"):
+        from flask import g as _g
+        who = (_g.user or {}).get("username", "?") if _g.get("user") else "?"
+        if action == "applied":
+            alerts.note("applied", who, f"{who} may be sending bulk automated applications",
+                        f"{who} marked {{n}} applications as sent through the assistant in {{minutes}} minutes. That's "
+                        "faster than a person normally applies, so it may break the job sites' terms.")
+        else:
+            alerts.note("fill", who, f"{who} is filling a very large number of forms",
+                        f"{who}'s assistant filled {{n}} application forms in {{minutes}} minutes. "
+                        "This may be automated or bulk applying.")
     if action == "pack":
         return build_pack(int(d.get("job_id") or 0) or None, str(d.get("page") or ""))
     if action == "answer":

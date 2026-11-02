@@ -80,3 +80,20 @@ Each person connects their own Gmail in **My settings → Gmail** with a Gmail *
 ## Backups
 
 Account → **Download my data** any time. Render also lets you snapshot the disk.
+
+## Security and misuse alerts by email (optional)
+
+The website watches for signs that the Acceptable use rules are being broken (password guessing, made-up assistant
+keys, a shared assistant file, bulk automated applications, a used invite link tried again, and reports from people
+using it). Every alert is listed on the **People** page. To have them emailed too, add these on Render
+(Environment → Add environment variable):
+
+| Key | Value |
+|---|---|
+| `JOBHUNT_SMTP_HOST` | your mailbox's outgoing (SMTP) server, from your email provider's settings page |
+| `JOBHUNT_SMTP_PORT` | `465` (or `587` if your provider says so) |
+| `JOBHUNT_SMTP_USER` | the mailbox, e.g. `info@jhhq.co.uk` (defaults to `JOBHUNT_CONTACT`) |
+| `JOBHUNT_SMTP_PASSWORD` | that mailbox's password |
+| `JOBHUNT_ALERT_TO` | optional – where alerts go (defaults to `JOBHUNT_CONTACT`) |
+
+Each problem is emailed at most once every 6 hours, and security records are deleted after 90 days.
