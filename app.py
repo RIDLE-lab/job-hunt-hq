@@ -314,7 +314,8 @@ def account_page():
 @app.route("/privacy")
 def privacy():
     """Privacy notice: what's stored, who can see it, and your rights under UK GDPR."""
-    return render_template("privacy.html", contact=accounts.owner_contact() if accounts.any_users() else "")
+    contact = os.environ.get("JOBHUNT_CONTACT") or (accounts.owner_contact() if accounts.any_users() else "")
+    return render_template("privacy.html", contact=contact)
 
 
 @app.route("/account/export")
