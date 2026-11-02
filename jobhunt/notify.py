@@ -43,7 +43,11 @@ def send(cfg: dict, subject: str, html: str, text: str):
     msg["Subject"], msg["From"], msg["To"] = subject, f"Job Hunt HQ <{e['from']}>", e["to"]
     msg.set_content(text)
     msg.add_alternative(html, subtype="html")
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as s:
+    from . import mail_providers as mp
+    if mp.provider(cfg) == "outlook":
+        raise RuntimeError("Sending job emails through Outlook isn't available yet.")
+    host = mp.smtp_host(cfg) or "smtp.gmail.com"
+    with smtplib.SMTP_SSL(host, 465, timeout=30) as s:
         s.login(e["from"], e["gmail_app_password"])
         s.send_message(msg)
 

@@ -161,3 +161,36 @@ def site_links(code: str, title: str, place: str, miles: int = 15) -> list[tuple
 
 def site_names(code: str) -> list[str]:
     return [n for n, _ in COUNTRIES.get(code_for(code), COUNTRIES["GB"])[5]]
+
+
+# International dialling codes, so a phone number works on forms anywhere ("+44" for the United Kingdom).
+DIAL_CODES = [
+    ("GB", "United Kingdom", "+44"), ("IE", "Ireland", "+353"), ("FR", "France", "+33"), ("DE", "Germany", "+49"),
+    ("NL", "Netherlands", "+31"), ("BE", "Belgium", "+32"), ("ES", "Spain", "+34"), ("PT", "Portugal", "+351"),
+    ("IT", "Italy", "+39"), ("PL", "Poland", "+48"), ("AT", "Austria", "+43"), ("CH", "Switzerland", "+41"),
+    ("SE", "Sweden", "+46"), ("NO", "Norway", "+47"), ("DK", "Denmark", "+45"), ("FI", "Finland", "+358"),
+    ("RO", "Romania", "+40"), ("GR", "Greece", "+30"), ("CZ", "Czechia", "+420"), ("HU", "Hungary", "+36"),
+    ("LT", "Lithuania", "+370"), ("LV", "Latvia", "+371"), ("BG", "Bulgaria", "+359"), ("TR", "Türkiye", "+90"),
+    ("US", "United States", "+1"), ("CA", "Canada", "+1"), ("AU", "Australia", "+61"), ("NZ", "New Zealand", "+64"),
+    ("AE", "United Arab Emirates", "+971"), ("SA", "Saudi Arabia", "+966"), ("QA", "Qatar", "+974"),
+    ("KW", "Kuwait", "+965"), ("EG", "Egypt", "+20"), ("MA", "Morocco", "+212"), ("SO", "Somalia", "+252"),
+    ("SL", "Somaliland", "+252"), ("ET", "Ethiopia", "+251"), ("KE", "Kenya", "+254"), ("NG", "Nigeria", "+234"),
+    ("GH", "Ghana", "+233"), ("ZA", "South Africa", "+27"), ("IN", "India", "+91"), ("PK", "Pakistan", "+92"),
+    ("BD", "Bangladesh", "+880"), ("LK", "Sri Lanka", "+94"), ("PH", "Philippines", "+63"), ("CN", "China", "+86"),
+    ("HK", "Hong Kong", "+852"), ("SG", "Singapore", "+65"), ("MY", "Malaysia", "+60"), ("JP", "Japan", "+81"),
+    ("KR", "South Korea", "+82"), ("BR", "Brazil", "+55"), ("MX", "Mexico", "+52"), ("AR", "Argentina", "+54"),
+    ("JM", "Jamaica", "+1"), ("TT", "Trinidad and Tobago", "+1"),
+]
+
+
+def dial_code(country: str | None) -> str:
+    country = (country or "GB").upper()
+    return next((code for c, _, code in DIAL_CODES if c == country), "+44")
+
+
+def international(phone: str, code: str) -> str:
+    """'07392 003078' with '+44' → '+44 7392 003078' (numbers already starting with + are left alone)."""
+    phone = (phone or "").strip()
+    if not phone or phone.startswith("+") or phone.startswith("00"):
+        return phone
+    return f"{code} {phone[1:] if phone.startswith('0') else phone}".strip()

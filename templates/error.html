@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ {404: 'Page not found', 403: 'Not allowed', 429: 'Too many requests', 413: 'File too big'}.get(code, 'Something went wrong') }} · Job Hunt HQ</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+  <main class="login-box err-box">
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="11"/><circle cx="20" cy="20" r="4" class="core"/><circle cx="31" cy="12" r="3.2" class="ping"/></svg><span>Job Hunt HQ</span></a>
+    {% if code == 404 %}
+    <h1>Page not found</h1>
+    <p>That page doesn't exist, or it has moved. Check the address, or go back to the start.</p>
+    {% elif code == 403 %}
+    <h1>Not allowed</h1>
+    <p>You can't open this page from here. If you followed a link, it may have expired.</p>
+    {% elif code == 429 %}
+    <h1>Too many requests</h1>
+    <p>Wait a minute, then try again.</p>
+    {% elif code == 413 %}
+    <h1>File too big</h1>
+    <p>Files can be up to 12 MB. Try a smaller one.</p>
+    {% elif code and code < 500 %}
+    <h1>That didn't work</h1>
+    <p>Go back and try again.</p>
+    {% else %}
+    <h1>Something went wrong</h1>
+    <p>Job Hunt HQ hit a problem and it's been noted. Try again in a moment.</p>
+    {% endif %}
+    <p><a class="btn btn-primary" href="/">Go to Job Hunt HQ</a></p>
+  </main>
+</body>
+</html>

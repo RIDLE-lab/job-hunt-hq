@@ -139,7 +139,8 @@ var JHQ = window.JHQ || (function () {
   /* Which of your details a text field wants. Order matters: the first match wins. */
   var OWN_WORDS = /own words|without (the use of |using )?(ai|generative|chatgpt)|not (to )?use (ai|chatgpt)|no ai\b|written by you/;
   var RULES = [
-    ["skip", /preferred.?(first.?)?name|middle.?name|nickname|referr|recruiter|how did you hear|source|password|captcha|(current|present|last)[^a-z]{0,6}(\w+ )?salary|salary.*current|address.?line.?2|addressline2|\bcounty\b|\bstate\b|\bregion\b|\bextension\b|country.?phone.?code|\bsearch\b/],
+    ["phone_code", /country.?(phone.?)?code|dial(l)?ing.?code|calling.?code/],
+    ["skip", /preferred.?(first.?)?name|middle.?name|nickname|referr|recruiter|how did you hear|source|password|captcha|(current|present|last)[^a-z]{0,6}(\w+ )?salary|salary.*current|address.?line.?2|addressline2|\bcounty\b|\bstate\b|\bregion\b|\bextension\b|\bsearch\b/],
     ["first_name", /first.?name|given.?name|forename|given-name/],
     ["last_name", /last.?name|surname|family.?name|family-name/],
     ["full_name", /full.?name|^name\b(?!.*(company|employer|organi[sz]ation|school|university|reference|qualification|establishment|referee))|\bname\b(?!.*(company|employer|organi[sz]ation|school|university|reference|qualification|establishment|referee))/],
@@ -167,7 +168,7 @@ var JHQ = window.JHQ || (function () {
     var answers = {};
     (pack.answers || []).forEach(function (qa) { answers[qa[0]] = qa[1]; });
     var value = {
-      first_name: p.first_name, last_name: p.last_name, full_name: p.name, email: p.email, phone: p.phone,
+      first_name: p.first_name, last_name: p.last_name, full_name: p.name, email: p.email, phone: p.phone, phone_code: p.phone_code,
       linkedin: p.linkedin, github: p.github, postcode: p.postcode, city: p.city, address: p.address_line, employer: p.current_employer,
       job_title: p.current_title, notice: p.notice_period, salary: p.salary_expectation, right_to_work: p.right_to_work,
       why_role: pack.why_role, why_company: pack.why_company, summary: pack.summary,
@@ -185,8 +186,18 @@ var JHQ = window.JHQ || (function () {
         return;
       }
       if (el.tagName === "SELECT") {
-        if (/country/.test(d)) {
-          var opt = Array.prototype.find.call(el.options, function (o) { return /^(united kingdom|uk|great britain|gb)$/i.test(o.text.trim()); });
+        if (/country.?(phone.?)?code|dial(l)?ing.?code|calling.?code|phone.?country|\bprefix\b/.test(d) && p.phone_code) {
+          /* the phone's country code ("+44"): pick the option showing it, preferring your own country's name */
+          var codeOpts = Array.prototype.filter.call(el.options, function (o) { return o.text.replace(/\s/g, "").indexOf(p.phone_code) >= 0 || o.value === p.phone_code; });
+          var pick = codeOpts.find(function (o) { return p.country_name && o.text.toLowerCase().indexOf(p.country_name.toLowerCase()) >= 0; }) || codeOpts[0];
+          if (pick && el.value !== pick.value) { setValue(el, pick.value); mark(el); filled.push("Country code"); }
+        } else if (/country/.test(d)) {
+          var want = (p.country_name || "United Kingdom").toLowerCase();
+          var uk = /^(united kingdom|uk|great britain|gb)$/i;
+          var opt = Array.prototype.find.call(el.options, function (o) {
+            var t = o.text.trim().toLowerCase();
+            return t === want || (want === "united kingdom" && uk.test(t));
+          });
           if (opt && el.value !== opt.value) { setValue(el, opt.value); mark(el); filled.push("Country"); }
         }
         return;
@@ -201,6 +212,8 @@ var JHQ = window.JHQ || (function () {
         if (key === "skip") return;
         if ((key === "address" || key === "postcode" || key === "city") && /employer|company name|business name/i.test(prevLabel(el, 3))) return;
         var v = value[key];
+        /* a phone box that wants the whole international number ("+44 …", or no separate country-code box nearby) */
+        if (key === "phone" && p.phone_intl && (/international|country code|incl(uding)? (the )?code|\+\d/.test(d) || /^\+/.test(el.placeholder || ""))) v = p.phone_intl;
         if ((key === "cover_letter" || key === "why_role" || key === "why_company" || key === "summary") && el.tagName !== "TEXTAREA" && v && v.length > 300)
           v = key === "cover_letter" ? pack.message : v;
         if (!v) return;

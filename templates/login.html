@@ -106,5 +106,6 @@
       <p class="lang-pick small">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</p>
     </form>
   </section>
+{% include "_cookie_banner.html" %}
 </body>
 </html>

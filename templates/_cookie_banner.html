@@ -1,0 +1,11 @@
+{# Cookie choice: shown until the visitor picks. Only cookies needed to sign in are used either way; "Accept" also lets
+   the site remember the language you choose. #}
+{% if not request.cookies.get('jhq_consent') %}
+<div class="cookie-bar" role="region" aria-label="Cookies">
+  <p>Job Hunt HQ uses cookies to keep you signed in. With your OK it also remembers your language. No advertising or tracking. <a href="{{ url_for('legal', page='cookies') }}">Cookie notice</a></p>
+  <form method="post" action="{{ url_for('cookie_choice') }}">
+    <button class="btn" name="choice" value="essential">Only essential</button>
+    <button class="btn btn-primary" name="choice" value="all">Accept</button>
+  </form>
+</div>
+{% endif %}

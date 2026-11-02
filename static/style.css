@@ -1163,3 +1163,31 @@ body:has(.save-bar, .sticky-save) .fb-fab { bottom: 86px; }
 [dir="rtl"] input[type="tel"], [dir="rtl"] input[type="email"], [dir="rtl"] input[type="url"], [dir="rtl"] input[name="phone"],
 [dir="rtl"] input[name*="linkedin"], [dir="rtl"] input[name*="github"] { direction: ltr; text-align: right; }
 @media (max-width: 1500px) { :root:not([lang|="en"]) .who-name { display: none; } }
+/* radar: one turn clockwise every 6 s; the bright line leads, the glow fades out behind it */
+.sweep { animation: spin 6s linear infinite;
+  background: conic-gradient(from 0deg, transparent 0deg 250deg, rgba(59,227,204,.05) 290deg, rgba(59,227,204,.28) 352deg, rgba(59,227,204,.9) 359.4deg, transparent 360deg); }
+.sweep::after { content: ""; position: absolute; left: 50%; top: 0; width: 2px; height: 50%; margin-left: -1px; border-radius: 2px;
+  background: linear-gradient(0deg, rgba(59,227,204,.2), #3be3cc); box-shadow: 0 0 10px rgba(59,227,204,.8); }
+/* dots light up when the sweep reaches them (same 6 s turn), instead of pulsing on their own */
+.radar .blip::after { animation: blip-ping 6s linear infinite; animation-delay: var(--sync, 0s); }
+@keyframes blip-ping { 0% { transform: scale(1); opacity: 1; } 18% { transform: scale(var(--ring, 2.4)); opacity: 0; } 100% { transform: scale(var(--ring, 2.4)); opacity: 0; } }
+.radar .blip { animation: blip-in .5s var(--d, 0s) both cubic-bezier(.2,.8,.3,1.4), blip-lit 6s linear var(--sync, 0s) infinite; }
+@keyframes blip-lit { 0% { filter: brightness(1.6); } 25% { filter: brightness(1); } 100% { filter: brightness(1); } }
+@media (prefers-reduced-motion: reduce) { .radar .blip, .radar .blip::after, .sweep { animation: none !important; } }
+.radar .blip:not(.strong):not(.ready)::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(255,255,255,var(--glow, .25)); }
+.iv-past { margin-top: 14px; border-top: 1px solid var(--line-2); padding-top: 12px; }
+.iv-past summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+.phone-row { display: grid; grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr); gap: 8px; margin-top: 4px; }
+.phone-row select { min-width: 0; }
+[dir="rtl"] .phone-row input { direction: ltr; text-align: right; }
+/* cookie choice */
+.cookie-bar { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60; max-width: 760px; margin: 0 auto; display: flex; gap: 14px;
+  align-items: center; padding: 14px 16px; border-radius: 14px; background: #fff; color: var(--ink); box-shadow: 0 16px 40px -12px rgba(11,18,64,.45), 0 0 0 1px rgba(11,18,64,.08); }
+.cookie-bar p { margin: 0; flex: 1; font-size: .95rem; }
+.cookie-bar form { display: flex; gap: 8px; flex: none; }
+@media (max-width: 760px) { .cookie-bar { flex-direction: column; align-items: stretch; bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .cookie-bar form .btn { flex: 1; } body.tour .cookie-bar, body.login-page .cookie-bar { bottom: 12px; } }
+.err-box .brand { color: var(--ink); margin-bottom: 18px; }
+.err-box .mark circle { stroke: var(--night); }
+.err-box .mark .core { fill: var(--night); }
+.err-box h1 { font-size: 1.8rem; margin: 0 0 8px; }

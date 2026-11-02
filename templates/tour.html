@@ -40,7 +40,7 @@
 
 <main>
 <!-- ============================================================ hero -->
-<section class="w-hero">
+<section class="w-hero" data-scroll="hero">
   <picture class="w-hero-photo">
     <source media="(max-width: 700px)" srcset="{{ url_for('static', filename='img/hero-m.webp') }}" type="image/webp">
     <source media="(max-width: 700px)" srcset="{{ url_for('static', filename='img/hero-m.jpg') }}">
@@ -62,8 +62,8 @@
 <section class="w-sec w-how" id="how">
   <div class="w-in">
     <h2>How it works</h2>
-    <p class="w-intro">Four steps, from knowing what you want to walking into the interview ready.</p>
-    <ol class="w-line">
+    <p class="w-intro">Five steps, from knowing what you want to starting your new job.</p>
+    <ol class="w-line" data-scroll="line">
       <li style="--i: 0"><span class="w-node">1</span>
         <h3>Tell it what you want</h3>
         <p>Choose the kinds of job you’re after, where you live and how far you’ll travel. Add your CV and it learns your experience.</p></li>
@@ -76,6 +76,9 @@
       <li style="--i: 3"><span class="w-node">4</span>
         <h3>Walk in prepared</h3>
         <p>Replies are tracked for you, so nothing is missed. Then practise the questions for that job and get tips to improve.</p></li>
+      <li style="--i: 4"><span class="w-node">5</span>
+        <h3>Get the job</h3>
+        <p>Nobody can promise an offer. But you’ll apply to the right jobs, never miss a reply and walk in prepared – the best chance you can give yourself.</p></li>
     </ol>
   </div>
 </section>
@@ -83,7 +86,7 @@
 <!-- ============================================================ the interactive tour -->
 <section class="w-sec w-tour" id="tour" aria-roledescription="carousel" aria-label="A closer look at Job Hunt HQ">
   <div class="w-in">
-    <h2>See it in action</h2>
+    <h2>The tour</h2>
     <p class="w-intro">Ten screens, one for each part of Job Hunt HQ. Go at your own pace.</p>
 
     {% set slides = [
@@ -92,14 +95,14 @@
       ('Every job site in one place', 'Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.', ['The right sites for your country', 'Set up job alerts in a click', 'Save any advert you find']),
       ('Your cover letter, already written', 'Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.', ['Never invents experience', 'Paste any job description to get one', 'Tailored CV for each job too']),
       ('The assistant fills it in', 'A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.', ['You always press Submit yourself', 'Personal questions are left to you', 'Only appears on job sites']),
-      ('Every reply tracked', 'Connect Gmail and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.', ['Nobody reads your emails', 'See what needs you next', 'Your whole year at a glance']),
+      ('Every reply tracked', 'Connect your email – Gmail, Yahoo, iCloud and more – and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.', ['Nobody reads your emails', 'See what needs you next', 'Your whole year at a glance']),
       ('Practise for the interview', 'Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.', ['Answer out loud', 'Examples from your own history', 'See yourself improve']),
       ('A CV that fits', 'Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.', ['Three clean designs', 'PDF or Word', 'Suggestions to make it stronger']),
       ('Your language, your phone', 'Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
       ('Private by design', 'Your details are only ever seen by you. Download everything or delete your account whenever you like.', ['UK GDPR rights built in', 'Nothing sold or shared', 'Invite-only accounts']),
     ] %}
 
-    <div class="t-stage">
+    <div class="t-stage" data-scroll>
       <div class="t-tabs" role="tablist" aria-label="Choose a screen">
         {% for title, _, _ in slides %}<button type="button" role="tab" id="tab-{{ loop.index0 }}" aria-controls="slide-{{ loop.index0 }}" data-go="{{ loop.index0 }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}"><span class="t-num">{{ loop.index }}</span><span>{{ title }}</span></button>{% endfor %}
       </div>
@@ -188,7 +191,7 @@
 <!-- ============================================================ photo band -->
 <section class="w-sec w-band">
   <div class="w-in w-band-in">
-    <picture class="w-band-photo">
+    <picture class="w-band-photo" data-scroll>
       <source srcset="{{ url_for('static', filename='img/reply.webp') }}" type="image/webp">
       <img src="{{ url_for('static', filename='img/reply.jpg') }}" alt="A woman laughing on the phone at her desk, with a laptop and notebook in front of her" width="1200" height="675" loading="lazy">
     </picture>
@@ -196,7 +199,7 @@
       <h2>Never miss the call back</h2>
       <p>When an employer replies, Job Hunt HQ notices. The application moves to Interview, the date goes on your Home page, and practice questions for that job are ready before you are.</p>
       <ul class="w-ticks">
-        <li>Replies sorted from Gmail automatically</li>
+        <li>Replies sorted from your inbox automatically</li>
         <li>Interview dates you can’t lose</li>
         <li>Questions for that exact job</li>
       </ul>
@@ -207,9 +210,9 @@
 <!-- ============================================================ everything it does -->
 <section class="w-sec w-features" id="features">
   <div class="w-in">
-    <h2>Everything it does</h2>
-    <p class="w-intro">All included, with no adverts.</p>
-    <div class="w-groups">
+    <h2>Features</h2>
+    <p class="w-intro">Everything Job Hunt HQ does, all included, with no adverts.</p>
+    <div class="w-groups" data-scroll="groups">
       {% for group, items in [
         ('Finding work', [
           ('Job matching', 'Every job matched to your experience, skills, salary and travel, with the reasons.'),
@@ -223,7 +226,7 @@
         ]),
         ('Keeping track', [
           ('Home summary', 'What needs you next, your best matches and where every application has got to.'),
-          ('Application tracker', 'Every application and every reply in one list, updated from Gmail automatically.'),
+          ('Application tracker', 'Every application and every reply in one list, updated from your email automatically.'),
           ('Interview prep', 'Practise questions for the job, speak or type your answer, get a score and tips.'),
         ]),
         ('Your way', [
@@ -259,7 +262,7 @@
 </section>
 
 <!-- ============================================================ join -->
-<section class="t-join" id="join">
+<section class="t-join" id="join" data-scroll>
   <div class="w-in t-join-in">
     <div>
       <h2>Join Job Hunt HQ</h2>
@@ -306,10 +309,46 @@
   }), { rootMargin: '-40% 0px -55% 0px' });
   secs.forEach((s) => s && spy.observe(s));
 
-  /* how it works: the line draws once, when it comes into view */
-  const line = document.querySelector('.w-line');
-  if (calm) line.classList.add('seen');
-  else new IntersectionObserver((es, o) => es.forEach((e) => { if (e.isIntersecting) { line.classList.add('seen'); o.disconnect(); } }), { threshold: .4 }).observe(line);
+  /* moving with the scroll: each [data-scroll] element gets --p (0 entering the screen → 1 leaving), worked out
+     once per frame; the hero photo drifts, the timeline fills as you read, the tour panel settles, the join section
+     opens out. With reduced motion everything simply shows in its finished state. */
+  const nav = document.querySelector('.w-nav');
+  const line = document.querySelector('.w-line'), steps = line ? [...line.children] : [];
+  const parts = [...document.querySelectorAll('[data-scroll]')];
+  const groups = [...document.querySelectorAll('.w-group')];
+  if (calm) { line.classList.add('seen'); steps.forEach((li) => li.classList.add('lit')); line.style.setProperty('--fill', 1); }
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    const vh = innerHeight;
+    nav.classList.toggle('scrolled', scrollY > 40);
+    if (calm) return;
+    for (const el of parts) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;
+      const p = el.dataset.scroll === 'hero' ? Math.min(1, Math.max(0, -r.top / r.height))
+              : Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      el.style.setProperty('--p', p.toFixed(3));
+    }
+    if (line) {                                         /* fill up to the step in the middle of the screen */
+      const r = line.getBoundingClientRect();
+      const fill = Math.min(1, Math.max(0, (vh * 0.62 - r.top) / Math.max(1, r.height * 0.9)));
+      line.style.setProperty('--fill', fill.toFixed(3));
+      const vertical = getComputedStyle(line).gridTemplateColumns.split(' ').length === 1;
+      steps.forEach((li, k) => {
+        const lr = li.getBoundingClientRect();
+        const on = vertical ? lr.top < vh * 0.62 : fill >= k / Math.max(1, steps.length - 1) - 0.02;
+        li.classList.toggle('lit', on);
+      });
+    }
+    groups.forEach((g, k) => {
+      const r = g.getBoundingClientRect();
+      g.style.setProperty('--bar', Math.min(1, Math.max(0, (vh * 0.92 - r.top) / 260 - k * 0.12)).toFixed(3));
+    });
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener('resize', frame);
+  frame();
 
   /* the tour: moves only when you ask it to */
   const slides = [...document.querySelectorAll('.t-slide')], tabs = [...document.querySelectorAll('.t-tabs button')];
@@ -355,5 +394,6 @@
 })();
 </script>
 {% if lang != 'en' %}<script src="{{ url_for('static', filename='translate.js') }}" data-lang="{{ lang }}" defer></script>{% endif %}
+{% include "_cookie_banner.html" %}
 </body>
 </html>

@@ -5,6 +5,7 @@ import json
 import os
 import re
 import threading
+import time
 import webbrowser
 from datetime import date, timedelta
 from pathlib import Path
@@ -37,10 +38,12 @@ OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
 OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language",
+                  "cookie_choice",
                   "tour"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
 TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter", "api_assistant"}
 SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy", "legal",
+                   "cookie_choice",
                    "set_language", "api_place",
                    "account_page", "account_export"}
 # On the website (not your PC) there's no screen for the robot's browser and no Word to open – those pages are off,
@@ -98,6 +101,19 @@ def sign_in_required():
                             f"{{n}} requests in {{minutes}} minutes from {client_ip()} used a browser-assistant key "
                             "that doesn't belong to anyone. Someone may be guessing keys or testing the website's security.")
             abort(403)
+        # the assistant and Fill button talk to us from the browser extension or this site's own pages – never from
+        # another website's scripts – and at most a couple of requests a second per person
+        origin = request.headers.get("Origin", "")
+        if origin and not re.match(r"(chrome|moz|safari-web)-extension://", origin) and \
+                origin.rstrip("/") != request.host_url.rstrip("/") and ep in ("api_assistant",):
+            abort(403)
+        now_min = int(time.time() // 60)
+        hits = API_HITS.setdefault(uid, [now_min, 0])
+        if hits[0] != now_min:
+            hits[:] = [now_min, 0]
+        hits[1] += 1
+        if hits[1] > 150:
+            abort(429)
         g.ctx = set_user(uid)
         g.user = accounts.get(uid)
         if ep == "api_assistant" and g.user:
@@ -142,6 +158,9 @@ def admin_only():
         abort(403)
 
 
+API_HITS: dict[int, list] = {}      # per person: [minute, requests that minute]
+
+
 def sign_in_as(u: dict):
     from flask import session
     session.clear()
@@ -155,7 +174,9 @@ def log_error(e):
     """Keep a note of any crash in data/error.log, so problems can be fixed without reading the black window."""
     from werkzeug.exceptions import HTTPException
     if isinstance(e, HTTPException):
-        return e
+        if request.path.startswith("/api/") or e.code in (301, 302, 304):
+            return e
+        return render_template("error.html", code=e.code), e.code
     import traceback
     from datetime import datetime
     try:
@@ -163,7 +184,7 @@ def log_error(e):
             f.write(f"\n--- {datetime.now():%Y-%m-%d %H:%M:%S} {request.method} {request.path}\n{traceback.format_exc()}")
     except Exception:
         pass
-    return "Job Hunt HQ hit a problem – it's been noted in data/error.log.", 500
+    return render_template("error.html", code=500), 500
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -192,7 +213,12 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """Signing out ends this sign-in for good: even a copy of the old cookie no longer works."""
     from flask import session
+    uid = session.get("uid")
+    if uid and HOSTED:
+        import secrets as _secrets
+        accounts.update(uid, session_version=_secrets.token_hex(8))
     session.clear()
     return redirect(url_for("login"))
 
@@ -520,8 +546,24 @@ def current_lang() -> str:
             pref = (accounts.load_settings(current_user_id()).get("prefs") or {}).get("language")
         except Exception:
             pref = None
-    g.lang = i18n.pick(pref or request.cookies.get("jhq_lang"), request.headers.get("Accept-Language", ""))
+    from flask import session
+    g.lang = i18n.pick(pref or session.get("lang") or request.cookies.get("jhq_lang"),
+                       request.headers.get("Accept-Language", ""))
     return g.lang
+
+
+# Every link to a style sheet, script or picture carries the file's version, so browsers fetch the new one as soon as it
+# changes instead of showing an old saved copy (and can keep unchanged files for a year).
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 60 * 60 * 24 * 365
+
+
+@app.url_defaults
+def static_version(endpoint, values):
+    if endpoint == "static" and "filename" in values and "v" not in values:
+        try:
+            values["v"] = int((Path(app.static_folder) / values["filename"]).stat().st_mtime)
+        except OSError:
+            pass
 
 
 # The website only answers to its own names, so a forged Host header can't put someone else's address into invite and
@@ -570,7 +612,7 @@ def security_headers(resp):
 @app.after_request
 def translate_page(resp):
     try:
-        if resp.mimetype == "text/html" and resp.status_code == 200 and not resp.direct_passthrough:
+        if resp.mimetype == "text/html" and resp.status_code in (200, 400, 403, 404, 413, 429, 500) and not resp.direct_passthrough:
             lang = current_lang()
             if lang != "en":
                 resp.set_data(i18n.translate(resp.get_data(as_text=True), lang))
@@ -592,7 +634,28 @@ def set_language(code):
     back = (ref.path + ("?" + ref.query if ref.query else "")) if ref.netloc == request.host and ref.path.startswith("/") \
         else url_for("dashboard")
     resp = redirect(back)
-    resp.set_cookie("jhq_lang", code, max_age=60 * 60 * 24 * 365, samesite="Lax", secure=HOSTED)
+    from flask import session
+    session["lang"] = code                                 # for this visit (part of the sign-in cookie)
+    if request.cookies.get("jhq_consent") == "all":        # remembered for a year only if they said yes to cookies
+        resp.set_cookie("jhq_lang", code, max_age=60 * 60 * 24 * 365, samesite="Lax", secure=HOSTED)
+    return resp
+
+
+@app.post("/cookies")
+def cookie_choice():
+    """The cookie banner: "Accept" (also remember the language) or "Only essential". The choice itself is kept so
+    the banner doesn't come back; it can be changed on the cookie notice."""
+    same_site_only()
+    choice = "all" if request.form.get("choice") == "all" else "essential"
+    from urllib.parse import urlparse
+    ref = urlparse(request.referrer or "")
+    back = (ref.path + ("?" + ref.query if ref.query else "")) if ref.netloc == request.host and ref.path.startswith("/") else "/"
+    resp = redirect(back)
+    resp.set_cookie("jhq_consent", choice, max_age=60 * 60 * 24 * 365, samesite="Lax", secure=HOSTED, httponly=True)
+    if choice == "essential":
+        resp.delete_cookie("jhq_lang")
+    else:
+        resp.set_cookie("jhq_lang", current_lang(), max_age=60 * 60 * 24 * 365, samesite="Lax", secure=HOSTED)
     return resp
 
 
@@ -638,6 +701,10 @@ def save_settings_form(form, parts=("profile", "search", "prefs", "gmail")) -> l
                   "current_employer", "notice_period", "salary_expectation", "right_to_work"):
             if k in form:
                 s["profile"][k] = form.get(k, "").strip()
+        if "phone_code" in form:                    # "+44|GB": the dialling code, and which country it's for
+            code, _, cc = form.get("phone_code", "").partition("|")
+            if re.fullmatch(r"\+\d{1,4}", code):
+                s["profile"]["phone_code"], s["profile"]["phone_code_country"] = code, cc[:2].upper()
         if "name" in form and not s["profile"].get("name"):
             problems.append("Add your name.")
     if "search" in parts:
@@ -662,18 +729,31 @@ def save_settings_form(form, parts=("profile", "search", "prefs", "gmail")) -> l
         if "skills" in form:
             s["prefs"]["skills"] = _lines(form.get("skills", ""))[:40]
     if "gmail" in parts and "gmail_address" in form:
+        from jobhunt import mail_providers as mp
         addr = form.get("gmail_address", "").strip()
-        pw = re.sub(r"\s", "", form.get("gmail_app_password", ""))
-        s["email"]["from"] = addr
+        prov = form.get("mail_provider") if form.get("mail_provider") in mp.PROVIDERS else mp.guess(addr)
+        pw = re.sub(r"\s", "", form.get("gmail_app_password", "")) if prov == "gmail" else form.get("gmail_app_password", "").strip()
+        if addr != s["email"].get("from") or prov != s["email"].get("provider"):
+            s["email"].pop("ms_refresh_token", None)          # a different account: sign in to it again
+        s["email"]["from"], s["email"]["provider"] = addr, prov
         s["email"]["to"] = form.get("send_to", "").strip() or addr
+        if prov == "other":
+            host = form.get("imap_host", "").strip().lower()
+            if host and not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}", host):
+                problems.append("The IMAP server should look like imap.example.com.")
+            else:
+                s["email"]["imap_host"] = host
         if pw:
-            if len(pw) != 16:
+            if prov == "gmail" and len(pw) != 16:
                 problems.append("A Gmail app password is 16 letters – check you copied all of it.")
+            elif len(pw) > 200:
+                problems.append("That password is too long.")
             else:
                 s["email"]["gmail_app_password"] = pw
-        s["gmail"]["enabled"] = bool(addr and s["email"].get("gmail_app_password"))
+        connected = bool(s["email"].get("ms_refresh_token")) if prov == "outlook" else bool(s["email"].get("gmail_app_password"))
+        s["gmail"]["enabled"] = bool(addr and connected)
         s["gmail"]["read_job_alerts"] = form.get("read_job_alerts") == "yes"
-        s["email"]["enabled"] = form.get("job_emails") == "yes" and s["gmail"]["enabled"]
+        s["email"]["enabled"] = form.get("job_emails") == "yes" and s["gmail"]["enabled"] and prov != "outlook"
     accounts.save_settings(s, current_user_id())
     return problems
 
@@ -714,6 +794,42 @@ def welcome():
                            career=career_store.load())
 
 
+@app.route("/email/outlook/start")
+def outlook_start():
+    """Outlook / Hotmail: send the person to Microsoft's sign-in (read-only access to their mail)."""
+    from jobhunt import mail_providers as mp
+    if not mp.microsoft_ready():
+        abort(404)
+    import secrets as _secrets
+    from flask import session
+    session["ms_state"] = _secrets.token_urlsafe(24)
+    return redirect(mp.microsoft_sign_in_url(site_url() + url_for("outlook_callback"), session["ms_state"]))
+
+
+@app.route("/email/outlook/callback")
+def outlook_callback():
+    from flask import session
+
+    from jobhunt import mail_providers as mp
+    if not mp.microsoft_ready() or not request.args.get("code") or \
+            request.args.get("state") != session.pop("ms_state", None):
+        flash("Outlook wasn't connected. Try again.")
+        return redirect(url_for("settings_page") + "#gmail")
+    try:
+        t = mp.microsoft_exchange(request.args["code"], site_url() + url_for("outlook_callback"))
+    except Exception:
+        t = {}
+    if not t.get("refresh_token"):
+        flash("Microsoft didn't allow the connection. Try again.")
+        return redirect(url_for("settings_page") + "#gmail")
+    s = my_settings()
+    s["email"].update(provider="outlook", ms_refresh_token=t["refresh_token"])
+    s["gmail"]["enabled"] = bool(s["email"].get("from"))
+    accounts.save_settings(s, current_user_id())
+    flash("Outlook connected. Your job emails will be read at the next refresh.")
+    return redirect(url_for("settings_page") + "#gmail")
+
+
 @app.route("/settings", methods=["GET", "POST"])
 def settings_page():
     if request.method == "POST":
@@ -724,11 +840,15 @@ def settings_page():
         if not problems:
             flash("Saved. Your next job refresh, scores and letters use these settings.")
         return redirect(url_for("settings_page"))
+    from jobhunt import mail_providers as _mp
     s = my_settings()
     places = "\n".join(f"{l['place']}, {l.get('miles', 15)}" if isinstance(l, dict) else str(l)
                         for l in s["search"].get("locations", []))
     return render_template("settings.html", s=s, levels=LEVELS, miles=MILES, places=places,
-                           has_password=bool(s["email"].get("gmail_app_password")))
+                           has_password=bool(s["email"].get("gmail_app_password")),
+                           mail_providers=_mp.PROVIDERS, mail_provider=_mp.provider(s),
+                           mail_domains={k: list(v[4]) for k, v in _mp.PROVIDERS.items()},
+                           outlook_ready=_mp.microsoft_ready())
 
 
 @app.route("/people", methods=["GET", "POST"])
@@ -825,6 +945,7 @@ def helpers():
             "feedback_kinds": accounts.FEEDBACK_KINDS,
             "occupations": OCCUPATIONS_JSON, "all_titles": occupations.ALL_TITLES,
             "langs": i18n.LANGS, "lang": current_lang(), "countries": countries.COUNTRIES,
+            "dial_codes": countries.DIAL_CODES, "dial_code": countries.dial_code,
             "currency": countries.currency((cfg_profile() or {}).get("country") or "GB"),
             "nav_on": NAV_PARENT.get(request.endpoint, request.endpoint),
             "nav": [(sec, [("assistant_page", "Apply for me", "send") if (HOSTED and i[0] == "assistant_page") else i
@@ -844,6 +965,52 @@ def gmail_url(gmail_id: str, subject: str = "") -> str:
     if re.fullmatch(r"[0-9a-f]{10,20}", gid):
         return f"{base}#all/{gid}"
     return f"{base}#search/{quote('subject:"' + (subject or '')[:80] + '"')}"
+
+
+def phone_fields(profile: dict) -> dict:
+    """The phone number as typed, its country code, and the full international number – forms ask for all three."""
+    code = profile.get("phone_code") or countries.dial_code(profile.get("country"))
+    cc = (profile.get("country") or "GB").upper()
+    name = (countries.COUNTRIES.get(cc) or (None,))[0] or next((n for c, n, _ in countries.DIAL_CODES if c == cc), "")
+    return {"phone_code": code, "phone_intl": countries.international(profile.get("phone", ""), code), "country_name": name}
+
+
+MONTH_NUMBERS = {m: i for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], start=1)}
+
+
+def parse_loose_date(text, near: str = ""):
+    """A date written in an email ("Tuesday 29th September 2026", "Wednesday 19 August", "2026-10-22") as a date,
+    or None. Without a year, the year is the one that puts it closest to when the email came."""
+    t = str(text or "").strip().lower()
+    if not t:
+        return None
+    m = re.search(r"(\d{4})-(\d{2})-(\d{2})", t)
+    if m:
+        try:
+            return date(int(m[1]), int(m[2]), int(m[3]))
+        except ValueError:
+            return None
+    m = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?(?:\s+of)?\s+([a-z]{3})[a-z]*\.?(?:,?\s+(\d{4}))?", t) or \
+        re.search(r"\b([a-z]{3})[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s+(\d{4}))?", t)
+    if not m:
+        return None
+    a, b, year = m.groups()
+    day, mon = (a, b) if a.isdigit() else (b, a)
+    month = MONTH_NUMBERS.get(mon[:3])
+    if not month:
+        return None
+    try:
+        base = date.fromisoformat(near[:10]) if near else date.today()
+    except ValueError:
+        base = date.today()
+    try:
+        if year:
+            return date(int(year), month, int(day))
+        options = [date(base.year + k, month, int(day)) for k in (-1, 0, 1)]
+        return min(options, key=lambda d: abs((d - base).days))
+    except ValueError:
+        return None
 
 
 @app.template_filter("nice_date")
@@ -1459,7 +1626,7 @@ def _ask_offline(question: str, job: dict, cfg: dict) -> str:
         c = conn()
         remembered = db.remembered_answers(c)
         c.close()
-        fields = {**{k: profile.get(k, "") for k in ("name", "email", "phone", "current_employer", "current_title",
+        fields = {**phone_fields(profile), **{k: profile.get(k, "") for k in ("name", "email", "phone", "current_employer", "current_title",
                                                        "notice_period", "salary_expectation", "right_to_work")}, **split_address(profile)}
         ans, _ = suggest({"label": target, "kind": "textarea", "options": []}, remembered, profile, fields, job,
                          cv_text(cfg), cfg.get("ai"))
@@ -1538,7 +1705,7 @@ def api_assistant():
         job = get_job(c, int(d["job_id"])) if d.get("job_id") else {"title": "", "company": "", "description": d.get("page_text", "")}
         remembered = db.remembered_answers(c)
         c.close()
-        pack_fields = {**{k: profile.get(k, "") for k in ("name", "email", "phone", "linkedin", "github", "address",
+        pack_fields = {**phone_fields(profile), **{k: profile.get(k, "") for k in ("name", "email", "phone", "linkedin", "github", "address",
                                                            "current_employer", "current_title", "notice_period",
                                                            "salary_expectation", "right_to_work")}, **split_address(profile)}
         ans, src = suggest(q, remembered, profile, pack_fields, job, cv_text(cfg), cfg.get("ai"))
@@ -1666,7 +1833,7 @@ def build_pack(job_id=None, page: str = "") -> dict:
         "job": {"id": job["id"], "title": job["title"], "company": job["company"],
                 "apply_url": job.get("apply_url") or ""},
         "recent": recent,
-        "fields": {**{k: profile.get(k, "") for k in ("name", "email", "phone", "linkedin", "github", "address",
+        "fields": {**phone_fields(profile), **{k: profile.get(k, "") for k in ("name", "email", "phone", "linkedin", "github", "address",
                                                          "current_employer", "current_title", "notice_period",
                                                          "salary_expectation", "right_to_work")},
                    "first_name": first, "last_name": last, **split_address(profile)},
@@ -1787,8 +1954,21 @@ def interview_page():
     """Interview prep: practise for the interviews you've been invited to (or any job), with feedback on each answer."""
     c = conn()
     marks = ",".join("?" * len(INTERVIEW_STATUSES))
-    upcoming = [dict(r) for r in c.execute(
-        f"SELECT * FROM applications WHERE status IN ({marks}) ORDER BY COALESCE(next_date, updated_at) DESC", INTERVIEW_STATUSES)]
+    rows = [dict(r) for r in c.execute(f"SELECT * FROM applications WHERE status IN ({marks})", INTERVIEW_STATUSES)]
+    # Coming up first (soonest at the top); interviews whose date has passed, or that went quiet long ago, go under
+    # "Past interviews" so the list shows what you need to prepare for now.
+    today = date.today()
+    upcoming, past = [], []
+    for a in rows:
+        a["when"] = parse_loose_date(a.get("next_date"), (a.get("updated_at") or "")[:10])
+        changed = (a.get("updated_at") or "")[:10]
+        try:
+            quiet = (today - date.fromisoformat(changed)).days > 45 if changed else False
+        except ValueError:
+            quiet = False
+        (past if (a["when"] and a["when"] < today) or (not a["when"] and quiet) else upcoming).append(a)
+    upcoming.sort(key=lambda a: (a["when"] is None, a["when"] or date.max, a.get("updated_at") or ""))
+    past.sort(key=lambda a: a["when"] or date.min, reverse=True)
     waiting = [dict(r) for r in c.execute(
         "SELECT * FROM applications WHERE status IN ('applied', 'acknowledged') ORDER BY COALESCE(applied_on, updated_at) DESC LIMIT 6")]
     history = {r["target"]: dict(r) for r in c.execute(
@@ -1801,7 +1981,7 @@ def interview_page():
         if r["target"] not in labels:
             labels[r["target"]] = _interview_target(c, r["target"])[2]
     c.close()
-    return render_template("interview.html", upcoming=upcoming, waiting=waiting, history=history, recent=recent,
+    return render_template("interview.html", upcoming=upcoming, past=past, waiting=waiting, history=history, recent=recent,
                            labels=labels, ai=bool((load_config().get("ai") or {}).get("anthropic_api_key")))
 
 
@@ -1868,15 +2048,12 @@ def applications_page():
     c = conn()
     group = request.args.get("show", "all")
     q = request.args.get("q", "").strip().lower()
+    # One pass over the emails (indexed), not one sub-query per application – this page has to stay quick with
+    # thousands of applications.
     apps = [dict(r) for r in c.execute(
-        "SELECT a.*, (SELECT COUNT(*) FROM events e WHERE e.application_id = a.id) AS n_emails, "
-        "(SELECT MAX(received_at) FROM events e WHERE e.application_id = a.id) AS last_email "
-        "FROM applications a")]
-    events = {}
-    for e in c.execute("SELECT application_id, gmail_id, received_at, sender, subject, snippet, category FROM events "
-                       "WHERE application_id IS NOT NULL ORDER BY received_at"):
-        events.setdefault(e["application_id"], []).append(dict(e))
-    c.close()
+        "SELECT a.*, COALESCE(e.n, 0) AS n_emails, e.last AS last_email FROM applications a "
+        "LEFT JOIN (SELECT application_id, COUNT(*) AS n, MAX(received_at) AS last FROM events "
+        "WHERE application_id IS NOT NULL GROUP BY application_id) e ON e.application_id = a.id")]
     today = date.today()
     for a in apps:
         a["last"] = (a.get("last_email") or "")[:10] or a.get("applied_on") or (a.get("updated_at") or "")[:10]
@@ -1889,7 +2066,22 @@ def applications_page():
     shown = [a for a in apps if (not sts or a["status"] in sts) and
              (not q or q in f"{a['role']} {a['company']} {a.get('location') or ''}".lower())]
     shown.sort(key=lambda a: (a["applied_on"] or a["last"] or ""), reverse=True)
+    try:
+        limit = max(50, min(2000, int(request.args.get("n", 50))))
+    except ValueError:
+        limit = 50
+    more = max(0, len(shown) - limit)
+    shown = shown[:limit]
+    events = {}
+    ids = [a["id"] for a in shown]
+    for k in range(0, len(ids), 500):
+        part = ids[k:k + 500]
+        for e in c.execute("SELECT application_id, gmail_id, received_at, sender, subject, snippet, category FROM events "
+                           f"WHERE application_id IN ({','.join('?' * len(part))}) ORDER BY received_at", part):
+            events.setdefault(e["application_id"], []).append(dict(e))
+    c.close()
     return render_template("applications.html", apps=shown, groups=APP_GROUPS, counts=counts, group=group, q=q,
+                           more=more, limit=limit,
                            events=events, history=history_state(), total=len(apps))
 
 
@@ -2019,7 +2211,8 @@ def emails():
     c = conn()
     rows = [dict(r) for r in c.execute(
         "SELECT e.*, a.company AS app_company, a.role AS app_role FROM events e "
-        "LEFT JOIN applications a ON a.id = e.application_id ORDER BY e.received_at DESC LIMIT 300")]
+        "LEFT JOIN applications a ON a.id = e.application_id WHERE e.category != 'other' "
+        "ORDER BY e.received_at DESC LIMIT 300")]
     c.close()
     return render_template("emails.html", events=rows)
 

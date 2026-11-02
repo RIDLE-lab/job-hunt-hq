@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import base64
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from . import db
 from .classify import (alert_site, classify, find_application, find_date, is_application_email, parse_alert,
@@ -117,9 +117,14 @@ def imap_messages(cfg: dict, seen: set, query=None, limit=400, oldest_first=Fals
     from email.policy import default
     from email.utils import parsedate_to_datetime
 
+    from . import mail_providers as mp
     from .notify import settings
     e = settings(cfg)
     days = int(cfg.get("gmail", {}).get("lookback_days", 30))
+    prov = mp.provider(cfg)
+    if prov != "gmail":
+        yield from _plain_imap_messages(cfg, e, prov, seen, query, limit, oldest_first, skip_seen, sent, total, days)
+        return
     m = imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=40)
     try:
         m.login(e["from"], e["gmail_app_password"])
@@ -166,12 +171,95 @@ def imap_messages(cfg: dict, seen: set, query=None, limit=400, oldest_first=Fals
             pass
 
 
+JOB_WORDS = re.compile(r"applica|applied|applying|interview|unfortunately|candidate|shortlist|assessment|next steps|"
+                       r"recruit|vacanc|offer|role|position|your cv|hiring|job alert|jobs? for you|talent", re.I)
+ALERT_SENDERS = re.compile(r"linkedin\.com|indeed\.com|adzuna|totaljobs|reed\.co\.uk|cv-library", re.I)
+
+
+def _plain_imap_messages(cfg, e, prov, seen, query, limit, oldest_first, skip_seen, sent, total, days):
+    """Any other email service over IMAP (Yahoo, iCloud, AOL, Zoho, GMX, Fastmail, your own; Outlook with Microsoft
+    sign-in). Read-only: headers first, and only messages that look like job emails are opened."""
+    import email
+    import hashlib
+    import imaplib
+    from email.policy import default
+    from email.utils import parsedate_to_datetime
+
+    from . import mail_providers as mp
+    host = mp.imap_host(cfg)
+    if not host:
+        raise ValueError("Add your email provider's IMAP server in My settings.")
+    m = imaplib.IMAP4_SSL(host, 993, timeout=40)
+    try:
+        if prov == "outlook":
+            token, _ = mp.microsoft_access_token(e)
+            m.authenticate("XOAUTH2", lambda _: mp.xoauth2(e["from"], token))
+        else:
+            m.login(e["from"], e["gmail_app_password"])
+        box = "INBOX"
+        if sent:
+            for line in m.list()[1] or []:
+                text = line.decode(errors="replace")
+                if "\\Sent" in text:
+                    box = text[text.rfind(' "') + 1:] if text.rstrip().endswith('"') else text.split()[-1]
+                    break
+            else:
+                return
+        m.select(box, readonly=True)
+        start = (datetime(2026, 1, 1) if query and "after:" in query else datetime.now() - timedelta(days=days))
+        typ, data = m.search(None, "SINCE", start.strftime("%d-%b-%Y"))
+        nums = (data[0] or b"").split()[-limit:]
+        if total is not None:
+            total.append(len(nums))
+        for num in (nums if oldest_first else reversed(nums)):
+            typ, parts = m.fetch(num, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM TO DATE MESSAGE-ID)])")
+            head = next((p for p in parts if isinstance(p, tuple)), None)
+            if not head:
+                continue
+            h = email.message_from_bytes(head[1], policy=default)
+            mid = "imap-" + hashlib.sha1(str(h["Message-ID"] or (str(h["Date"]) + str(h["Subject"]))).encode()).hexdigest()[:20]
+            if skip_seen and mid in seen:
+                continue
+            subj, frm = str(h["Subject"] or ""), str(h["From"] or "")
+            if not sent and not (JOB_WORDS.search(subj) or ALERT_SENDERS.search(frm)):
+                continue                       # not a job email: never opened
+            typ, parts = m.fetch(num, "(BODY.PEEK[])")
+            full = next((p for p in parts if isinstance(p, tuple)), None)
+            if not full:
+                continue
+            msg = email.message_from_bytes(full[1], policy=default)
+            plain = msg.get_body(preferencelist=("plain",))
+            html = msg.get_body(preferencelist=("html",))
+            if plain is not None:
+                body = plain.get_content()
+            else:
+                from .sources import clean_text
+                body = clean_text(html.get_content()) if html is not None else ""
+            try:
+                received = parsedate_to_datetime(msg["Date"])
+            except Exception:
+                received = datetime.now(timezone.utc)
+            yield {"id": mid, "subject": subj, "sender": frm, "sent": sent, "to": str(msg["To"] or ""),
+                   "body": body, "snippet": " ".join(body.split())[:300], "received": received}
+    finally:
+        try:
+            m.logout()
+        except Exception:
+            pass
+
+
 def method(cfg: dict) -> str | None:
     """Which way the app can read your mail: 'api', 'app_password' or None."""
     from .notify import settings
     if GMAIL_CREDENTIALS.exists():
         return "api"
-    if len(settings(cfg)["gmail_app_password"]) == 16:
+    from . import mail_providers as mp
+    e = settings(cfg)
+    prov = mp.provider(cfg)
+    if prov == "outlook":
+        return "app_password" if e.get("ms_refresh_token") and mp.microsoft_ready() else None
+    pw = e["gmail_app_password"]
+    if (len(pw) == 16 if prov == "gmail" else len(pw) >= 6) and (prov != "other" or mp.imap_host(cfg)):
         return "app_password"
     return None
 
@@ -383,10 +471,12 @@ def sync(conn, cfg: dict, service=None, log=print, messages=None, history=False,
             elif category != "other":
                 app_id = record_application_email(conn, apps, category=category, subject=subject, body=body,
                                                   sender=sender, received=received, stats=stats, ignored=ignored)
+        keep = category != "other"     # emails that aren't about your job hunt: remember only that they were checked
         conn.execute("INSERT OR IGNORE INTO events (gmail_id, application_id, received_at, sender, subject, "
                      "snippet, category, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                     (mid, app_id, received.astimezone().isoformat(timespec="minutes"), sender, subject,
-                      (item.get("snippet") or "")[:300], category, db.now()))
+                     (mid, app_id, received.astimezone().isoformat(timespec="minutes"), sender if keep else "",
+                      subject if keep else "", db.tidy_snippet(item.get("snippet") or "")[:300] if keep else "",
+                      category, db.now()))
         if stats["emails"] % 25 == 0:
             conn.commit()
         progress.update(created=stats["created"], updated=stats["updated"], emails=stats["emails"])

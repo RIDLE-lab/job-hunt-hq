@@ -48,8 +48,8 @@ html { scroll-behavior: smooth; }
 .w-intro { margin: 0 0 44px; max-width: 56ch; font-size: 1.15rem; color: var(--muted); }
 
 /* ---- how it works: a timeline, because it is a sequence */
-.w-line { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; position: relative; }
-.w-line::before, .w-line::after { content: ""; position: absolute; top: 23px; left: 24px; right: calc((100% - 96px) / 4 - 24px); height: 2px; border-radius: 2px; background: var(--line); }
+.w-line { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 28px; position: relative; }
+.w-line::before, .w-line::after { content: ""; position: absolute; top: 23px; left: 24px; right: calc((100% - 112px) / 5 - 24px); height: 2px; border-radius: 2px; background: var(--line); }
 .w-line::after { background: #0e9f8e; transform: scaleX(0); transform-origin: left; transition: transform 1.4s cubic-bezier(.4,0,.2,1); }
 .w-line.seen::after { transform: scaleX(1); }
 .w-line li { position: relative; z-index: 1; }
@@ -218,8 +218,15 @@ html { scroll-behavior: smooth; }
   .w-links { display: none; }
   .w-pill .lang-top { margin-left: auto; }
   .w-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .w-line { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
+  .w-line { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   .w-line::before, .w-line::after { display: none; }
+  .w-line li { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 18px; padding-bottom: 28px; }
+  .w-line li::before { content: ""; position: absolute; left: 23px; top: 48px; bottom: 0; width: 2px; background: var(--line); }
+  .w-line li:last-child::before { display: none; }
+  .w-line.seen li::before { background: #0e9f8e; }
+  .w-line .w-node { grid-row: span 2; }
+  .w-line h3 { margin: 10px 0 6px; }
+  .w-line p { max-width: 60ch; }
 }
 @media (max-width: 900px) {
   .t-slide, .w-band-in, .t-join-in { grid-template-columns: minmax(0, 1fr); }
@@ -278,7 +285,7 @@ html { scroll-behavior: smooth; }
 [dir="rtl"] .w-hero::before { background: linear-gradient(270deg, rgba(11,18,64,.92) 0%, rgba(11,18,64,.78) 34%, rgba(11,18,64,.12) 64%, rgba(11,18,64,0) 80%),
               linear-gradient(0deg, rgba(11,18,64,.55), transparent 40%); }
 [dir="rtl"] .w-hero-photo img { transform: scaleX(-1); }
-[dir="rtl"] .w-line::before, [dir="rtl"] .w-line::after { left: calc((100% - 96px) / 4 - 24px); right: 24px; transform-origin: right; }
+[dir="rtl"] .w-line::before, [dir="rtl"] .w-line::after { left: calc((100% - 112px) / 5 - 24px); right: 24px; transform-origin: right; }
 [dir="rtl"] .t-btn svg { transform: scaleX(-1); }
 [dir="rtl"] .t-tabs button { padding: 8px 8px 8px 14px; }
 [dir="rtl"] .t-copy li, [dir="rtl"] .w-ticks li { padding-left: 0; padding-right: 30px; }
@@ -297,3 +304,38 @@ html { scroll-behavior: smooth; }
   .w-line::after, .w-node, .t-slide, .t-slide.on { transition: none; }
   .t-mock * { animation: none !important; }
 }
+
+/* ---- moving with the scroll (inspired by how good editorial sites feel; all of it is off for reduced motion).
+   app: [data-scroll] elements get --p, 0 as they enter the screen to 1 as they leave. */
+.w-hero-photo img { transform: translate3d(0, calc(var(--p, 0) * 18%), 0) scale(calc(1.06 - var(--p, 0) * .06)); will-change: transform; }
+.w-hero-copy { transform: translate3d(0, calc(var(--p, 0) * -60px), 0); opacity: calc(1 - var(--p, 0) * 1.2); }
+.w-nav .w-pill { transition: height .25s ease, box-shadow .25s ease, max-width .35s ease; }
+.w-nav.scrolled .w-pill { height: 54px; max-width: 1040px; box-shadow: 0 8px 24px -14px rgba(11,18,64,.4), 0 0 0 1px rgba(11,18,64,.08); }
+/* how it works: the line fills as you read down, and each step lights up when the line reaches it */
+.w-line[data-scroll]::after { transition: none; transform: scaleX(var(--fill, 0)); }
+.w-line[data-scroll] .w-node { transition: background .3s, border-color .3s, color .3s; transition-delay: 0s; }
+.w-line[data-scroll] li.lit .w-node { background: var(--night); border-color: var(--night); color: #fff; }
+.w-line[data-scroll] li { opacity: calc(.35 + var(--lit, 0) * .65); transition: opacity .4s ease; }
+.w-line[data-scroll] li.lit { --lit: 1; }
+/* the tour panel settles into place */
+.t-stage[data-scroll] { transform: scale(calc(.94 + min(var(--p, 0) * 2.2, 1) * .06)); transform-origin: 50% 0; }
+/* the photo moves inside its frame */
+.w-band-photo { overflow: hidden; border-radius: 24px; }
+.w-band-photo[data-scroll] img { transform: translate3d(0, calc((var(--p, .5) - .5) * -14%), 0) scale(1.14); border-radius: 0; }
+/* feature groups: their bars draw across as they arrive */
+.w-group { border-top: 0; position: relative; }
+.w-group::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--night); transform-origin: left;
+  transform: scaleX(var(--bar, 1)); }
+[dir="rtl"] .w-group::before { transform-origin: right; }
+/* the join section opens up to full width */
+.t-join[data-scroll] { clip-path: inset(0 calc((1 - min(var(--p, 0) * 2.4, 1)) * 5%) round calc((1 - min(var(--p, 0) * 2.4, 1)) * 40px)); }
+@media (max-width: 1000px) {
+  .w-line[data-scroll] li::before { background: linear-gradient(var(--line), var(--line)); }
+  .w-line[data-scroll] li.lit::before { background: #0e9f8e; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-hero-photo img, .w-hero-copy, .t-stage[data-scroll], .w-band-photo[data-scroll] img, .t-join[data-scroll] { transform: none !important; opacity: 1 !important; clip-path: none !important; }
+  .w-band-photo[data-scroll] img { transform: none !important; }
+  .w-line[data-scroll] li { opacity: 1; }
+}
+@media (max-width: 700px) { .w-hero-copy { transform: none; opacity: 1; } .w-hero-photo img { transform: translate3d(0, calc(var(--p, 0) * 10%), 0) scale(1.04); } }

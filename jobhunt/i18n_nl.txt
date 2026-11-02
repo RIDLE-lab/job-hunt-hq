@@ -767,3 +767,52 @@ It's already linked to your account, so don't share the file.|Hij is al aan je a
 Interview prep|Gesprekstraining
 from {source}|via {source}
 closes {date}|sluit op {date}
+Five steps, from knowing what you want to starting your new job.|Vijf stappen, van weten wat je wilt tot beginnen aan je nieuwe baan.
+Get the job|Krijg de baan
+Nobody can promise an offer. But you’ll apply to the right jobs, never miss a reply and walk in prepared – the best chance you can give yourself.|Niemand kan een aanbod beloven. Maar je solliciteert op de juiste banen, mist geen enkele reactie en gaat goed voorbereid naar binnen – de beste kans die je jezelf kunt geven.
+Connect your email – Gmail, Yahoo, iCloud and more – and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|Koppel je e-mail – Gmail, Yahoo, iCloud en meer – en reacties sorteren zichzelf: ontvangen, gesprek, assessment, aanbod of afwijzing. Je sollicitaties werken zichzelf bij zonder dat je er iets voor hoeft te doen.
+Replies sorted from your inbox automatically|Reacties automatisch uit je inbox gesorteerd
+Everything Job Hunt HQ does, all included, with no adverts.|Alles wat Job Hunt HQ doet, alles inbegrepen, zonder advertenties.
+Every application and every reply in one list, updated from your email automatically.|Elke sollicitatie en elke reactie in één lijst, automatisch bijgewerkt vanuit je e-mail.
+Job Hunt HQ uses cookies to keep you signed in. With your OK it also remembers your language. No advertising or tracking.|Job Hunt HQ gebruikt cookies om je ingelogd te houden. Met jouw toestemming onthoudt het ook je taal. Geen advertenties of tracking.
+Only essential|Alleen noodzakelijke
+Accept|Accepteren
+Accepted|Geaccepteerd
+consent|toestemming
+Job Hunt HQ uses only what it needs to work, and there's no advertising, tracking or analytics. The sign-in cookie is essential. The language cookie is only set if you choose “Accept”.|Job Hunt HQ gebruikt alleen wat nodig is om te werken, zonder advertenties, tracking of analytics. De inlogcookie is noodzakelijk. De taalcookie wordt alleen geplaatst als je “Accepteren” kiest.
+Remembers the language you chose for the site (only if you accept).|Onthoudt de taal die je voor de site koos (alleen als je accepteert).
+Remembers your cookie choice, so we don't ask again.|Onthoudt je cookiekeuze, zodat we het niet opnieuw vragen.
+Your choice:|Jouw keuze:
+Not chosen yet|Nog niet gekozen
+1 year|1 jaar
+Done|Klaar
+{n} miles|{n} mijl
+Country code|Landcode
+Phone with country code|Telefoon met landcode
+Your email|Je e-mail
+Email service|E-maildienst
+Email address|E-mailadres
+Another provider|Andere aanbieder
+IMAP server|IMAP-server
+From your email account|Uit je e-mailaccount
+Connected|Gekoppeld
+Connect Outlook|Outlook koppelen
+Reconnect Outlook|Outlook opnieuw koppelen
+Outlook and Hotmail use Microsoft’s own sign-in.|Outlook en Hotmail gebruiken de eigen aanmelding van Microsoft.
+Connect the email account employers write to, and Job Hunt HQ reads their replies – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail and most other services work with an|Koppel het e-mailaccount waar werkgevers naar schrijven, en Job Hunt HQ leest hun reacties – ontvangstbevestigingen, gesprekken, afwijzingen, aanbiedingen – en houdt je Sollicitaties bij. Het leest alleen; het verstuurt of verwijdert nooit iets. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail en de meeste andere diensten werken met een
+you make in your email account’s security settings.|dat je maakt in de beveiligingsinstellingen van je e-mailaccount.
+Nobody reads your email through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your email.|Niemand leest je e-mail via Job Hunt HQ – niet de eigenaar en niet andere gebruikers. Het wordt automatisch gelezen, alleen om e-mails over je sollicitaties te herkennen; daarvan bewaart het de afzender, het onderwerp, de datum en een korte preview zodat je Sollicitaties-pagina bijgewerkt blijft. Alle andere e-mails worden genegeerd en daarvan wordt niets bewaard. Het kan niets verzenden, wijzigen of verwijderen in je e-mail.
+You can disconnect any time by removing the app password here (or deleting it in your email account), download everything that's stored with|Je kunt altijd ontkoppelen door het app-wachtwoord hier te verwijderen (of in je e-mailaccount), alles downloaden wat is bewaard via
+Make one at|Maak er een aan op
+your account’s app passwords page|de pagina voor app-wachtwoorden van je account
+, call it “Job Hunt HQ”, and paste it here.|, noem het “Job Hunt HQ” en plak het hier.
+Microsoft no longer lets apps sign in to Outlook.com or Hotmail with a password, and the Microsoft sign-in for Job Hunt HQ isn't switched on yet. Until it is, you can set Outlook to forward emails from employers to a Gmail or Yahoo address and connect that here.|Microsoft laat apps niet meer met een wachtwoord inloggen bij Outlook.com of Hotmail, en de Microsoft-aanmelding voor Job Hunt HQ staat nog niet aan. Tot die tijd kun je Outlook e-mails van werkgevers laten doorsturen naar een Gmail- of Yahoo-adres en dat hier koppelen.
+No upcoming interviews right now.|Op dit moment geen komende gesprekken.
+Past interviews ({n})|Eerdere gesprekken ({n})
+Show {n} more|Toon {n} meer
+{n} not shown yet|{n} nog niet getoond
+Adding job · Job Hunt HQ|Vacature toevoegen · Job Hunt HQ
+Reading the job and preparing your application pack…|De vacature wordt gelezen en je sollicitatiepakket voorbereid…
+Page not found|Pagina niet gevonden
+Something went wrong|Er ging iets mis
+Go to Job Hunt HQ|Naar Job Hunt HQ

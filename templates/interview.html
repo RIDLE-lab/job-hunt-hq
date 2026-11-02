@@ -23,16 +23,27 @@
       <span class="step-ico">{{ status_icon(a.status) }}</span>
       <div class="iv-main">
         <b>{{ a.role }}</b>
-        <span class="muted small">{{ a.company }} · {{ status_labels[a.status] }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% endif %}</span>
+        <span class="muted small">{{ a.company }} · {{ status_labels[a.status] }}{% if a.when %} · <span class="date">{{ a.when.isoformat()|nice_date }}</span>{% endif %}</span>
         {% if h %}<span class="muted tiny">{{ t('{n} answers practised', n=h.n) }} · {{ t('average {s}/10', s=h.avg) }}</span>{% endif %}
       </div>
       <a class="btn btn-primary" href="{{ url_for('interview_practice', t='app:' ~ a.id) }}">{{ 'Keep practising' if h else 'Start practising' }}</a>
     </li>
     {% endfor %}
   </ul>
+  {% elif past %}
+  <p class="empty">No upcoming interviews right now.</p>
+  <p><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Try a quick practice</a></p>
   {% else %}
   <p class="empty">No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.</p>
   <p><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Try a quick practice</a></p>
+  {% endif %}
+  {% if past %}
+  <details class="iv-past">
+    <summary>{{ t('Past interviews ({n})', n=past|length) }}</summary>
+    <ul class="iv-mini">
+      {% for a in past %}<li><a href="{{ url_for('interview_practice', t='app:' ~ a.id) }}"><b>{{ a.role }}</b><span class="muted small">{{ a.company }}{% if a.when %} · {{ a.when.isoformat()|nice_date }}{% endif %}</span></a></li>{% endfor %}
+    </ul>
+  </details>
   {% endif %}
 </section>
 

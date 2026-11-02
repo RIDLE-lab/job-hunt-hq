@@ -742,3 +742,52 @@ Interview prep|Interviewtraining
 Create CV|Lebenslauf
 from {source}|von {source}
 closes {date}|Bewerbungsschluss {date}
+Five steps, from knowing what you want to starting your new job.|Fünf Schritte – von „Ich weiß, was ich will“ bis zum ersten Tag im neuen Job.
+Get the job|Den Job bekommen
+Nobody can promise an offer. But you’ll apply to the right jobs, never miss a reply and walk in prepared – the best chance you can give yourself.|Niemand kann ein Angebot versprechen. Aber Sie bewerben sich auf die richtigen Stellen, verpassen keine Antwort und gehen gut vorbereitet ins Gespräch – die beste Chance, die Sie sich geben können.
+Connect your email – Gmail, Yahoo, iCloud and more – and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|Verbinden Sie Ihr E-Mail-Konto – Gmail, Yahoo, iCloud und mehr –, und Antworten sortieren sich selbst: eingegangen, Gespräch, Test, Angebot oder Absage. Ihre Bewerbungen aktualisieren sich, ohne dass Sie einen Finger rühren.
+Replies sorted from your inbox automatically|Antworten automatisch aus Ihrem Posteingang sortiert
+Everything Job Hunt HQ does, all included, with no adverts.|Alles, was Job Hunt HQ kann – alles inklusive, ohne Werbung.
+Every application and every reply in one list, updated from your email automatically.|Jede Bewerbung und jede Antwort in einer Liste, automatisch aus Ihren E-Mails aktualisiert.
+Job Hunt HQ uses cookies to keep you signed in. With your OK it also remembers your language. No advertising or tracking.|Job Hunt HQ nutzt Cookies, damit Sie angemeldet bleiben. Mit Ihrer Zustimmung merkt es sich auch Ihre Sprache. Keine Werbung, kein Tracking.
+Only essential|Nur notwendige
+Accept|Akzeptieren
+Accepted|Akzeptiert
+consent|Einwilligung
+Job Hunt HQ uses only what it needs to work, and there's no advertising, tracking or analytics. The sign-in cookie is essential. The language cookie is only set if you choose “Accept”.|Job Hunt HQ nutzt nur, was es zum Funktionieren braucht – ohne Werbung, Tracking oder Analyse. Das Anmelde-Cookie ist notwendig. Das Sprach-Cookie wird nur gesetzt, wenn Sie „Akzeptieren“ wählen.
+Remembers the language you chose for the site (only if you accept).|Merkt sich die gewählte Sprache (nur wenn Sie zustimmen).
+Remembers your cookie choice, so we don't ask again.|Merkt sich Ihre Cookie-Wahl, damit wir nicht erneut fragen.
+Your choice:|Ihre Wahl:
+Not chosen yet|Noch nicht gewählt
+1 year|1 Jahr
+Done|Erledigt
+{n} miles|{n} Meilen
+Country code|Ländervorwahl
+Phone with country code|Telefon mit Vorwahl
+Your email|Ihr E-Mail-Konto
+Email service|E-Mail-Dienst
+Email address|E-Mail-Adresse
+Another provider|Anderer Anbieter
+IMAP server|IMAP-Server
+From your email account|Aus Ihrem E-Mail-Konto
+Connected|Verbunden
+Connect Outlook|Outlook verbinden
+Reconnect Outlook|Outlook erneut verbinden
+Outlook and Hotmail use Microsoft’s own sign-in.|Outlook und Hotmail nutzen die Anmeldung von Microsoft.
+Connect the email account employers write to, and Job Hunt HQ reads their replies – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail and most other services work with an|Verbinden Sie das E-Mail-Konto, an das Arbeitgeber schreiben, und Job Hunt HQ liest deren Antworten – Eingangsbestätigungen, Gespräche, Absagen, Angebote – und hält Ihre Bewerbungen aktuell. Es liest nur; es sendet oder löscht nie etwas. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail und die meisten anderen Dienste funktionieren mit einem
+you make in your email account’s security settings.|das Sie in den Sicherheitseinstellungen Ihres E-Mail-Kontos erstellen.
+Nobody reads your email through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your email.|Niemand liest Ihre E-Mails über Job Hunt HQ – weder der Betreiber noch andere Nutzer. Sie werden automatisch gelesen, nur um E-Mails zu Ihren Bewerbungen zu erkennen; davon werden Absender, Betreff, Datum und eine kurze Vorschau gespeichert, damit Ihre Bewerbungsseite aktuell bleibt. Alle anderen E-Mails werden ignoriert und nichts davon gespeichert. Es kann in Ihrem Postfach nichts senden, ändern oder löschen.
+You can disconnect any time by removing the app password here (or deleting it in your email account), download everything that's stored with|Sie können die Verbindung jederzeit trennen, indem Sie das App-Passwort hier entfernen (oder in Ihrem E-Mail-Konto löschen), alles herunterladen, was gespeichert ist, unter
+Make one at|Erstellen Sie eines unter
+your account’s app passwords page|der Seite für App-Passwörter Ihres Kontos
+, call it “Job Hunt HQ”, and paste it here.|, nennen Sie es „Job Hunt HQ“ und fügen Sie es hier ein.
+Microsoft no longer lets apps sign in to Outlook.com or Hotmail with a password, and the Microsoft sign-in for Job Hunt HQ isn't switched on yet. Until it is, you can set Outlook to forward emails from employers to a Gmail or Yahoo address and connect that here.|Microsoft lässt Apps nicht mehr mit Passwort auf Outlook.com oder Hotmail zugreifen, und die Microsoft-Anmeldung für Job Hunt HQ ist noch nicht eingeschaltet. Bis dahin können Sie in Outlook E-Mails von Arbeitgebern an eine Gmail- oder Yahoo-Adresse weiterleiten und diese hier verbinden.
+No upcoming interviews right now.|Derzeit keine anstehenden Gespräche.
+Past interviews ({n})|Vergangene Gespräche ({n})
+Show {n} more|{n} weitere anzeigen
+{n} not shown yet|{n} noch nicht angezeigt
+Adding job · Job Hunt HQ|Stelle wird hinzugefügt · Job Hunt HQ
+Reading the job and preparing your application pack…|Die Stelle wird gelesen und Ihre Bewerbungsunterlagen vorbereitet…
+Page not found|Seite nicht gefunden
+Something went wrong|Etwas ist schiefgelaufen
+Go to Job Hunt HQ|Zu Job Hunt HQ

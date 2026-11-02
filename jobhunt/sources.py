@@ -13,7 +13,8 @@ UA = {"User-Agent": "JobHuntHQ/1.0 (personal job search tool)"}
 
 
 def clean_text(text: str | None) -> str:
-    text = html.unescape(text or "")
+    text = re.sub(r"(?is)<(style|script|head|title)\b.*?</\1>", " ", text or "")   # styling, not words
+    text = html.unescape(text)
     text = re.sub(r"<[^>]+>", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 

@@ -185,5 +185,6 @@
 </script>
 <script src="{{ url_for('static', filename='place.js') }}" defer></script>
 {% if lang != 'en' %}<script src="{{ url_for('static', filename='translate.js') }}" data-lang="{{ lang }}" defer></script>{% endif %}
+{% include "_cookie_banner.html" %}
 </body>
 </html>

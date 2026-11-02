@@ -799,7 +799,7 @@ def test_assistant_privacy_and_erasure():
     assert token in z.read("Job Hunt HQ Assistant/config.js").decode()
     # privacy notice is public; the Gmail section promises nobody reads emails
     assert b"Your rights" in A.app.test_client().get("/privacy").data
-    assert b"Nobody reads your Gmail" in c.get("/settings").data
+    assert b"Nobody reads your email" in c.get("/settings").data
     # right to erasure
     assert c.post("/account", data={"action": "delete", "confirm": "DELETE", "current": "nope"},
                   headers={"Origin": "http://localhost"}).status_code == 302
@@ -1081,6 +1081,37 @@ def test_security_hardening():
             pass
     code = accounts.create_invite(owner)
     assert accounts.claim_invite(code) and not accounts.claim_invite(code)
+
+
+def test_other_email_services():
+    """Yahoo, iCloud and the rest are read over IMAP: only emails that look like job emails are opened."""
+    from unittest import mock
+    from jobhunt import gmail_sync, mail_providers
+    assert mail_providers.guess("sam@yahoo.co.uk") == "yahoo" and mail_providers.guess("sam@hotmail.com") == "outlook"
+    job = (b"From: HR <hr@acme.com>\r\nTo: sam@yahoo.co.uk\r\nSubject: Your application for HR Advisor\r\n"
+           b"Date: Mon, 02 Nov 2026 10:00:00 +0000\r\nMessage-ID: <a1@acme>\r\n\r\nThanks for applying for HR Advisor.\r\n")
+    junk = (b"From: Uber <u@uber.com>\r\nSubject: 50% off fruit\r\nDate: Mon, 02 Nov 2026 10:00:00 +0000\r\n"
+            b"Message-ID: <b2@uber>\r\n\r\nDeals\r\n")
+    opened = []
+
+    class FakeImap:
+        def __init__(self, host, *a, **k): assert host == "imap.mail.yahoo.com"
+        def login(self, user, pw): assert pw == "yahoo-app-pass"
+        def select(self, box, readonly=False): assert box == "INBOX" and readonly; return "OK", [b"2"]
+        def search(self, charset, key, since): assert key == "SINCE"; return "OK", [b"1 2"]
+        def fetch(self, num, what):
+            raw = job if num == b"1" else junk
+            if "HEADER" not in what:
+                opened.append(num)
+            return "OK", [(b"x", raw), b")"]
+        def logout(self): pass
+
+    cfg = {"profile": {"email": "sam@yahoo.co.uk"}, "email": {"provider": "yahoo", "from": "sam@yahoo.co.uk",
+           "gmail_app_password": "yahoo-app-pass"}, "gmail": {"enabled": True}, "search": {}}
+    assert gmail_sync.method(cfg) == "app_password"
+    with mock.patch("imaplib.IMAP4_SSL", FakeImap):
+        msgs = list(gmail_sync.imap_messages(cfg, set()))
+    assert [m["subject"] for m in msgs] == ["Your application for HR Advisor"] and opened == [b"1"]
 
 
 if __name__ == "__main__":

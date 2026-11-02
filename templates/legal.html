@@ -107,13 +107,14 @@
 {% elif page == 'cookies' %}
   <section class="card">
     <h2>The cookies we use</h2>
-    <p>Job Hunt HQ uses only what it needs to work. There's no advertising, tracking or analytics, so there's nothing to
-      accept or reject.</p>
+    <p>Job Hunt HQ uses only what it needs to work, and there's no advertising, tracking or analytics. The sign-in cookie
+      is essential. The language cookie is only set if you choose “Accept”.</p>
     <table class="answers-table">
       <thead><tr><th>Name</th><th>What it's for</th><th>How long</th></tr></thead>
       <tbody>
         <tr><td><code>session</code></td><td>Keeps you signed in, and protects forms from being sent by other websites.</td><td>Until you sign out, up to 30 days</td></tr>
-        <tr><td><code>jhq_lang</code></td><td>Remembers the language you chose for the site.</td><td>1 year</td></tr>
+        <tr><td><code>jhq_lang</code></td><td>Remembers the language you chose for the site (only if you accept).</td><td>1 year</td></tr>
+        <tr><td><code>jhq_consent</code></td><td>Remembers your cookie choice, so we don't ask again.</td><td>1 year</td></tr>
       </tbody>
     </table>
     <p class="small muted">The browser assistant keeps where you dragged its button, and the last job you looked at, in your
@@ -122,6 +123,11 @@
   <section class="card">
     <h2>Controlling cookies</h2>
     <p>You can delete cookies in your browser's settings at any time. If you block them, you won't be able to sign in.</p>
+    <p>Your choice: <b>{{ {'all': 'Accepted', 'essential': 'Only essential'}.get(request.cookies.get('jhq_consent'), 'Not chosen yet') }}</b>.</p>
+    <form method="post" action="{{ url_for('cookie_choice') }}" class="row">
+      <button class="btn" name="choice" value="essential">Only essential</button>
+      <button class="btn btn-primary" name="choice" value="all">Accept</button>
+    </form>
   </section>
 
 {% elif page == 'acceptable-use' %}
@@ -167,5 +173,6 @@
 {% endif %}
   {% include "_legal_footer.html" %}
 </main>
+{% include "_cookie_banner.html" %}
 </body>
 </html>

@@ -67,7 +67,7 @@
 <section class="card" id="quick">
   <h2>Quick answers</h2>
   <dl class="answers">
-    {% for label, key in [('Full name','name'), ('Email','email'), ('Phone','phone'), ('Address','address'),
+    {% for label, key in [('Full name','name'), ('Email','email'), ('Phone','phone'), ('Phone with country code','phone_intl'), ('Address','address'),
                           ('LinkedIn','linkedin'), ('GitHub','github'), ('Current employer','current_employer'), ('Current job title','current_title'),
                           ('Notice period','notice_period'), ('Salary expectation','salary_expectation'), ('Right to work','right_to_work')] %}
       {% if profile.get(key) %}

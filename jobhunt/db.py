@@ -60,6 +60,8 @@ CREATE TABLE IF NOT EXISTS events (
     category TEXT,          -- rejected, interview, pre_screen, assessment, offer, acknowledged, job_alert, other
     created_at TEXT NOT NULL
 );
+CREATE INDEX IF NOT EXISTS events_app ON events(application_id, received_at);
+CREATE INDEX IF NOT EXISTS events_received ON events(received_at);
 
 CREATE TABLE IF NOT EXISTS answers (
     key TEXT PRIMARY KEY,          -- the question, simplified
@@ -122,7 +124,30 @@ def connect(path=None) -> sqlite3.Connection:
     acols = {r["name"] for r in conn.execute("PRAGMA table_info(applications)")}
     if "source" not in acols:     # added later: 'gmail' when the app found the application in your emails
         conn.execute("ALTER TABLE applications ADD COLUMN source TEXT")
+    if get_meta(conn, "emails_tidied_v1") is None:
+        tidy_emails(conn)
+        set_meta(conn, "emails_tidied_v1", now())
+        conn.commit()
     return conn
+
+
+CSS_JUNK = re.compile(r"(@[a-z-]+[^{}]*\{[^{}]*(\{[^{}]*\}[^{}]*)*\}|[^{}\s][^{}]{0,200}\{[^{}]*\})", re.I)
+
+
+def tidy_snippet(text: str) -> str:
+    """Email previews without the styling code some senders put before the words ("@media only screen…")."""
+    if "{" in (text or ""):
+        text = CSS_JUNK.sub(" ", text)
+        text = re.sub(r"[{}]", " ", text)
+    return " ".join((text or "").split())
+
+
+def tidy_emails(conn):
+    """Emails that aren't about job applications keep nothing but the fact they were checked (so they aren't read
+    again) – as the privacy notice says – and previews lose any styling code."""
+    conn.execute("UPDATE events SET sender = '', subject = '', snippet = '' WHERE category = 'other'")
+    for r in conn.execute("SELECT id, snippet FROM events WHERE snippet LIKE '%{%'").fetchall():
+        conn.execute("UPDATE events SET snippet = ? WHERE id = ?", (tidy_snippet(r["snippet"]), r["id"]))
 
 
 @contextmanager

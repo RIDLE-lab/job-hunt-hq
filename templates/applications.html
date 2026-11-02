@@ -59,7 +59,7 @@
   {% if apps %}
   <ol class="app-list">
     {% for a in apps %}
-    <li class="app st-{{ a.status }}">
+    <li class="app st-{{ a.status }}" id="app-{{ loop.index }}">
       <details>
         <summary>
           <span class="app-ico">{{ status_icon(a.status) }}</span>
@@ -124,6 +124,8 @@
     </li>
     {% endfor %}
   </ol>
+  {% if more %}<p class="show-more"><a class="btn" href="{{ url_for('applications_page', show=group, q=q or None, n=limit + 50) }}#app-{{ apps|length }}">{{ t('Show {n} more', n=[more, 50]|min) }}</a>
+    <span class="muted small">{{ t('{n} not shown yet', n=more) }}</span></p>{% endif %}
   {% else %}
   <p class="empty">Nothing here{% if q %} for “{{ q }}”{% endif %}.</p>
   {% endif %}

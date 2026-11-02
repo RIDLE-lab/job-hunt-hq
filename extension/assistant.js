@@ -17,6 +17,9 @@
   var HOST = location.hostname.replace(/^www\./, "");
   var siteKind = NEVER.test(HOST) ? "never" : JOB_SITES.test(HOST) ? "job" : "other";
   if (siteKind === "never") return;          /* not even the button – and nothing is sent anywhere */
+  /* Inside a frame (a company's careers page showing a Greenhouse, Lever or Workday form): only for those systems,
+     and only when the frame is big enough to be the form itself. */
+  if (window.top !== window && (siteKind !== "job" || innerWidth < 480 || innerHeight < 300)) return;
   function strongJobSignals() {
     /* For other websites (a company's own careers page): only a real advert or application form counts. */
     var ld = Array.prototype.some.call(document.querySelectorAll('script[type="application/ld+json"]'), function (s) { return /"JobPosting"/.test(s.textContent); });
@@ -136,7 +139,12 @@
     var applyWords = /apply|application|candidate|career|vacanc|recruit|job|workday|greenhouse|lever\.co|smartrecruiters|taleo|icims|teamtailor|ashby|bamboohr|jobvite/i.test(location.href) ||
                      /apply|application|candidate|résumé|resume|cover letter|employer questions|screening|work experience|your cv/i.test(document.title + " " + heads);
     var qs = s.questions || [];
-    return { form: (s.fields >= 3 && (applyWords || hasUpload)) || (qs.length >= 1 && applyWords), questions: qs };
+    /* the button at the bottom of an application form ("Submit application", "Apply now", "Send application") */
+    var submitBtn = Array.prototype.some.call(document.querySelectorAll("button, input[type=submit], [role=button]"), function (b) {
+      return /^\s*(submit|send|complete)( my| your)? application|^\s*apply( now| for this (job|role|position))?\s*$/i.test(b.innerText || b.value || "");
+    });
+    return { form: (s.fields >= 3 && (applyWords || hasUpload)) || (qs.length >= 1 && applyWords) ||
+                   (submitBtn && (s.fields >= 1 || hasUpload) && siteKind === "job"), questions: qs };
   }
 
   /* ---------------------------------------------------------------- the floating helper */

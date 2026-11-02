@@ -16,7 +16,13 @@
       <div><label>Email<input name="email" type="email" value="{{ p.email or '' }}"></label></div>
     </div>
     <div class="two">
-      <div><label>Phone<input name="phone" value="{{ p.phone or '' }}"></label></div>
+      <div><label for="phone">Phone</label>
+        <div class="phone-row">
+          <select name="phone_code" aria-label="Country code">
+            {% for c, name, code in dial_codes %}<option value="{{ code }}|{{ c }}" {{ 'selected' if (p.phone_code_country or p.country or 'GB') == c }}>{{ name }} ({{ code }})</option>{% endfor %}
+          </select>
+          <input id="phone" name="phone" type="tel" autocomplete="tel-national" value="{{ p.phone or '' }}">
+        </div></div>
       <div><label>Town, city or postcode<input name="location" value="{{ p.location or '' }}" data-place></label></div>
     </div>
     <div class="two">
@@ -64,31 +70,71 @@
 </section>
 
 <section class="card" id="gmail">
-  <h2>Gmail</h2>
-  <p class="muted">Connect Gmail and Job Hunt HQ reads replies from employers – acknowledgements, interviews, rejections,
-    offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything.
-    You need a Gmail <b>app password</b>: go to <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>
-    (2-Step Verification must be on), create one called “Job Hunt HQ”, and paste the 16 letters here.</p>
+  <h2>Your email</h2>
+  <p class="muted">Connect the email account employers write to, and Job Hunt HQ reads their replies – acknowledgements,
+    interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes
+    anything. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail and most other services work with an <b>app password</b>
+    you make in your email account’s security settings.</p>
   <div class="privacy-note">
-    <p><b>Your emails stay private.</b> Nobody reads your Gmail through Job Hunt HQ – not the owner and not anyone else
+    <p><b>Your emails stay private.</b> Nobody reads your email through Job Hunt HQ – not the owner and not anyone else
       using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender,
       subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and
-      nothing is saved from them. It can't send, change or delete anything in your Gmail.</p>
-    <p class="small">You can disconnect any time by removing the app password here (or deleting it in your Google
+      nothing is saved from them. It can't send, change or delete anything in your email.</p>
+    <p class="small">You can disconnect any time by removing the app password here (or deleting it in your email
       account), download everything that's stored with <a href="{{ url_for('account_page') }}">Download my data</a>, and ask
       how your data is used, have it corrected or deleted under UK GDPR – see <a href="{{ url_for('privacy') }}">Privacy and your data</a>.</p>
   </div>
-  <div class="form wide">
+  <div class="form wide" data-mail>
     <div class="two">
-      <div><label>Gmail address<input name="gmail_address" type="email" value="{{ em.from or '' }}" placeholder="you@gmail.com"></label></div>
+      <div><label>Email service
+        <select name="mail_provider" data-provider>
+          {% for key, pv in mail_providers.items() %}<option value="{{ key }}" data-help="{{ pv[3] }}" {{ 'selected' if mail_provider == key }}>{{ pv[0] }}</option>{% endfor %}
+        </select></label></div>
+      <div><label>Email address<input name="gmail_address" type="email" value="{{ em.from or '' }}" placeholder="you@example.com" data-address></label></div>
+    </div>
+    <div class="two" data-when="password">
       <div><label>App password {% if has_password %}<span class="pill rb-applied">Saved</span>{% endif %}
-        <input name="gmail_app_password" type="password" autocomplete="off" placeholder="{{ 'Leave blank to keep the saved one' if has_password else '16 letters' }}"></label></div>
+        <input name="gmail_app_password" type="password" autocomplete="off" placeholder="{{ 'Leave blank to keep the saved one' if has_password else 'From your email account' }}"></label>
+        <p class="muted tiny" data-help-line>Make one at <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener" data-help-link>your account’s app passwords page</a>, call it “Job Hunt HQ”, and paste it here.</p></div>
+      <div data-when="other"><label>IMAP server<input name="imap_host" value="{{ em.imap_host or '' }}" placeholder="imap.example.com"></label></div>
+    </div>
+    <div data-when="outlook" hidden>
+      {% if outlook_ready %}
+      <p>{% if em.ms_refresh_token %}<span class="pill rb-applied">Connected</span> {% endif %}Outlook and Hotmail use Microsoft’s own sign-in.</p>
+      <p><a class="btn btn-primary" href="{{ url_for('outlook_start') }}">{{ 'Reconnect Outlook' if em.ms_refresh_token else 'Connect Outlook' }}</a></p>
+      {% else %}
+      <p class="muted">Microsoft no longer lets apps sign in to Outlook.com or Hotmail with a password, and the Microsoft
+        sign-in for Job Hunt HQ isn't switched on yet. Until it is, you can set Outlook to forward emails from employers
+        to a Gmail or Yahoo address and connect that here.</p>
+      {% endif %}
     </div>
     <label class="check"><input type="checkbox" name="read_job_alerts" value="yes" {{ 'checked' if gm.read_job_alerts is not defined or gm.read_job_alerts }}> Add jobs from my LinkedIn and Indeed job-alert emails</label>
     <label class="check"><input type="checkbox" name="job_emails" value="yes" {{ 'checked' if em.enabled }}> Email me the best new jobs after each refresh</label>
     <input type="hidden" name="send_to" value="{{ em.to or '' }}">
   </div>
 </section>
+<script>
+  (() => {
+    const box = document.querySelector('[data-mail]'); if (!box) return;
+    const sel = box.querySelector('[data-provider]'), addr = box.querySelector('[data-address]');
+    const domains = {{ mail_domains|tojson }};
+    const show = () => {
+      const v = sel.value, opt = sel.selectedOptions[0];
+      box.querySelectorAll('[data-when="password"]').forEach((el) => el.hidden = v === 'outlook');
+      box.querySelectorAll('[data-when="outlook"]').forEach((el) => el.hidden = v !== 'outlook');
+      box.querySelectorAll('[data-when="other"]').forEach((el) => el.hidden = v !== 'other');
+      const link = box.querySelector('[data-help-link]'), help = opt.dataset.help;
+      box.querySelector('[data-help-line]').hidden = !help;
+      if (help) link.href = help;
+    };
+    addr.addEventListener('change', () => {
+      const d = (addr.value.split('@')[1] || '').toLowerCase();
+      const k = Object.keys(domains).find((key) => domains[key].includes(d));
+      if (k && k !== sel.value) { sel.value = k; show(); }
+    });
+    sel.addEventListener('change', show); show();
+  })();
+</script>
 <div class="row sticky-save"><button class="btn btn-primary">Save settings</button></div>
 </form>
 {% endblock %}

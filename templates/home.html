@@ -162,7 +162,10 @@
       b.style.left = (50 + r * Math.cos(a)) + '%';
       b.style.top = (50 + r * Math.sin(a)) + '%';
       b.style.setProperty('--d', (i * 0.05) + 's');
-      b.style.setProperty('--pulse', (3.6 - fit * 2.2).toFixed(2) + 's');   /* better match = quicker, stronger pulse */
+      /* each dot lights up as the sweep passes over it; better matches ring brighter and wider */
+      const compass = ((i * 137.508) % 360 + 360) % 360;              /* clockwise from the top, like the sweep */
+      b.style.setProperty('--sync', (compass / 360 * 6 - 6).toFixed(2) + 's');
+      b.style.setProperty('--ring', (1.8 + fit * 1.6).toFixed(2));
       b.style.setProperty('--glow', (0.15 + fit * 0.5).toFixed(2));
     });
   })();

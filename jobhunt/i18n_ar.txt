@@ -1127,3 +1127,52 @@ you|أنت
 It's already linked to your account, so don't share the file.|إنه مرتبط بحسابك مسبقًا، لذا لا تشارك الملف.
 from {source}|من {source}
 closes {date}|يُغلق في {date}
+Five steps, from knowing what you want to starting your new job.|خمس خطوات، من معرفة ما تريده إلى بدء وظيفتك الجديدة.
+Get the job|احصل على الوظيفة
+Nobody can promise an offer. But you’ll apply to the right jobs, never miss a reply and walk in prepared – the best chance you can give yourself.|لا أحد يستطيع أن يعدك بعرض عمل. لكنك ستتقدّم إلى الوظائف المناسبة، ولن يفوتك أي رد، وستدخل المقابلة مستعدًا – وهذه أفضل فرصة تمنحها لنفسك.
+Connect your email – Gmail, Yahoo, iCloud and more – and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.|اربط بريدك الإلكتروني – Gmail أو Yahoo أو iCloud وغيرها – فتُرتَّب الردود تلقائيًا: استُلم، مقابلة، تقييم، عرض أو رفض. وتتحدّث طلباتك دون أن تحرّك ساكنًا.
+Replies sorted from your inbox automatically|ردود مرتّبة تلقائيًا من بريدك الوارد
+Everything Job Hunt HQ does, all included, with no adverts.|كل ما يفعله Job Hunt HQ، كله مشمول، بلا إعلانات.
+Every application and every reply in one list, updated from your email automatically.|كل طلب وكل رد في قائمة واحدة، تُحدَّث تلقائيًا من بريدك.
+Job Hunt HQ uses cookies to keep you signed in. With your OK it also remembers your language. No advertising or tracking.|يستخدم Job Hunt HQ ملفات تعريف الارتباط لإبقائك مسجّل الدخول. وبموافقتك يتذكّر لغتك أيضًا. لا إعلانات ولا تتبّع.
+Only essential|الضرورية فقط
+Accept|قبول
+Accepted|مقبولة
+consent|موافقتك
+Job Hunt HQ uses only what it needs to work, and there's no advertising, tracking or analytics. The sign-in cookie is essential. The language cookie is only set if you choose “Accept”.|لا يستخدم Job Hunt HQ إلا ما يحتاجه ليعمل، بلا إعلانات أو تتبّع أو تحليلات. ملف تسجيل الدخول ضروري. أما ملف اللغة فلا يُحفظ إلا إذا اخترت «قبول».
+Remembers the language you chose for the site (only if you accept).|يتذكّر اللغة التي اخترتها للموقع (فقط إذا وافقت).
+Remembers your cookie choice, so we don't ask again.|يتذكّر اختيارك بشأن ملفات تعريف الارتباط حتى لا نسألك مجددًا.
+Your choice:|اختيارك:
+Not chosen yet|لم تختر بعد
+1 year|سنة واحدة
+Done|تم
+{n} miles|{n} ميل
+Country code|رمز الدولة
+Phone with country code|الهاتف مع رمز الدولة
+Your email|بريدك الإلكتروني
+Email service|خدمة البريد
+Email address|عنوان البريد الإلكتروني
+Another provider|مزوّد آخر
+IMAP server|خادم IMAP
+From your email account|من حساب بريدك
+Connected|متصل
+Connect Outlook|اربط Outlook
+Reconnect Outlook|أعد ربط Outlook
+Outlook and Hotmail use Microsoft’s own sign-in.|يستخدم Outlook وHotmail تسجيل الدخول الخاص بمايكروسوفت.
+Connect the email account employers write to, and Job Hunt HQ reads their replies – acknowledgements, interviews, rejections, offers – and keeps your Applications up to date. It only reads; it never sends or deletes anything. Gmail, Yahoo, iCloud, AOL, Zoho, GMX, Fastmail and most other services work with an|اربط حساب البريد الذي يراسلك عليه أصحاب العمل، وسيقرأ Job Hunt HQ ردودهم – إشعارات الاستلام والمقابلات والرفض والعروض – ويُبقي «طلباتك» محدَّثة. إنه يقرأ فقط؛ ولا يرسل أو يحذف أي شيء أبدًا. تعمل Gmail وYahoo وiCloud وAOL وZoho وGMX وFastmail ومعظم الخدمات الأخرى باستخدام
+you make in your email account’s security settings.|تُنشئها من إعدادات الأمان في حساب بريدك.
+Nobody reads your email through Job Hunt HQ – not the owner and not anyone else using it. It's read automatically, only to spot emails about your job applications; for those it keeps the sender, subject, date and a short preview so your Applications page stays up to date. All other emails are ignored and nothing is saved from them. It can't send, change or delete anything in your email.|لا أحد يقرأ بريدك عبر Job Hunt HQ – لا المالك ولا أي مستخدم آخر. يُقرأ تلقائيًا، فقط لرصد الرسائل المتعلقة بطلباتك؛ ويُحتفظ منها بالمرسل والموضوع والتاريخ ومعاينة قصيرة لتبقى صفحة الطلبات محدَّثة. تُتجاهل كل الرسائل الأخرى ولا يُحفظ منها شيء. لا يستطيع إرسال أي شيء أو تغييره أو حذفه في بريدك.
+You can disconnect any time by removing the app password here (or deleting it in your email account), download everything that's stored with|يمكنك قطع الاتصال في أي وقت بإزالة كلمة مرور التطبيق من هنا (أو حذفها من حساب بريدك)، وتنزيل كل ما هو محفوظ عبر
+Make one at|أنشئ واحدة من
+your account’s app passwords page|صفحة كلمات مرور التطبيقات في حسابك
+, call it “Job Hunt HQ”, and paste it here.|، وسمّها «Job Hunt HQ»، والصقها هنا.
+Microsoft no longer lets apps sign in to Outlook.com or Hotmail with a password, and the Microsoft sign-in for Job Hunt HQ isn't switched on yet. Until it is, you can set Outlook to forward emails from employers to a Gmail or Yahoo address and connect that here.|لم تعد مايكروسوفت تسمح للتطبيقات بالدخول إلى Outlook.com أو Hotmail بكلمة مرور، ولم يُفعَّل تسجيل الدخول بمايكروسوفت في Job Hunt HQ بعد. وحتى ذلك الحين، يمكنك ضبط Outlook لإعادة توجيه رسائل أصحاب العمل إلى عنوان Gmail أو Yahoo وربطه هنا.
+No upcoming interviews right now.|لا مقابلات قادمة حاليًا.
+Past interviews ({n})|مقابلات سابقة ({n})
+Show {n} more|اعرض {n} أخرى
+{n} not shown yet|{n} لم تُعرض بعد
+Adding job · Job Hunt HQ|إضافة وظيفة · Job Hunt HQ
+Reading the job and preparing your application pack…|جارٍ قراءة الوظيفة وتجهيز ملف التقديم…
+Page not found|الصفحة غير موجودة
+Something went wrong|حدث خطأ ما
+Go to Job Hunt HQ|انتقل إلى Job Hunt HQ
