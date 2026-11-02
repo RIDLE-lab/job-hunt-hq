@@ -704,6 +704,49 @@ def test_feedback():
     assert not [f for f in accounts.feedback_list(uid) if f["message"] == "with junk"][0]["image"]
 
 
+def test_every_occupation_and_job_site():
+    """Any kind of work: titles to pick from, the right specialist sites, CV-Library jobs, and LinkedIn PDF profiles."""
+    from jobhunt import cv, occupations, sources
+    assert len(occupations.SECTORS) >= 30 and len(occupations.ALL_TITLES) > 400
+    assert "Warehouse Operative" in occupations.search("ware") and "Paralegal" in occupations.search("para")
+    assert occupations.sectors_for(["Forklift Driver"]) == ["warehouse"]
+    assert occupations.sectors_for(["Staff Nurse", "Paralegal"]) == ["healthcare", "legal"]
+    assert "WMS" in occupations.skills_for(["Warehouse Operative"])
+    sites = dict(occupations.search_links("Staff Nurse", "Leeds", 10))
+    assert {"Indeed", "LinkedIn", "Reed", "CV-Library", "Totaljobs", "NHS Jobs"} <= set(sites)
+    assert "q=staff+nurse" in sites["Indeed"] and "l=Leeds" in sites["Indeed"]
+    assert "Civil Service Jobs" in dict(occupations.search_links("Caseworker", "York"))
+    assert "NHS Jobs" not in dict(occupations.search_links("Warehouse Operative", "York"))
+    jobs = sources.parse_cvlibrary({"jobs": [{"id": "1", "title": "Forklift <em>Driver</em>", "location": "Tilbury",
+                                              "salary": "£26,000 - £28,000/annum", "url": "/job/1/Forklift-Driver",
+                                              "agency": {"title": "Acme Logistics"}, "posted": "2026-10-30T09:00:00Z",
+                                              "description": "Counterbalance licence"}]})
+    assert jobs[0]["title"] == "Forklift Driver" and jobs[0]["salary_max"] == 28000
+    assert jobs[0]["url"] == "https://www.cv-library.co.uk/job/1/Forklift-Driver" and jobs[0]["posted"] == "2026-10-30"
+    li = cv.parse("Top Skills\nForklift\nWMS\nExperience\nDHL\nWarehouse Team Leader\nJune 2024 - Present (1 year 5 months)\n"
+                  "Basildon, England\nLed a team of 12 pickers.\nEducation\nBasildon College\nBTEC Level 3, Business · (2018 - 2020)\n")
+    e = li["experience"][0]
+    assert (e["title"], e["company"], e["location"], e["start"], e["end"]) == ("Warehouse Team Leader", "DHL", "Basildon, England", "06/2024", "")
+    assert li["skills"] == ["Forklift", "WMS"] and li["education"][0]["school"] == "Basildon College"
+    # the page lists every site for the person's own job titles
+    import app as A
+    from jobhunt import accounts
+    from jobhunt.config import as_user
+    owner_client()
+    uid = accounts.create("ws" + os.urandom(3).hex(), "Wren Site", "a-long-password-8")
+    accounts.update(uid, setup_done=1)
+    with as_user(uid):
+        accounts.save_settings({"profile": {"name": "Wren Site", "location": "Leeds"},
+                                "search": {"keywords": ["Staff Nurse"], "locations": [{"place": "Leeds", "miles": 10}]},
+                                "prefs": {}}, uid)
+    c = A.app.test_client()
+    with c.session_transaction() as s:
+        s["uid"], s["sv"] = uid, accounts.get(uid)["session_version"]
+    page = c.get("/everywhere").data
+    assert b"NHS Jobs" in page and b"uk.indeed.com/jobs?q=staff+nurse" in page
+    assert b"Warehouse Operative" in c.get("/settings").data            # the picker offers every kind of work
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

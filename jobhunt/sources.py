@@ -118,6 +118,62 @@ def search_adzuna(app_id: str, app_key: str, keywords: str, location: str, dista
     return parse_adzuna(resp.json())
 
 
+# ---------------------------------------------------------------- CV-Library (needs a partner key from CV-Library)
+CVLIB_URL = "https://www.cv-library.co.uk/search-jobs-json"
+CVLIB_MILES = [1, 2, 5, 7, 10, 15, 20, 25, 35, 50, 75, 100]
+
+
+def _money(text: str) -> tuple[float | None, float | None]:
+    nums = [float(n.replace(",", "")) for n in re.findall(r"£?\s?(\d[\d,]*(?:\.\d+)?)", text or "")]
+    nums = [n for n in nums if n >= 1000]          # yearly figures only; hourly/daily pay stays as text
+    return (min(nums), max(nums)) if nums else (None, None)
+
+
+def parse_cvlibrary(payload: dict) -> list[dict]:
+    jobs = []
+    for r in payload.get("jobs", []):
+        sal = r.get("salary")
+        if isinstance(sal, dict):
+            lo, hi = sal.get("min"), sal.get("max")
+            text = salary_text(lo, hi) if sal.get("period") in (None, "annum", "annually", "yearly") else \
+                f"£{lo or ''}–£{hi or ''} per {sal.get('period')}".replace("–£ ", "")
+        else:
+            text = clean_text(sal)
+            lo, hi = _money(text)
+        url = r.get("url") or ""
+        desc = clean_text(re.sub(r"</?em>", "", r.get("description") or ""))
+        title = clean_text(re.sub(r"</?em>", "", r.get("title") or ""))
+        jobs.append({
+            "source": "CV-Library",
+            "external_id": str(r.get("id")),
+            "title": title,
+            "company": clean_text((r.get("agency") or {}).get("title")),
+            "location": clean_text(r.get("location")),
+            "salary_min": lo, "salary_max": hi, "salary_text": text,
+            "url": url if url.startswith("http") else "https://www.cv-library.co.uk" + url,
+            "description": desc,
+            "posted": (r.get("posted") or "")[:10] or None,
+            "closes": (r.get("expiry_date") or "")[:10] or None,
+            "remote": int(is_remote(title, desc, r.get("location"))),
+        })
+    return jobs
+
+
+def search_cvlibrary(key: str, keywords: str, location: str, distance: int, min_salary: int | None,
+                     max_age_days: int = 14) -> list[dict]:
+    miles = min(CVLIB_MILES, key=lambda m: abs(m - int(distance or 15)))
+    posted = min([1, 3, 7, 14, 28], key=lambda d: abs(d - int(max_age_days or 14)))
+    params = {"key": key, "q": keywords, "geo": location, "distance": miles, "posted": posted,
+              "limit": 100, "description_limit": 4000, "nohl": 1, "salary_detailed": 1, "id_as_string": 1}
+    if min_salary:
+        params.update(salarymin=min_salary, salarytype="annum")
+    resp = requests.get(CVLIB_URL, params=params, headers=UA, timeout=TIMEOUT)
+    if resp.status_code == 404:                     # no (more) results
+        return []
+    resp.raise_for_status()
+    return parse_cvlibrary(resp.json())
+
+
 # ---------------------------------------------------------------- The Talent World (HR-only job board)
 TALENTWORLD = "https://www.thetalentworld.co.uk"
 

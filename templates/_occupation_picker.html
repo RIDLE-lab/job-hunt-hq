@@ -1,0 +1,64 @@
+{# Pick from every kind of work: choose a field, tick job titles, or type to find one. Fills the job-titles box. #}
+<div class="occ" data-occ data-target="{{ target or 'keywords' }}" data-skills="{{ skills_target or 'skills' }}">
+  <p class="occ-h"><b>Pick from every kind of work</b> <span class="muted small">– or type your own titles in the box</span></p>
+  <div class="occ-row">
+    <select class="occ-sector" aria-label="Field of work">
+      <option value="">Choose a field…</option>
+      {% for key, s in occupations.items() %}<option value="{{ key }}">{{ s.label }}</option>{% endfor %}
+    </select>
+    <input class="occ-find" list="occ-all" placeholder="…or search any job title" aria-label="Search job titles" autocomplete="off">
+    <datalist id="occ-all">{% for t in all_titles %}<option value="{{ t }}">{% endfor %}</datalist>
+  </div>
+  <div class="occ-chips" aria-live="polite"></div>
+  <p class="occ-skills small" hidden></p>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const DATA = {{ occupations|tojson }};
+  document.querySelectorAll("[data-occ]").forEach((box) => {
+    const target = document.getElementById(box.dataset.target), skills = document.getElementById(box.dataset.skills);
+    const chips = box.querySelector(".occ-chips"), sel = box.querySelector(".occ-sector"), find = box.querySelector(".occ-find");
+    const tip = box.querySelector(".occ-skills");
+    const titles = () => target.value.split("\n").map((s) => s.trim()).filter(Boolean);
+    const has = (t) => titles().some((x) => x.toLowerCase() === t.toLowerCase());
+    const toggle = (t) => {
+      const now = titles();
+      target.value = (has(t) ? now.filter((x) => x.toLowerCase() !== t.toLowerCase()) : now.concat([t])).join("\n");
+      draw();
+    };
+    const draw = () => {
+      const s = DATA[sel.value];
+      chips.innerHTML = "";
+      if (!s) { tip.hidden = true; return; }
+      s.titles.forEach((t) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "occ-chip" + (has(t) ? " on" : ""); b.textContent = t;
+        b.setAttribute("aria-pressed", has(t)); b.onclick = () => toggle(t);
+        chips.appendChild(b);
+      });
+      if (skills) {
+        tip.hidden = false;
+        tip.innerHTML = "Usual skills in this field: <i>" + s.skills.join(", ") + "</i> ";
+        const add = document.createElement("button");
+        add.type = "button"; add.className = "btn btn-ghost small"; add.textContent = "Add the ones I have…";
+        add.onclick = () => {
+          const mine = skills.value.split(/,|\n/).map((x) => x.trim()).filter(Boolean);
+          const pick = s.skills.filter((x) => !mine.some((m) => m.toLowerCase() === x.toLowerCase()));
+          skills.value = mine.concat(pick).join(", ");
+          skills.focus();
+          tip.innerHTML = "Added – <b>remove any you don't have</b>, so jobs are scored honestly.";
+        };
+        tip.appendChild(add);
+      }
+    };
+    sel.addEventListener("change", draw);
+    find.addEventListener("change", () => {
+      const t = find.value.trim();
+      if (t && !has(t)) toggle(t);
+      for (const [k, s] of Object.entries(DATA)) if (s.titles.includes(t)) { sel.value = k; draw(); break; }
+      find.value = "";
+    });
+    target.addEventListener("input", draw);
+  });
+});
+</script>

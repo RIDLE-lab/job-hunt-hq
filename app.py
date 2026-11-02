@@ -28,6 +28,9 @@ app.config.update(SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_HTTPONLY=True, P
 
 # ------------------------------------------------------------------ accounts and signing in
 from jobhunt import accounts  # noqa: E402
+from jobhunt import occupations  # noqa: E402
+
+OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
 OPEN_ENDPOINTS = {"login", "static", "manifest", "first_account", "join", "reset_password"}
@@ -293,6 +296,33 @@ def account_export():
                      download_name=f"Job Hunt HQ data - {g.user['username']} - {date.today().isoformat()}.zip")
 
 
+# ------------------------------------------------------------------ search every job site
+@app.route("/everywhere")
+def everywhere():
+    """Each of your job titles, ready-searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest."""
+    cfg = load_config()
+    search, profile = cfg.get("search", {}), cfg.get("profile", {})
+    titles = [t for t in (search.get("keywords") or []) if t][:12]
+    places = []
+    for l in search.get("locations") or []:
+        place, miles = (l, search.get("distance_miles", 15)) if isinstance(l, str) else (l.get("place"), l.get("miles", 15))
+        if place:
+            places.append((place, int(miles or 15)))
+    if not places and profile.get("location"):
+        places = [(profile["location"], int(search.get("distance_miles", 15) or 15))]
+    place = request.args.get("place") or (places[0][0] if places else "")
+    miles = next((m for p, m in places if p == place), 15)
+    rows = [(t, occupations.search_links(t, place, miles)) for t in titles]
+    sectors = [occupations.SECTORS[k][0] for k in occupations.sectors_for(titles)]
+    src = cfg.get("sources", {})
+    feeds = [("Reed", bool(src.get("reed_api_key"))), ("Adzuna", bool(src.get("adzuna_app_id"))),
+             ("CV-Library", bool(src.get("cvlibrary_key"))), ("The Talent World (HR jobs)", "hr" in occupations.sectors_for(titles))]
+    gmail_on = bool(cfg.get("gmail", {}).get("enabled"))
+    return render_template("everywhere.html", rows=rows, places=places, place=place, miles=miles, sectors=sectors,
+                           feeds=feeds, gmail_on=gmail_on, profile=profile,
+                           alerts=[(t, occupations.alert_links(t, place)) for t in titles[:6]])
+
+
 # ------------------------------------------------------------------ feedback
 IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif"}
 
@@ -391,7 +421,7 @@ def save_settings_form(form, parts=("profile", "search", "prefs", "gmail")) -> l
     s = my_settings()
     problems = []
     if "profile" in parts:
-        for k in ("name", "email", "phone", "location", "address", "linkedin", "github", "current_title",
+        for k in ("name", "email", "phone", "location", "address", "linkedin", "github", "indeed", "current_title",
                   "current_employer", "notice_period", "salary_expectation", "right_to_work"):
             if k in form:
                 s["profile"][k] = form.get(k, "").strip()
@@ -530,14 +560,14 @@ def manifest():
 # Sidebar: (section, [(endpoint, label, icon)]) – the same groups as the GSI HRIS layout.
 NAV = [
     ("Overview", [("dashboard", "Dashboard", "home")]),
-    ("Applying", [("add_job", "Add a job", "plus"), ("robot_page", "Apply for me", "send"),
+    ("Applying", [("everywhere", "Job sites", "search"), ("add_job", "Add a job", "plus"), ("robot_page", "Apply for me", "send"),
                   ("applications_page", "Applications", "send")]),
     ("You", [("career_page", "My career", "user"), ("cv_builder", "Create CV", "file"), ("emails", "Emails", "mail")]),
 ]
 CRUMBS = {"dashboard": ("Overview", "Dashboard"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
           "robot_page": ("Applying", "Apply for me"), "career_page": ("You", "My career"), "emails": ("You", "Emails"),
           "setup": ("Settings", "Setup"), "import_page": ("Applying", "Import"),
-          "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"),
+          "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"), "everywhere": ("Applying", "Job sites"),
           "settings_page": ("You", "My settings"), "feedback_page": ("You", "Feedback")}
 
 
@@ -563,6 +593,7 @@ def helpers():
             "user": user, "is_admin": bool(user and user["is_admin"]), "hosted": HOSTED,
             "feedback_new": accounts.new_feedback_count() if user and user["is_admin"] else 0,
             "feedback_kinds": accounts.FEEDBACK_KINDS,
+            "occupations": OCCUPATIONS_JSON, "all_titles": occupations.ALL_TITLES,
             "nav": [(sec, [i for i in items if not (HOSTED and i[0] in PC_ONLY_ENDPOINTS)]) for sec, items in NAV]}
 
 

@@ -116,10 +116,10 @@ HEADINGS = {
     "experience": r"(work |professional |employment |career |relevant )?(experience|history)|employment|work history|career history|"
                   r"employment and volunteering|experience and volunteering|positions held",
     "education": r"education( and training| & training| and qualifications)?|qualifications|academic( background)?",
-    "skills": r"(key |core |technical |relevant )?(skills|competencies|competences|strengths)|skills (and|&) (abilities|tools)|tools",
+    "skills": r"(key |core |technical |relevant |top )?(skills|competencies|competences|strengths)|skills (and|&) (abilities|tools)|tools",
     "languages": r"languages?",
     "certifications": r"certifications?|certificates|courses|training|professional (development|memberships?)|memberships?",
-    "other": r"interests|hobbies|references|volunteering|achievements|awards|publications|projects",
+    "other": r"contact|interests|honou?rs?-?awards|hobbies|references|volunteering|achievements|awards|publications|projects",
 }
 MONTH = r"(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)"
 WHEN = rf"(?:{MONTH}\.?\s+\d{{4}}|\d{{1,2}}\s*/\s*\d{{4}}|\d{{4}})"
@@ -200,20 +200,33 @@ def parse(text: str) -> dict:
     for i, l in enumerate(lines):
         m = RANGE.search(l)
         if m:
-            rest = (l[:m.start()] + " " + l[m.end():]).strip(" |,–-—()")
-            if not rest and i > 0 and cur is not None and cur["description"]:
-                # the title/company were the lines just before the dates – take them back from the last job
-                rest = cur["description"].pop()
-            elif not rest and i > 0 and cur is None:
-                rest = lines[i - 1]
+            after = re.sub(r"^\s*\(\s*\d+\s*(years?|yrs?|months?|mos?)[^)]*\)", "", l[m.end():], flags=re.I)
+            rest = (l[:m.start()] + " " + after).strip(" |,–-—()")
+            short = lambda x: x and len(x) < 70 and not x.endswith(".") and not RANGE.search(x) and not re.match(r"^[•\-*]", x)
+            two_up = ""
+            if not rest and i > 0:
+                prev_desc = cur["description"] if cur is not None else None
+                if prev_desc:
+                    rest = prev_desc.pop()        # title/company were the lines just before the dates
+                    if prev_desc and short(prev_desc[-1]):
+                        two_up = prev_desc.pop()  # LinkedIn PDFs: company line, then title line, then dates
+                elif cur is None:
+                    rest = lines[i - 1]
+                    if i > 1 and short(lines[i - 2]):
+                        two_up = lines[i - 2]
             title, company, loc = _split_title_company(rest)
+            if two_up and not company:
+                company = two_up
             end = m.group("b")
             end_val = "" if re.match(r"present|current|now|date|ongoing", end or "", re.I) else _mmyyyy(end)
             cur = {"title": title, "company": company, "location": loc, "start": _mmyyyy(m.group("a")),
                    "end": end_val, "description": []}
             jobs.append(cur)
         elif cur is not None:
-            if not cur["company"] and len(l) < 70 and not l.endswith(".") and not re.match(r"^[•\-*]", l):
+            if cur.get("company") and not cur["location"] and not cur["description"] and len(l) < 40 and \
+                    not l.endswith(".") and re.search(r"[A-Z][a-z]+", l) and not re.search(r"\d{2,}", l):
+                cur["location"] = l                    # LinkedIn: the place sits under the dates
+            elif not cur["company"] and len(l) < 70 and not l.endswith(".") and not re.match(r"^[•\-*]", l):
                 cur["company"], _, cur["location"] = l.partition(", ")
             else:
                 cur["description"].append(l.lstrip("•-* ").strip())
@@ -223,11 +236,26 @@ def parse(text: str) -> dict:
     # education: lines with a qualification word
     q = re.compile(r"\b(bsc|ba|ma|msc|mba|phd|llb|beng|meng|pgce|hnd|hnc|btec|nvq|diploma|degree|certificate|a.?levels?|"
                    r"gcses?|level \d|bachelor|master|doctorate|foundation|cipd|university|college|school|academy)\b", re.I)
-    for l in sec.get("education", []):
+    SCHOOL = re.compile(r"university|college|school|academy|institute", re.I)
+    DEGREE = re.compile(r"\b(bsc|ba|ma|msc|mba|phd|llb|beng|meng|pgce|hnd|hnc|btec|nvq|diploma|degree|certificate|"
+                        r"a.?levels?|gcses?|level \d|bachelor|master|doctorate|foundation|cipd)\b", re.I)
+    edu_lines, raw = [], [re.sub(r"\s*·\s*", " ", l).strip() for l in sec.get("education", [])]
+    i = 0
+    while i < len(raw):                 # LinkedIn PDFs: the school on one line, the qualification and years on the next
+        l = raw[i]
+        if SCHOOL.search(l) and not DEGREE.search(l) and i + 1 < len(raw) and DEGREE.search(raw[i + 1]) \
+                and not SCHOOL.search(raw[i + 1]):
+            edu_lines.append(f"{raw[i + 1]} | {l}")
+            i += 2
+            continue
+        edu_lines.append(l)
+        i += 1
+    for l in edu_lines:
         if q.search(l):
             m = RANGE.search(l) or re.search(r"(\d{4})", l)
             years = re.findall(r"\d{4}", l)
             clean = RANGE.sub("", l) if RANGE.search(l) else re.sub(r"\(?\b\d{4}\b\)?", "", l)
+            clean = re.sub(r"\(\s*\)", "", clean)
             deg, school, _ = _split_title_company(clean)
             if q.search(school) and not re.search(r"university|college|school|academy", deg, re.I) and \
                     re.search(r"university|college|school|academy", school, re.I):

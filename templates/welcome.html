@@ -48,6 +48,7 @@
     <input type="hidden" name="step" value="2">
     <label for="keywords">Job titles you're looking for <span class="muted">(one per line – each is searched separately)</span></label>
     <textarea id="keywords" name="keywords" rows="5" placeholder="e.g.&#10;Marketing Executive&#10;Digital Marketing Assistant&#10;Social Media Coordinator">{{ (sr.keywords or [])|join('\n') }}</textarea>
+    {% include "_occupation_picker.html" %}
     <div class="two">
       <div><label for="miles">How far you'll travel</label>
         <select id="miles" name="miles">{% for m in miles %}<option value="{{ m }}" {{ 'selected' if (sr.distance_miles or 15) == m }}>Up to {{ m }} miles from {{ p.location or 'home' }}</option>{% endfor %}</select></div>

@@ -52,7 +52,8 @@ app:
 END
 ```
 
-(Copy the real values from your own `config.yaml`. Each person's own details, job titles and Gmail are in their
+(Copy the real values from your own `config.yaml`. If CV-Library gives you a partner API key – ask
+partners@cv-library.co.uk – add `cvlibrary_key: "…"` under `sources:` too, and CV-Library jobs are searched as well. Each person's own details, job titles and Gmail are in their
 account – not here.) Then press **Manual Deploy → Restart**.
 
 ## 4. Move your account across

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Job sites · Job Hunt HQ{% endblock %}
+{% block content %}
+<section class="head"><div>
+  <h1>Every job site, one place</h1>
+  <p class="muted">Your job titles, already searched on Indeed, LinkedIn, Reed, CV-Library, Totaljobs and the rest{% if sectors %}
+    – plus the specialist sites for {{ sectors|join(', ')|lower }}{% endif %}. Found one you like? Click
+    <b>Send to Job Hunt HQ</b> on the advert to score it, write your letter and track it.</p>
+</div></section>
+
+<section class="card">
+  <div class="card-head">
+    <h2>Search {{ 'near ' ~ place if place else 'everywhere' }}</h2>
+    {% if places|length > 1 %}
+    <nav class="app-tabs" aria-label="Place">
+      {% for p, m in places %}<a href="{{ url_for('everywhere', place=p) }}" class="{{ 'on' if p == place }}">{{ p }} <span>{{ m }} mi</span></a>{% endfor %}
+    </nav>{% endif %}
+  </div>
+  {% if not rows %}
+  <p class="empty">Add the jobs you want in <a href="{{ url_for('settings_page') }}">My settings</a> – pick from every kind of work.</p>
+  {% endif %}
+  <div class="ew">
+    {% for title, links in rows %}
+    <div class="ew-row">
+      <h3>{{ title }}</h3>
+      <div class="ew-links">{% for site, url in links %}<a class="site" href="{{ url }}" target="_blank" rel="noopener">{{ site }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="grid2">
+<section class="card">
+  <h2>Found for you automatically</h2>
+  <p class="muted small">Each refresh searches these and scores every job against your details.</p>
+  <ul class="checks">
+    {% for name, on in feeds %}<li class="{{ 'ok' if on else 'opt' }}"><b>{{ name }}</b> – {{ 'on' if on else ('not used for your job titles' if 'Talent' in name else 'not set up on this server yet') }}</li>{% endfor %}
+    <li class="{{ 'ok' if gmail_on else 'todo' }}"><b>LinkedIn and Indeed job alerts</b> – {% if gmail_on %}read from your Gmail{% else %}connect Gmail in <a href="{{ url_for('settings_page') }}#gmail">My settings</a>{% endif %}</li>
+  </ul>
+  <p class="muted small">LinkedIn and Indeed don't let other apps search their jobs directly, so Job Hunt HQ reads the job-alert
+    emails they send you instead. Switch alerts on below and they'll appear in your jobs after each refresh.</p>
+</section>
+
+<section class="card">
+  <h2>Link LinkedIn and Indeed</h2>
+  <ol class="steps small">
+    <li><b>Switch on job alerts</b> – open each search, then press <i>Set alert</i> (LinkedIn) or <i>Get new jobs by email</i> (Indeed):
+      {% for title, links in alerts %}<div class="ew-links tight"><span class="muted">{{ title }}:</span>{% for site, url in links %}<a class="site" href="{{ url }}" target="_blank" rel="noopener">{{ site }} ↗</a>{% endfor %}</div>{% endfor %}
+    </li>
+    <li><b>Bring your profile in</b> – on LinkedIn: your profile → <i>Resources</i> → <i>Save to PDF</i>. On Indeed: <i>Profile</i> →
+      download your CV. Then upload it on <a href="{{ url_for('cv_builder') }}">Create CV</a>: your work history, education and skills fill in for you.</li>
+    <li><b>Add your profile links</b> in <a href="{{ url_for('settings_page') }}">My settings</a> so application forms and your CV include them.
+      {% if profile.linkedin %}<br>LinkedIn: <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">{{ profile.linkedin|replace('https://', '') }}</a>{% endif %}
+      {% if profile.indeed %}<br>Indeed: <a href="{{ profile.indeed }}" target="_blank" rel="noopener">{{ profile.indeed|replace('https://', '') }}</a>{% endif %}</li>
+    <li><b>Use the browser buttons</b> (see <a href="{{ url_for('setup') }}">Setup</a>) – <i>Send to Job Hunt HQ</i> on any LinkedIn or
+      Indeed advert, and <i>Fill this application</i> on the form.</li>
+  </ol>
+</section>
+</div>
+{% endblock %}

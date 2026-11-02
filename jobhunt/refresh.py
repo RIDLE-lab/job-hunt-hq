@@ -92,7 +92,13 @@ def fetch_jobs(cfg: dict, log=print) -> list[dict]:
                                                    distance, min_salary, int(search.get("max_age_days", 14)))
                 except Exception as e:
                     log(f"Adzuna '{kw}' in {loc}: {e}")
-    if not (src.get("reed_api_key") or src.get("adzuna_app_id")):
+            if src.get("cvlibrary_key"):
+                try:
+                    found += sources.search_cvlibrary(src["cvlibrary_key"], kw, loc, distance, min_salary,
+                                                      int(search.get("max_age_days", 14)))
+                except Exception as e:
+                    log(f"CV-Library '{kw}' in {loc}: {e}")
+    if not (src.get("reed_api_key") or src.get("adzuna_app_id") or src.get("cvlibrary_key")):
         log("No Reed/Adzuna keys in config.yaml yet – add them for more jobs (optional).")
     return found
 

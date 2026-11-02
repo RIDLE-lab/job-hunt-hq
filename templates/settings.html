@@ -24,6 +24,7 @@
       <div><label>LinkedIn<input name="linkedin" value="{{ p.linkedin or '' }}"></label></div>
       <div><label>GitHub or portfolio<input name="github" value="{{ p.github or '' }}"></label></div>
     </div>
+    <label>Indeed profile <span class="muted">(optional – your public Indeed CV link)</span><input name="indeed" value="{{ p.indeed or '' }}" placeholder="https://profile.indeed.com/…"></label>
     <div class="two">
       <div><label>Current job title<input name="current_title" value="{{ p.current_title or '' }}"></label></div>
       <div><label>Current employer<input name="current_employer" value="{{ p.current_employer or '' }}"></label></div>
@@ -39,7 +40,8 @@
 <section class="card">
   <h2>The jobs you want</h2>
   <div class="form wide">
-    <label>Job titles <span class="muted">(one per line)</span><textarea name="keywords" rows="6">{{ (sr.keywords or [])|join('\n') }}</textarea></label>
+    <label>Job titles <span class="muted">(one per line)</span><textarea id="keywords" name="keywords" rows="6">{{ (sr.keywords or [])|join('\n') }}</textarea></label>
+    {% include "_occupation_picker.html" %}
     <div class="two">
       <div><label>Places and distance <span class="muted">(one per line: place, miles)</span>
         <textarea name="places" rows="4" placeholder="Manchester, 15&#10;Leeds, 10">{{ places }}</textarea></label></div>
@@ -53,7 +55,7 @@
       <div><label>Your level<select name="level">{% for v, l in levels %}<option value="{{ v }}" {{ 'selected' if (pr.level or 'mid') == v }}>{{ l }}</option>{% endfor %}</select></label></div>
       <div><label>Hide titles containing<input name="exclude" value="{{ (sr.exclude_title_words or [])|join(', ') }}"></label></div>
     </div>
-    <label>Your main skills <span class="muted">(comma-separated)</span><textarea name="skills" rows="3">{{ (pr.skills or [])|join(', ') }}</textarea></label>
+    <label>Your main skills <span class="muted">(comma-separated)</span><textarea id="skills" name="skills" rows="3">{{ (pr.skills or [])|join(', ') }}</textarea></label>
   </div>
 </section>
 

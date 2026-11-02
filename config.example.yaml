@@ -53,6 +53,8 @@ sources:
   reed_api_key: ""          # free: https://www.reed.co.uk/developers/jobseeker
   adzuna_app_id: ""         # free: https://developer.adzuna.com/signup
   adzuna_app_key: ""
+  # CV-Library gives API keys to partners only: ask partners@cv-library.co.uk, then add it here.
+  cvlibrary_key: ""
 
 gmail:
   enabled: false            # set to true after adding credentials.json (see README)
