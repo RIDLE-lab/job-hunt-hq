@@ -181,6 +181,12 @@ def suggest(q: dict, remembered: dict, profile: dict, fields: dict, job: dict, c
             return text, "competency"
     if kind == "textarea" and not options and BEHAVIOURAL.search(label):
         text, story, score = story_answer(label + " " + (q.get("hint") or ""), job)
+        if text and score >= 2:
+            q["story"], q["story_fit"] = story, score
+            return text, "story"
+        example = example_answer(label, job, profile)      # no close example saved: build one from the work history
+        if example:
+            return example, "example"
         if text:
             q["story"], q["story_fit"] = story, score
             return text, "story"
@@ -291,9 +297,64 @@ def draft_answer(question: str, job: dict, profile: dict) -> str:
     return ""
 
 
-BEHAVIOURAL = re.compile(r"describe|an example|a time (when|where|you)|tell us about a|outline your experience|provide (an )?(example|details)|"
+BEHAVIOURAL = re.compile(r"describe|an example|a time (that |when |where )?(when|where|you|i)\b|tell (me|us) (about )?a time|"
+                         r"above and beyond|go(ne)? the extra mile|tell us about a|outline your experience|provide (an )?(example|details)|"
                          r"how did you|walk us through|give us|select (an|a) (example|role)|referring (back )?to your cv|"
                          r"your experience (of|in|with)|most (complex|challenging|difficult)", re.I)
+
+
+# Words a question uses, and the words the person's own work history is likely to use for the same thing.
+SYNONYMS = [
+    (r"guest|customer|client|patient|service user|resident|visitor|member|passenger|shopper|participant|candidate|learner|tenant",
+     "customer customers client clients participant participants patients residents guests service users candidates learners"),
+    (r"above and beyond|extra mile|exceed|exceptional",
+     "support supported help helped improve improved extra personalised tailored"),
+    (r"team|colleague", "team colleagues managers trained training led"),
+    (r"pressure|deadline|busy|priorit", "deadlines volume caseload prioritise workload"),
+    (r"complain|difficult|conflict|upset|angry", "complaints queries resolved resolve escalated cases issues"),
+    (r"improv|change|initiative", "improved built designed introduced automated process"),
+    (r"mistake|error|accura", "accuracy accurate audit compliance checks"),
+]
+
+
+def example_answer(question: str, job: dict, profile: dict) -> str:
+    """For "Tell us about a time…" questions with no saved example that fits: an honest answer built from the closest
+    things the person has really done (from their own work history), in their voice – with a reminder to add the
+    specific moment. Nothing is invented."""
+    from .advert import _facts, _words
+    from .generic import facts as history_facts
+    q = question.lower()
+    subject, extra_words = set(), set(re.findall(r"[a-z]{5,}", q)) - {"about", "there", "where", "which", "would", "could"}
+    for n, (pat, extra) in enumerate(SYNONYMS):
+        if re.search(pat, q):
+            (subject if n == 0 or not subject else extra_words).update(extra.split())
+    pool, seen = [], set()
+    for own, items in ((1, history_facts()), (0, _facts())):     # their own work history first
+        for keys, fact in items:
+            if fact not in seen:
+                seen.add(fact)
+                pool.append((own, keys, fact))
+    scored = []
+    for i, (own, keys, fact) in enumerate(pool):
+        w = _words(fact)                       # what the sentence itself says, not its search tags
+        main = sum(1 for k in subject if f" {k} " in w)
+        other = sum(1 for k in extra_words if f" {k} " in w)
+        if subject and not main:
+            continue                          # it must be about the same kind of person (customers, guests…)
+        if main or other:
+            scored.append((3 * main + other + own, -i, fact))
+    scored.sort(reverse=True)
+    picked = [f for _, _, f in scored[:2]]
+    if not picked:
+        return ""
+    company = job.get("company") or "your team"
+    lead = re.sub(r"^(At|As|In)\b", lambda m: m.group(1), picked[0])
+    text = lead if lead.endswith(".") else lead + "."
+    if len(picked) > 1:
+        text += " " + (picked[1] if picked[1].endswith(".") else picked[1] + ".")
+    text += (" One example: [describe a specific moment – who needed help, what you did beyond what was expected, and the "
+             f"result]. It's the same care I'd bring to {company}.")
+    return text
 
 
 def story_answer(question: str, job: dict) -> tuple[str, str, int]:

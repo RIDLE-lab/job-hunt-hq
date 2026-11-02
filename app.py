@@ -1175,9 +1175,9 @@ def _find_job(c, url: str, title: str, company: str):
     if url:
         row = c.execute("SELECT * FROM jobs WHERE url = ? OR apply_url = ? ORDER BY updated_at DESC LIMIT 1",
                         (url, url)).fetchone()
-    if not row and title:
-        row = c.execute("SELECT * FROM jobs WHERE lower(title) = lower(?) AND (? = '' OR lower(company) = lower(?)) "
-                        "ORDER BY updated_at DESC LIMIT 1", (title, company, company)).fetchone()
+    if not row and title and company:          # never guess the employer from the job title alone
+        row = c.execute("SELECT * FROM jobs WHERE lower(title) = lower(?) AND lower(company) = lower(?) "
+                        "ORDER BY updated_at DESC LIMIT 1", (title, company)).fetchone()
     return dict(row) if row else None
 
 
@@ -1207,6 +1207,70 @@ def _ask_ai(question: str, job: dict, cfg: dict) -> str:
         return "".join(b.get("text", "") for b in r.json().get("content", [])).strip()
     except Exception:
         return ""
+
+
+def _closest_facts(text: str, limit: int = 3) -> list[str]:
+    from jobhunt.advert import _facts, _words
+    from jobhunt.generic import facts as history_facts
+    want = set(re.findall(r"[a-z]{4,}", (text or "").lower())) - {"with", "will", "your", "that", "this", "have", "from",
+                                                                   "they", "their", "what", "about", "were", "work"}
+    scored, seen = [], set()
+    for i, (keys, fact) in enumerate(list(_facts()) + list(history_facts())):
+        if fact in seen:
+            continue
+        seen.add(fact)
+        w = _words(fact + " " + " ".join(keys))
+        hits = sum(1 for k in want if f" {k} " in w)
+        if hits >= 2:
+            scored.append((hits, -i, fact))
+    scored.sort(reverse=True)
+    return [f for _, _, f in scored[:limit]]
+
+
+def _ask_offline(question: str, job: dict, cfg: dict) -> str:
+    """The assistant's answer without AI: drafts form answers, picks the experience that fits the advert,
+    and answers the usual questions from the person's own details."""
+    from jobhunt.advert import matches
+    from jobhunt.answers import BEHAVIOURAL, suggest
+    from jobhunt.generic import qualifications_line
+    q = question.strip()
+    ql = q.lower()
+    profile = cfg["profile"]
+    desc = job.get("description") or ""
+    if re.search(r"cover letter|covering letter|supporting statement", ql):
+        return job.get("cover_letter") or write_letter(job, profile, cv_text(cfg), cfg.get("ai"))[0]
+    if re.search(r"salary|pay|money", ql):
+        mine = profile.get("salary_expectation") or "not set yet (add it in My settings)"
+        theirs = job.get("salary_text") or (re.search(r"£[\d,]+(?:\.\d+)?(?:\s*[-–]\s*£[\d,]+(?:\.\d+)?)?(?:\s*(?:per|a)\s*\w+)?", desc) or [""])[0]
+        return f"Your salary expectation: {mine}." + (f" This advert offers {theirs}." if theirs else "")
+    if re.search(r"(fit|match|stress|highlight|mention|strength|best|focus|which (of my )?experience|why (am i|would i|should))", ql):
+        pairs = matches(desc, 4) if desc else []
+        if pairs:
+            lines = [f"• They want: {b}\n  You can point to: {f}" for _, b, f in pairs]
+            return "What to stress for this role:\n" + "\n".join(lines)
+        best = _closest_facts(desc + " " + (job.get("title") or ""), 4)
+        if best:
+            return "What to stress for this role:\n" + "\n".join(f"• {f}" for f in best)
+    if BEHAVIOURAL.search(ql) or q.endswith("?") or re.search(r"how (do|should) i answer", ql):
+        target = re.sub(r"^(how (do|should|would) i answer|help me answer|answer)\s*[:\-]?\s*", "", q, flags=re.I).strip(' "“”')
+        c = conn()
+        remembered = db.remembered_answers(c)
+        c.close()
+        fields = {**{k: profile.get(k, "") for k in ("name", "email", "phone", "current_employer", "current_title",
+                                                       "notice_period", "salary_expectation", "right_to_work")}, **split_address(profile)}
+        ans, _ = suggest({"label": target, "kind": "textarea", "options": []}, remembered, profile, fields, job,
+                         cv_text(cfg), cfg.get("ai"))
+        if ans:
+            return ans
+    pairs = matches(desc, 3) if desc else []
+    if pairs:
+        return "From the advert, the parts of your experience that fit best:\n" + "\n".join(f"• {f}" for _, _, f in pairs)
+    best = _closest_facts(desc + " " + (job.get("title") or ""), 3)
+    if best:
+        return "From the advert, the parts of your experience that fit best:\n" + "\n".join(f"• {f}" for f in best)
+    quals = qualifications_line()
+    return ("I couldn't match that to your details yet. Try asking “Which of my experiences fits this role?”, “What should "
+            "I stress?”, or paste a question from the form." + (f" Your qualifications: {quals}." if quals else ""))
 
 
 @app.post("/api/assistant")
@@ -1267,20 +1331,27 @@ def api_assistant():
         note = {"remembered": "An answer you saved before.", "rule": "From your details.",
                 "experience": "From your work history – check it reads right.",
                 "story": "Built from one of your own examples – make it specific to this employer.",
+                "example": "Built from your own work history – fill in the [bracketed] moment so it's a real example.",
                 "competency": "From your saved competency answers.", "draft": "A starting draft – personalise it.",
                 "ai": "Written with AI from your CV – check every word is true.",
                 "own_words": "The employer wants this in your own words, so it's left for you.",
-                "": "This one's personal or not in your details, so it's left for you."}.get(src, "")
+                "": ""}.get(src, "")
+        if not ans and not note:
+            from jobhunt.answers import PERSONAL
+            note = ("This one's personal, so it's left for you to answer." if PERSONAL.search(q["label"]) else
+                    "Nothing in your details answers this yet – add your experience on My career (or an example under "
+                    "My examples) and ask again.")
         return {"ok": True, "answer": ans or "", "source": src, "note": note}
     if action == "ask":
         c = conn()
         job = get_job(c, int(d["job_id"])) if d.get("job_id") else {"title": "", "company": "", "description": ""}
         c.close()
-        text = _ask_ai((d.get("question") or "")[:1000], job, cfg)
-        if not text:
-            return {"ok": True, "answer": "", "note": "Free questions need AI switched on for this site (an Anthropic key "
-                                                      "in the server settings). Use Suggest on each question instead."}
-        return {"ok": True, "answer": text, "note": "Written with AI from your details – check it before using it."}
+        question = (d.get("question") or "")[:1000]
+        text = _ask_ai(question, job, cfg)
+        if text:
+            return {"ok": True, "answer": text, "note": "Written with AI from your details – check it before using it."}
+        return {"ok": True, "answer": _ask_offline(question, job, cfg),
+                "note": "Answered from your own details and the advert."}
     if action == "applied":
         mark_applied(int(d.get("job_id") or 0), str(d.get("page") or ""))
         return {"ok": True}

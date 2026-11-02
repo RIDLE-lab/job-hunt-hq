@@ -77,7 +77,7 @@
       var best = null;
       document.querySelectorAll("article, section, main, div").forEach(function (e) {
         var t = e.innerText || "";
-        if (t.length < 600 || t.length > 25000) return;
+        if (t.length < 300 || t.length > 25000) return;
         if (!/responsibilit|requirement|about the (role|job)|you will|we are looking|duties|what you'll|skills/i.test(t)) return;
         if (!best || t.length < best.innerText.length) best = e;
       });
@@ -86,6 +86,23 @@
     if (!job.title) {
       var og = document.querySelector('meta[property="og:title"]');
       job.title = (og && og.content) || txt(["h1"]) || "";
+    }
+    /* Application pages (Indeed's "smartapply", Workday…) show the job as "HR Advisor" then "Burger and Beyond - London". */
+    if (!job.company || /^(answer|apply|application|questions|review|upload|add|your|contact|relevant|resume|cv)\b/i.test(job.title)) {
+      var lines = (document.body.innerText || "").split("\n").map(function (l) { return l.trim(); }).filter(Boolean).slice(0, 400);
+      for (var i = 0; i < lines.length - 1; i++) {
+        var a = lines[i], m = lines[i + 1].match(/^([^\-–|]{2,70})\s[-–]\s([^\-–|]{2,60})$/);
+        if (m && a.length <= 90 && a.length >= 3 && !/[.?!:]$/.test(a) && !/^(fields|answer|apply|step|\d+%)/i.test(a)) {
+          if (!job.company || job.title.toLowerCase() === a.toLowerCase() || /^(answer|apply|application|questions|review)/i.test(job.title)) {
+            job.title = a; job.company = m[1].trim(); job.location = job.location || m[2].trim();
+          }
+          break;
+        }
+      }
+    }
+    if (!job.company) {
+      var parts = document.title.split(/\s[|–-]\s/);
+      if (parts.length >= 2 && !/indeed|linkedin|apply|application/i.test(parts[1])) job.company = parts[1].trim();
     }
     job.title = job.title.split(/\s[|–-]\s/)[0].trim().slice(0, 150);
     return job;
@@ -98,8 +115,11 @@
     var s = { questions: [], fields: 0 };
     try { s = JHQ.scan(); } catch (e) {}
     var hasUpload = !!document.querySelector("input[type=file]");
-    var applyWords = /apply|application|cv|résumé|resume|cover letter|employer questions|screening/i.test(document.title + " " + (document.body.innerText || "").slice(0, 3000));
-    return { form: s.fields >= 3 && (applyWords || hasUpload), questions: s.questions || [] };
+    var heads = Array.prototype.map.call(document.querySelectorAll("h1, h2, h3, legend"), function (h) { return h.innerText || ""; }).join(" ");
+    var applyWords = /apply|application|candidate|career|vacanc|recruit|job|workday|greenhouse|lever\.co|smartrecruiters|taleo|icims|teamtailor|ashby|bamboohr|jobvite/i.test(location.href) ||
+                     /apply|application|candidate|résumé|resume|cover letter|employer questions|screening|work experience|your cv/i.test(document.title + " " + heads);
+    var qs = s.questions || [];
+    return { form: (s.fields >= 3 && (applyWords || hasUpload)) || (qs.length >= 1 && applyWords), questions: qs };
   }
 
   /* ---------------------------------------------------------------- the floating helper */
@@ -173,6 +193,7 @@
     state.form = form;
     var isJob = looksLikeJob(job);
     if (!isJob && !form.form) { badge.hidden = true; return Promise.resolve(); }
+    if (!isJob && form.form && job.title && job.company) isJob = true;    /* the application page for a job */
     var p = isJob ? api({ action: "job", url: job.url, title: job.title, company: job.company, location: job.location, description: job.description })
                   : store.get("lastJob").then(function (j) { return { job: j && Date.now() - j.at < 6 * 3600e3 ? j : null }; });
     return p.then(function (r) {

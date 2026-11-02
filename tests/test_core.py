@@ -786,7 +786,7 @@ def test_assistant_privacy_and_erasure():
     personal = post({"action": "answer", "job_id": saved["id"], "question": "Do you have a disability?", "kind": "radio",
                      "options": ["Yes", "No"]}).json
     assert personal["answer"] == "" and "left for you" in personal["note"]
-    assert post({"action": "ask", "question": "What should I stress?", "job_id": saved["id"]}).json["answer"] == ""
+    assert post({"action": "ask", "question": "What should I stress?", "job_id": saved["id"]}).json["answer"]
     # the extension download carries this person's own key
     with c.session_transaction() as s:
         s["uid"], s["sv"] = uid, accounts.get(uid)["session_version"]
@@ -853,6 +853,42 @@ def test_languages_countries_and_places():
     assert "Instellingen opslaan" in c.get("/settings").data.decode()
     assert b"Welcome" in A.app.test_client().get("/login", headers={"Accept-Language": "fr"}).data or True
     assert "Se connecter" in A.app.test_client().get("/login", headers={"Accept-Language": "fr-FR"}).data.decode()
+
+
+def test_assistant_answers_from_your_own_history():
+    """'A time you went above and beyond for a guest' gets an answer built from the person's own work, and Ask works
+    without AI."""
+    import app as A
+    from jobhunt import accounts, career, persona
+    from jobhunt.answers import BEHAVIOURAL
+    from jobhunt.config import access_token, as_user
+    assert BEHAVIOURAL.search("Can you tell me a time that you have gone above and beyond for a guest?")
+    owner_client()
+    uid = accounts.create("gx" + os.urandom(3).hex(), "Gita Guest", "a-long-password-12")
+    accounts.update(uid, setup_done=1)
+    with as_user(uid):
+        accounts.save_settings({"profile": {"name": "Gita Guest", "salary_expectation": "£38,000"},
+                                "search": {"keywords": ["HR Advisor"]}, "prefs": {"skills": ["Employee relations"]}}, uid)
+        career.save({**career.load(), "experience": [{"title": "Employment Advisor", "company": "Reed in Partnership", "end": "",
+                     "description": "Supported a caseload of 35 participants with tailored action plans and mock interviews.\n"
+                                    "Resolved customer queries and complaints by phone and email."}]})
+        persona._CACHE.clear()
+        token = access_token()
+    c = A.app.test_client()
+    post = lambda body: c.post("/api/assistant", json={"token": token, **body}).json
+    advert = ("HR Advisor at Burger and Beyond. You will advise managers on employee relations, support recruitment and "
+              "onboarding, and look after our people and guests. Salary £37,000 - £40,000 per year. ") * 3
+    job = post({"action": "job", "save": True, "url": "https://smartapply.indeed.com/x", "title": "HR Advisor",
+                "company": "Burger and Beyond", "description": advert})["job"]
+    r = post({"action": "answer", "job_id": job["id"], "question": "Can you tell me a time that you have gone above and "
+              "beyond for a guest?", "kind": "textarea"})
+    assert r["source"] == "example" and "participants" in r["answer"] and "Burger and Beyond" in r["answer"], r
+    # same title, different employer: never mixed up with another saved job
+    other = post({"action": "job", "url": "https://elsewhere.example/2", "title": "HR Advisor", "company": "", "description": ""})
+    assert other["job"] is None
+    ask = post({"action": "ask", "job_id": job["id"], "question": "Which of my experiences fits this role?"})
+    assert ask["answer"] and "AI" not in ask["note"]
+    assert "£38,000" in post({"action": "ask", "job_id": job["id"], "question": "What salary should I ask for?"})["answer"]
 
 
 if __name__ == "__main__":
