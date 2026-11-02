@@ -157,7 +157,7 @@ body.tour { background: var(--paper); }
   .t-mock { min-height: 280px; order: -1; }
 }
 @media (max-width: 700px) {
-  .t-in { padding: 0 16px; }
+  .t-in { padding-left: 16px; padding-right: 16px; }
   .t-links { display: none; }
   .t-top .t-in { justify-content: space-between; }
   .t-hero-in { padding-top: 40px; padding-bottom: 50px; }
@@ -169,4 +169,10 @@ body.tour { background: var(--paper); }
   .t-dots { display: none; }
   .t-controls { justify-content: center; }
   .m-cvs { gap: 8px; } .m-cv { width: 86px; height: 120px; }
+}
+@media (max-width: 700px) {
+  .t-join-in { padding-top: 40px; padding-bottom: 44px; gap: 26px; }
+  .t-faq { padding-top: 44px; }
+  .t-faq h2 { font-size: 1.8rem; }
+  .tour > .t-in > .lang-pick { padding-bottom: 90px; }   /* room for in-app browser bars (Instagram, LinkedIn) */
 }

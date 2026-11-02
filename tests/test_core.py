@@ -1043,7 +1043,7 @@ def test_public_tour_and_join():
     assert r.status_code == 302 and r.headers["Location"].endswith("/tour")
     page = anon.get("/tour").data.decode()
     assert "See how it works" in page and "Practise for the interview" in page and "Join Job Hunt HQ" in page
-    assert 'action="/join"' in page and "Sign in" in page
+    assert 'action="/join"' in page and "Sign in" in page and 'og:image' in page and "og-image.jpg" in page
     assert "invite code" in anon.get("/join?code=ABCD-EFGH-JKLM").data.decode().lower()
 
 
