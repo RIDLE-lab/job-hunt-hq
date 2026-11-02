@@ -17,7 +17,11 @@
     </dl>
   </div>
   <figure class="radar" aria-label="Your best matches">
-    <div class="radar-scope">
+    <div class="scope-switch" role="group" aria-label="How to show your matches">
+      <button type="button" data-view="radar" aria-pressed="true">Radar</button>
+      <button type="button" data-view="map" aria-pressed="false">Map</button>
+    </div>
+    <div class="radar-scope" data-view-pane="radar">
       <svg viewBox="0 0 200 200" aria-hidden="true" class="rings">
         <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/>
         <path d="M100 4v192M4 100h192"/>
@@ -28,7 +32,23 @@
          aria-label="{{ j.title }} at {{ j.company }}, {{ j.score or 'no' }} match"><span class="tip">{{ j.title }}<small>{{ j.company }} · {{ j.score or '–' }}</small></span></a>
       {% endfor %}
     </div>
-    <figcaption><span><i class="k ready"></i>Letter ready</span><span><i class="k strong"></i>Strong fit</span><span><i class="k"></i>Other matches</span><em>The closer to the centre, the better the match</em></figcaption>
+    <div class="radar-scope globe-scope" data-view-pane="map" hidden data-globe="{{ globe|tojson|forceescape }}"
+         data-world="{{ url_for('static', filename='globe/world.json') }}" data-detail="{{ url_for('static', filename='globe/' ~ globe.cc ~ '.json') }}">
+      <canvas aria-hidden="true"></canvas>
+      <svg viewBox="0 0 200 200" aria-hidden="true" class="rings">
+        <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/>
+      </svg>
+      <div class="sweep" aria-hidden="true"></div>
+      {% if globe.home %}<span class="home-pin" title="{{ t('Where you live') }}"></span>{% endif %}
+      {% for j in globe.jobs %}
+      <a class="blip{{ ' ready' if j.ready }}{{ ' strong' if j.score >= 70 }}" data-lat="{{ j.lat }}" data-lon="{{ j.lon }}" data-score="{{ j.score }}"
+         href="{{ url_for('job_detail', job_id=j.id) }}" aria-label="{{ j.title }} at {{ j.company }}, {{ j.score or 'no' }} match"><span class="tip">{{ j.title }}<small>{{ j.company }} · {{ j.score or '–' }}</small></span></a>
+      {% endfor %}
+    </div>
+    <figcaption><span><i class="k ready"></i>Letter ready</span><span><i class="k strong"></i>Strong fit</span><span><i class="k"></i>Other matches</span>
+      <em data-view-note="radar">The closer to the centre, the better the match</em>
+      <em data-view-note="map" hidden>{% if globe.jobs %}{{ t('Where your best matches are in {country}', country=t(globe.country)) }}{% elif globe.pending %}{{ t('Finding where your matches are – this map fills in shortly') }}{% else %}{{ t('None of your best matches say where in {country} they are yet', country=t(globe.country)) }}{% endif %}</em>
+    </figcaption>
   </figure>
 </section>
 
@@ -146,11 +166,12 @@
   <a href="{{ url_for('everywhere') }}">{{ icon('search') }}<b>Job sites</b><small>Your searches on every job site, ready to open</small></a>
 </nav>
 
+<script src="{{ url_for('static', filename='globe.js') }}" defer></script>
 <script>
   /* Job radar: each dot is one of your best matches. The better the match, the nearer the centre – spread across the
      rings by how your matches compare with each other – and the strongest gently pulse. */
   (() => {
-    const blips = [...document.querySelectorAll('.radar .blip')];
+    const blips = [...document.querySelectorAll('.radar [data-view-pane=radar] .blip')];
     const scores = blips.map((b) => +b.dataset.score || 0);
         blips.forEach((b, i) => {
       const score = scores[i];

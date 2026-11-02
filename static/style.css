@@ -1191,3 +1191,20 @@ body:has(.save-bar, .sticky-save) .fb-fab { bottom: 86px; }
 .err-box .mark circle { stroke: var(--night); }
 .err-box .mark .core { fill: var(--night); }
 .err-box h1 { font-size: 1.8rem; margin: 0 0 8px; }
+
+/* Home: Radar | Map switch, and the globe */
+.scope-switch { display: flex; width: max-content; margin: 0 auto 14px; padding: 3px; border-radius: 999px; background: rgba(255,255,255,.08); }
+.scope-switch button { border: 0; background: none; color: var(--on-night-2); font: 600 .9rem var(--cond); padding: 6px 16px; border-radius: 999px; cursor: pointer;
+  transition: background-color .2s, color .2s; }
+.scope-switch button[aria-pressed="true"] { background: rgba(59,227,204,.18); color: #fff; }
+.scope-switch button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.radar-scope[hidden], .radar figcaption [hidden] { display: none; }
+.globe-scope { cursor: grab; touch-action: pan-y; }
+.globe-scope:active { cursor: grabbing; }
+.globe-scope canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.globe-scope .rings circle:first-child { fill: none; }
+.home-pin { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 0 0 7px rgba(255,255,255,.08); z-index: 1; pointer-events: none; }
+.globe-scope .blip { width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; }
+.globe-scope .blip, .globe-scope .home-pin { transition: opacity .4s; }
+.globe-scope:not(.arrived) .blip, .globe-scope:not(.arrived) .home-pin { opacity: 0; pointer-events: none; }

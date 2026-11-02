@@ -175,6 +175,44 @@ def locate(place: str):
     return tuple(found) if found else None
 
 
+def cached(place: str):
+    """Like locate(), but never waits on the internet: only places already looked up."""
+    key = re.sub(r"\s+", " ", (place or "").strip().lower())
+    with _LOCK:
+        v = _load().get(key)
+    return tuple(v) if v else None
+
+
+def job_place_cached(location: str):
+    """job_place() from the cache alone, so a page never waits; None if it hasn't been looked up yet."""
+    loc = re.sub(r"\((hybrid|remote|on-?site)\)", "", location or "", flags=re.I)
+    m = POSTCODE.search(loc)
+    if m and cached(m.group(0)):
+        return cached(m.group(0))
+    for part in [p.strip(" .") for p in re.split(r"[,/|;]| - ", loc)]:
+        if part and not VAGUE.match(part) and cached(part):
+            return cached(part)
+    return None
+
+
+_WARMING = threading.Lock()
+
+
+def warm(locations) -> None:
+    """Look up job places in the background (one helper at a time), ready for the next time the page opens."""
+    todo = [loc for loc in dict.fromkeys(locations) if loc and job_place_cached(loc) is None]
+    if not todo or not _WARMING.acquire(blocking=False):
+        return
+
+    def run():
+        try:
+            for loc in todo[:40]:
+                job_place(loc)
+        finally:
+            _WARMING.release()
+    threading.Thread(target=run, daemon=True).start()
+
+
 def miles(a, b) -> float:
     (la1, lo1), (la2, lo2) = a, b
     p1, p2 = math.radians(la1), math.radians(la2)

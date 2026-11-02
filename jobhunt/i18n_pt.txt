@@ -789,3 +789,11 @@ Reading the job and preparing your application pack…|A ler a vaga e a preparar
 Page not found|Página não encontrada
 Something went wrong|Algo correu mal
 Go to Job Hunt HQ|Ir para o Job Hunt HQ
+Radar|Radar
+Map|Mapa
+How to show your matches|Como ver as suas correspondências
+Where you live|Onde mora
+Where your best matches are in {country}|Onde estão as suas melhores correspondências em {country}
+Finding where your matches are – this map fills in shortly|A localizar as suas correspondências – o mapa preenche-se em breve
+None of your best matches say where in {country} they are yet|Nenhuma das suas melhores correspondências indica ainda onde fica em {country}
+Connect your email to track replies (optional)|Ligue o seu email para acompanhar respostas (opcional)

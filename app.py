@@ -32,7 +32,7 @@ app.config.update(SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_HTTPONLY=True, P
 from jobhunt import accounts  # noqa: E402
 from jobhunt import alerts  # noqa: E402
 from jobhunt import occupations  # noqa: E402
-from jobhunt import countries, i18n  # noqa: E402
+from jobhunt import countries, geo, i18n  # noqa: E402
 
 OCCUPATIONS_JSON = occupations.as_json()
 
@@ -1131,7 +1131,7 @@ def _setup_steps() -> list[dict]:
         {"done": bool(search.get("keywords")), "label": "Choose the jobs you're looking for", "href": "/settings"},
         {"done": has_cv, "label": "Upload or create your CV", "href": url_for("cv_builder")},
         {"done": has_career, "label": "Add your work history (it writes better letters)", "href": url_for("career_page")},
-        {"done": bool((cfg.get("gmail") or {}).get("enabled")), "label": "Connect Gmail to track replies (optional)",
+        {"done": bool((cfg.get("gmail") or {}).get("enabled")), "label": "Connect your email to track replies (optional)",
          "href": "/settings#gmail"},
     ]
 
@@ -1145,7 +1145,49 @@ def dashboard():
     o = _overview(c)
     c.close()
     steps = _setup_steps()
-    return render_template("home.html", **o, setup_steps=steps, setup_done=sum(s["done"] for s in steps))
+    return render_template("home.html", **o, globe=_globe(o["jobs"]), setup_steps=steps,
+                           setup_done=sum(s["done"] for s in steps))
+
+
+_DOTS: dict = {}
+
+
+def in_country(cc: str, where) -> bool:
+    """Whether a place is in the country, judged by the nearest land dot on that country's map (they know their borders)."""
+    if cc not in _DOTS:
+        try:
+            raw = json.loads((Path(app.static_folder) / "globe" / f"{cc}.json").read_text())
+            _DOTS[cc] = [(raw[i], raw[i + 1], raw[i + 2]) for i in range(0, len(raw), 3)]
+        except Exception:
+            _DOTS[cc] = []
+    dots = _DOTS[cc]
+    lat, lon = countries.CENTRES.get(cc, countries.CENTRES["GB"])[:2]
+    if not dots:
+        return geo.miles(where, (lat, lon)) * 1.609 <= countries.CENTRES.get(cc, countries.CENTRES["GB"])[2]
+    import math
+    squash = math.cos(math.radians(where[0]))
+    near = min(dots, key=lambda d: (d[0] - where[0]) ** 2 + ((d[1] - where[1]) * squash) ** 2)
+    return bool(near[2]) and geo.miles(where, near[:2]) < 40
+
+
+def _globe(jobs: list) -> dict:
+    """The Home globe: centred on the country you live in, with your best matches at the places they're based."""
+    prof = cfg_profile() or {}
+    cc = countries.code_for(prof.get("country") or "GB")
+    lat, lon, reach = countries.CENTRES.get(cc, countries.CENTRES["GB"])
+    home = geo.cached(prof.get("location") or "") if prof.get("location") else None
+    shown, missing = [], []
+    for j in jobs[:60]:
+        where = geo.job_place_cached(j.get("location") or "")
+        if where is None:
+            missing.append(j.get("location") or "")
+        elif in_country(cc, where):                                       # only jobs in your own country
+            shown.append({"id": j["id"], "lat": round(where[0], 3), "lon": round(where[1], 3), "score": j.get("score") or 0,
+                          "title": j.get("title") or "", "company": j.get("company") or "", "ready": j.get("status") == "prepared"})
+    if missing and not app.config.get("TESTING"):
+        geo.warm(missing + ([prof.get("location")] if prof.get("location") and not home else []))
+    return {"cc": cc, "country": countries.name(cc), "lat": lat, "lon": lon, "reach": reach,
+            "home": list(home) if home else None, "jobs": shown[:24], "pending": len(missing)}
 
 
 @app.route("/jobs")

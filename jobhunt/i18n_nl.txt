@@ -816,3 +816,11 @@ Reading the job and preparing your application pack…|De vacature wordt gelezen
 Page not found|Pagina niet gevonden
 Something went wrong|Er ging iets mis
 Go to Job Hunt HQ|Naar Job Hunt HQ
+Radar|Radar
+Map|Kaart
+How to show your matches|Zo zie je je matches
+Where you live|Waar je woont
+Where your best matches are in {country}|Waar je beste matches in {country} zitten
+Finding where your matches are – this map fills in shortly|We zoeken uit waar je matches zitten – de kaart vult zich zo
+None of your best matches say where in {country} they are yet|Geen van je beste matches zegt nog waar in {country} ze zijn
+Connect your email to track replies (optional)|Koppel je e-mail om reacties te volgen (optioneel)

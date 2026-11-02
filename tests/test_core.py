@@ -1114,6 +1114,19 @@ def test_other_email_services():
     assert [m["subject"] for m in msgs] == ["Your application for HR Advisor"] and opened == [b"1"]
 
 
+def test_home_globe():
+    """The Home map only uses places already looked up (it never waits on the internet) and keeps to your country."""
+    from jobhunt import geo, countries
+    geo._load().update({"leeds": [53.8, -1.55], "paris": [48.86, 2.35]})
+    assert geo.job_place_cached("Leeds (Hybrid)") == (53.8, -1.55)
+    assert geo.job_place_cached("Somewhere never looked up") is None
+    import app as A
+    assert A.in_country("GB", (53.8, -1.55)) and A.in_country("GB", (51.51, -0.13))     # Leeds and London
+    assert not A.in_country("GB", (48.86, 2.35)) and not A.in_country("GB", (53.35, -6.26))  # Paris and Dublin
+    assert A.in_country("IE", (53.35, -6.26))
+    assert set(countries.CENTRES) == set(countries.COUNTRIES)
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

@@ -113,6 +113,11 @@ COUNTRIES: dict[str, tuple] = {
         ("LinkedIn", "https://www.linkedin.com/jobs/search/?keywords={q}&location={l}"),
         ("GulfTalent", "https://www.gulftalent.com/jobs/search?keywords={q}")]),
 }
+# where each country sits on the Home globe: centre (lat, lon) and roughly how far it stretches from there, in km
+CENTRES = {"GB": (54.4, -3.2, 620), "IE": (53.4, -8.0, 330), "FR": (46.6, 2.4, 620), "DE": (51.2, 10.4, 480),
+           "NL": (52.2, 5.4, 200), "BE": (50.6, 4.6, 190), "ES": (40.2, -3.6, 620), "PT": (39.7, -8.0, 340),
+           "IT": (42.2, 12.6, 640), "PL": (52.0, 19.3, 420), "AT": (47.6, 13.6, 300), "CH": (46.8, 8.2, 200),
+           "US": (39.0, -97.0, 2500), "CA": (55.0, -97.0, 2900), "AU": (-26.0, 134.0, 2200), "AE": (24.2, 54.3, 280)}
 ALIASES = {"UK": "GB", "ENGLAND": "GB", "SCOTLAND": "GB", "WALES": "GB", "NORTHERN IRELAND": "GB"}
 
 

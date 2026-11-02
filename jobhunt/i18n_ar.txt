@@ -1176,3 +1176,11 @@ Reading the job and preparing your application pack…|جارٍ قراءة ال�
 Page not found|الصفحة غير موجودة
 Something went wrong|حدث خطأ ما
 Go to Job Hunt HQ|انتقل إلى Job Hunt HQ
+Radar|الرادار
+Map|الخريطة
+How to show your matches|طريقة عرض الوظائف المطابقة
+Where you live|مكان سكنك
+Where your best matches are in {country}|أماكن أفضل الوظائف المطابقة لك في {country}
+Finding where your matches are – this map fills in shortly|نحدّد أماكن الوظائف المطابقة لك – ستمتلئ الخريطة قريبًا
+None of your best matches say where in {country} they are yet|لم تذكر أيّ من أفضل الوظائف المطابقة لك مكانها في {country} بعد
+Connect your email to track replies (optional)|اربط بريدك الإلكتروني لمتابعة الردود (اختياري)

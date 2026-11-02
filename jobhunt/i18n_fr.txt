@@ -790,3 +790,11 @@ Reading the job and preparing your application pack…|Lecture de l’offre et p
 Page not found|Page introuvable
 Something went wrong|Un problème est survenu
 Go to Job Hunt HQ|Aller sur Job Hunt HQ
+Radar|Radar
+Map|Carte
+How to show your matches|Comment afficher vos correspondances
+Where you live|Là où vous habitez
+Where your best matches are in {country}|Où se trouvent vos meilleures offres en {country}
+Finding where your matches are – this map fills in shortly|Localisation de vos offres – la carte se remplit dans un instant
+None of your best matches say where in {country} they are yet|Aucune de vos meilleures offres n'indique encore où elle se trouve en {country}
+Connect your email to track replies (optional)|Connectez votre messagerie pour suivre les réponses (facultatif)

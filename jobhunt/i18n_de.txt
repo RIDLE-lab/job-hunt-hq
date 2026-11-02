@@ -791,3 +791,11 @@ Reading the job and preparing your application pack…|Die Stelle wird gelesen u
 Page not found|Seite nicht gefunden
 Something went wrong|Etwas ist schiefgelaufen
 Go to Job Hunt HQ|Zu Job Hunt HQ
+Radar|Radar
+Map|Karte
+How to show your matches|So werden Ihre Treffer angezeigt
+Where you live|Ihr Wohnort
+Where your best matches are in {country}|Wo Ihre besten Treffer in {country} liegen
+Finding where your matches are – this map fills in shortly|Ihre Treffer werden gesucht – die Karte füllt sich gleich
+None of your best matches say where in {country} they are yet|Keiner Ihrer besten Treffer nennt bisher einen Ort in {country}
+Connect your email to track replies (optional)|E-Mail verbinden, um Antworten zu verfolgen (optional)
