@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% from "_status.html" import status_icon %}
+{% block title %}Interview prep · Job Hunt HQ{% endblock %}
+{% block content %}
+<header class="head">
+  <div>
+    <h1>Interview prep</h1>
+    <p class="muted">Practise the questions you're likely to be asked for each job. Answer out loud or type it, and get a
+      score out of 10 with what went well and what to improve. Suggestions only use your own experience.</p>
+  </div>
+  <div class="row head-actions">
+    <a class="btn btn-signal" href="{{ url_for('interview_practice', t='general') }}">Quick practice</a>
+  </div>
+</header>
+
+<section class="card" aria-labelledby="up-h">
+  <div class="card-head"><h2 id="up-h">Your interviews</h2>
+    {% if upcoming %}<span class="pill pill-interview">{{ upcoming|length }}</span>{% endif %}</div>
+  {% if upcoming %}
+  <ul class="iv-list">
+    {% for a in upcoming %}{% set h = history.get('app:' ~ a.id) %}
+    <li class="st-{{ a.status }}">
+      <span class="app-ico">{{ status_icon(a.status) }}</span>
+      <div class="iv-main">
+        <b>{{ a.role }}</b>
+        <span class="muted small">{{ a.company }} · {{ status_labels[a.status] }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% endif %}</span>
+        {% if h %}<span class="tiny muted">{{ h.n }} answer{{ 's' if h.n != 1 }} practised · average {{ h.avg }}/10 · best {{ h.best }}/10</span>{% endif %}
+      </div>
+      <a class="btn btn-primary" href="{{ url_for('interview_practice', t='app:' ~ a.id) }}">{{ 'Keep practising' if h else 'Start practising' }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No interviews yet. When an application moves to <b>Pre-screening</b>, <b>Assessment</b> or <b>Interview</b>
+    (Gmail does this for you, or change it on <a href="{{ url_for('applications_page') }}">Applications</a>) it shows here.
+    You can still practise below.</p>
+  {% endif %}
+</section>
+
+<div class="grid2">
+  <section class="card" aria-labelledby="early-h">
+    <h2 id="early-h">Get ready early</h2>
+    <p class="muted small">Waiting to hear back? Practising now means you're ready when the invite comes.</p>
+    {% if waiting %}
+    <ul class="iv-list compact">
+      {% for a in waiting %}
+      <li><div class="iv-main"><b>{{ a.role }}</b><span class="muted small">{{ a.company }}</span></div>
+        <a class="btn btn-ghost" href="{{ url_for('interview_practice', t='app:' ~ a.id) }}">Practise</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="card-foot"><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Practise for my kind of work</a></p>
+  </section>
+
+  <section class="card" aria-labelledby="how-h">
+    <h2 id="how-h">How it works</h2>
+    <ol class="iv-how">
+      <li><b>Questions for this job</b> – from what the advert asks for, your kind of work, and the questions almost every interview has.</li>
+      <li><b>Answer your way</b> – type, or press <i>Answer out loud</i> and speak (your browser turns it into text; nothing is recorded).</li>
+      <li><b>Instant feedback</b> – a score out of 10, the STAR check for “tell me about a time…” questions, what went well and what to improve.</li>
+      <li><b>Use your own examples</b> – it points to things from <a href="{{ url_for('career_page') }}">My career</a> that would fit.</li>
+      <li><b>Try again</b> until you're happy – every attempt is saved so you can see yourself improve.</li>
+    </ol>
+    <p class="muted small">{% if ai %}Questions and marking are written by AI for each job.{% else %}Marking uses Job Hunt HQ's built-in interview coach.{% endif %}</p>
+  </section>
+</div>
+
+{% if recent %}
+<section class="card" aria-labelledby="recent-h">
+  <h2 id="recent-h">Recent practice</h2>
+  <ul class="iv-recent">
+    {% for r in recent %}
+    <li><span class="iv-score s{{ (r.score or 0)|round(0, 'floor')|int }}">{{ r.score }}</span>
+      <div><b>{{ r.question }}</b><span class="muted small">{{ labels[r.target] }} · {{ r.created_at[:16].replace('T', ' ') }}</span></div>
+      <a class="card-link" href="{{ url_for('interview_practice', t=r.target) }}">Practise →</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

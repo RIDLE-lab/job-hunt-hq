@@ -68,6 +68,17 @@ CREATE TABLE IF NOT EXISTS answers (
     updated_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS interview_answers (   -- interview practice: each answer you gave and how it was marked
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    target TEXT NOT NULL,          -- app:<id>, job:<id> or general
+    question TEXT NOT NULL,
+    kind TEXT,
+    answer TEXT NOT NULL,
+    score REAL,
+    feedback TEXT,                 -- JSON
+    created_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS meta (
     key TEXT PRIMARY KEY,
     value TEXT

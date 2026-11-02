@@ -1,6 +1,7 @@
 """Job Hunt HQ – local dashboard. Start with run.bat (Windows) or: python app.py"""
 from __future__ import annotations
 
+import json
 import os
 import re
 import threading
@@ -718,14 +719,16 @@ def manifest():
 # Sidebar: (section, [(endpoint, label, icon)]) – the same groups as the GSI HRIS layout.
 NAV = [
     ("Overview", [("dashboard", "Home", "home"), ("jobs_page", "Jobs", "briefcase")]),
-    ("Applying", [("applications_page", "Applications", "list"), ("assistant_page", "Assistant", "send"),
-                  ("robot_page", "Apply for me", "send"), ("add_job", "Add a job", "plus")]),
-    ("You", [("career_page", "My career", "user"), ("cv_builder", "Create CV", "file"), ("emails", "Emails", "mail")]),
+    ("Applying", [("applications_page", "Applications", "list"), ("interview_page", "Interview prep", "chat"),
+                  ("assistant_page", "Assistant", "send"), ("robot_page", "Apply for me", "send"), ("add_job", "Add a job", "plus")]),
+    ("You", [("career_page", "My career", "user"), ("cv_builder", "Create CV", "file")]),
 ]
 # Pages that live under a menu item (so the right one is highlighted).
 NAV_PARENT = {"job_detail": "jobs_page", "everywhere": "jobs_page", "import_page": "add_job", "settings_page": "",
+              "interview_practice": "interview_page", "emails": "applications_page",
               "account_page": "", "job_letter_download": "jobs_page"}
-CRUMBS = {"dashboard": ("Overview", "Home"), "jobs_page": ("Overview", "Jobs"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
+CRUMBS = {"dashboard": ("Overview", "Home"), "jobs_page": ("Overview", "Jobs"),
+          "interview_page": ("Applying", "Interview prep"), "interview_practice": ("Applying", "Interview practice"), "job_detail": ("Overview", "Job"), "add_job": ("Applying", "Add a job"),
           "robot_page": ("Applying", "Apply for me"), "career_page": ("You", "My career"), "emails": ("You", "Emails"),
           "setup": ("Settings", "Setup"), "import_page": ("Applying", "Import"),
           "applications_page": ("Applying", "Applications"), "cv_builder": ("You", "Create CV"), "everywhere": ("Applying", "Job sites"), "assistant_page": ("Applying", "Assistant"),
@@ -1678,6 +1681,120 @@ def history_state(uid=None) -> dict:
     uid = uid if uid is not None else current_user_id()
     return HISTORIES.setdefault(uid, {"running": False, "done": 0, "totals": [], "created": 0, "updated": 0,
                                       "emails": 0, "message": ""})
+
+
+# ------------------------------------------------------------------ interview prep
+INTERVIEW_STATUSES = ("pre_screen", "assessment", "interview", "second_stage", "offer")
+
+
+def _interview_target(c, target: str) -> tuple[dict, dict | None, str]:
+    """The job to practise for: app:<id> (an application), job:<id> (a saved job) or general (your kind of work)."""
+    cfg = load_config()
+    kind, _, ident = (target or "general").partition(":")
+    app_row = None
+    if kind == "app" and ident.isdigit():
+        r = c.execute("SELECT * FROM applications WHERE id = ?", (int(ident),)).fetchone()
+        if r:
+            app_row = dict(r)
+            jr = c.execute("SELECT * FROM jobs WHERE id = ?", (app_row["job_id"],)).fetchone() if app_row.get("job_id") else None
+            job = dict(jr) if jr else {}
+            job.update({"title": app_row["role"], "company": app_row["company"]})
+            return job, app_row, f"{app_row['role']} at {app_row['company']}"
+    if kind == "job" and ident.isdigit():
+        jr = c.execute("SELECT * FROM jobs WHERE id = ?", (int(ident),)).fetchone()
+        if jr:
+            job = dict(jr)
+            return job, None, f"{job['title']} at {job['company']}"
+    prof, search = cfg.get("profile") or {}, cfg.get("search") or {}
+    title = (search.get("keywords") or [prof.get("current_title") or "your next job"])[0]
+    return {"title": title, "company": "", "description": ""}, None, f"{title} (any employer)"
+
+
+def _interview_sectors(job: dict) -> list[str]:
+    cfg = load_config()
+    titles = [job.get("title") or ""] + list((cfg.get("search") or {}).get("keywords") or [])[:3]
+    return occupations.sectors_for([t for t in titles if t])
+
+
+@app.route("/interview")
+def interview_page():
+    """Interview prep: practise for the interviews you've been invited to (or any job), with feedback on each answer."""
+    c = conn()
+    marks = ",".join("?" * len(INTERVIEW_STATUSES))
+    upcoming = [dict(r) for r in c.execute(
+        f"SELECT * FROM applications WHERE status IN ({marks}) ORDER BY COALESCE(next_date, updated_at) DESC", INTERVIEW_STATUSES)]
+    waiting = [dict(r) for r in c.execute(
+        "SELECT * FROM applications WHERE status IN ('applied', 'acknowledged') ORDER BY COALESCE(applied_on, updated_at) DESC LIMIT 12")]
+    history = {r["target"]: dict(r) for r in c.execute(
+        "SELECT target, COUNT(*) AS n, ROUND(AVG(score), 1) AS avg, MAX(score) AS best, MAX(created_at) AS last "
+        "FROM interview_answers GROUP BY target")}
+    recent = [dict(r) for r in c.execute(
+        "SELECT target, question, score, created_at FROM interview_answers ORDER BY created_at DESC LIMIT 8")]
+    labels = {}
+    for r in recent:
+        if r["target"] not in labels:
+            labels[r["target"]] = _interview_target(c, r["target"])[2]
+    c.close()
+    return render_template("interview.html", upcoming=upcoming, waiting=waiting, history=history, recent=recent,
+                           labels=labels, ai=bool((load_config().get("ai") or {}).get("anthropic_api_key")))
+
+
+@app.route("/interview/practice")
+def interview_practice():
+    from jobhunt import career as _career
+    from jobhunt import interview as _iv
+    target = request.args.get("t", "general")
+    if not re.fullmatch(r"general|app:\d+|job:\d+", target):
+        target = "general"
+    seed = int(request.args["seed"]) if request.args.get("seed", "").isdigit() else 0
+    c = conn()
+    job, app_row, label = _interview_target(c, target)
+    key = f"iq:{target}:{seed}"
+    cached = db.get_meta(c, key)
+    questions = json.loads(cached) if cached else None
+    if not questions:
+        sectors = _interview_sectors(job)
+        questions = _iv.ai_questions(job, _career.load(), sectors, load_config().get("ai") or {}) or \
+            _iv.offline_questions(job, sectors, 8, seed)
+        db.set_meta(c, key, json.dumps(questions))
+        c.commit()
+    done = {}
+    for r in c.execute("SELECT question, score, answer, feedback FROM interview_answers WHERE target = ? ORDER BY created_at",
+                       (target,)):
+        done[r["question"]] = {"score": r["score"], "answer": r["answer"]}
+    c.close()
+    return render_template("interview_practice.html", questions=questions, done=done, target=target, seed=seed,
+                           label=label, job=job, application=app_row)
+
+
+@app.post("/api/interview/rate")
+def api_interview_rate():
+    from jobhunt import career as _career
+    from jobhunt import interview as _iv
+    from jobhunt.answers import example_answer
+    same_site_only()
+    d = request.get_json(silent=True) or {}
+    target = str(d.get("target") or "general")
+    question, kind = str(d.get("question") or "")[:500], str(d.get("kind") or "competency")[:20]
+    answer = str(d.get("answer") or "").strip()[:8000]
+    if not question or not answer:
+        return {"error": "Write or say your answer first."}, 400
+    cfg = load_config()
+    c = conn()
+    job, _, _ = _interview_target(c, target)
+    result = _iv.rate(question, kind, answer, job, _career.load(), cfg.get("ai") or {})
+    if kind not in ("closing",):
+        result["examples"] = _closest_facts(question + " " + (job.get("description") or "")[:1500], 3)
+    if kind == "competency" and not result.get("improved"):
+        try:
+            result["draft"] = example_answer(question, job, cfg.get("profile") or {})
+        except Exception:
+            result["draft"] = ""
+    c.execute("INSERT INTO interview_answers (target, question, kind, answer, score, feedback, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              (target, question, kind, answer, result["score"], json.dumps(result), db.now()))
+    c.commit()
+    c.close()
+    return result
 
 
 @app.route("/applications")

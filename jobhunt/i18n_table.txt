@@ -343,3 +343,29 @@ Skip to content|Aller au contenu|Zum Inhalt springen|Naar de inhoud|Ir al conten
 Changes are kept when you press Save.|Les modifications sont gardées quand vous appuyez sur Enregistrer.|Änderungen werden beim Speichern übernommen.|Wijzigingen worden bewaard als u op Opslaan drukt.|Los cambios se guardan al pulsar Guardar.|As alterações ficam guardadas quando carrega em Guardar.
 Remembered answers|Réponses mémorisées|Gespeicherte Antworten|Onthouden antwoorden|Respuestas guardadas|Respostas guardadas
 Competencies|Compétences clés|Kompetenzen|Competenties|Competencias|Competências
+# Interview prep
+Interview prep|Préparation aux entretiens|Vorstellungsgespräch üben|Sollicitatiegesprek oefenen|Preparar entrevistas|Preparar entrevistas
+Interview practice|Entraînement à l’entretien|Gesprächstraining|Gesprek oefenen|Práctica de entrevista|Prática de entrevista
+Practise for it|Entraînez-vous|Jetzt üben|Oefen ervoor|Practica para ella|Pratique para ela
+Quick practice|Entraînement rapide|Schnell üben|Snel oefenen|Práctica rápida|Prática rápida
+Your interviews|Vos entretiens|Ihre Vorstellungsgespräche|Uw sollicitatiegesprekken|Tus entrevistas|As suas entrevistas
+Get ready early|Préparez-vous tôt|Früh vorbereiten|Bereid u vroeg voor|Prepárate con tiempo|Prepare-se cedo
+How it works|Comment ça marche|So funktioniert’s|Zo werkt het|Cómo funciona|Como funciona
+Recent practice|Entraînements récents|Letzte Übungen|Recent geoefend|Práctica reciente|Prática recente
+Start practising|Commencer|Üben starten|Begin met oefenen|Empezar a practicar|Começar a praticar
+Keep practising|Continuer|Weiter üben|Verder oefenen|Seguir practicando|Continuar a praticar
+Practise|S’entraîner|Üben|Oefenen|Practicar|Praticar
+Practise for the interview|S’entraîner pour l’entretien|Für das Gespräch üben|Oefen voor het gesprek|Practicar para la entrevista|Praticar para a entrevista
+Practise for my kind of work|M’entraîner pour mon métier|Für meinen Beruf üben|Oefenen voor mijn soort werk|Practicar para mi tipo de trabajo|Praticar para o meu tipo de trabalho
+Practise answers and get a score with tips|Entraînez-vous et obtenez une note avec des conseils|Antworten üben und Bewertung mit Tipps erhalten|Oefen antwoorden en krijg een score met tips|Practica respuestas y recibe una nota con consejos|Pratique respostas e receba uma nota com dicas
+New set of questions|Nouvelles questions|Neue Fragen|Nieuwe vragen|Nuevas preguntas|Novas perguntas
+The advert|L’annonce|Die Anzeige|De vacature|El anuncio|O anúncio
+Your answer|Votre réponse|Ihre Antwort|Uw antwoord|Tu respuesta|A sua resposta
+Get feedback|Obtenir un retour|Feedback erhalten|Feedback krijgen|Recibir comentarios|Obter feedback
+Try again|Réessayer|Nochmal versuchen|Opnieuw proberen|Intentar de nuevo|Tentar novamente
+What went well|Ce qui a bien marché|Was gut lief|Wat goed ging|Lo que salió bien|O que correu bem
+To make it stronger|Pour l’améliorer|So wird es stärker|Om het sterker te maken|Para mejorarla|Para a tornar mais forte
+What they're looking for|Ce qu’ils attendent|Worauf sie achten|Waar ze op letten|Lo que buscan|O que procuram
+Practice round done|Série terminée|Übungsrunde fertig|Oefenronde klaar|Ronda de práctica terminada|Ronda de prática concluída
+Go through again|Recommencer|Nochmal durchgehen|Nog een keer|Repetir|Repetir
+Back to Interview prep|Retour à la préparation|Zurück zur Vorbereitung|Terug naar oefenen|Volver a preparar entrevistas|Voltar à preparação

@@ -32,6 +32,7 @@
       <datalist id="jump-pages">
         {% for section, items in nav %}{% for ep, label, ic in items %}<option value="{{ label }}" data-href="{{ url_for(ep) }}">{% endfor %}{% endfor %}
         <option value="Job sites" data-href="{{ url_for('everywhere') }}">
+        <option value="Emails" data-href="{{ url_for('emails') }}">
         <option value="My settings" data-href="/settings">
         <option value="Account and password" data-href="/account">
         <option value="Feedback" data-href="/feedback">
@@ -56,6 +57,7 @@
         <div class="who-pop">
           {% if user %}<p class="muted small">Signed in as <b>{{ user.username }}</b></p>{% endif %}
           <a href="/settings">My settings</a>
+          <a href="{{ url_for('emails') }}">Emails</a>
           <div class="lang-pick">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</div>
           <a href="/feedback">Feedback{% if feedback_new %} <span class="fb-count">{{ feedback_new }}</span>{% endif %}</a>
           <a href="/account">Account and password</a>
@@ -89,7 +91,7 @@
   })();
 </script>
 {% endif %}
-{% set more_eps = ('everywhere', 'emails', 'cv_builder', 'career_page', 'settings_page', 'feedback_page', 'account_page', 'setup', 'people_page', 'assistant_page', 'robot_page') %}
+{% set more_eps = ('everywhere', 'emails', 'interview_page', 'interview_practice', 'cv_builder', 'career_page', 'settings_page', 'feedback_page', 'account_page', 'setup', 'people_page', 'assistant_page', 'robot_page') %}
 <nav class="tabbar" aria-label="Main">
   <a href="{{ url_for('dashboard') }}" class="{{ 'on' if nav_on == 'dashboard' }}"{% if nav_on == 'dashboard' %} aria-current="page"{% endif %}>{{ icon('home') }}<span>Home</span></a>
   <a href="{{ url_for('jobs_page') }}" class="{{ 'on' if nav_on == 'jobs_page' and request.endpoint != 'everywhere' }}"{% if nav_on == 'jobs_page' %} aria-current="page"{% endif %}>{{ icon('briefcase') }}<span>Jobs</span></a>
@@ -100,6 +102,7 @@
     <div class="tab-menu" role="menu">
       <p class="tab-menu-h">{{ me.name }}</p>
       <a role="menuitem" href="{{ url_for('assistant_page') if hosted else url_for('robot_page') }}">{{ icon('send') }}Apply for me</a>
+      <a role="menuitem" href="{{ url_for('interview_page') }}">{{ icon('chat') }}Interview prep</a>
       <a role="menuitem" href="{{ url_for('everywhere') }}">{{ icon('globe') }}Job sites</a>
       <a role="menuitem" href="{{ url_for('career_page') }}">{{ icon('user') }}My career</a>
       <a role="menuitem" href="{{ url_for('cv_builder') }}">{{ icon('file') }}Create CV</a>

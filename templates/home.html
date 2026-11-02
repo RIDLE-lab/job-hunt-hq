@@ -38,9 +38,9 @@
     {% if attention|length > 3 %}<a class="card-link" href="{{ url_for('applications_page', show='forward') }}">{{ t('All {n} moving forward', n=attention|length) }} →</a>{% endif %}</div>
   <div class="steps-grid">
     {% for a in attention[:3] %}
-    <a class="step st-{{ a.status }}" href="{{ url_for('applications_page', q=a.company) }}">
+    <a class="step st-{{ a.status }}" href="{{ url_for('interview_practice', t='app:' ~ a.id) if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') else url_for('applications_page', q=a.company) }}">
       <span class="step-ico">{{ status_icon(a.status) }}</span>
-      <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{{ a.company }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% elif a.when %} · {{ a.when|nice_date }}{% endif %}</small></span>
+      <span><b>{{ status_labels[a.status] }}: {{ a.role }}</b><small>{% if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') %}{{ t('Practise for it') }} · {% endif %}{{ a.company }}{% if a.next_date %} · <span class="date">{{ a.next_date }}</span>{% elif a.when %} · {{ a.when|nice_date }}{% endif %}</small></span>
     </a>
     {% endfor %}
     {% if letters %}
@@ -139,6 +139,7 @@
 <nav class="shortcuts reveal" aria-label="Shortcuts">
   <a href="{{ url_for('add_job') }}">{{ icon('plus') }}<b>Add a job</b><small>Paste a link or advert – it scores it and writes your letter</small></a>
   <a href="{{ url_for('assistant_page') if hosted else url_for('robot_page') }}">{{ icon('send') }}<b>Apply for me</b><small>Fills in application forms for you</small></a>
+  <a href="{{ url_for('interview_page') }}">{{ icon('chat') }}<b>Interview prep</b><small>Practise answers and get a score with tips</small></a>
   <a href="{{ url_for('cv_builder') }}">{{ icon('file') }}<b>Create CV</b><small>Build, improve or tailor your CV</small></a>
   <a href="{{ url_for('everywhere') }}">{{ icon('search') }}<b>Job sites</b><small>Your searches on every job site, ready to open</small></a>
 </nav>

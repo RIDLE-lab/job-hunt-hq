@@ -1010,6 +1010,30 @@ def test_security_alerts_email_the_owner():
     assert "Security records" in A.app.test_client().get("/privacy").data.decode()
 
 
+def test_interview_prep():
+    """Questions for the job, an answer marked out of 10 with what to improve, and every attempt saved."""
+    import app as A
+    from jobhunt import interview as I
+    job = {"title": "HR Advisor", "company": "Acme Care", "description": "Support stakeholders, meet deadlines, GDPR."}
+    qs = I.offline_questions(job, ["hr"], 8, 0)
+    assert len(qs) == 8 and qs[0]["kind"] == "opening" and qs[-1]["kind"] == "closing"
+    assert any("stakeholder" in q["q"] for q in qs) and any("Acme Care" in q["q"] for q in qs)
+    strong = ("In my role at a care agency, a manager wanted to dismiss a carer without an investigation. My task was to "
+              "make sure we followed a fair process. I spoke to the manager, explained the ACAS code and I set up an "
+              "investigation meeting. I gathered the rota data and found the visit had been double-booked. As a result the "
+              "carer kept their job and missed visits fell by 30% over two months.")
+    weak = "We would basically just talk to them and like sort it out, I would make sure it is fine."
+    q = "Describe a time you dealt with a difficult situation at a care agency."
+    s, w = I.offline_rate(q, "competency", strong, job), I.offline_rate(q, "competency", weak, job)
+    assert s["score"] >= 7 and all(s["star"].values()) and w["score"] < 3 and w["better"]
+    c, uid = owner_client()
+    page = c.get("/interview/practice?t=general").data.decode()
+    assert "Interview practice" in page and "Tell me about yourself" in page
+    r = c.post("/api/interview/rate", json={"target": "general", "question": q, "kind": "competency", "answer": strong},
+               headers={"Origin": "http://localhost"})
+    assert r.status_code == 200 and r.get_json()["score"] >= 7
+    assert "Recent practice" in c.get("/interview").data.decode()
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

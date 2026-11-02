@@ -76,6 +76,9 @@
           </span>
         </summary>
         <div class="app-more">
+          {% if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage', 'applied', 'acknowledged') %}
+          <p class="iv-cta"><a class="btn {{ 'btn-primary' if a.status in ('pre_screen', 'assessment', 'interview', 'second_stage') else 'btn-ghost' }}" href="{{ url_for('interview_practice', t='app:' ~ a.id) }}">Practise for the interview</a></p>
+          {% endif %}
           {% if a.next_step %}<p class="next"><b>Next:</b> {{ a.next_step }}{% if a.next_date %} <span class="date">{{ a.next_date }}</span>{% endif %}</p>{% endif %}
           {% set evs = events.get(a.id, []) %}
           {% if evs %}
