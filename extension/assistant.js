@@ -9,6 +9,21 @@
     if ([BASE, JHQ_CONFIG.alt].filter(Boolean).some(function (b) { return location.origin === new URL(b).origin; })) return;
   } catch (e) {}
 
+  /* ---------------------------------------------------------------- only on job sites */
+  /* Job boards and the application systems employers use: the assistant appears on these. */
+  var JOB_SITES = /(^|\.)(linkedin\.com|indeed\.[a-z.]+|reed\.co\.uk|totaljobs\.com|cv-library\.co\.uk|cwjobs\.co\.uk|caterer\.com|jobsite\.co\.uk|monster\.[a-z.]+|glassdoor\.[a-z.]+|adzuna\.[a-z.]+|guardianjobs\.com|jobs\.theguardian\.com|jobs\.nhs\.uk|healthjobsuk\.com|civilservicejobs\.service\.gov\.uk|findajob\.dwp\.gov\.uk|charityjob\.co\.uk|jobs\.ac\.uk|ziprecruiter\.[a-z.]+|totaljobs\.[a-z]+|hays\.[a-z.]+|michaelpage\.[a-z.]+|roberthalf\.[a-z.]+|randstad\.[a-z.]+|adecco\.[a-z.]+|pertemps\.co\.uk|welcometothejungle\.com|stepstone\.[a-z.]+|nationalevacaturebank\.nl|infojobs\.[a-z.]+|francetravail\.fr|apec\.fr|xing\.com|seek\.com\.au|jora\.com|simplyhired\.[a-z.]+|careerbuilder\.com|dice\.com|wellfound\.com|otta\.com|workable\.com|myworkdayjobs\.com|myworkdaysite\.com|workday\.com|greenhouse\.io|lever\.co|smartrecruiters\.com|taleo\.net|oraclecloud\.com|icims\.com|teamtailor\.com|ashbyhq\.com|bamboohr\.com|jobvite\.com|successfactors\.[a-z.]+|recruitee\.com|personio\.[a-z]+|pinpointhq\.com|applytojob\.com|breezy\.hr|jazzhr\.com|tribepad\.com|eploy\.net|eploy\.co\.uk|hireful\.co\.uk|networx\.uk|webrecruit\.co|cezanneondemand\.com|beapplied\.com|tal\.net|ciphr\.com|jobtrain\.co\.uk|trac\.jobs|recruitmentplatform\.com|hirehive\.com|comeet\.com|rippling\.com|dayforcehcm\.com|ultipro\.com|paylocity\.com|jobs\.[a-z0-9-]+\.[a-z.]+|careers\.[a-z0-9-]+\.[a-z.]+)$/i;
+  /* Everyday sites where a job helper is never wanted. */
+  var NEVER = /(^|\.)(youtube\.com|youtu\.be|google\.[a-z.]+|bing\.com|duckduckgo\.com|facebook\.com|instagram\.com|threads\.net|x\.com|twitter\.com|tiktok\.com|reddit\.com|pinterest\.[a-z.]+|snapchat\.com|whatsapp\.com|discord\.com|telegram\.org|twitch\.tv|netflix\.com|disneyplus\.com|primevideo\.com|spotify\.com|soundcloud\.com|amazon\.[a-z.]+|ebay\.[a-z.]+|etsy\.com|aliexpress\.com|wikipedia\.org|bbc\.co\.uk|bbc\.com|chatgpt\.com|openai\.com|claude\.ai|anthropic\.com|github\.com|stackoverflow\.com|outlook\.(live|office)\.com|office\.com|live\.com|yahoo\.com|icloud\.com|apple\.com|microsoft\.com|steampowered\.com|steamcommunity\.com|epicgames\.com|xbox\.com|playstation\.com|paypal\.com|onrender\.com|names\.co\.uk)$/i;
+  var HOST = location.hostname.replace(/^www\./, "");
+  var siteKind = NEVER.test(HOST) ? "never" : JOB_SITES.test(HOST) ? "job" : "other";
+  if (siteKind === "never") return;          /* not even the button – and nothing is sent anywhere */
+  function strongJobSignals() {
+    /* For other websites (a company's own careers page): only a real advert or application form counts. */
+    var ld = Array.prototype.some.call(document.querySelectorAll('script[type="application/ld+json"]'), function (s) { return /"JobPosting"/.test(s.textContent); });
+    var urlish = /\/(jobs?|careers?|vacanc(y|ies)|apply|application|recruit(ment)?|opportunit(y|ies)|positions?|openings?)(\/|\?|-|$)/i.test(location.pathname + location.search);
+    return { ld: ld, urlish: urlish };
+  }
+
   /* ---------------------------------------------------------------- talking to Job Hunt HQ */
   function api(body) {
     return new Promise(function (resolve, reject) {
@@ -127,7 +142,7 @@
   /* ---------------------------------------------------------------- the floating helper */
   var host = document.createElement("div");
   host.id = "jhq-assistant";
-  host.style.cssText = "all:initial;position:fixed;z-index:2147483646;right:18px;bottom:18px";
+  host.style.cssText = "all:initial;position:fixed;z-index:2147483646;right:18px;bottom:18px;display:none";
   var root = host.attachShadow({ mode: "open" });
   root.innerHTML =
     "<style>" +
@@ -178,7 +193,10 @@
     else toggle();
     drag = null;
   });
-  chrome.runtime.onMessage.addListener(function (m) { if (m.type === "toggle") toggle(); });
+  chrome.runtime.onMessage.addListener(function (m) { if (m.type === "toggle") { show(true); hello(); toggle(); } });   /* the toolbar button opens it anywhere */
+  var shown = false, hidden = {};
+  function show(on) { shown = on; host.style.display = on ? "block" : "none"; }
+  store.get("hiddenSites").then(function (h) { hidden = h || {}; });
 
   var state = { me: null, job: null, page: null, form: null, pack: null, answers: {}, msg: "", letter: null, lmsg: "" };
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
@@ -194,7 +212,14 @@
     state.page = job;
     state.form = form;
     var isJob = looksLikeJob(job);
-    if (!isJob && !form.form) { badge.hidden = true; return Promise.resolve(); }
+    var sig = siteKind === "other" ? strongJobSignals() : null;
+    /* On job boards: any advert or form. Elsewhere: only a real job advert (JobPosting data, or a careers/jobs address)
+       or an application form on a careers/jobs address. */
+    var qualifies = siteKind === "job" ? (isJob || form.form)
+                  : (sig.ld && isJob) || (sig.urlish && (isJob || form.form));
+    if (hidden[HOST]) qualifies = false;
+    if (!qualifies) { badge.hidden = true; if (panel.hidden) show(false); return Promise.resolve(); }
+    show(true); hello();
     if (!isJob && form.form && job.title && job.company) isJob = true;    /* the application page for a job */
     var p = isJob ? api({ action: "job", url: job.url, title: job.title, company: job.company, location: job.location, description: job.description })
                   : store.get("lastJob").then(function (j) { return { job: j && Date.now() - j.at < 6 * 3600e3 ? j : null }; });
@@ -313,6 +338,7 @@
       h += "<div class='sec muted'>Open a job advert or an application form and I'll score it against your details, fill it in and suggest answers.</div>";
     }
     if (state.msg) h += "<div class='sec'><div class='err'>" + esc(state.msg) + "</div></div>";
+    h += "<div class='sec muted'>Not a job site? <a href='#' data-a='hidesite'>Don't show on " + esc(HOST) + "</a></div>";
     panel.innerHTML = h;
   }
 
@@ -322,6 +348,7 @@
     var a = b.getAttribute("data-a"), qid = b.getAttribute("data-q");
     state.msg = "";
     if (a === "close") return toggle(false);
+    if (a === "hidesite") { e.preventDefault(); hidden[HOST] = true; store.set("hiddenSites", hidden); toggle(false); show(false); return; }
     if (a === "save") {
       b.textContent = "Saving…";
       var p = state.page;
@@ -443,7 +470,11 @@
   });
 
   /* ---------------------------------------------------------------- start, and follow single-page sites */
-  api({ action: "hello" }).then(function (me) { state.me = me; }).catch(function (e) { state.msg = e.message; });
+  var said = false;
+  function hello() {             /* only once the assistant is actually needed on this page */
+    if (said) return; said = true;
+    api({ action: "hello" }).then(function (me) { state.me = me; if (!panel.hidden) render(); }).catch(function (e) { state.msg = e.message; });
+  }
   setTimeout(look, 1200);
   var lastUrl = location.href, lastLen = 0;
   setInterval(function () {
