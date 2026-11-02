@@ -34,10 +34,10 @@ from jobhunt import countries, i18n  # noqa: E402
 OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
-OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "first_account", "join", "reset_password", "privacy", "set_language"}
+OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
 TOKEN_ENDPOINTS = {"bridge_page", "api_bridge", "file_cv", "file_letter", "api_assistant"}
-SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy",
+SETUP_ENDPOINTS = {"welcome", "logout", "static", "manifest", "cv_upload", "cv_builder", "feedback_page", "privacy", "legal",
                    "set_language", "api_place",
                    "account_page", "account_export"}
 # On the website (not your PC) there's no screen for the robot's browser and no Word to open – those pages are off,
@@ -311,11 +311,27 @@ def account_page():
     return render_template("account.html", u=u)
 
 
+LEGAL_PAGES = {"terms": "Terms of use", "disclaimer": "Disclaimer", "cookies": "Cookie notice",
+               "acceptable-use": "Acceptable use", "contact": "Contact us"}
+
+
+def contact_email() -> str:
+    return os.environ.get("JOBHUNT_CONTACT") or (accounts.owner_contact() if accounts.any_users() else "") or "info@jhhq.co.uk"
+
+
+@app.route("/legal/<page>")
+def legal(page):
+    """Terms, disclaimer, cookies, acceptable use and contact – readable without signing in."""
+    if page not in LEGAL_PAGES:
+        abort(404)
+    return render_template("legal.html", page=page, title=LEGAL_PAGES[page], contact=contact_email(),
+                           updated="2 November 2026")
+
+
 @app.route("/privacy")
 def privacy():
     """Privacy notice: what's stored, who can see it, and your rights under UK GDPR."""
-    contact = os.environ.get("JOBHUNT_CONTACT") or (accounts.owner_contact() if accounts.any_users() else "")
-    return render_template("privacy.html", contact=contact)
+    return render_template("privacy.html", contact=contact_email())
 
 
 @app.route("/account/export")

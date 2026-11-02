@@ -64,6 +64,7 @@
 </header>
 <main class="page">
   {% block content %}{% endblock %}
+  {% include "_legal_footer.html" %}
 </main>
 {% if user and request.endpoint != 'feedback_page' %}
 <button type="button" class="fb-fab" data-fb-open aria-haspopup="dialog">

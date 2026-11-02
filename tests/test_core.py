@@ -891,6 +891,18 @@ def test_assistant_answers_from_your_own_history():
     assert "£38,000" in post({"action": "ask", "job_id": job["id"], "question": "What salary should I ask for?"})["answer"]
 
 
+def test_legal_pages():
+    """Terms, disclaimer, cookies, acceptable use and contact are public and show the contact email."""
+    import app as A
+    c = A.app.test_client()
+    for page, words in (("terms", b"Terms of use"), ("disclaimer", b"Drafts, not advice"), ("cookies", b"jhq_lang"),
+                        ("acceptable-use", b"use Job Hunt HQ fairly"), ("contact", b"Data requests")):
+        r = c.get(f"/legal/{page}")
+        assert r.status_code == 200 and words in r.data and b"@" in r.data, page
+    assert c.get("/legal/nope").status_code == 404
+    assert b"Terms of use" in c.get("/privacy").data
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

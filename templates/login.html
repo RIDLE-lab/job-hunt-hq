@@ -58,6 +58,8 @@
       <label for="data">Moving from your PC? <span class="muted">(optional: the zip from Account → Download my data)</span></label>
       <input id="data" name="data" type="file" accept=".zip">
       {% endif %}
+      <p class="muted small login-note">By creating an account you agree to the <a href="{{ url_for('legal', page='terms') }}">Terms of use</a>
+        and the <a href="{{ url_for('privacy') }}">Privacy notice</a>.</p>
       <button class="btn btn-primary">Create my account</button>
 
     {% elif mode == 'join' %}
@@ -78,6 +80,8 @@
       <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" required>
       <label for="password2">Type it again</label>
       <input id="password2" name="password2" type="password" autocomplete="new-password" minlength="10" required>
+      <p class="muted small login-note">By creating an account you agree to the <a href="{{ url_for('legal', page='terms') }}">Terms of use</a>
+        and the <a href="{{ url_for('privacy') }}">Privacy notice</a>.</p>
       <button class="btn btn-primary">Create my account</button>
       <p class="muted small login-note">Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
 
@@ -95,7 +99,9 @@
       <p><a href="{{ url_for('login') }}">Back to sign in</a></p>
       {% endif %}
     {% endif %}
-      <p class="muted small login-note"><a href="{{ url_for('privacy') }}">Privacy and your data</a></p>
+      <p class="muted small login-note legal-links"><a href="{{ url_for('legal', page='terms') }}">Terms</a> ·
+        <a href="{{ url_for('privacy') }}">Privacy</a> · <a href="{{ url_for('legal', page='cookies') }}">Cookies</a> ·
+        <a href="{{ url_for('legal', page='disclaimer') }}">Disclaimer</a> · <a href="{{ url_for('legal', page='contact') }}">Contact</a></p>
       <p class="lang-pick small">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</p>
     </form>
   </section>

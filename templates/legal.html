@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · Job Hunt HQ</title>
+  <meta name="theme-color" content="#0b1240">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="icon" href="{{ url_for('static', filename='favicon-32.png') }}" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="page privacy">
+  <p class="back"><a href="{{ url_for('dashboard') }}">← Job Hunt HQ</a></p>
+  <h1>{{ title }}</h1>
+  <p class="muted">Last updated {{ updated }}.{% if page != 'contact' %} Questions? Email <a href="mailto:{{ contact }}">{{ contact }}</a>.{% endif %}</p>
+
+{% if page == 'terms' %}
+  <section class="card">
+    <h2>About these terms</h2>
+    <p>Job Hunt HQ (“the service”, “we”) is a personal job-search assistant run by Rashid Idle in the United Kingdom.
+      Using it means you accept these terms, our <a href="{{ url_for('privacy') }}">Privacy notice</a>,
+      <a href="{{ url_for('legal', page='cookies') }}">Cookie notice</a> and
+      <a href="{{ url_for('legal', page='acceptable-use') }}">Acceptable use</a> rules. If you don't agree, please don't use it.</p>
+  </section>
+  <section class="card">
+    <h2>Who can use it</h2>
+    <ul>
+      <li>Accounts are by invitation only. You must be 16 or over and looking for work for yourself.</li>
+      <li>Keep your password private – you're responsible for what happens in your account. Tell us straight away at
+        {{ contact }} if you think someone else has used it.</li>
+      <li>We can suspend or close an account that breaks these terms, or if we need to protect the service or other people.</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>What the service does – and doesn't</h2>
+    <ul>
+      <li>It finds and scores jobs, writes draft cover letters, CVs and answers, fills in forms when you ask it to, and tracks
+        your applications. <b>Everything it writes is a draft for you to check.</b></li>
+      <li><b>You are responsible for every application you send.</b> Read and correct anything it fills in or writes before you
+        submit. It never presses Submit for you.</li>
+      <li>Only give information that's true. Never use the service to claim experience, qualifications or rights you don't have.</li>
+      <li>Jobs come from third-party job sites and employers. We don't check, endorse or guarantee any job, employer, salary or
+        advert, and we're not a recruitment agency or an employer.</li>
+      <li>Using the service doesn't guarantee interviews or job offers.</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Other websites</h2>
+    <p>The service links to and works alongside job sites (for example Indeed, LinkedIn, Reed, CV-Library) and employers'
+      application forms. Those sites have their own terms, which you agree to when you use them. Use the browser assistant only
+      in ways those sites allow, and only on your own applications.</p>
+  </section>
+  <section class="card">
+    <h2>Your content</h2>
+    <p>Your CV, career details, letters and answers stay yours. You let us store and process them only to provide the
+      service to you, as described in the Privacy notice. You can download or delete them at any time from your Account page.</p>
+  </section>
+  <section class="card">
+    <h2>Availability and changes</h2>
+    <p>The service is provided free of charge, “as is”, and may sometimes be unavailable, change, or stop. We'll try to give
+      notice of big changes. We may update these terms; the date at the top shows when they last changed, and continuing to
+      use the service means you accept the update.</p>
+  </section>
+  <section class="card">
+    <h2>Liability</h2>
+    <p>Nothing in these terms limits liability that can't be limited by law (such as for death or personal injury caused by
+      negligence, or fraud). Otherwise, as a free service, we aren't liable for indirect or consequential loss, for the outcome
+      of any job application, or for content on third-party sites. See the <a href="{{ url_for('legal', page='disclaimer') }}">Disclaimer</a>.</p>
+  </section>
+  <section class="card">
+    <h2>Law</h2>
+    <p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction. If you
+      live in Scotland or Northern Ireland you can also use your local courts.</p>
+  </section>
+
+{% elif page == 'disclaimer' %}
+  <section class="card">
+    <h2>Drafts, not advice</h2>
+    <p>Cover letters, CVs, answers, scores and suggestions are produced automatically – sometimes with AI – from the details you
+      give and the job advert. They can be wrong, incomplete or out of date. <b>Always read, check and edit them before you use
+      them.</b> They aren't careers, legal, immigration or financial advice.</p>
+  </section>
+  <section class="card">
+    <h2>Fit scores</h2>
+    <p>A job's score is an estimate of how well the advert matches the details you entered. It isn't a prediction of whether
+      you'll be shortlisted, and it can't see everything an employer looks for.</p>
+  </section>
+  <section class="card">
+    <h2>Job adverts and other sites</h2>
+    <p>Adverts, salaries, locations and closing dates come from third parties and can change or be removed without notice. We
+      don't vet employers or recruiters. Be careful with any job that asks you for money, bank details or ID documents before
+      a proper offer – report it to the job site and to <a href="https://www.actionfraud.police.uk" target="_blank" rel="noopener">Action Fraud</a>.</p>
+  </section>
+  <section class="card">
+    <h2>Questions it won't answer for you</h2>
+    <p>Personal and sensitive questions on application forms – such as health, disability, criminal record, diversity
+      monitoring, right to work and visa status – are left for you to answer yourself, unless you've saved your own answer.
+      What you submit is your responsibility.</p>
+  </section>
+  <section class="card">
+    <h2>Accuracy of your information</h2>
+    <p>The service uses only what you tell it. Keep My settings and My career up to date, and never add anything that isn't
+      true – an employer may check it, and it could cost you an offer.</p>
+  </section>
+
+{% elif page == 'cookies' %}
+  <section class="card">
+    <h2>The cookies we use</h2>
+    <p>Job Hunt HQ uses only what it needs to work. There's no advertising, tracking or analytics, so there's nothing to
+      accept or reject.</p>
+    <table class="answers-table">
+      <thead><tr><th>Name</th><th>What it's for</th><th>How long</th></tr></thead>
+      <tbody>
+        <tr><td><code>session</code></td><td>Keeps you signed in, and protects forms from being sent by other websites.</td><td>Until you sign out, up to 30 days</td></tr>
+        <tr><td><code>jhq_lang</code></td><td>Remembers the language you chose for the site.</td><td>1 year</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">The browser assistant keeps where you dragged its button, and the last job you looked at, in your
+      own browser's storage. It isn't sent anywhere else.</p>
+  </section>
+  <section class="card">
+    <h2>Controlling cookies</h2>
+    <p>You can delete cookies in your browser's settings at any time. If you block them, you won't be able to sign in.</p>
+  </section>
+
+{% elif page == 'acceptable-use' %}
+  <section class="card">
+    <h2>Please use Job Hunt HQ fairly</h2>
+    <p>Don't use the service to:</p>
+    <ul>
+      <li>apply for jobs on behalf of someone else, or use another person's details without their permission;</li>
+      <li>send false information, fake qualifications or invented experience to employers;</li>
+      <li>flood employers or job sites with automated or bulk applications, or break their terms;</li>
+      <li>upload anything unlawful, harmful, or that you don't have the right to share;</li>
+      <li>try to get into other people's accounts or data, test the security of the service without permission, or disrupt it;</li>
+      <li>share your invite link, account or browser-assistant file with other people.</li>
+    </ul>
+    <p>If you see something that breaks these rules, or a security problem, tell us at {{ contact }}.</p>
+  </section>
+
+{% elif page == 'contact' %}
+  <section class="card">
+    <h2>Get in touch</h2>
+    <p>Email <a href="mailto:{{ contact }}"><b>{{ contact }}</b></a> for anything about Job Hunt HQ:</p>
+    <ul>
+      <li><a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20%E2%80%93%20help">Help with your account or the site</a></li>
+      <li><a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20%E2%80%93%20data%20request">Data requests</a> – a copy of your data, corrections,
+        deletion, or how your information is used (under UK GDPR we reply within one month)</li>
+      <li><a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20%E2%80%93%20invite">Asking for an invite</a></li>
+      <li><a href="mailto:{{ contact }}?subject=Job%20Hunt%20HQ%20%E2%80%93%20report">Reporting a problem, a security issue or misuse</a></li>
+    </ul>
+    <p>Signed in? The <b>Feedback</b> button on every page reaches us too, and you'll see our reply there.</p>
+  </section>
+  <section class="card">
+    <h2>Do it yourself, straight away</h2>
+    <ul>
+      <li><b>Download your data</b> – Account → Download my data</li>
+      <li><b>Delete your account</b> – Account → Delete my account</li>
+      <li><b>Disconnect Gmail</b> – My settings → Gmail</li>
+    </ul>
+  </section>
+{% endif %}
+  {% include "_legal_footer.html" %}
+</main>
+</body>
+</html>
