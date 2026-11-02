@@ -835,3 +835,4 @@ Filters|Filters
 Title, company or place|Functie, bedrijf of plaats
 Uses your skills|Gebruikt je vaardigheden
 Only you can see these settings.|Alleen jij ziet deze instellingen.
+Write my cover letter|Schrijf mijn motivatiebrief

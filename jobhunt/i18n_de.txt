@@ -810,3 +810,4 @@ Filters|Filter
 Title, company or place|Titel, Firma oder Ort
 Uses your skills|Nutzt Ihre Fähigkeiten
 Only you can see these settings.|Nur Sie sehen diese Einstellungen.
+Write my cover letter|Mein Anschreiben schreiben

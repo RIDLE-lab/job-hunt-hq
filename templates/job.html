@@ -2,95 +2,30 @@
 {% from "_status.html" import status_icon, status_badge %}
 {% block title %}{{ job.title }} · Job Hunt HQ{% endblock %}
 {% block content %}
-<section class="head">
+<section class="head job-head">
   <div>
     <p class="back"><a href="{{ url_for('jobs_page') }}">← All jobs</a></p>
     <h1>{{ job.title }}</h1>
-    <p class="muted">{{ job.company }}{% if job.location %} · {{ job.location }}{% endif %}{% if job.salary_text %} · {{ job.salary_text }}{% endif %}
-      {% if job.closes %} · closes {{ job.closes }}{% endif %} · from {{ job.source }}
-      · {% if ago(job.posted) %}<span title="Posted {{ job.posted }}">posted {{ ago(job.posted) }}</span>{% else %}<span title="Open the advert and click Send to Job Hunt HQ to pick up its date">posting date unknown</span>{% endif %}</p>
-    {% if job.score_reasons %}<p class="reasons">{{ job.score_reasons }}</p>{% endif %}
+    <p class="job-facts"><span class="job-co">{{ job.company }}</span>{% if job.location %}<span>{{ job.location }}</span>{% endif %}{% if job.salary_text %}<span>{{ job.salary_text }}</span>{% endif %}{% if job.closes %}<span>closes {{ job.closes }}</span>{% endif %}<span>from {{ job.source }}</span>
+      {%- if ago(job.posted) %}<span title="Posted {{ job.posted }}">posted {{ ago(job.posted) }}</span>{% else %}<span title="Open the advert and click Send to Job Hunt HQ to pick up its date">posting date unknown</span>{% endif %}</p>
+    {% if job.score_reasons %}{% set parts = job.score_reasons.split(' · ') %}
+    <p class="reasons on-night">{% for part in parts %}{% if part.startswith('Uses your skills: ') %}<span class="why-skills"><span class="why-lbl">Uses your skills</span>{% for sk in part[18:].split(', ') %}<span class="tag">{{ sk }}</span>{% endfor %}</span>{% else %}<span class="why">{{ part }}</span>{% endif %}{% endfor %}</p>{% endif %}
+    <div class="job-actions">
+      {% if job.apply_url %}<a class="btn btn-signal" href="{{ job.apply_url }}" target="_blank" rel="noopener">Open application form ↗</a>
+      {% elif job.url %}<a class="btn btn-signal" href="{{ job.url }}" target="_blank" rel="noopener">Open advert ↗</a>{% endif %}
+      {% if not hosted %}<form method="post" action="{{ url_for('robot_start', job_id=job.id) }}"><button class="btn btn-onnight">Apply for me</button></form>{% endif %}
+      {% if application and application.status != 'ready' %}{{ status_badge(application.status, status_labels[application.status]) }}
+      {% else %}
+      <form method="post" action="{{ url_for('job_applied', job_id=job.id) }}"><button class="btn btn-onnight">I've applied</button></form>
+      <form method="post" action="{{ url_for('job_skip', job_id=job.id) }}"><button class="btn btn-ghost">Not for me</button></form>
+      {% endif %}
+    </div>
   </div>
   <div class="score big score-{{ fit_label(job.score)|lower|replace(' ', '-') }}">{{ job.score if job.score is not none else '–' }}<small>{{ fit_label(job.score) }}</small></div>
 </section>
 
-<nav class="jump" aria-label="On this page">
-  <a href="#apply">Apply</a>{% if job.cover_letter %}<a href="#letter">Cover letter</a>{% endif %}<a href="#answers">Answers</a><a href="#quick">My details</a>{% if job.description %}<a href="#advert">Advert</a>{% endif %}
-</nav>
-
-<div class="grid2">
-<section class="card" id="apply">
-  {% if not hosted %}<div class="robot-cta">
-    <form method="post" action="{{ url_for('robot_start', job_id=job.id) }}">
-      <button class="btn btn-primary">Apply for me</button>
-    </form>
-    <p class="small muted">Opens the application in a browser window the app controls. It clicks Apply, fills each step and
-      uploads your CV and letter. It asks you when it needs you, and stops for you to press Submit.</p>
-  </div>
-  <h2>Or do it yourself in 4 steps</h2>{% else %}<h2>Apply in 4 steps</h2>{% endif %}
-  <ol class="steps">
-    <li>
-      <b>Your cover letter is ready</b> – read it below, with your answers, and personalise anything in [brackets].
-      <form method="post" action="{{ url_for('job_letter', job_id=job.id) }}">
-        <button class="btn btn-ghost small">Write it again</button>
-      </form>
-    </li>
-    <li><b>Open the application</b>, then click your <b>Fill this application</b> bookmark on the form
-      (or copy the answers on the right).
-      {% if job.apply_url %}
-        <p class="small" style="margin:8px 0 4px"><b>Application link</b> (the employer's own form, saved when you last used the Fill button):<br>
-          <span class="muted" style="overflow-wrap:anywhere">{{ job.apply_url }}</span></p>
-        <div class="row" style="margin-top:4px">
-          <a class="btn btn-primary" href="{{ job.apply_url }}" target="_blank" rel="noopener">Open application form ↗</a>
-          {% if job.url and job.url != job.apply_url %}<a class="btn btn-ghost" href="{{ job.url }}" target="_blank" rel="noopener">Advert ↗</a>{% endif %}
-        </div>
-      {% elif job.url %}<p><a class="btn btn-primary" href="{{ job.url }}" target="_blank" rel="noopener">Open advert ↗</a></p>
-        <p class="muted small">Click the advert's Apply button to reach the employer's form. When you use the Fill button there, its link is saved here.</p>{% endif %}
-    </li>
-    <li><b>Attach your CV</b> and the cover letter (save it as a Word file below if the form wants a file).
-      <div class="row"><a class="btn btn-ghost small" href="{{ url_for('cv_download', job=job.id, fmt='pdf') }}">Tailored CV (PDF)</a>
-        <a class="btn btn-ghost small" href="{{ url_for('cv_download', job=job.id, fmt='docx') }}">Tailored CV (Word)</a></div>
-      <p class="muted tiny">Your CV with the skills and achievements this advert asks for put first – nothing added.</p></li>
-    <li><b>Submit, then mark it here.</b>
-      {% if application and application.status != 'ready' %}
-        <p>{{ status_badge(application.status, status_labels[application.status]) }}</p>
-      {% else %}
-      <div class="row">
-        <form method="post" action="{{ url_for('job_applied', job_id=job.id) }}"><button class="btn btn-primary">I've applied</button></form>
-        <form method="post" action="{{ url_for('job_skip', job_id=job.id) }}"><button class="btn btn-ghost">Not for me</button></form>
-      </div>
-      {% endif %}
-    </li>
-  </ol>
-</section>
-
-<section class="card" id="quick">
-  <h2>Quick answers</h2>
-  <dl class="answers">
-    {% for label, key in [('Full name','name'), ('Email','email'), ('Phone','phone'), ('Phone with country code','phone_intl'), ('Address','address'),
-                          ('LinkedIn','linkedin'), ('GitHub','github'), ('Current employer','current_employer'), ('Current job title','current_title'),
-                          ('Notice period','notice_period'), ('Salary expectation','salary_expectation'), ('Right to work','right_to_work')] %}
-      {% if profile.get(key) %}
-      <div><dt>{{ label }}</dt><dd><span id="ans-{{ key }}">{{ profile[key] }}</span> <button type="button" class="copy" data-copy="ans-{{ key }}">Copy</button></dd></div>
-      {% endif %}
-    {% endfor %}
-  </dl>
-</section>
-</div>
-
-<section class="card" id="answers">
-  <h2>Ready-to-paste answers</h2>
-  <p class="muted small">Written for this advert from your CV. Personalise anything in [brackets] before you paste it.</p>
-  <div class="qa">
-    {% for q, a in answers %}
-    <div class="qa-item">
-      <div class="card-head"><b>{{ q }}</b><button type="button" class="copy" data-copy="qa-{{ loop.index }}">Copy</button></div>
-      <p id="qa-{{ loop.index }}" class="qa-text">{{ a }}</p>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
+<div class="job-layout">
+<div class="job-col">
 <section class="card" id="letter">
   <div class="card-head">
     <h2>Cover letter</h2>
@@ -119,21 +54,22 @@
   {% endif %}
   <p class="muted small">Read it through before you send it, and add anything specific from the advert.</p>
   {% else %}
-  <p class="empty">No cover letter yet. Press <b>Write cover letter</b> above.</p>
+  <p class="empty">No cover letter yet.</p>
+  <form method="post" action="{{ url_for('job_letter', job_id=job.id) }}"><button class="btn btn-primary">Write my cover letter</button></form>
   {% endif %}
 </section>
 
-<section class="card">
-  <details {% if not job.description or job.description|length < 400 %}open{% endif %}>
-    <summary><b>{% if job.description|length >= 400 %}Paste a different job description{% else %}Paste the job description{% endif %}</b></summary>
-    <p class="muted small">Copy the advert from the job page and paste it here. The app re-scores the job, writes your cover letter
-      for it and saves the letter in your Cover Letters folder.</p>
-    <form method="post" action="{{ url_for('job_advert', job_id=job.id) }}" class="stack">
-      <label class="small">Company <input name="company" value="{{ job.company or '' }}"></label>
-      <textarea name="description" rows="10" required placeholder="Paste the job description here"></textarea>
-      <div class="row"><button class="btn btn-primary">Read it and write my cover letter</button></div>
-    </form>
-  </details>
+<section class="card" id="answers">
+  <h2>Ready-to-paste answers</h2>
+  <p class="muted small">Written for this advert from your CV. Personalise anything in [brackets] before you paste it.</p>
+  <div class="qa">
+    {% for q, a in answers %}
+    <div class="qa-item">
+      <div class="card-head"><b>{{ q }}</b><button type="button" class="copy" data-copy="qa-{{ loop.index }}">Copy</button></div>
+      <p id="qa-{{ loop.index }}" class="qa-text">{{ a }}</p>
+    </div>
+    {% endfor %}
+  </div>
 </section>
 
 {% if job.description %}
@@ -148,4 +84,51 @@
   if (window.matchMedia('(max-width: 700px)').matches) document.querySelector('.advert-box').open = false;
 </script>
 {% endif %}
+<section class="card">
+  <details {% if not job.description or job.description|length < 400 %}open{% endif %}>
+    <summary><b>{% if job.description|length >= 400 %}Paste a different job description{% else %}Paste the job description{% endif %}</b></summary>
+    <p class="muted small">Copy the advert from the job page and paste it here. The app re-scores the job, writes your cover letter
+      for it and saves the letter in your Cover Letters folder.</p>
+    <form method="post" action="{{ url_for('job_advert', job_id=job.id) }}" class="stack">
+      <label class="small">Company <input name="company" value="{{ job.company or '' }}"></label>
+      <textarea name="description" rows="10" required placeholder="Paste the job description here"></textarea>
+      <div class="row"><button class="btn btn-primary">Read it and write my cover letter</button></div>
+    </form>
+  </details>
+</section>
+
+</div>
+<aside class="job-side-col">
+<section class="card" id="apply">
+  <h2>{% if hosted %}Apply in 4 steps{% else %}Or do it yourself in 4 steps{% endif %}</h2>
+  <ol class="apply-steps">
+    <li><b>Your cover letter is ready</b> – read it below, with your answers, and personalise anything in [brackets].
+      <form method="post" action="{{ url_for('job_letter', job_id=job.id) }}"><button class="btn btn-ghost small">Write it again</button></form></li>
+    <li><b>Open the application</b>, then click your <b>Fill this application</b> bookmark on the form
+      (or copy the answers on the right).
+      {% if job.apply_url %}<span class="muted small apply-url">{{ job.apply_url }}</span>
+        {% if job.url and job.url != job.apply_url %}<a class="small" href="{{ job.url }}" target="_blank" rel="noopener">Advert ↗</a>{% endif %}
+      {% elif job.url %}<span class="muted small">Click the advert's Apply button to reach the employer's form. When you use the Fill button there, its link is saved here.</span>{% endif %}</li>
+    <li><b>Attach your CV</b> and the cover letter (save it as a Word file below if the form wants a file).
+      <div class="row"><a class="btn btn-ghost small" href="{{ url_for('cv_download', job=job.id, fmt='pdf') }}">Tailored CV (PDF)</a>
+        <a class="btn btn-ghost small" href="{{ url_for('cv_download', job=job.id, fmt='docx') }}">Tailored CV (Word)</a></div>
+      <span class="muted small">Your CV with the skills and achievements this advert asks for put first – nothing added.</span></li>
+    <li><b>Submit, then mark it here.</b></li>
+  </ol>
+</section>
+
+<section class="card" id="quick">
+  <h2>Quick answers</h2>
+  <dl class="answers">
+    {% for label, key in [('Full name','name'), ('Email','email'), ('Phone','phone'), ('Phone with country code','phone_intl'), ('Address','address'),
+                          ('LinkedIn','linkedin'), ('GitHub','github'), ('Current employer','current_employer'), ('Current job title','current_title'),
+                          ('Notice period','notice_period'), ('Salary expectation','salary_expectation'), ('Right to work','right_to_work')] %}
+      {% if profile.get(key) %}
+      <div><dt>{{ label }}</dt><dd><span id="ans-{{ key }}">{{ profile[key] }}</span><button type="button" class="copy" data-copy="ans-{{ key }}">Copy</button></dd></div>
+      {% endif %}
+    {% endfor %}
+  </dl>
+</section>
+</aside>
+</div>
 {% endblock %}

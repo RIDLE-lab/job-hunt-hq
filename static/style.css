@@ -1384,3 +1384,72 @@ html { scrollbar-color: #b7bed6 var(--paper); scrollbar-width: thin; }
 .pal-q { font-weight: 600; }
 .pal-q::before { content: "“"; } .pal-q::after { content: "”"; }
 .pal-q { margin-inline-start: .35em; }
+
+/* Job page: what you'd do next is in the header; the letter and answers get the wide column; details at the side */
+.job-head { align-items: flex-start; }
+.job-head > div:first-child { max-width: 80ch; }
+.job-facts { display: flex; flex-wrap: wrap; margin-top: 10px !important; color: var(--on-night); font-size: 1.05rem; }
+.job-facts > span + span::before { content: "·"; margin: 0 9px; color: var(--on-night-2); }
+.job-facts .job-co { color: #fff; font-weight: 600; }
+.reasons.on-night { margin-top: 14px; color: var(--on-night-2); }
+.reasons.on-night .tag { background: rgba(255,255,255,.1); color: #fff; }
+.job-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; }
+.job-actions form { margin: 0; }
+.job-actions .btn { padding: 11px 18px; }
+.job-actions .st { background: rgba(255,255,255,.12); color: #fff; }
+.job-layout { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; align-items: start; }
+.job-col, .job-side-col { display: grid; gap: 24px; min-width: 0; }
+.job-side-col { position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y: auto; border-radius: var(--radius); }
+.job-col > .card:first-child { box-shadow: 0 24px 48px -28px rgba(11,18,64,.55); }
+.job-side-col > .card:first-child { box-shadow: 0 24px 48px -28px rgba(11,18,64,.55); }
+.job-side-col .card { padding: 22px 24px; }
+.apply-steps { margin: 0; padding: 0; list-style: none; counter-reset: st; display: grid; gap: 16px; font-size: .94rem; }
+.apply-steps li { counter-increment: st; position: relative; padding-left: 36px; display: grid; gap: 6px; justify-items: start; }
+.apply-steps li::before { content: counter(st); position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--night); color: var(--signal); font: 700 .8rem var(--sans); }
+.apply-steps form { margin: 0; }
+.apply-steps .row { margin: 0; }
+.apply-url { overflow-wrap: anywhere; }
+.job-side-col .answers { gap: 0; }
+.job-side-col .answers div { grid-template-columns: 1fr; gap: 2px; padding: 10px 0; border-top: 1px solid var(--line-2); }
+.job-side-col .answers div:first-child { border-top: 0; padding-top: 0; }
+.job-side-col .answers dt { font-size: .82rem; }
+.job-side-col .answers dd { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+#cover_letter { min-height: 520px; padding: 22px 26px; font-size: 1.02rem; line-height: 1.75; border-radius: 10px; background: #fbfcff; }
+.qa { gap: 0; }
+.qa-item { padding: 18px 0; }
+.qa-item:first-child { padding-top: 4px; }
+.qa-text { line-height: 1.7; }
+.advert { line-height: 1.75; max-width: 80ch; }
+@media (max-width: 1100px) {
+  .job-layout { grid-template-columns: 1fr; }
+  .job-side-col { position: static; max-height: none; overflow: visible; }
+}
+@media (max-width: 700px) {
+  .job-actions .btn { flex: 1 1 auto; text-align: center; }
+  .job-head .score.big { display: none; }
+  #cover_letter { padding: 16px; min-height: 380px; }
+}
+.apply-steps li { display: block; }
+.apply-steps li > :is(form, .row, span.small, a.small) { display: block; margin-top: 8px; }
+.apply-steps li > .row { display: flex; }
+.job-actions .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.3); }
+.job-actions .btn-ghost:hover { border-color: #fff; color: #fff; }
+/* separators sit after an item, so a wrapped line never starts with a dot */
+.job-facts > span + span::before, .job-meta > span + span::before { content: none; }
+.job-facts > span:not(:last-child)::after { content: "·"; margin: 0 9px; color: var(--on-night-2); }
+.job-meta > span:not(:last-child)::after { content: "·"; margin: 0 8px; color: #b3b9cf; }
+@media (max-width: 700px) { .job-meta > span:not(:last-child)::after { content: none; } }
+.job-side-col { position: static; max-height: none; overflow: visible; }
+
+/* every form: labels in the text colour above the field, fields the same height, room between them */
+.form { gap: 6px; }
+.form > label:not(.check), .form .two label { margin: 14px 0 2px; font: 600 .92rem var(--sans); color: var(--ink); }
+.form > label:first-child, .form > input[type=hidden] + label { margin-top: 0; }
+.form label .muted { font-weight: 400; }
+.form input:not([type=checkbox]):not([type=radio]):not([type=file]), .form select { height: 44px; }
+.form .two { gap: 6px 20px; margin-top: 8px; }
+.form .two label { margin-top: 0; }
+.form textarea { padding: 12px 14px; line-height: 1.65; }
+.form > .row, .form > button { margin-top: 18px; }
+.form.narrow { max-width: 440px; }

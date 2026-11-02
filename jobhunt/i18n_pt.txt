@@ -808,3 +808,4 @@ Filters|Filtros
 Title, company or place|Cargo, empresa ou local
 Uses your skills|Usa as suas competências
 Only you can see these settings.|Só você vê estas definições.
+Write my cover letter|Escrever a minha carta de apresentação

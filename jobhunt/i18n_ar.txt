@@ -1195,3 +1195,4 @@ Filters|عوامل التصفية
 Title, company or place|المسمّى أو الشركة أو المكان
 Uses your skills|يستخدم مهاراتك
 Only you can see these settings.|أنت فقط ترى هذه الإعدادات.
+Write my cover letter|اكتب خطاب التقديم

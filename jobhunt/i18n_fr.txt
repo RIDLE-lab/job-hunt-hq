@@ -809,3 +809,4 @@ Filters|Filtres
 Title, company or place|Poste, entreprise ou lieu
 Uses your skills|Utilise vos compétences
 Only you can see these settings.|Vous seul voyez ces paramètres.
+Write my cover letter|Rédiger ma lettre de motivation
