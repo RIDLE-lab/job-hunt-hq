@@ -1393,7 +1393,9 @@ def assistant_download():
     import io
     import json
     import zipfile
-    base = (os.environ.get("JOBHUNT_URL") or request.host_url).rstrip("/")
+    here = request.host_url.rstrip("/")                    # the address you downloaded it from always works
+    other = (os.environ.get("JOBHUNT_URL") or "").rstrip("/")
+    base, alt = here, (other if other and other != here else "")
     folder = Path(app.root_path) / "extension"
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
@@ -1404,7 +1406,7 @@ def assistant_download():
         z.write(Path(app.static_folder) / "favicon-192.png", "Job Hunt HQ Assistant/icon.png")
         z.writestr("Job Hunt HQ Assistant/config.js",
                    "/* Your connection to Job Hunt HQ – keep this private. */\nvar JHQ_CONFIG = " +
-                   json.dumps({"base": base, "token": access_token()}) + ";\n")
+                   json.dumps({"base": base, "alt": alt, "token": access_token()}) + ";\n")
     return send_file(io.BytesIO(buf.getvalue()), mimetype="application/zip", as_attachment=True,
                      download_name="Job Hunt HQ Assistant.zip")
 

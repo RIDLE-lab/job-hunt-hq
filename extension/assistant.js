@@ -5,7 +5,9 @@
   if (window.__jhqAssistant || !window.JHQ_CONFIG) return;
   window.__jhqAssistant = true;
   var BASE = JHQ_CONFIG.base;
-  try { if (location.origin === new URL(BASE).origin) return; } catch (e) {}
+  try {
+    if ([BASE, JHQ_CONFIG.alt].filter(Boolean).some(function (b) { return location.origin === new URL(b).origin; })) return;
+  } catch (e) {}
 
   /* ---------------------------------------------------------------- talking to Job Hunt HQ */
   function api(body) {

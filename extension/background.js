@@ -1,8 +1,18 @@
 /* Talks to your Job Hunt HQ account. Runs inside the extension, so job sites never see your key. */
 importScripts("config.js");
 
+/* Your Job Hunt HQ address (and, if it has a second one, that too – whichever answers). */
+async function reach(path, opts) {
+  const bases = [JHQ_CONFIG.base, JHQ_CONFIG.alt].filter(Boolean);
+  let last;
+  for (const b of bases) {
+    try { return await fetch(b + path, opts); } catch (e) { last = e; }
+  }
+  throw new Error("Can't reach Job Hunt HQ – check your internet connection.");
+}
+
 async function api(body) {
-  const r = await fetch(JHQ_CONFIG.base + "/api/assistant", {
+  const r = await reach("/api/assistant", {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify(Object.assign({ token: JHQ_CONFIG.token }, body))
   });
@@ -12,7 +22,7 @@ async function api(body) {
 }
 
 async function file(path) {
-  const r = await fetch(JHQ_CONFIG.base + path + (path.includes("?") ? "&" : "?") + "token=" + encodeURIComponent(JHQ_CONFIG.token));
+  const r = await reach(path + (path.includes("?") ? "&" : "?") + "token=" + encodeURIComponent(JHQ_CONFIG.token));
   if (!r.ok) return null;
   const buf = new Uint8Array(await r.arrayBuffer());
   let bin = "";

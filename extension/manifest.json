@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Job Hunt HQ Assistant",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Your personal job-application assistant: scores the job you're looking at, fills application forms and suggests answers from your own details. It never presses Submit.",
   "icons": { "128": "icon.png" },
   "action": { "default_title": "Job Hunt HQ Assistant", "default_icon": "icon.png" },
