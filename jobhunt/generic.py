@@ -101,7 +101,7 @@ def score_job(job: dict) -> tuple[int, list[str]]:
         reasons.append("Very senior title – likely a big step up")
     elif re.search(SENIOR, title) and level == "entry":
         score += 2
-        reasons.append("A step up – worth applying as a stretch")
+        reasons.append("A step up from your level")
     elif re.search(JUNIOR, title) and level == "senior":
         score += 3
         reasons.append("More junior than you're aiming for")
@@ -261,6 +261,17 @@ def letter(job: dict, profile: dict) -> str:
     opening = f"I am applying for the {role} role at {company}."
     if matched:
         opening += f" The role calls for {_join([_skill_text(x) for x in matched])}, which is where my experience lies."
+    # Moving into a new kind of work (e.g. customer service → paralegal): say so plainly, and why it carries across.
+    exp = career.get("experience", [])
+    STOP_T = {"senior", "junior", "assistant", "trainee", "lead", "manager", "officer", "advisor", "adviser",
+              "executive", "coordinator", "associate", "and", "of", "the", "&"}
+    role_words = {w for w in re.findall(r"[a-z]+", role.lower()) if w not in STOP_T}
+    past_words = {w for e in exp for w in re.findall(r"[a-z]+", (e.get("title") or "").lower()) if w not in STOP_T}
+    if exp and role_words and not (role_words & past_words):
+        last = exp[0]
+        opening += (f" I am moving into this kind of work from my role as {last.get('title')}"
+                    + (f" at {last['company']}" if last.get("company") else "")
+                    + ", and the experience below carries straight across.")
     hook = company_hook(desc, job.get("company") or "")
     if hook:
         opening += f" Your advert says: “{hook}” – that is the kind of place I want to contribute to."

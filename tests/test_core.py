@@ -540,6 +540,13 @@ def test_generic_scoring_and_letters():
         ans = suggest({"label": "Tell us about a time you led a restructure", "kind": "textarea", "options": []},
                       {}, {}, {}, {}, "", {})[0]
         assert "CIPD" not in ans and "MBA" not in ans
+        # moving into a new field: the letter says so honestly
+        career.save({**career.load(), "experience": [{"title": "Customer Service Advisor", "company": "British Gas", "end": "",
+                     "description": "Kept accurate case notes and records in line with GDPR."}]})
+        persona._CACHE.clear()
+        cl = template_letter({"title": "Paralegal", "company": "Irwin Mitchell", "description": "case notes and records"},
+                             {"name": "Dana Dev"})
+        assert "moving into this kind of work from my role as Customer Service Advisor at British Gas" in cl
 
 
 def test_create_cv():
