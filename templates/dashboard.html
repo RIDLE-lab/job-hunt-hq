@@ -4,9 +4,9 @@
 {% set email_labels = email_labels if email_labels is defined else dict(status_labels, job_alert="Job alert", other="Other email", second_stage="2nd stage") %}
 <section class="hero">
   <div class="hero-text">
-    <p class="hero-date">{{ today_label }}{% if meta.last_refresh %} · jobs checked at {{ meta.last_refresh[11:16] }}{% endif %}</p>
+    <p class="hero-date">{{ today_label }}{% if meta.last_refresh %} · {{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}{% endif %}</p>
     <h1>{{ greeting }}, {{ me.first }}.</h1>
-    <p class="hero-sub">{% if kpis.new_today %}{{ kpis.new_today }} new job{{ 's' if kpis.new_today != 1 }} came in today. {% endif %}{{ kpis.matches }} match{{ 'es' if kpis.matches != 1 }} to look through, and {{ kpis.waiting }} application{{ 's' if kpis.waiting != 1 }} waiting to hear back.</p>
+    <p class="hero-sub">{% if kpis.new_today %}{{ t('1 new job came in today.' if kpis.new_today == 1 else '{n} new jobs came in today.', n=kpis.new_today) }} {% endif %}{{ t(('1 match' if kpis.matches == 1 else '{m} matches') ~ ' to look through, and ' ~ ('1 application' if kpis.waiting == 1 else '{w} applications') ~ ' waiting to hear back.', m=kpis.matches, w=kpis.waiting) }}</p>
     <dl class="figures">
       <a href="#matches"><dt>To review</dt><dd>{{ kpis.matches }}</dd></a>
       <a href="#applications"><dt>Applied</dt><dd>{{ kpis.applied }}</dd></a>

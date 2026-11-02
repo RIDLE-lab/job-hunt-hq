@@ -180,7 +180,6 @@ Search jobs|Rechercher des offres|Stellen suchen|Vacatures zoeken|Buscar ofertas
 Best match first|Meilleure correspondance d'abord|Beste Treffer zuerst|Beste match eerst|Mejor coincidencia primero|Melhor correspondência primeiro
 Refresh now|Actualiser|Jetzt aktualisieren|Nu vernieuwen|Actualizar ahora|Atualizar agora
 Recent replies|Réponses récentes|Neueste Antworten|Recente reacties|Respuestas recientes|Respostas recentes
-Latest applications|Dernières candidatures|Neueste Bewerbungen|Laatste sollicitaties|Últimas candidaturas|Últimas candidaturas
 Role|Poste|Stelle|Functie|Puesto|Cargo
 Next step|Prochaine étape|Nächster Schritt|Volgende stap|Siguiente paso|Próximo passo
 Offers|Offres reçues|Angebote|Aanbiedingen|Ofertas recibidas|Propostas
@@ -227,3 +226,68 @@ Step 3 of 3|Étape 3 sur 3|Schritt 3 von 3|Stap 3 van 3|Paso 3 de 3|Passo 3 de 3
 Your CV|Votre CV|Ihr Lebenslauf|Je cv|Tu CV|O seu CV
 CV|CV|Lebenslauf|Cv|CV|CV
 Job sites|Sites d'emploi|Jobbörsen|Vacaturesites|Portales de empleo|Sites de emprego
+# Front page sentences (gaps in {curly brackets} are filled in afterwards)
+Good morning|Bonjour|Guten Morgen|Goedemorgen|Buenos días|Bom dia
+Good afternoon|Bon après-midi|Guten Tag|Goedemiddag|Buenas tardes|Boa tarde
+Good evening|Bonsoir|Guten Abend|Goedenavond|Buenas noches|Boa noite
+jobs checked at {time}|offres vérifiées à {time}|Jobs geprüft um {time}|vacatures gecontroleerd om {time}|ofertas revisadas a las {time}|vagas verificadas às {time}
+1 new job came in today.|1 nouvelle offre est arrivée aujourd’hui.|Heute ist 1 neuer Job eingegangen.|Vandaag is er 1 nieuwe vacature binnengekomen.|Hoy ha llegado 1 oferta nueva.|Chegou 1 vaga nova hoje.
+{n} new jobs came in today.|{n} nouvelles offres sont arrivées aujourd’hui.|Heute sind {n} neue Jobs eingegangen.|Vandaag zijn er {n} nieuwe vacatures binnengekomen.|Hoy han llegado {n} ofertas nuevas.|Chegaram {n} vagas novas hoje.
+{m} matches to look through, and {w} applications waiting to hear back.|{m} offres à examiner et {w} candidatures en attente de réponse.|{m} passende Jobs zum Durchsehen und {w} Bewerbungen, die auf Antwort warten.|{m} matches om door te nemen en {w} sollicitaties die wachten op antwoord.|{m} ofertas por revisar y {w} candidaturas esperando respuesta.|{m} vagas para analisar e {w} candidaturas à espera de resposta.
+1 match to look through, and {w} applications waiting to hear back.|1 offre à examiner et {w} candidatures en attente de réponse.|1 passender Job zum Durchsehen und {w} Bewerbungen, die auf Antwort warten.|1 match om door te nemen en {w} sollicitaties die wachten op antwoord.|1 oferta por revisar y {w} candidaturas esperando respuesta.|1 vaga para analisar e {w} candidaturas à espera de resposta.
+{m} matches to look through, and 1 application waiting to hear back.|{m} offres à examiner et 1 candidature en attente de réponse.|{m} passende Jobs zum Durchsehen und 1 Bewerbung, die auf Antwort wartet.|{m} matches om door te nemen en 1 sollicitatie die wacht op antwoord.|{m} ofertas por revisar y 1 candidatura esperando respuesta.|{m} vagas para analisar e 1 candidatura à espera de resposta.
+1 match to look through, and 1 application waiting to hear back.|1 offre à examiner et 1 candidature en attente de réponse.|1 passender Job zum Durchsehen und 1 Bewerbung, die auf Antwort wartet.|1 match om door te nemen en 1 sollicitatie die wacht op antwoord.|1 oferta por revisar y 1 candidatura esperando respuesta.|1 vaga para analisar e 1 candidatura à espera de resposta.
+Letter ready|Lettre prête|Anschreiben fertig|Brief klaar|Carta lista|Carta pronta
+Other matches|Autres offres|Weitere Treffer|Andere matches|Otras ofertas|Outras vagas
+Closer to the centre = better match|Plus près du centre = meilleure correspondance|Näher an der Mitte = besser passend|Dichter bij het midden = betere match|Más cerca del centro = mejor coincidencia|Mais perto do centro = melhor correspondência
+# Dashboard extras, statuses, job reasons and the footer
+{n} new jobs today|{n} nouvelles offres aujourd’hui|{n} neue Jobs heute|{n} nieuwe vacatures vandaag|{n} ofertas nuevas hoy|{n} vagas novas hoje
+1 new job today|1 nouvelle offre aujourd’hui|1 neuer Job heute|1 nieuwe vacature vandaag|1 oferta nueva hoy|1 vaga nova hoje
+Newest first|Les plus récentes d’abord|Neueste zuerst|Nieuwste eerst|Las más recientes primero|Mais recentes primeiro
+See all {n} applications|Voir les {n} candidatures|Alle {n} Bewerbungen ansehen|Alle {n} sollicitaties bekijken|Ver las {n} candidaturas|Ver as {n} candidaturas
+Latest applications|Dernières candidatures|Neueste Bewerbungen|Laatste sollicitaties|Últimas candidaturas|Últimas candidaturas
+All fits|Tous les niveaux|Alle Stufen|Alle niveaus|Todos los niveles|Todos os níveis
+Replies from employers show here once Gmail is connected.|Les réponses des employeurs apparaissent ici une fois Gmail connecté.|Antworten von Arbeitgebern erscheinen hier, sobald Gmail verbunden ist.|Reacties van werkgevers verschijnen hier zodra Gmail is gekoppeld.|Las respuestas de las empresas aparecen aquí cuando conectes Gmail.|As respostas das empresas aparecem aqui depois de ligar o Gmail.
+See setup|Voir la configuration|Zur Einrichtung|Naar de instellingen|Ver la configuración|Ver a configuração
+Ready to submit|Prête à envoyer|Bereit zum Absenden|Klaar om te versturen|Lista para enviar|Pronta para enviar
+Submitted|Envoyée|Abgeschickt|Verstuurd|Enviada|Enviada
+Received|Reçue|Eingegangen|Ontvangen|Recibida|Recebida
+Pre-screening|Présélection|Vorauswahl|Voorselectie|Preselección|Pré-seleção
+Assessment|Évaluation|Einstufungstest|Assessment|Evaluación|Avaliação
+Interview|Entretien|Vorstellungsgespräch|Sollicitatiegesprek|Entrevista|Entrevista
+2nd stage|2e étape|2. Runde|2e ronde|2.ª fase|2.ª fase
+Job offer|Offre d’emploi reçue|Jobangebot|Jobaanbod|Oferta de trabajo|Proposta de emprego
+Withdrawn|Retirée|Zurückgezogen|Ingetrokken|Retirada|Retirada
+Stretch|Ambitieux|Ehrgeizig|Uitdagend|Ambiciosa|Ambiciosa
+Weak fit|Peu adapté|Wenig passend|Matige match|Poco adecuada|Pouco adequada
+Not scored|Non évaluée|Nicht bewertet|Niet beoordeeld|Sin puntuar|Sem pontuação
+Job alert|Alerte emploi|Jobalarm|Vacature-alert|Alerta de empleo|Alerta de emprego
+Other email|Autre e-mail|Andere E-Mail|Andere e-mail|Otro correo|Outro e-mail
+You sent|Envoyé par vous|Von Ihnen gesendet|Door u verstuurd|Enviado por ti|Enviado por si
+Needs an account|Compte requis|Konto erforderlich|Account nodig|Requiere cuenta|Requer conta
+Needs an account (Workday)|Compte requis (Workday)|Konto erforderlich (Workday)|Account nodig (Workday)|Requiere cuenta (Workday)|Requer conta (Workday)
+No account needed|Sans compte|Kein Konto nötig|Geen account nodig|Sin cuenta|Sem conta
+Recruiter – no account needed|Cabinet de recrutement – sans compte|Personalvermittler – kein Konto nötig|Recruiter – geen account nodig|Agencia – sin cuenta|Recrutador – sem conta
+Job title matches your HR / people background|L’intitulé correspond à votre parcours RH|Die Stellenbezeichnung passt zu Ihrem HR-Hintergrund|De functietitel past bij uw HR-achtergrond|El puesto encaja con tu experiencia en RR. HH.|O cargo corresponde à sua experiência em RH
+Job title isn't an HR role|L’intitulé n’est pas un poste RH|Keine HR-Stelle|De functietitel is geen HR-functie|El puesto no es de RR. HH.|O cargo não é de RH
+A step up – worth applying as a stretch|Un cran au-dessus – à tenter|Ein Schritt nach oben – eine Bewerbung lohnt sich|Een stap omhoog – het proberen waard|Un paso más arriba – vale la pena intentarlo|Um passo acima – vale a pena tentar
+Very senior title – likely out of reach for now|Poste très senior – sans doute hors de portée pour l’instant|Sehr hohe Position – vorerst wohl außer Reichweite|Zeer senior functie – voorlopig waarschijnlijk te hoog gegrepen|Puesto muy sénior – probablemente fuera de alcance por ahora|Cargo muito sénior – provavelmente fora de alcance por agora
+Very senior title – likely a big step up|Poste très senior – sans doute un grand pas|Sehr hohe Position – wohl ein großer Schritt|Zeer senior functie – waarschijnlijk een grote stap|Puesto muy sénior – probablemente un gran salto|Cargo muito sénior – provavelmente um grande salto
+Exactly the kind of role you're looking for|Exactement le type de poste que vous cherchez|Genau die Art von Stelle, die Sie suchen|Precies het soort functie dat u zoekt|Justo el tipo de puesto que buscas|Exatamente o tipo de função que procura
+Close to the roles you're looking for|Proche des postes que vous cherchez|Ähnlich wie die Stellen, die Sie suchen|Lijkt op de functies die u zoekt|Parecido a los puestos que buscas|Próximo das funções que procura
+Not one of the job titles you chose|Pas l’un des intitulés choisis|Keine der von Ihnen gewählten Stellenbezeichnungen|Niet een van de functietitels die u koos|No es uno de los puestos que elegiste|Não é um dos cargos que escolheu
+A step up from your level|Un cran au-dessus de votre niveau|Ein Schritt über Ihrem Niveau|Een stap boven uw niveau|Un paso por encima de tu nivel|Um passo acima do seu nível
+More junior than you're aiming for|Plus junior que ce que vous visez|Niedriger als Ihr Ziel|Juniorder dan u nastreeft|Más júnior de lo que buscas|Mais júnior do que pretende
+Pays below your minimum|Salaire inférieur à votre minimum|Bezahlung unter Ihrem Minimum|Betaalt minder dan uw minimum|Paga menos de tu mínimo|Paga abaixo do seu mínimo
+Pays below your expectation|Salaire inférieur à vos attentes|Bezahlung unter Ihren Erwartungen|Betaalt minder dan u verwacht|Paga menos de lo que esperas|Paga abaixo do que espera
+Check the location|Vérifiez le lieu|Ort prüfen|Controleer de locatie|Comprueba la ubicación|Verifique a localização
+Asks for {n}+ years' experience|Demande {n} ans d’expérience ou plus|Verlangt {n}+ Jahre Erfahrung|Vraagt {n}+ jaar ervaring|Pide {n}+ años de experiencia|Pede {n}+ anos de experiência
+Stretch: asks for {n}+ years|Ambitieux : demande {n} ans ou plus|Ehrgeizig: verlangt {n}+ Jahre|Uitdagend: vraagt {n}+ jaar|Ambiciosa: pide {n}+ años|Ambiciosa: pede {n}+ anos
+Terms of use|Conditions d’utilisation|Nutzungsbedingungen|Gebruiksvoorwaarden|Condiciones de uso|Termos de utilização
+Privacy|Confidentialité|Datenschutz|Privacy|Privacidad|Privacidade
+Cookies|Cookies|Cookies|Cookies|Cookies|Cookies
+Disclaimer|Avertissement|Haftungsausschluss|Disclaimer|Aviso legal|Aviso legal
+Acceptable use|Utilisation acceptable|Zulässige Nutzung|Aanvaardbaar gebruik|Uso aceptable|Utilização aceitável
+Contact|Contact|Kontakt|Contact|Contacto|Contacto
+Designed and built by Rashid Idle, with the assistance of Claude|Conçu et développé par Rashid Idle, avec l’aide de Claude|Entworfen und entwickelt von Rashid Idle, mit Unterstützung von Claude|Ontworpen en gebouwd door Rashid Idle, met hulp van Claude|Diseñado y desarrollado por Rashid Idle, con la ayuda de Claude|Concebido e desenvolvido por Rashid Idle, com a ajuda de Claude
+About this page, or anything else in Job Hunt HQ.|À propos de cette page, ou de tout autre élément de Job Hunt HQ.|Zu dieser Seite oder zu allem anderen in Job Hunt HQ.|Over deze pagina, of iets anders in Job Hunt HQ.|Sobre esta página o cualquier otra cosa de Job Hunt HQ.|Sobre esta página ou qualquer outra coisa no Job Hunt HQ.

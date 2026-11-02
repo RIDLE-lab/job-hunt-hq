@@ -853,6 +853,16 @@ def test_languages_countries_and_places():
     assert "Instellingen opslaan" in c.get("/settings").data.decode()
     assert b"Welcome" in A.app.test_client().get("/login", headers={"Accept-Language": "fr"}).data or True
     assert "Se connecter" in A.app.test_client().get("/login", headers={"Accept-Language": "fr-FR"}).data.decode()
+    # the front page's own sentences (with names and numbers in them) change language too
+    assert i18n.phrase("{m} matches to look through, and {w} applications waiting to hear back.", "pt", m=5, w=2) == \
+        "5 vagas para analisar e 2 candidaturas à espera de resposta."
+    assert i18n.phrase("Good morning", "de") == "Guten Morgen" and i18n.phrase("Good morning", "en") == "Good morning"
+    from datetime import date as _d
+    assert i18n.date_label(_d(2026, 11, 2), "fr") == "lun 02 nov 2026"
+    page = i18n.translate("<p>See all 12 applications</p><small>No account needed · A step up from your level</small>", "es")
+    assert "Ver las 12 candidaturas" in page and "Sin cuenta · Un paso por encima de tu nivel" in page
+    dash = c.get("/").data.decode()
+    assert "Goede" in dash or "Goedemorgen" in dash or "Goedenavond" in dash, "greeting"
 
 
 def test_assistant_answers_from_your_own_history():

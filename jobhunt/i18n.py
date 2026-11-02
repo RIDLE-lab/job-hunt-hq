@@ -48,9 +48,28 @@ def translate(page: str, lang: str) -> str:
         return page
     t = table()[lang]
 
+    def look(raw: str) -> str | None:
+        hit = t.get(raw)
+        if hit is not None:
+            return hit
+        nums = re.findall(r"\d+", raw)
+        if len(nums) == 1:                                  # "See all 12 applications" -> "See all {n} applications"
+            hit = t.get(re.sub(r"\d+", "{n}", raw))
+            if hit is not None:
+                return hit.replace("{n}", nums[0])
+        head, sep, rest = raw.partition(": ")               # "Ready to submit: <job title>"
+        if sep and head in t:
+            return f"{t[head]}: {rest}"
+        return None
+
     def tr(text: str) -> str | None:
         raw = _html.unescape(re.sub(r"\s+", " ", text).strip())
-        hit = t.get(raw)
+        hit = look(raw)
+        if hit is None and " · " in raw:                    # reasons and details joined with " · "
+            parts = [p for p in raw.split(" · ")]
+            done = [look(p) for p in parts]
+            if any(d is not None for d in done):
+                hit = " · ".join(d if d is not None else p for d, p in zip(done, parts))
         return _html.escape(hit, quote=False) if hit is not None else None
 
     def node(m):
@@ -76,3 +95,27 @@ def translate(page: str, lang: str) -> str:
             out.append(ATTR.sub(attr, chunk))
     page = "".join(out)
     return re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"', page, count=1)
+
+
+DAYS = {"fr": "lun mar mer jeu ven sam dim", "de": "Mo Di Mi Do Fr Sa So", "nl": "ma di wo do vr za zo",
+        "es": "lun mar mié jue vie sáb dom", "pt": "seg ter qua qui sex sáb dom"}
+MONTHS = {"fr": "janv févr mars avr mai juin juil août sept oct nov déc",
+          "de": "Jan Feb Mär Apr Mai Jun Jul Aug Sep Okt Nov Dez",
+          "nl": "jan feb mrt apr mei jun jul aug sep okt nov dec",
+          "es": "ene feb mar abr may jun jul ago sep oct nov dic",
+          "pt": "jan fev mar abr mai jun jul ago set out nov dez"}
+
+
+def phrase(text: str, lang: str, **values) -> str:
+    """A sentence with gaps in it ("{n} matches to look through"): translated whole, then the gaps filled in."""
+    template = table().get(lang, {}).get(text, text) if lang in CODES[1:] else text
+    try:
+        return template.format(**values)
+    except (KeyError, IndexError, ValueError):
+        return text.format(**values)
+
+
+def date_label(d, lang: str) -> str:
+    if lang not in DAYS:
+        return d.strftime("%a %d %b %Y")
+    return f"{DAYS[lang].split()[d.weekday()]} {d.day:02d} {MONTHS[lang].split()[d.month - 1]} {d.year}"
