@@ -149,6 +149,9 @@
     ":host{all:initial}*{box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif}" +
     ".bub{width:56px;height:56px;border-radius:50%;border:0;cursor:grab;background:#0b1240;color:#fff;box-shadow:0 8px 24px rgba(11,18,64,.35);display:grid;place-items:center;position:relative}" +
     ".bub:hover{background:#2443e0}.bub svg{width:30px;height:30px}" +
+    ".bub.mini{width:30px;height:30px;opacity:.55;box-shadow:0 4px 12px rgba(11,18,64,.3);transition:opacity .15s,width .15s,height .15s}" +
+    ".bub.mini:hover,.bub.mini:focus-visible{opacity:1}.bub.mini svg{width:18px;height:18px}.bub.mini .badge{display:none}" +
+    ".hd .x{padding:0 4px;line-height:1}.hd .mn{font-size:22px;margin-top:-4px}" +
     ".badge{position:absolute;top:-6px;right:-6px;min-width:26px;height:22px;padding:0 6px;border-radius:999px;background:#3be3cc;color:#0b1240;font:700 12px/22px Arial;text-align:center}" +
     ".badge.mid{background:#ffd166}.badge.low{background:#e6e8f0}" +
     ".pulse{animation:p 1.6s ease-out 3}@keyframes p{0%{box-shadow:0 0 0 0 rgba(59,227,204,.7)}100%{box-shadow:0 0 0 18px rgba(59,227,204,0)}}" +
@@ -190,12 +193,22 @@
   });
   bub.addEventListener("pointerup", function () {
     if (drag && drag.moved) store.set("pos", { r: parseInt(host.style.right), b: parseInt(host.style.bottom) });
+    else if (bub.classList.contains("mini")) { minimise(false); toggle(true); }
     else toggle();
     drag = null;
   });
   chrome.runtime.onMessage.addListener(function (m) { if (m.type === "toggle") { show(true); hello(); toggle(); } });   /* the toolbar button opens it anywhere */
   var shown = false, hidden = {};
   function show(on) { shown = on; host.style.display = on ? "block" : "none"; }
+  /* minimise: the helper shrinks to a small dot (on every page) until you click it again */
+  function minimise(on) {
+    bub.classList.toggle("mini", on);
+    bub.title = on ? "Job Hunt HQ Assistant (minimised) – click to open" : "Job Hunt HQ Assistant";
+    store.set("mini", on);
+    if (on) { panel.hidden = true; bub.classList.remove("pulse"); }
+  }
+  store.get("mini").then(function (m) { if (m) minimise(true); });
+  root.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { toggle(false); bub.focus(); } });
   store.get("hiddenSites").then(function (h) { hidden = h || {}; });
 
   var state = { me: null, job: null, page: null, form: null, pack: null, answers: {}, msg: "", letter: null, lmsg: "" };
@@ -230,7 +243,7 @@
         badge.hidden = false; badge.textContent = r.job.score;
         badge.className = "badge" + (r.job.score >= 70 ? "" : r.job.score >= 50 ? " mid" : " low");
       } else if (form.form) { badge.hidden = false; badge.textContent = "✎"; badge.className = "badge"; }
-      bub.classList.add("pulse");
+      if (!bub.classList.contains("mini")) bub.classList.add("pulse");
       if (!panel.hidden) render();
     }).catch(function (e) { state.msg = e.message; });
   }
@@ -274,7 +287,8 @@
   /* ---------------------------------------------------------------- the panel */
   function render() {
     var h = "<div class='hd'><b>Job Hunt HQ" + (state.me && state.me.first ? " · Hi " + esc(state.me.first) : "") + "</b>" +
-            "<button class='x' data-a='close' aria-label='Close'>✕</button></div>";
+            "<button class='x mn' data-a='mini' aria-label='Minimise' title='Minimise – shrink to a small dot until you need it'>–</button>" +
+            "<button class='x' data-a='close' aria-label='Close' title='Close'>✕</button></div>";
     var j = state.job;
     if (j) {
       var col = j.score >= 70 ? "#0f7a55" : j.score >= 50 ? "#c08a00" : "#8a93a0";
@@ -348,6 +362,7 @@
     var a = b.getAttribute("data-a"), qid = b.getAttribute("data-q");
     state.msg = "";
     if (a === "close") return toggle(false);
+    if (a === "mini") return minimise(true);
     if (a === "hidesite") { e.preventDefault(); hidden[HOST] = true; store.set("hiddenSites", hidden); toggle(false); show(false); return; }
     if (a === "save") {
       b.textContent = "Saving…";
