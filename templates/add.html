@@ -10,7 +10,7 @@
   <form method="post" class="form">
     <label for="f-url">Job link</label>
     <div class="row" style="margin:0">
-      <input id="f-url" name="url" type="url" value="{{ form.get('url', '') }}" placeholder="https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…" style="flex:1; min-width:0">
+      <input id="f-url" name="url" type="url" value="{{ form.get('url', '') }}" placeholder="https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…">
       <button class="btn btn-primary">Add this job</button>
       {% if not hosted %}<button class="btn" formaction="{{ url_for('robot_link') }}">Add it and apply for me</button>{% endif %}
     </div>

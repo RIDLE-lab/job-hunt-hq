@@ -9,11 +9,11 @@
     <p class="muted">Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in
       your email. Open one to see every email about it.</p>
   </div>
-  <dl class="app-figures">
-    <div><dt>Applied</dt><dd>{{ total }}</dd></div>
-    <div><dt>Waiting</dt><dd>{{ counts.waiting }}</dd></div>
-    <div class="good"><dt>Moving forward</dt><dd>{{ counts.forward }}</dd></div>
-    <div class="gold"><dt>Offers</dt><dd>{{ counts.offer }}</dd></div>
+  <dl class="figures figures-4">
+    <a href="{{ url_for('applications_page', show='all') }}"><dt>Applied</dt><dd>{{ total }}</dd></a>
+    <a href="{{ url_for('applications_page', show='waiting') }}"><dt>Waiting</dt><dd>{{ counts.waiting }}</dd></a>
+    <a class="good" href="{{ url_for('applications_page', show='forward') }}"><dt>Moving forward</dt><dd>{{ counts.forward }}</dd></a>
+    <a class="gold" href="{{ url_for('applications_page', show='offer') }}"><dt>Offers</dt><dd>{{ counts.offer }}</dd></a>
   </dl>
 </section>
 

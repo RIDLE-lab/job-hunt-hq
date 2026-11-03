@@ -8,7 +8,7 @@
     <p class="hero-date">{{ today_label }}{% if meta.last_refresh %} · {{ t('jobs checked at {time}', time=meta.last_refresh[11:16]) }}{% endif %}</p>
     <h1>{{ greeting }}, {{ me.first }}.</h1>
     <p class="hero-sub">{% if kpis.new_today %}{{ t('1 new job came in today.' if kpis.new_today == 1 else '{n} new jobs came in today.', n=kpis.new_today) }} {% endif %}{{ t(('1 match' if kpis.matches == 1 else '{m} matches') ~ ' to look through, and ' ~ ('1 application' if kpis.waiting == 1 else '{w} applications') ~ ' waiting to hear back.', m=kpis.matches, w=kpis.waiting) }}</p>
-    <dl class="figures">
+    <dl class="figures figures-5">
       <a href="{{ url_for('jobs_page') }}"><dt>To review</dt><dd data-count="{{ kpis.matches }}">{{ kpis.matches }}</dd></a>
       <a href="{{ url_for('applications_page') }}"><dt>Applied</dt><dd data-count="{{ kpis.applied }}">{{ kpis.applied }}</dd></a>
       <a href="{{ url_for('applications_page', show='waiting') }}"><dt>Waiting</dt><dd data-count="{{ kpis.waiting }}">{{ kpis.waiting }}</dd></a>
