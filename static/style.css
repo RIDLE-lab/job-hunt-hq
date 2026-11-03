@@ -91,7 +91,7 @@ details > summary { cursor: pointer; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #c3c9de; border-radius: var(--r-pill); border: 3px solid transparent; background-clip: padding-box; }
 ::-webkit-scrollbar-thumb:hover { background-color: var(--faint); }
-.mast *, .tabbar * { scrollbar-color: rgba(255,255,255,.25) transparent; }
+.tabbar * { scrollbar-color: rgba(255,255,255,.25) transparent; }
 
 /* ================================================================ 4. Layout */
 main.page { max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter) 96px; display: flex; flex-direction: column; gap: var(--gap); }
@@ -142,23 +142,26 @@ h2.gap { margin-top: 26px; }
   .card { padding: 20px 18px; }
 }
 
-/* ================================================================ 5. Header (desktop), menus, search box */
-.mast { position: relative; z-index: 30; background: var(--night); color: #fff; }
-.mast-in { max-width: var(--wide); margin: 0 auto; padding-inline: var(--gutter); }
-.topbar { display: flex; align-items: center; gap: 8px; height: 72px; }
-.brand { display: flex; align-items: center; gap: 12px; flex: none; margin-right: 28px; color: #fff; text-decoration: none;
-  font: 700 1.3rem/1 var(--font); white-space: nowrap; }
+/* ================================================================ 5. Header (desktop), menus, search box
+   The same floating white bar as the front page (tour.css .w-pill): one shape, one height, the same links and buttons,
+   so signing in feels like walking into the same place. */
+.mast { position: relative; z-index: 30; padding: 14px var(--gutter) 0; background: var(--night); color: var(--ink); }
+.mast > .mast-in { max-width: calc(var(--wide) - 2 * var(--gutter)); margin: 0 auto; }   /* the bar lines up with the page's content */
+.topbar { display: flex; align-items: center; gap: 8px; height: 62px; padding: 0 10px 0 18px; border-radius: var(--r-pill); background: var(--panel);
+  box-shadow: 0 10px 30px -12px rgba(5,10,40,.5), 0 0 0 1px rgba(11,18,64,.06); }
+.brand { display: flex; align-items: center; gap: 10px; flex: none; margin-right: 22px; color: var(--ink); text-decoration: none;
+  font: 700 1.08rem/1 var(--font); white-space: nowrap; }
 .mark { width: 32px; height: 32px; flex: none; }
-.mark circle { fill: none; stroke: var(--signal); stroke-width: 2; opacity: .55; }
-.mark .core { fill: #fff; stroke: none; opacity: 1; }
+.mark circle { fill: none; stroke: var(--night); stroke-width: 2; opacity: .4; }
+.mark .core { fill: var(--night); stroke: none; opacity: 1; }
 .mark .ping { fill: var(--flare); stroke: none; opacity: 1; }
 
 .topnav { display: flex; align-items: center; gap: 4px; flex: 1 1 auto; min-width: 0; }
 .topnav > a, .nav-drop > summary { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: var(--r-pill);
-  color: var(--on-night); text-decoration: none; font: 500 .98rem var(--font); white-space: nowrap; list-style: none; transition: background-color .15s, color .15s; }
+  color: var(--ink); text-decoration: none; font: 500 1rem var(--font); white-space: nowrap; list-style: none; transition: background-color .15s, color .15s; }
 .nav-drop > summary::-webkit-details-marker { display: none; }
-.topnav > a:hover, .nav-drop > summary:hover, .nav-drop[open] > summary { color: #fff; background: var(--night-fill); }
-.topnav > a.on, .nav-drop.on > summary { color: #fff; background: rgba(255,255,255,.12); font-weight: 600; }
+.topnav > a:hover, .nav-drop > summary:hover, .nav-drop[open] > summary { background: var(--paper); }
+.topnav > a.on, .nav-drop.on > summary { color: #fff; background: var(--night); }
 .chev { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .7; transition: transform .15s; }
 .nav-drop[open] .chev { transform: rotate(180deg); }
 .nav-drop, .who-menu, .lang-top { position: relative; }
@@ -189,9 +192,12 @@ h2.gap { margin-top: 26px; }
 .tool-btn, .lang-top > summary, .who-menu > summary { list-style: none; cursor: pointer; }
 .lang-top > summary::-webkit-details-marker, .who-menu > summary::-webkit-details-marker { display: none; }
 .tool-btn, .lang-top > summary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 40px; min-width: 40px; padding: 0 12px;
-  border-radius: var(--r-pill); border: 1px solid rgba(255,255,255,.16); background: var(--night-fill); color: #fff; font: 500 .95rem var(--font); }
+  border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 .95rem var(--font); }
 .tool-btn { padding: 0; width: 40px; }
-.tool-btn:hover, .lang-top > summary:hover { border-color: rgba(255,255,255,.4); }
+.tool-btn:hover, .lang-top > summary:hover { border-color: var(--ink); }
+/* the main button in the bar is night blue, like Sign in on the front page */
+.mast .btn.refresh-btn { background: var(--night); border-color: var(--night); color: #fff; }
+.mast .btn.refresh-btn:hover { background: var(--night-2); border-color: var(--night-2); }
 .tool-btn .ico, .lang-top > summary .ico { width: 18px; height: 18px; }
 .btn.refresh-btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; }
 .refresh-btn .ico { width: 17px; height: 17px; }
@@ -199,30 +205,31 @@ h2.gap { margin-top: 26px; }
 .who-menu > summary { position: relative; display: block; padding: 0; }
 .avatar { width: 36px; height: 36px; border-radius: 50%; display: inline-grid; place-items: center; flex: none;
   background: var(--signal); color: var(--night); font: 700 .82rem var(--font); }
-.who-menu .avatar { box-shadow: 0 0 0 2px rgba(255,255,255,.12); }
-.who-menu[open] .avatar, .who-menu .avatar:hover { box-shadow: 0 0 0 2px var(--signal); }
-.who-dot { position: absolute; right: -1px; top: -1px; width: 10px; height: 10px; border-radius: 50%; background: var(--flare); box-shadow: 0 0 0 2px var(--night); }
+.who-menu[open] .avatar, .who-menu .avatar:hover { box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--night); }
+.who-dot { position: absolute; right: -1px; top: -1px; width: 10px; height: 10px; border-radius: 50%; background: var(--flare); box-shadow: 0 0 0 2px var(--panel); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* messages under the header */
 .flash { position: relative; padding: 10px 44px 10px 16px; border-radius: var(--r-md); }
 .flash p { margin: 2px 0; }
-.mast .flash { margin: 6px 0 16px; background: rgba(255,255,255,.08); color: #fff; }
+.mast .flash { margin: 14px 0 2px; background: rgba(255,255,255,.08); color: #fff; }
 .flash.ok-flash { background: var(--ok-bg); color: var(--ok); }
 .flash-x { position: absolute; right: 8px; top: 6px; width: 30px; height: 30px; border: 0; border-radius: var(--r-sm); background: transparent;
   color: inherit; font-size: 1.3rem; line-height: 1; cursor: pointer; opacity: .7; }
 .flash-x:hover { opacity: 1; background: rgba(255,255,255,.1); }
-.mast :focus-visible, .hero :focus-visible, .head :focus-visible, .tabbar :focus-visible { outline-color: var(--signal); }
+.hero :focus-visible, .head :focus-visible, .tabbar :focus-visible, .mast .flash :focus-visible { outline-color: var(--signal); }
 
 /* the search box that opens over the page (Ctrl K) */
 .palette { width: min(620px, calc(100vw - 32px)); max-height: min(560px, 80vh); margin: 12vh auto auto; padding: 0; border: 0; border-radius: var(--r-lg);
   background: var(--panel); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(5,10,40,.55), 0 0 0 1px rgba(11,18,64,.08); overflow: hidden; }
-.palette::backdrop { background: rgba(8,12,40,.45); backdrop-filter: blur(3px); }
+/* no blur behind it, and the page's own animations pause while it's open: blurring a moving page made scrolling the list slow */
+.palette::backdrop { background: rgba(8,12,40,.6); }
+body:has(.palette[open]) :is(.sweep, .blip, .blip::after, canvas) { animation-play-state: paused; }
 .palette[open] { animation: pop-in .16s cubic-bezier(.2,.8,.3,1); }
 .pal-box { display: flex; flex-direction: column; max-height: inherit; }
 .pal-input { display: flex; align-items: center; gap: 12px; padding: 0 20px; border-bottom: 1px solid var(--line-2); color: var(--muted); }
 .pal-input input { flex: 1; border: 0; box-shadow: none !important; padding: 18px 0; font-size: 1.1rem; background: transparent; }
-.pal-list { list-style: none; margin: 0; padding: 8px; overflow-y: auto; }
+.pal-list { list-style: none; margin: 0; padding: 8px; overflow-y: auto; overscroll-behavior: contain; scroll-behavior: auto; contain: content; }
 .pal-list a { display: flex; align-items: center; gap: 14px; padding: 11px 12px; border-radius: 9px; color: var(--ink); text-decoration: none; font-weight: 500; }
 .pal-list .ico { width: 19px; height: 19px; color: var(--muted); }
 .pal-list li.on a { background: var(--tint); }
@@ -236,16 +243,16 @@ h2.gap { margin-top: 26px; }
 /* narrower screens: the menu moves to its own row under the brand */
 @media (max-width: 1320px) and (min-width: 1181px) { .refresh-btn .lbl { display: none; } .btn.refresh-btn { width: 40px; padding: 0; justify-content: center; } }
 @media (max-width: 1180px) and (min-width: 701px) {
-  .topbar { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 8px; row-gap: 10px; }
+  .topbar { height: auto; flex-wrap: wrap; padding: 10px 10px 8px 18px; row-gap: 6px; border-radius: 24px; }
   .topbar .brand { margin-right: auto; }
-  .topnav { order: 3; flex-basis: 100%; margin: 0 -14px; }
+  .topnav { order: 3; flex-basis: 100%; margin: 0 0 0 -10px; padding-top: 6px; border-top: 1px solid var(--line-2); }
 }
 /* other languages have longer words: wrap the menu a little sooner */
 :root:not([lang|="en"]) .topnav > a, :root:not([lang|="en"]) .nav-drop > summary { padding: 0 11px; font-size: .95rem; }
 @media (max-width: 1600px) and (min-width: 701px) {
-  :root:not([lang|="en"]) .topbar { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 8px; row-gap: 10px; }
+  :root:not([lang|="en"]) .topbar { height: auto; flex-wrap: wrap; padding: 10px 10px 8px 18px; row-gap: 6px; border-radius: 24px; }
   :root:not([lang|="en"]) .topbar .brand { margin-right: auto; }
-  :root:not([lang|="en"]) .topnav { order: 3; flex-basis: 100%; margin: 0 -11px; }
+  :root:not([lang|="en"]) .topnav { order: 3; flex-basis: 100%; margin: 0 0 0 -10px; padding-top: 6px; border-top: 1px solid var(--line-2); }
 }
 
 /* ================================================================ 6. Phone: header, bottom tab bar, More sheet */
@@ -253,15 +260,15 @@ h2.gap { margin-top: 26px; }
 @media (max-width: 700px) {
   body { padding-bottom: calc(var(--tabbar) + env(safe-area-inset-bottom)); }
   /* the header stays at the top, so nothing scrolls under the phone's clock */
-  .mast { position: sticky; top: 0; }
-  .topbar { height: auto; gap: 10px; padding-top: max(10px, env(safe-area-inset-top)); padding-bottom: 10px; }
-  .topbar .brand { margin-right: auto; font-size: 1.2rem; gap: 10px; }
+  .mast { position: sticky; top: 0; padding: max(10px, env(safe-area-inset-top)) 10px 10px; }
+  .topbar { height: 56px; gap: 8px; padding: 0 6px 0 12px; }
+  .topbar .brand { margin-right: auto; font-size: 1rem; gap: 10px; }
   .mark { width: 30px; height: 30px; }
   .topnav, .tool-btn, .who-menu { display: none; }
   .mast-tools { gap: 10px; }
-  .lang-top > summary, .btn.refresh-btn { width: 44px; height: 44px; min-width: 0; padding: 0; justify-content: center; border-radius: 50%; }
+  .lang-top > summary, .btn.refresh-btn { width: 42px; height: 42px; min-width: 0; min-height: 0; padding: 0; justify-content: center; border-radius: 50%; }
   .lang-top > summary span, .refresh-btn .lbl { display: none; }
-  .refresh-btn .ico, .lang-top > summary .ico { width: 21px; height: 21px; }
+  .refresh-btn .ico, .lang-top > summary .ico { width: 20px; height: 20px; }
   .mast .flash { margin-top: 0; }
 
   /* bottom tab bar: five equal places; every label sits on the same line, selected or not */
@@ -304,7 +311,7 @@ h2.gap { margin-top: 26px; }
 
   .palette { margin-top: 8vh; }
   .pal-foot { display: none; }
-  [id] { scroll-margin-top: 80px; }
+  [id] { scroll-margin-top: 92px; }
 }
 @media (max-width: 360px) { .sheet-grid a { font-size: .9rem; padding: 8px 10px; } }
 
@@ -401,7 +408,7 @@ label.check input[type=checkbox] { width: 18px; height: 18px; margin: 3px 0 0; f
   font-weight: 600; font-size: .92rem; box-shadow: 0 4px 12px -4px rgba(11,18,64,.3); }
 .section-nav a:hover { color: var(--cobalt); }
 @media (max-width: 700px) {
-  .section-nav { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); top: calc(64px + env(safe-area-inset-top)); }
+  .section-nav { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); top: calc(76px + env(safe-area-inset-top)); }
   .src-filter a, .app-tabs a { padding: 6px 12px; font-size: .9rem; }
 }
 
@@ -804,7 +811,7 @@ details.month[open] > summary::before { transform: rotate(90deg); }
   #cover_letter { min-height: 380px; padding: 16px; }
   .robot-cta .btn, .robot-cta button { width: 100%; justify-self: stretch; }
   /* section links under the header */
-  .jump { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; scrollbar-width: none; position: sticky; top: calc(64px + env(safe-area-inset-top)); z-index: 4;
+  .jump { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; scrollbar-width: none; position: sticky; top: calc(76px + env(safe-area-inset-top)); z-index: 4;
     margin: calc(var(--band-under) * -1) calc(var(--gutter) * -1) 0; padding: 10px var(--gutter); }
   .jump + * { margin-top: 0; }
 }
