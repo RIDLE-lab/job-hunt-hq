@@ -536,6 +536,8 @@ def delete_user(user_id: int):
     folder = user_dir(user_id)
     if folder.exists() and folder.parent.name == "users":
         shutil.rmtree(folder, ignore_errors=True)  # jobs, applications, emails, CV, letters, settings, Gmail link
+    from . import backups
+    backups.forget_user(user_id)                   # and from every daily safety copy
     with connect() as c:
         c.execute("DELETE FROM resets WHERE user_id = ?", (user_id,))
         c.execute("DELETE FROM users WHERE id = ?", (user_id,))

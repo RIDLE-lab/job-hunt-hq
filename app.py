@@ -2545,6 +2545,12 @@ def auto_refresh_loop():
                 one_person()
         except Exception as e:
             print("[auto refresh] problem:", e)
+        if HOSTED:
+            try:
+                from jobhunt import backups
+                backups.snapshot()                       # once a day; old copies go after 7 days
+            except Exception as e:
+                print("[backup] problem:", e)
         time.sleep(600)
 
 

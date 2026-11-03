@@ -67,6 +67,75 @@ def pick(preferred: str | None, accept: str | None = "") -> str:
     return "en"
 
 
+# ---------------------------------------------------------------- whole sentences
+# A sentence with a link or bold words in it ("Click <b>Load unpacked</b> and choose the <b>…</b> folder.") is
+# translated as ONE sentence, so each language can put the words in its own order. Its key in the table marks the
+# inline bits with numbered brackets: "Click [1]Load unpacked[/1] and choose the [2]Job Hunt HQ Assistant[/2] folder."
+# The translation uses the same brackets, in whatever order the language needs; the tags themselves are put back.
+BLOCK = re.compile(r"<(p|li|h[1-6]|dt|dd|td|th|figcaption|small|label|summary|em)(\s[^>]*)?>"
+                   r"((?:(?!</?(?:p|li|div|ul|ol|h[1-6]|section|form|input|select|textarea|button|table|tr|td|svg|img|"
+                   r"label|summary|details|dl|dt|dd|nav|header|footer|figure|figcaption)\b)[\s\S])*?)</\1>", re.I)
+INLINE = re.compile(r"<(a|b|strong|i|em|span|code|kbd|q)(\s[^>]*)?>([^<]*)</\1>|<br\s*/?>", re.I)
+COLLECT = None                     # a path: sentences with no translation yet are written there (for translators)
+
+
+def _sentence_key(inner: str):
+    """'Click <b>X</b> now' → ('Click [1]X[/1] now', [('<b>', '</b>')]), or None if it isn't one simple sentence."""
+    tags, parts, pos = [], [], 0
+    for m in INLINE.finditer(inner):
+        parts.append(inner[pos:m.start()])
+        if m.group(0).lower().startswith("<br"):
+            parts.append("[br]")
+        else:
+            tags.append((m.group(0)[:m.start(3) - m.start()], f"</{m.group(1)}>"))
+            parts.append(f"[{len(tags)}]{m.group(3)}[/{len(tags)}]")
+        pos = m.end()
+    parts.append(inner[pos:])
+    if not tags or "<" in "".join(p for p in parts if not p.startswith("[")):
+        return None
+    key = _html.unescape(re.sub(r"\s+", " ", "".join(parts)).strip())
+    outside = re.sub(r"\[(\d+)\].*?\[/\1\]|\[br\]", " ", key)
+    # only real sentences: words outside the bold or linked bits (a lone wrapped label is left to the word-by-word pass)
+    return (key, tags) if re.search(r"[A-Za-z\u0600-\u06FF]{3}", outside) else None
+
+
+def _rebuild(text: str, tags) -> str | None:
+    out, pos = [], 0
+    for m in re.finditer(r"\[(\d+)\](.*?)\[/\1\]|\[br\]", text):
+        out.append(_html.escape(text[pos:m.start()], quote=False))
+        if m.group(0) == "[br]":
+            out.append("<br>")
+        else:
+            k = int(m.group(1)) - 1
+            if k >= len(tags):
+                return None
+            out.append(tags[k][0] + _html.escape(m.group(2), quote=False) + tags[k][1])
+        pos = m.end()
+    out.append(_html.escape(text[pos:], quote=False))
+    return "".join(out)
+
+
+def sentences(chunk: str, t: dict) -> str:
+    def one(m):
+        found = _sentence_key(m.group(3))
+        if not found:
+            return m.group(0)
+        key, tags = found
+        hit = t.get(key)
+        nums = re.findall(r"\d+", re.sub(r"\[/?\d+\]", "", key))
+        if hit is None and len(nums) == 1:
+            hit = t.get(re.sub(r"(?<!\[)(?<!\[/)\b\d+\b(?!\])", "{n}", key))
+            hit = hit.replace("{n}", nums[0]) if hit else None
+        if hit is None:
+            if COLLECT:
+                with open(COLLECT, "a", encoding="utf-8") as f:
+                    f.write(key + "\n")
+            return m.group(0)
+        inner = _rebuild(hit, tags)
+        return m.group(0) if inner is None else m.group(0)[:m.start(3) - m.start()] + inner + f"</{m.group(1)}>"
+    return BLOCK.sub(one, chunk)
+
+
 SKIP = re.compile(r"(<(script|style|textarea|code|pre)\b.*?</\2>)", re.S | re.I)
 TEXT = re.compile(r">(\s*)([^<>]*?[A-Za-z][^<>]*?)(\s*)<")
 ATTR = re.compile(r'\b(placeholder|title|aria-label)="([^"]*[A-Za-z][^"]*)"')
@@ -129,6 +198,7 @@ def translate(page: str, lang: str) -> str:
         elif re.fullmatch(r"script|style|textarea|code|pre", chunk or "", re.I):
             continue
         else:
+            chunk = sentences(chunk, t)                    # whole sentences with links or bold words first
             chunk = TEXT.sub(node, chunk + "<")[:-1]      # text right before a <textarea> ends the chunk
             out.append(ATTR.sub(attr, chunk))
     page = "".join(out)
