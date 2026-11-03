@@ -24,17 +24,17 @@
     <label class="f-search">{{ icon('search') }}<input type="search" name="q" value="{{ q }}" placeholder="Title, company or place" aria-label="Search jobs"></label>
     <button type="button" class="btn f-toggle" aria-expanded="{{ 'true' if fit or posted or sort else 'false' }}"
             onclick="this.setAttribute('aria-expanded', this.form.classList.toggle('open'))">Filters{% if fit or posted or sort %} <span class="count">{{ [fit, posted, sort]|select|list|length }}</span>{% endif %}</button>
-    <label>Fit<select name="fit" onchange="this.form.submit()">
+    <label>Fit<select name="fit" onchange="this.form.requestSubmit()">
       <option value="">All fits</option>
       {% for f in ['Strong fit', 'Good fit', 'Stretch', 'Weak fit', 'Not scored'] %}
       <option value="{{ f }}" {{ 'selected' if fit == f }}>{{ f }}</option>{% endfor %}
     </select></label>
-    <label>Posted<select name="posted" onchange="this.form.submit()">
+    <label>Posted<select name="posted" onchange="this.form.requestSubmit()">
       {% for v, label in [('', 'Posted any time'), ('1', 'Last 24 hours'), ('3', 'Last 3 days'), ('7', 'Last week'),
                           ('14', 'Last 2 weeks'), ('30', 'Last month')] %}
       <option value="{{ v }}" {{ 'selected' if posted == v }}>{{ label }}</option>{% endfor %}
     </select></label>
-    <label>Sort<select name="sort" onchange="this.form.submit()">
+    <label>Sort<select name="sort" onchange="this.form.requestSubmit()">
       <option value="" {{ 'selected' if not sort }}>Best match first</option>
       <option value="newest" {{ 'selected' if sort == 'newest' }}>Newest first</option>
     </select></label>
@@ -67,4 +67,46 @@
   {% endif %}
 </section>
 </div>
+<script>
+  /* Filters update the list in place – no page reload – and the address keeps up so Back and links still work. */
+  (() => {
+    const form = document.querySelector('.filter-form'), list = () => document.querySelector('.job-list');
+    if (!form || !window.fetch || !window.DOMParser) return;
+    let ctrl = null;
+    async function load(url, push) {
+      ctrl && ctrl.abort(); ctrl = new AbortController();
+      list().classList.add('loading');
+      try {
+        const html = await (await fetch(url, { signal: ctrl.signal, credentials: 'same-origin' })).text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        for (const sel of ['.job-list', '.filter-panel .src-filter', '.head .muted']) {
+          const now = document.querySelector(sel), next = doc.querySelector(sel);
+          if (now && next) now.replaceWith(next); else if (now && !next && sel !== '.job-list') now.remove();
+        }
+        if (push === 'replace') history.replaceState({ jobs: 1 }, '', url); else if (push) history.pushState({ jobs: 1 }, '', url);
+      } catch (e) {
+        if (e.name !== 'AbortError') location.href = url;      /* if anything goes wrong, just load the page */
+      } finally { const l = list(); l && l.classList.remove('loading'); }
+    }
+    const urlFor = () => location.pathname + '?' + new URLSearchParams([...new FormData(form)].filter(([, v]) => v)).toString();
+    form.addEventListener('submit', (e) => { e.preventDefault(); load(urlFor(), true); });
+    let t = null;
+    form.querySelector('input[name=q]').addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => load(urlFor(), 'replace'), 350); });
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('.src-filter a, .job-list .more a');
+      if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      const u = new URL(a.href);
+      const src = form.querySelector('input[name=src]');
+      if (u.searchParams.has('src')) { (src || form.appendChild(Object.assign(document.createElement('input'), { type: 'hidden', name: 'src' }))).value = u.searchParams.get('src'); }
+      else if (src && a.closest('.src-filter')) src.remove();
+      load(u.pathname + u.search, true);
+    });
+    window.addEventListener('popstate', () => {
+      const q = new URLSearchParams(location.search);
+      form.querySelectorAll('select[name], input[name=q]').forEach((el) => { el.value = q.get(el.name) || ''; });
+      load(location.pathname + location.search, false);
+    });
+  })();
+</script>
 {% endblock %}
