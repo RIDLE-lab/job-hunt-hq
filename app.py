@@ -389,7 +389,8 @@ LEGAL_PAGES = {"terms": "Terms of use", "disclaimer": "Disclaimer", "cookies": "
 
 
 def contact_email() -> str:
-    return os.environ.get("JOBHUNT_CONTACT") or (accounts.owner_contact() if accounts.any_users() else "") or "info@jhhq.co.uk"
+    """The address shown on the legal pages and in emails: always the service's own mailbox, never anyone's personal email."""
+    return os.environ.get("JOBHUNT_CONTACT") or "info@jhhq.co.uk"
 
 
 @app.route("/legal/<page>")
