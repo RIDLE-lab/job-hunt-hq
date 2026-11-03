@@ -291,8 +291,9 @@ h2.gap { margin-top: 26px; }
   .sheet-grid a { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; min-height: 70px; padding: 10px 14px; border-radius: var(--r-md); background: var(--panel-2);
     color: var(--ink); text-decoration: none; font-weight: 600; font-size: .94rem; line-height: 1.25; }
   .sheet-grid a:active, .sheet-list a:active { background: var(--tint); }
-  .sheet-grid .ico, .sheet-list .ico { width: 22px; height: 22px; color: var(--cobalt); }
-  .tab-menu-h { display: flex; align-items: center; gap: 10px; margin: 18px 4px 6px; padding-top: 16px; border-top: 1px solid var(--line-2);
+  .tab-menu .ico { width: 22px; height: 22px; padding: 0; border-radius: 0; background: none; color: var(--cobalt); }
+  /* the name lines up with the list under it: the initials centred over the icons, the name over the words */
+  .tab-menu-h { display: flex; align-items: center; gap: 10px; margin: 18px 0 4px; padding: 16px 0 0 2px; border-top: 1px solid var(--line-2);
     font-weight: 600; font-size: .95rem; color: var(--muted); }
   .tab-menu-h .avatar { width: 30px; height: 30px; font-size: .74rem; }
   .sheet-list { display: grid; }
@@ -1256,6 +1257,7 @@ body.login-page:has(> .err-box) { grid-template-columns: 1fr; place-items: cente
 [dir="rtl"] .drop-pop { left: auto; right: 0; }
 [dir="rtl"] .f-search .ico { left: auto; right: 12px; }
 [dir="rtl"] .f-search input { padding-left: 11px; padding-right: 38px; }
+[dir="rtl"] .tab-menu-h { padding: 16px 2px 0 0; }
 [dir="rtl"] .sheet-list .fb-count { margin-left: 0; margin-right: auto; }
 /* phone numbers, emails and links always read left to right */
 [dir="rtl"] :is(input[type="tel"], input[type="email"], input[type="url"], input[name="phone"], input[name*="linkedin"], input[name*="github"], .phone-row input) { direction: ltr; text-align: right; }
