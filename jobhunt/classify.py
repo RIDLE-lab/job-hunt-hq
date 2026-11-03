@@ -18,7 +18,17 @@ RULES = [
                  r"position has (now )?been filled|not been shortlisted|will not be taking your application|"
                  r"decided not to proceed|not (to )?(move|moving) forward with your|won'?t be (moving|taking) (forward|your)|"
                  r"will not be (moving|taking) (forward|your)|pursue other (candidates|applicants)|not been selected|"
-                 r"unable to offer you|not able to offer you|no longer (being )?considered"),
+                 r"unable to offer you|not able to offer you|no longer (being )?considered|"
+                 # the polite ways UK employers say no, which often mention an interview in passing
+                 r"on this occasion|not (be |been )?(taking|take) your application (any )?further|"
+                 r"(won'?t|will not|not) be progressing|not progressing (with )?your|not (been )?selected (for|to)|"
+                 r"(not|unable to|won'?t be able to|will not be able to|cannot|can'?t) (be )?(able to )?invite you|"
+                 r"decided to (progress|proceed|continue|go ahead|move forward) with (other|another|a different|"
+                 r"candidates|applicants|someone)|(closely|better) match(es|ed)? (the|our) (requirements|criteria|needs)|"
+                 r"(position|role|vacancy) has (now )?been (offered|filled|closed)|we have (now )?filled|"
+                 r"will not be inviting|not invite you|not shortlisted|wish you (every|all the|the very) (best|success)|"
+                 r"every success (in|with) your (job )?search|best of luck (in|with) your|keep your (cv|details) on (file|record)|"
+                 r"high (volume|number) of (applications|applicants)[^.]{0,80}(unfortunately|not|regret)"),
     ("second_stage", r"second(.stage|.round)? interview|2nd(.stage|.round)? interview|final(.stage|.round)? interview|"
                      r"(second|2nd|final) (stage|round) of (the )?(interview|recruitment|selection|process)|"
                      r"(invite|invited|inviting|progress|progressed|progressing|through|move|moved|moving) (you )?"

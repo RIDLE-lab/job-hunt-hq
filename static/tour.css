@@ -339,3 +339,54 @@ html { scroll-behavior: smooth; }
   .w-line[data-scroll] li { opacity: 1; }
 }
 @media (max-width: 700px) { .w-hero-copy { transform: none; opacity: 1; } .w-hero-photo img { transform: translate3d(0, calc(var(--p, 0) * 10%), 0) scale(1.04); } }
+
+/* ================================================================ hero, Nov 2026 (2): words and photo side by side
+   The photo fills the right of the hero and fades into the navy on its left edge, so the headline never sits on
+   her face. On phones the photo sits above the words, cleanly, with no overlap. */
+@media (min-width: 701px) {
+  .w-hero { min-height: min(88vh, 820px); align-items: center; }
+  .w-hero::before { display: none; }
+  .w-hero-photo { left: auto; right: 0; width: 56%; }
+  .w-hero-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, var(--night) 0%, rgba(11,18,64,.55) 22%, rgba(11,18,64,0) 48%),
+                linear-gradient(0deg, rgba(11,18,64,.35), transparent 30%); }
+  .w-hero-photo img { object-position: 50% 30%; }
+  .w-hero-copy { padding: 140px 28px 96px; }
+  .w-hero h1 { max-width: 12ch; font-size: clamp(2.6rem, 4.6vw, 4.4rem); }
+  .w-lead { max-width: 36ch; }
+  [dir="rtl"] .w-hero-photo { right: auto; left: 0; }
+  [dir="rtl"] .w-hero-photo::after { background: linear-gradient(270deg, var(--night) 0%, rgba(11,18,64,.55) 22%, rgba(11,18,64,0) 48%),
+                linear-gradient(0deg, rgba(11,18,64,.35), transparent 30%); }
+  [dir="rtl"] .w-hero::before { display: none; }
+}
+@media (min-width: 701px) and (max-width: 1000px) { .w-hero-photo { width: 50%; } .w-hero h1 { font-size: 2.6rem; } }
+@media (max-width: 700px) {
+  .w-hero::before { display: none; }
+  .w-hero-photo { height: auto; max-height: none; aspect-ratio: 4 / 4.2; overflow: hidden; }
+  .w-hero-photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%;
+    background: linear-gradient(0deg, var(--night), rgba(11,18,64,0)); }
+  .w-hero-photo img, [dir="rtl"] .w-hero-photo img { position: absolute; transform: none !important; }
+  .w-hero-copy { margin-top: 0; padding: 8px 16px 48px; }
+}
+/* steps you haven't scrolled to are softened, not greyed out */
+.w-line[data-scroll] li { opacity: calc(.6 + var(--lit, 0) * .4); }
+/* tour: the active screen's tab fills up while the tour plays on its own */
+.t-tabs button { position: relative; overflow: hidden; }
+.t-tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--signal, #3be3cc);
+  transform: scaleX(0); transform-origin: left; }
+.t-stage.playing .t-tabs button[aria-selected="true"]::after { animation: t-fill var(--dur, 7s) linear forwards; }
+@keyframes t-fill { to { transform: scaleX(1); } }
+[dir="rtl"] .t-tabs button[aria-selected="true"]::after { transform-origin: right; }
+.t-play .i-play { display: none; } .t-play.paused .i-play { display: block; } .t-play.paused .i-pause { display: none; }
+.t-play svg { fill: none; }
+.t-play .i-play { fill: currentColor; stroke: none; }
+@media (prefers-reduced-motion: reduce) { .t-play { display: none; } }
+@media (min-width: 701px) {
+  .w-hero-photo img { z-index: 0; }
+  .w-hero-photo::after { z-index: 1; background: linear-gradient(90deg, var(--night) 0%, rgba(11,18,64,.7) 18%, rgba(11,18,64,0) 45%),
+      linear-gradient(0deg, rgba(11,18,64,.35), transparent 30%); }
+  .w-hero-copy { max-width: 1240px; }
+  .w-hero-copy > * { max-width: min(540px, 40vw); }
+}
+.w-hero-photo::after { z-index: 1; }
+@media (min-width: 701px) { .w-hero-photo { overflow: hidden; } }

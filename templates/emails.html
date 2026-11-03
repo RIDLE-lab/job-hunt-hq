@@ -5,7 +5,7 @@
 {% set email_labels = email_labels if email_labels is defined else dict(status_labels, job_alert="Job alert", other="Other email", second_stage="2nd stage") %}
 <section class="head"><div>
   <h1>Emails</h1>
-  <p class="muted">Recruitment emails found in Gmail, sorted automatically. If one is sorted wrongly, change the application's status on the <a href="{{ url_for('applications_page') }}">Applications</a> page.</p>
+  <p class="muted">Recruitment emails found in your email, sorted automatically. If one is sorted wrongly, change the application's status on the <a href="{{ url_for('applications_page') }}">Applications</a> page.</p>
 </div></section>
 <section class="card">
   {% if events %}
@@ -26,7 +26,7 @@
   </table>
   </div>
   {% else %}
-  <p class="empty">No emails yet. <a href="/settings#gmail">Connect Gmail in My settings</a>, then press <b>Refresh jobs</b>.</p>
+  <p class="empty">No emails yet. <a href="/settings#gmail">Connect your email in My settings</a>, then press <b>Refresh jobs</b>.</p>
   {% endif %}
 </section>
 {% endblock %}

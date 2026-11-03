@@ -344,15 +344,17 @@ def load_settings(user_id=None) -> dict:
     path = settings_path(user_id)
     if not path.exists():
         return {}
+    from .secretbox import open_settings
     with open(path, encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+        return open_settings(yaml.safe_load(f) or {})
 
 
 def save_settings(data: dict, user_id=None):
+    from .secretbox import seal_settings
     path = settings_path(user_id)
     tmp = path.with_suffix(".tmp")
     with open(tmp, "w", encoding="utf-8") as f:
-        yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False)
+        yaml.safe_dump(seal_settings(data), f, allow_unicode=True, sort_keys=False)
     tmp.replace(path)
 
 

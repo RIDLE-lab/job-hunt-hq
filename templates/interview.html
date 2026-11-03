@@ -34,7 +34,7 @@
   <p class="empty">No upcoming interviews right now.</p>
   <p><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Try a quick practice</a></p>
   {% else %}
-  <p class="empty">No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from Gmail, or when you change its status – it appears here with questions for that job.</p>
+  <p class="empty">No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from your email, or when you change its status – it appears here with questions for that job.</p>
   <p><a class="btn" href="{{ url_for('interview_practice', t='general') }}">Try a quick practice</a></p>
   {% endif %}
   {% if past %}

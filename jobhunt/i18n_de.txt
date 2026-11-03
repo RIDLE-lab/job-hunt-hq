@@ -849,3 +849,121 @@ Work history, skills, answers|Werdegang, Fähigkeiten, Antworten
 Build, improve or tailor it|Erstellen, verbessern oder anpassen
 Replies from employers|Antworten von Arbeitgebern
 The browser assistant|Der Browser-Assistent
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your email. Open one to see every email about it.|Jede Stelle, auf die Sie sich dieses Jahr beworben haben: die über Job Hunt HQ gesendeten und die in Ihrem E-Mail-Konto gefundenen. Öffnen Sie eine, um jede E-Mail dazu zu sehen.
+Recruitment emails found in your email, sorted automatically. If one is sorted wrongly, change the application's status on the|Recruiting-E-Mails aus Ihrem E-Mail-Konto, automatisch sortiert. Ist eine falsch einsortiert, ändern Sie den Status der Bewerbung auf der Seite
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from your email, or when you change its status – it appears here with questions for that job.|Noch keine Gespräche. Sobald eine Bewerbung zu Vorauswahl, Test oder Vorstellungsgespräch wechselt – über Ihr E-Mail-Konto oder wenn Sie den Status ändern –, erscheint sie hier mit Fragen zu dieser Stelle.
+Deletes your account and everything stored for you – jobs, applications, emails read from your inbox, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|Löscht Ihr Konto und alles, was für Sie gespeichert ist – Stellen, Bewerbungen, aus Ihrem E-Mail-Konto gelesene E-Mails, Lebenslauf, Anschreiben, Einstellungen und Feedback. Das lässt sich nicht rückgängig machen, laden Sie Ihre Daten also vorher herunter, wenn Sie eine Kopie möchten.
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your mailbox.|E-Mails werden automatisch gelesen, nur um Antworten auf Ihre Bewerbungen und Jobalarm-Mails zu erkennen. Davon werden Absender, Betreff, Datum und eine kurze Vorschau gespeichert. Alle anderen E-Mails werden ignoriert und nichts davon gespeichert. Job Hunt HQ kann in Ihrem E-Mail-Konto nichts senden, ändern oder löschen.
+No person looks at your email through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|Niemand sieht Ihr E-Mail-Konto über Job Hunt HQ an – weder der Betreiber noch andere Nutzer. Alles passiert automatisch, und die Daten jeder Person liegen in einem eigenen, getrennten Speicher. Die Verwaltungsseiten des Betreibers zeigen nur Namen, Benutzernamen und die letzte Anmeldung.
+– disconnect your email in My settings at any time, or stop using the service.|– trennen Sie E-Mail-Konto jederzeit unter Meine Einstellungen oder hören Sie auf, den Dienst zu nutzen.
+Import my 2026 history from my email|Meinen Verlauf 2026 aus Ihrem E-Mail-Konto importieren
+Found in your email|In Ihrem E-Mail-Konto gefunden
+read from your email|aus Ihrem E-Mail-Konto gelesen
+connect your email in|verbinden Sie E-Mail-Konto unter
+– connect your email in|– verbinden Sie E-Mail-Konto unter
+Your email (only if you connect it):|E-Mail-Konto (nur wenn Sie es verbinden):
+Disconnect your email|E-Mail-Konto trennen
+– My settings → Your email|– Meine Einstellungen → E-Mail-Konto
+# Nov 2026: German review fixes
+jobs checked at {time}|Stellen geprüft um {time}
+{n} new jobs came in today.|Heute sind {n} neue Stellen eingegangen.
+{m} matches to look through, and {w} applications waiting to hear back.|{m} passende Stellen zum Durchsehen und {w} Bewerbungen, die auf Antwort warten.
+{m} matches to look through, and 1 application waiting to hear back.|{m} passende Stellen zum Durchsehen und 1 Bewerbung, die auf Antwort wartet.
+{n} new jobs today|{n} neue Stellen heute
+Jobs for you|Stellen für Sie
+{n} jobs to look through, best match first.|{n} Stellen zum Durchsehen, die besten zuerst.
+Have a look at your best matches below, or press Refresh jobs.|Sehen Sie sich unten Ihre besten Treffer an oder klicken Sie auf Aktualisieren.
+Choose the jobs you're looking for|Gesuchte Stellen auswählen
+See all {n} jobs|Alle {n} Stellen ansehen
+Press Refresh jobs and it searches the job sites for you. Every job gets a match score, so the ones that suit you most are at the top – with the reasons why.|Klicken Sie auf „Stellen aktualisieren“, und er durchsucht die Jobbörsen für Sie. Jede Stelle erhält einen Übereinstimmungswert, sodass die passendsten oben stehen – mit Begründung.
+Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.|Ihre Suchen, schon ausgefüllt, auf Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs und den Fachbörsen Ihres Bereichs.
+Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.|Fragen genau zu dieser Stelle. Tippen oder sprechen Sie Ihre Antwort und erhalten Sie eine Punktzahl von 0 bis 10, einen STAR-Check und klare Tipps zur Verbesserung.
+Fit scores|Übereinstimmungswerte
+Fit|Übereinstimmung
+If the link can't be read, fill in the details below and paste the advert text, then press Get job again.|Wenn der Link nicht gelesen werden kann, füllen Sie die Angaben unten aus, fügen Sie den Anzeigentext ein und klicken Sie erneut auf „Stelle abrufen“.
+A small helper that floats on every job site – Indeed, LinkedIn, Reed, NHS Jobs, Workday and the rest. On an advert it scores the job against your details. On an application form it fills in what it can, suggests answers from your own work history and examples, and attaches your CV and letter. It never presses Submit – you always do that.|Ein kleiner Helfer, der auf jeder Jobseite schwebt – Indeed, LinkedIn, Reed, NHS Jobs, Workday und den anderen. Auf einer Anzeige bewertet er die Stelle anhand Ihrer Angaben. Auf einem Bewerbungsformular füllt er aus, was er kann, schlägt Antworten aus Ihrem Werdegang und Ihren Beispielen vor und hängt Lebenslauf und Anschreiben an. Er klickt nie auf Absenden – das tun immer Sie.
+– the round Job Hunt HQ button shows your fit score. Click it to see why, and|– die runde Job-Hunt-HQ-Schaltfläche zeigt Ihren Übereinstimmungswert. Klicken Sie darauf, um zu sehen, warum, und
+Drag the button anywhere on the screen. Press|Ziehen Sie die Schaltfläche an eine beliebige Stelle. Klicken Sie auf
+Practise the questions you're likely to be asked for each job. Type or say your answer and get a score out of 10, what went well, and exactly what to improve – using examples from your own experience.|Üben Sie die Fragen, die Ihnen für jede Stelle wahrscheinlich gestellt werden. Tippen oder sprechen Sie Ihre Antwort und erhalten Sie eine Punktzahl von 0 bis 10, was gut lief und genau, was Sie verbessern können – mit Beispielen aus Ihrer eigenen Erfahrung.
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what|Eine Punktzahl von 0 bis 10 dafür, worauf Interviewer achten: ein echtes Beispiel, die STAR-Form (Situation, Aufgabe, Handlung, Ergebnis), was
+, then press|, dann klicken Sie auf
+Fill in each step, pick a design, and download it as PDF or Word – or tailored to a job you're applying for. Everything here is also used by My career, letters and application forms.|Füllen Sie jeden Schritt aus, wählen Sie ein Design und laden Sie ihn als PDF oder Word herunter – oder angepasst an eine Stelle. Alles, was Sie hier eintragen, nutzen auch „Mein Werdegang“, Ihre Anschreiben und die Bewerbungsformulare.
+Edit it here, then download it to attach, or press|Hier bearbeiten, dann zum Anhängen herunterladen, oder klicken Sie auf
+Press|Klicken Sie auf
+No jobs yet. Press|Noch keine Stellen. Klicken Sie auf
+Quickest way: on any job advert, press the round|Am schnellsten: Klicken Sie auf einer Anzeige auf die runde Schaltfläche
+No jobs yet – press “Add a job”. Placements, part-time work and volunteering all count.|Noch keine Stellen – klicken Sie auf „Stelle hinzufügen“. Praktika, Teilzeit und Ehrenamt zählen alle.
+No qualifications yet – press “Add a qualification”.|Noch keine Abschlüsse – klicken Sie auf „Abschluss hinzufügen“.
+(comma-separated – used to score how well each job fits)|(durch Kommas getrennt – damit wird die Übereinstimmung jeder Stelle bewertet)
+No cover letter yet. Press|Noch kein Anschreiben. Klicken Sie auf
+{role} at {company}, {n} match|{role} bei {company}, Übereinstimmung {n}
+A score out of 10 on what interviewers listen for: a real example, the STAR shape (Situation, Task, Action, Result), what you did yourself, a result, the right length.|Eine Punktzahl von 0 bis 10 dafür, worauf Interviewer achten: ein echtes Beispiel, die STAR-Form (Situation, Aufgabe, Handlung, Ergebnis), was Sie selbst getan haben, ein Ergebnis, die richtige Länge.
+If the link can't be read, fill in the details below and paste the advert text, then press Add this job again.|Wenn der Link nicht gelesen werden kann, füllen Sie die Angaben unten aus, fügen Sie den Anzeigentext ein und klicken Sie erneut auf „Diese Stelle hinzufügen“.
+Review queue|Zur Freigabe
+Waiting|Ausstehend
+Moving forward|Im Verfahren
+All fits|Alle
+Stretch|Herausfordernd
+Shortcuts|Schnellzugriff
+Job title|Stellenbezeichnung
+Where your best matches are in {country}|Wo Ihre besten Treffer liegen – {country}
+None of your best matches say where in {country} they are yet|Keiner Ihrer besten Treffer nennt bisher einen Ort – {country}
+(needs AI switched on by the owner)|(nur, wenn der Betreiber die KI eingeschaltet hat)
+Quickest way: on the job page in LinkedIn or Indeed, click your|Am schnellsten: Klicken Sie auf der Stellenseite bei LinkedIn oder Indeed auf Ihr Lesezeichen
+bookmark (|(
+, then click your|, dann klicken Sie im Formular auf Ihr Lesezeichen
+bookmark on the form (or copy the answers on the right).|(oder kopieren Sie die Antworten rechts).
+Your CV with the skills and achievements this advert asks for put first – nothing added.|Ihr Lebenslauf – mit den Fähigkeiten und Erfolgen, die diese Anzeige verlangt, ganz oben. Nichts wird hinzugefügt.
+(one per line)|(eine pro Zeile)
+Make one at|Erstellen Sie eines auf
+Email me the best new jobs after each refresh|Mir nach jeder Aktualisierung die besten neuen Stellen per E-Mail senden
+Hide titles containing|Titel ausblenden, die Folgendes enthalten
+– on|– aktiv
+Empty = current|Leer = aktuell
+Empty = in progress|Leer = laufend
+folder.|aus.
+page.|.
+What happened, or what would make it better? The more detail the better.|Was ist passiert, oder was würde es verbessern? Je genauer, desto besser.
+https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…|https://www.linkedin.com/jobs/view/… oder https://uk.indeed.com/viewjob?jk=…
+Paste the job description here (on the job page: select the advert text, Ctrl+C, then Ctrl+V here)|Stellenbeschreibung hier einfügen (auf der Stellenseite: Anzeigentext markieren, Strg+C, dann hier Strg+V)
+Paste the job description here|Stellenbeschreibung hier einfügen
+e.g. £30,000 – £34,000|z. B. 30.000 £ – 34.000 £
+Job or application link|Link zur Stelle oder Bewerbung
+# Nov 2026 (3)
+A quick look at each part of Job Hunt HQ. It moves on by itself – or pick any screen.|Ein kurzer Blick auf jeden Teil von Job Hunt HQ. Es läuft von selbst weiter – oder wählen Sie eine Ansicht.
+Connect your email|E-Mail-Konto verbinden
+Connect your email in My settings|Verbinden Sie Ihr E-Mail-Konto unter Meine Einstellungen
+Connect your email – Gmail, Yahoo, iCloud and more – and Job Hunt HQ sorts replies from employers: received, interview, assessment, offer or rejected. Your applications update automatically, and if one is sorted wrongly you can change it in one click.|Verbinden Sie Ihr E-Mail-Konto – Gmail, Yahoo, iCloud und weitere – und Job Hunt HQ ordnet die Antworten von Arbeitgebern zu: eingegangen, Gespräch, Test, Angebot oder Absage. Ihre Bewerbungen werden automatisch aktualisiert, und ist eine Antwort falsch eingeordnet, ändern Sie sie mit einem Klick.
+Fix any reply in one click|Jede Antwort mit einem Klick korrigieren
+I'm 16 or over, and I agree to the|Ich bin mindestens 16 Jahre alt und stimme den
+Interview dates on your Home page|Gesprächstermine auf Ihrer Startseite
+No one can promise you an offer. Job Hunt HQ helps you apply for the jobs that are right for you, keep track of every reply and prepare for each interview – so you go in with your best chance.|Niemand kann Ihnen ein Angebot versprechen. Job Hunt HQ hilft Ihnen, sich auf die passenden Stellen zu bewerben, jede Antwort im Blick zu behalten und sich auf jedes Gespräch vorzubereiten – damit Sie mit den besten Chancen hineingehen.
+Nothing waiting for you.|Nichts wartet auf Sie.
+Only you can see your details in Job Hunt HQ. Download everything or delete your account whenever you like.|Nur Sie sehen Ihre Angaben in Job Hunt HQ. Laden Sie alles herunter oder löschen Sie Ihr Konto, wann immer Sie möchten.
+Replies from employers are tracked for you. When an interview comes up, practise the questions for that job and get tips to improve.|Antworten von Arbeitgebern werden für Sie verfolgt. Steht ein Gespräch an, üben Sie die Fragen zu dieser Stelle und erhalten Tipps zur Verbesserung.
+Replies from employers show here once your email is connected.|Antworten von Arbeitgebern erscheinen hier, sobald Ihr E-Mail-Konto verbunden ist.
+Sorted automatically – no person reads them|Automatisch sortiert – kein Mensch liest sie
+Use it in the language you prefer, on your computer or your phone.|Nutzen Sie es in Ihrer bevorzugten Sprache, am Computer oder auf dem Handy.
+When an employer replies, Job Hunt HQ reads it and updates the application for you. If it’s an interview invitation, the date goes on your Home page and practice questions for that job are ready. If a reply is ever sorted wrongly, you can change it in one click.|Wenn ein Arbeitgeber antwortet, liest Job Hunt HQ die Nachricht und aktualisiert die Bewerbung für Sie. Ist es eine Einladung zum Gespräch, erscheint der Termin auf Ihrer Startseite und Übungsfragen zu dieser Stelle stehen bereit. Wird eine Antwort einmal falsch eingeordnet, ändern Sie das mit einem Klick.
+Your details, the jobs Job Hunt HQ looks for, and your email. Only you can see these.|Ihre Angaben, die gesuchten Stellen und Ihr E-Mail-Konto. Nur Sie sehen diese.
+Pause the tour|Rundgang anhalten
+Play the tour|Rundgang abspielen
+Search (Ctrl K)|Suchen (Strg K)
+Search|Suchen
+Dear Hiring Manager,|Sehr geehrte Damen und Herren,
+Available in several languages, and in {countries} countries, each with its own job sites.|In mehreren Sprachen verfügbar und in {countries} Ländern, jedes mit eigenen Jobbörsen.
+Tick the box to confirm you're 16 or over and agree to the terms.|Setzen Sie das Häkchen, um zu bestätigen, dass Sie mindestens 16 sind und den Bedingungen zustimmen.
+Stop job emails · Job Hunt HQ|Stellen-E-Mails abbestellen · Job Hunt HQ
+Done – no more job emails|Erledigt – keine Stellen-E-Mails mehr
+You won't get the "new jobs" emails any more. You can turn them back on any time in My settings.|Sie erhalten die E-Mails „neue Stellen“ nicht mehr. Sie können sie jederzeit unter Meine Einstellungen wieder einschalten.
+Sign in to Job Hunt HQ|Bei Job Hunt HQ anmelden
+Stop the job emails?|Stellen-E-Mails abbestellen?
+You'll stop getting the email with your best new jobs after each refresh. Nothing else changes.|Sie erhalten nach einer Aktualisierung keine E-Mail mit Ihren besten neuen Stellen mehr. Sonst ändert sich nichts.
+Stop these emails|Diese E-Mails abbestellen
+waiting {n} days|wartet seit {n} Tagen
+waiting 1 day|wartet seit 1 Tag
+Fill in each step, pick a design, and download it as a PDF or Word file – or as a version tailored to a job you're applying for. My career, your cover letters and application forms all use what you enter here.|Füllen Sie jeden Schritt aus, wählen Sie ein Design und laden Sie ihn als PDF- oder Word-Datei herunter – oder als angepasste Version für eine Stelle. „Mein Werdegang“, Ihre Anschreiben und die Bewerbungsformulare nutzen alles, was Sie hier eintragen.
+The details Apply for me uses to fill in “My Experience” pages: work history, education, skills and languages. They came from your CV – keep them up to date and every application from now on will use them.|Die Angaben, mit denen „Für mich bewerben“ Seiten wie „Meine Erfahrung“ ausfüllt: Berufserfahrung, Ausbildung, Fähigkeiten und Sprachen. Sie stammen aus Ihrem Lebenslauf – halten Sie sie aktuell, dann nutzt jede künftige Bewerbung sie.
+Only you can see your details. Your emails are sorted automatically – no person reads them. You can download everything or delete your account at any time.|Nur Sie sehen Ihre Angaben. Ihre E-Mails werden automatisch sortiert – kein Mensch liest sie. Sie können jederzeit alles herunterladen oder Ihr Konto löschen.
+Your CV, with the skills and achievements this advert asks for moved to the top. Nothing is added.|Ihr Lebenslauf – mit den Fähigkeiten und Erfolgen, die diese Anzeige verlangt, ganz oben. Nichts wird hinzugefügt.
+Add your work history, for better cover letters|Berufserfahrung angeben – für bessere Anschreiben

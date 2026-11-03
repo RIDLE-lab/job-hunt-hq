@@ -872,3 +872,68 @@ Work history, skills, answers|Werkervaring, vaardigheden, antwoorden
 Build, improve or tailor it|Maken, verbeteren of aanpassen
 Replies from employers|Reacties van werkgevers
 The browser assistant|De browserassistent
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your email. Open one to see every email about it.|Elke functie waarop je dit jaar hebt gesolliciteerd: die je via Job Hunt HQ verstuurde, en die in je e-mail zijn gevonden. Open er een om elke e-mail erover te zien.
+Recruitment emails found in your email, sorted automatically. If one is sorted wrongly, change the application's status on the|Wervingsmails uit je e-mail, automatisch gesorteerd. Staat er een verkeerd, wijzig dan de status van de sollicitatie op de pagina
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from your email, or when you change its status – it appears here with questions for that job.|Nog geen gesprekken. Zodra een sollicitatie naar Voorselectie, Assessment of Gesprek gaat – via je e-mail, of als je de status wijzigt – verschijnt hij hier met vragen voor die baan.
+Deletes your account and everything stored for you – jobs, applications, emails read from your inbox, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|Verwijdert je account en alles wat voor je is bewaard – vacatures, sollicitaties, e-mails uit je e-mail, cv, brieven, instellingen en feedback. Dit kan niet ongedaan worden gemaakt, dus download eerst je gegevens als je een kopie wilt.
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your mailbox.|e-mails worden automatisch gelezen, alleen om reacties op je sollicitaties en vacaturemeldingen te herkennen. Daarvan bewaart het de afzender, het onderwerp, de datum en een korte preview. Alle andere e-mails worden genegeerd en daarvan wordt niets bewaard. Job Hunt HQ kan niets verzenden, wijzigen of verwijderen in je e-mail.
+No person looks at your email through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|Niemand kijkt via Job Hunt HQ in je e-mail – niet de eigenaar en niet andere gebruikers. Alles gebeurt automatisch, en de gegevens van ieder worden apart bewaard. De beheerpagina's van de eigenaar tonen alleen namen, gebruikersnamen en wanneer mensen voor het laatst inlogden.
+– disconnect your email in My settings at any time, or stop using the service.|– ontkoppel je e-mail op elk moment bij Mijn instellingen, of stop met de dienst.
+Import my 2026 history from my email|Mijn geschiedenis van 2026 uit je e-mail importeren
+Found in your email|Gevonden in je e-mail
+read from your email|gelezen uit je e-mail
+connect your email in|koppel je e-mail bij
+– connect your email in|– koppel je e-mail bij
+Your email (only if you connect it):|je e-mail (alleen als je het koppelt):
+Disconnect your email|je e-mail ontkoppelen
+– My settings → Your email|– Mijn instellingen → je e-mail
+# Nov 2026 (3)
+A quick look at each part of Job Hunt HQ. It moves on by itself – or pick any screen.|Een korte blik op elk onderdeel van Job Hunt HQ. Het loopt vanzelf door – of kies zelf een scherm.
+Connect your email|Koppel je e-mail
+Connect your email in My settings|Koppel je e-mail bij Mijn instellingen
+Connect your email – Gmail, Yahoo, iCloud and more – and Job Hunt HQ sorts replies from employers: received, interview, assessment, offer or rejected. Your applications update automatically, and if one is sorted wrongly you can change it in one click.|Koppel je e-mail – Gmail, Yahoo, iCloud en meer – en Job Hunt HQ sorteert de reacties van werkgevers: ontvangen, gesprek, assessment, aanbod of afwijzing. Je sollicitaties worden automatisch bijgewerkt, en staat er een verkeerd, dan pas je dat met één klik aan.
+Fix any reply in one click|Elke reactie met één klik aanpassen
+I'm 16 or over, and I agree to the|Ik ben 16 jaar of ouder en ga akkoord met de
+Interview dates on your Home page|Gespreksdata op je startpagina
+No one can promise you an offer. Job Hunt HQ helps you apply for the jobs that are right for you, keep track of every reply and prepare for each interview – so you go in with your best chance.|Niemand kan je een aanbod beloven. Job Hunt HQ helpt je solliciteren op de vacatures die bij je passen, elke reactie bij te houden en je op elk gesprek voor te bereiden – zodat je met de beste kans naar binnen gaat.
+Nothing waiting for you.|Er wacht niets op je.
+Only you can see your details in Job Hunt HQ. Download everything or delete your account whenever you like.|Alleen jij ziet je gegevens in Job Hunt HQ. Download alles of verwijder je account wanneer je wilt.
+Replies from employers are tracked for you. When an interview comes up, practise the questions for that job and get tips to improve.|Reacties van werkgevers worden voor je bijgehouden. Komt er een gesprek, oefen dan de vragen voor die vacature en krijg tips om beter te worden.
+Replies from employers show here once your email is connected.|Reacties van werkgevers verschijnen hier zodra je e-mail gekoppeld is.
+Sorted automatically – no person reads them|Automatisch gesorteerd – niemand leest ze
+Use it in the language you prefer, on your computer or your phone.|Gebruik het in de taal die je wilt, op je computer of je telefoon.
+When an employer replies, Job Hunt HQ reads it and updates the application for you. If it’s an interview invitation, the date goes on your Home page and practice questions for that job are ready. If a reply is ever sorted wrongly, you can change it in one click.|Als een werkgever reageert, leest Job Hunt HQ het en werkt de sollicitatie voor je bij. Is het een uitnodiging voor een gesprek, dan komt de datum op je startpagina en staan oefenvragen voor die vacature klaar. Staat een reactie verkeerd, dan pas je het met één klik aan.
+Your details, the jobs Job Hunt HQ looks for, and your email. Only you can see these.|Je gegevens, de vacatures waar Job Hunt HQ naar zoekt en je e-mail. Alleen jij ziet dit.
+Pause the tour|Rondleiding pauzeren
+Play the tour|Rondleiding afspelen
+Search (Ctrl K)|Zoeken (Ctrl K)
+Search|Zoeken
+Dear Hiring Manager,|Geachte heer, mevrouw,
+Available in several languages, and in {countries} countries, each with its own job sites.|Beschikbaar in meerdere talen en in {countries} landen, elk met eigen vacaturesites.
+Tick the box to confirm you're 16 or over and agree to the terms.|Vink het vakje aan om te bevestigen dat je 16 of ouder bent en akkoord gaat met de voorwaarden.
+Stop job emails · Job Hunt HQ|Vacaturemails stoppen · Job Hunt HQ
+Done – no more job emails|Klaar – geen vacaturemails meer
+You won't get the "new jobs" emails any more. You can turn them back on any time in My settings.|Je krijgt de mails ‘nieuwe vacatures’ niet meer. Je kunt ze altijd weer aanzetten bij Mijn instellingen.
+Sign in to Job Hunt HQ|Inloggen bij Job Hunt HQ
+Stop the job emails?|Vacaturemails stoppen?
+You'll stop getting the email with your best new jobs after each refresh. Nothing else changes.|Je krijgt na elke vernieuwing geen mail meer met je beste nieuwe vacatures. Verder verandert er niets.
+Stop these emails|Stop deze mails
+Empty = current|Leeg = huidig
+Empty = in progress|Leeg = bezig
+What happened, or what would make it better? The more detail the better.|Wat gebeurde er, of wat zou het beter maken? Hoe meer details, hoe beter.
+https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…|https://www.linkedin.com/jobs/view/… of https://uk.indeed.com/viewjob?jk=…
+Paste the job description here (on the job page: select the advert text, Ctrl+C, then Ctrl+V here)|Plak hier de vacaturetekst (op de vacaturepagina: selecteer de tekst, Ctrl+C, dan hier Ctrl+V)
+Paste the job description here|Plak hier de vacaturetekst
+e.g. £30,000 – £34,000|bijv. £30.000 – £34.000
+Job or application link|Link naar vacature of sollicitatie
+Where your best matches are in {country}|Waar je beste matches zitten – {country}
+None of your best matches say where in {country} they are yet|Geen van je beste matches noemt nog een plaats – {country}
+folder.|.
+page.|.
+waiting {n} days|wacht al {n} dagen
+waiting 1 day|wacht al 1 dag
+Fill in each step, pick a design, and download it as a PDF or Word file – or as a version tailored to a job you're applying for. My career, your cover letters and application forms all use what you enter here.|Vul elke stap in, kies een ontwerp en download het als pdf of Word – of als versie afgestemd op een vacature. Mijn loopbaan, je motivatiebrieven en sollicitatieformulieren gebruiken allemaal wat je hier invult.
+The details Apply for me uses to fill in “My Experience” pages: work history, education, skills and languages. They came from your CV – keep them up to date and every application from now on will use them.|De gegevens die ‘Solliciteer voor mij’ gebruikt om pagina’s als ‘Mijn ervaring’ in te vullen: werkervaring, opleiding, vaardigheden en talen. Ze komen uit je cv – houd ze bij, dan gebruikt elke volgende sollicitatie ze.
+Only you can see your details. Your emails are sorted automatically – no person reads them. You can download everything or delete your account at any time.|Alleen jij ziet je gegevens. Je e-mails worden automatisch gesorteerd – niemand leest ze. Je kunt op elk moment alles downloaden of je account verwijderen.
+Your CV, with the skills and achievements this advert asks for moved to the top. Nothing is added.|Je cv, met de vaardigheden en prestaties die deze vacature vraagt bovenaan. Er wordt niets toegevoegd.
+Add your work history, for better cover letters|Voeg je werkervaring toe, voor betere brieven

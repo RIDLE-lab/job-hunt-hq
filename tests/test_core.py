@@ -469,7 +469,7 @@ def test_accounts_keep_data_apart():
     assert r.status_code == 200
     code = accounts.invites()[0]["code"]
     c2 = A.app.test_client()
-    r = c2.post("/join", data={"code": code, "name": "Sam Test", "email": "sam@example.com", "username": "samtest",
+    r = c2.post("/join", data={"agree": "yes", "code": code, "name": "Sam Test", "email": "sam@example.com", "username": "samtest",
                                 "password": "a-long-password-1", "password2": "a-long-password-1"},
                 headers={"Origin": "http://localhost"})
     assert r.status_code == 302 and r.headers["Location"].endswith("/welcome")
@@ -861,7 +861,7 @@ def test_languages_countries_and_places():
         "5 vagas para analisar e 2 candidaturas à espera de resposta."
     assert i18n.phrase("Good morning", "de") == "Guten Morgen" and i18n.phrase("Good morning", "en") == "Good morning"
     from datetime import date as _d
-    assert i18n.date_label(_d(2026, 11, 2), "fr") == "lun 02 nov 2026"
+    assert i18n.date_label(_d(2026, 11, 2), "fr") == "lun 2 nov 2026" and i18n.date_label(_d(2026, 11, 2), "de") == "Mo., 2. November 2026"
     page = i18n.translate("<p>See all 12 applications</p><small>No account needed · A step up from your level</small>", "es")
     assert "Ver las 12 candidaturas" in page and "Sin cuenta · Un paso por encima de tu nivel" in page
     dash = c.get("/").data.decode()
@@ -1150,6 +1150,40 @@ def test_review_queue():
         assert conn.execute("SELECT status FROM applications WHERE job_id = ?", (jid,)).fetchone()[0] == "applied"
         conn.execute("DELETE FROM applications WHERE job_id = ?", (jid,))
         conn.execute("DELETE FROM jobs WHERE id = ?", (jid,))
+
+
+def test_rejections_not_interviews():
+    """Polite rejections that mention an interview in passing are sorted as rejections."""
+    from jobhunt.classify import classify
+    no = ["After careful consideration, we have decided to progress with other candidates whose experience more closely matches our requirements.",
+          "We will not be inviting you to interview on this occasion. We wish you every success in your job search.",
+          "We were unable to invite you for an interview as the position has now been filled.",
+          "We won't be progressing your application. We'll keep your details on file."]
+    assert all(classify("Your application", t, "hr@acme.co.uk") == "rejected" for t in no)
+    assert classify("Interview invitation", "We'd like to invite you to an interview on Tuesday at 10am.", "hr@acme.co.uk") == "interview"
+
+
+def test_secrets_encrypted_and_email_stop():
+    """Saved email passwords are encrypted on disk; every job email carries a working one-click stop link."""
+    import yaml
+    from jobhunt import accounts, notify
+    from jobhunt.config import as_user
+    c, uid = owner_client()
+    s = accounts.load_settings(uid)
+    s.setdefault("email", {}).update(gmail_app_password="abcdabcdabcdabcd", enabled=True)
+    accounts.save_settings(s, uid)
+    raw = yaml.safe_load(accounts.settings_path(uid).read_text())
+    assert raw["email"]["gmail_app_password"].startswith("enc:v1:") and "abcd" not in raw["email"]["gmail_app_password"]
+    assert accounts.load_settings(uid)["email"]["gmail_app_password"] == "abcdabcdabcdabcd"
+    import app as A
+    with A.app.test_request_context():
+        token = A._stop_signer().dumps(str(uid))
+    subject, html, text = notify.build([{"id": 1, "title": "HR Advisor", "company": "Acme", "score": 80}], stop="https://x/email/stop/t")
+    assert "Stop these emails" in html and "https://x/email/stop/t" in text
+    anon = A.app.test_client()
+    assert anon.get(f"/email/stop/{token}").status_code == 200 and anon.get("/email/stop/forged").status_code == 404
+    anon.post(f"/email/stop/{token}")
+    assert accounts.load_settings(uid)["email"]["enabled"] is False
 
 
 if __name__ == "__main__":

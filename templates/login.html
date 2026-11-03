@@ -80,8 +80,8 @@
       <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" required>
       <label for="password2">Type it again</label>
       <input id="password2" name="password2" type="password" autocomplete="new-password" minlength="10" required>
-      <p class="muted small login-note">By creating an account you agree to the <a href="{{ url_for('legal', page='terms') }}">Terms of use</a>
-        and the <a href="{{ url_for('privacy') }}">Privacy notice</a>.</p>
+      <label class="check agree"><input type="checkbox" name="agree" value="yes" required> <span>I'm 16 or over, and I agree to the
+        <a href="{{ url_for('legal', page='terms') }}">Terms of use</a> and the <a href="{{ url_for('privacy') }}">Privacy notice</a>.</span></label>
       <button class="btn btn-primary">Create my account</button>
       <p class="muted small login-note">Already have an account? <a href="{{ url_for('login') }}">Sign in</a>.</p>
 

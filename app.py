@@ -37,7 +37,7 @@ from jobhunt import countries, geo, i18n  # noqa: E402
 OCCUPATIONS_JSON = occupations.as_json()
 
 # Pages anyone may open without signing in.
-OPEN_ENDPOINTS = {"login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language",
+OPEN_ENDPOINTS = {"email_stop", "login", "static", "manifest", "favicon", "legal", "first_account", "join", "reset_password", "privacy", "set_language",
                   "cookie_choice",
                   "tour"}
 # The browser buttons and the robot's file links carry each person's private token instead of a sign-in.
@@ -302,7 +302,8 @@ def join(code):
         error = ("That invite code isn't valid or has been used. Ask for a new one." if not accounts.invite_ok(code) else "") or \
             ("Add your name." if not f["name"] else "") or accounts.username_problem(f["username"]) or \
             accounts.password_problem(f["password"], f["username"]) or \
-            ("The two passwords don't match." if f["password"] != f["password2"] else "")
+            ("The two passwords don't match." if f["password"] != f["password2"] else "") or \
+            ("Tick the box to confirm you're 16 or over and agree to the terms." if request.form.get("agree") != "yes" else "")
         if not error and not accounts.claim_invite(code):
             error = "That invite code isn't valid or has been used. Ask for a new one."
         if not error:
@@ -1022,7 +1023,8 @@ def nice_date(iso) -> str:
         return str(iso or "")
     lang = current_lang() if has_request_context() else "en"
     month = i18n.MONTHS[lang].split()[d.month - 1] if lang in i18n.MONTHS else f"{d:%b}"
-    return f"{d.day} {month}" + ("" if d.year == date.today().year else f" {d.year}")
+    day = f"{d.day}." if lang == "de" else str(d.day)            # German writes "14. Okt"
+    return f"{day} {month}" + ("" if d.year == date.today().year else f" {d.year}")
 
 
 def ago(iso) -> str:
@@ -1105,7 +1107,7 @@ def _overview(c) -> dict:
     events = [dict(r) for r in c.execute(
         "SELECT e.*, a.company AS app_company, a.role AS app_role FROM events e "
         "LEFT JOIN applications a ON a.id = e.application_id "
-        "WHERE e.category NOT IN ('other', 'job_alert') ORDER BY e.received_at DESC LIMIT 4")]
+        "WHERE e.category NOT IN ('other', 'job_alert') ORDER BY e.received_at DESC LIMIT 3")]
     pipeline = [(key, label, sum(counts.get(s, 0) for s in sts)) for key, label, sts in APP_GROUPS if sts and key != "withdrawn"]
     meta = {"last_refresh": db.get_meta(c, "last_refresh"), "last_gmail": db.get_meta(c, "last_gmail_sync")}
     return {"apps": apps, "jobs": jobs, "kpis": kpis, "counts": counts, "attention": attention, "letters": letters,
@@ -1130,7 +1132,7 @@ def _setup_steps() -> list[dict]:
         {"done": bool(prof.get("name") and prof.get("location")), "label": "Add your name and where you live", "href": "/settings"},
         {"done": bool(search.get("keywords")), "label": "Choose the jobs you're looking for", "href": "/settings"},
         {"done": has_cv, "label": "Upload or create your CV", "href": url_for("cv_builder")},
-        {"done": has_career, "label": "Add your work history (it writes better letters)", "href": url_for("career_page")},
+        {"done": has_career, "label": "Add your work history, for better cover letters", "href": url_for("career_page")},
         {"done": bool((cfg.get("gmail") or {}).get("enabled")), "label": "Connect your email to track replies (optional)",
          "href": "/settings#gmail"},
     ]
@@ -1443,6 +1445,38 @@ def job_skip(job_id):
     c.close()
     flash("Job hidden.")
     return redirect(url_for("jobs_page"))
+
+
+# ------------------------------------------------------------------ stop the job emails (one click, no sign-in)
+def _stop_signer():
+    from itsdangerous import URLSafeSerializer
+    return URLSafeSerializer(app.secret_key, salt="email-stop")
+
+
+def email_stop_link(uid) -> str:
+    base = os.environ.get("JOBHUNT_URL", "").rstrip("/") or ("https://www.jhhq.co.uk" if HOSTED else "")
+    return f"{base}/email/stop/{_stop_signer().dumps(str(uid))}" if base else ""
+
+
+notify.STOP_LINK = email_stop_link
+
+
+@app.route("/email/stop/<token>", methods=["GET", "POST"])
+def email_stop(token):
+    """The link at the bottom of every job email: turns the emails off. The link only works for the person it was sent to."""
+    try:
+        uid = _stop_signer().loads(token)
+    except Exception:
+        abort(404)
+    done = False
+    if request.method == "POST":
+        from jobhunt.config import as_user
+        with as_user(int(uid) if str(uid).isdigit() else uid):
+            s = accounts.load_settings(current_user_id())
+            s.setdefault("email", {})["enabled"] = False
+            accounts.save_settings(s, current_user_id())
+        done = True
+    return render_template("email_stop.html", token=token, done=done)
 
 
 # ------------------------------------------------------------------ review queue

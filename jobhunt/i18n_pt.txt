@@ -847,3 +847,68 @@ Work history, skills, answers|Experiência, competências, respostas
 Build, improve or tailor it|Crie, melhore ou adapte
 Replies from employers|Respostas de empregadores
 The browser assistant|O assistente do navegador
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your email. Open one to see every email about it.|Cada função a que se candidatou este ano: as enviadas pelo Job Hunt HQ e as encontradas no seu email. Abra uma para ver todos os e-mails sobre ela.
+Recruitment emails found in your email, sorted automatically. If one is sorted wrongly, change the application's status on the|E-mails de recrutamento encontrados no seu email, organizados automaticamente. Se algum estiver mal classificado, altere o estado da candidatura na página
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from your email, or when you change its status – it appears here with questions for that job.|Ainda sem entrevistas. Quando uma candidatura passa para Pré-seleção, Avaliação ou Entrevista – pelo o seu email ou quando altera o estado – aparece aqui com perguntas para essa vaga.
+Deletes your account and everything stored for you – jobs, applications, emails read from your inbox, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|Elimina a sua conta e tudo o que está guardado para si – vagas, candidaturas, e-mails lidos do seu email, CV, cartas, definições e comentários. Não pode ser anulado, por isso descarregue primeiro os seus dados se quiser uma cópia.
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your mailbox.|os e-mails são lidos automaticamente, apenas para reconhecer respostas às suas candidaturas e alertas de emprego. Desses guarda o remetente, o assunto, a data e uma pequena pré-visualização. Todos os outros são ignorados e nada é guardado. O Job Hunt HQ não pode enviar, alterar nem eliminar nada no seu email.
+No person looks at your email through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|Ninguém vê o seu email através do Job Hunt HQ – nem o proprietário nem outros utilizadores. Tudo acontece automaticamente e os dados de cada pessoa ficam num espaço separado. As páginas de administração do proprietário mostram apenas nomes, nomes de utilizador e o último início de sessão.
+– disconnect your email in My settings at any time, or stop using the service.|– desligue o o seu email em As minhas definições a qualquer momento ou deixe de usar o serviço.
+Import my 2026 history from my email|Importar o meu histórico de 2026 do seu email
+Found in your email|Encontrado no seu email
+read from your email|lidos do seu email
+connect your email in|ligue o o seu email em
+– connect your email in|– ligue o o seu email em
+Your email (only if you connect it):|o seu email (só se o ligar):
+Disconnect your email|Desligar o o seu email
+– My settings → Your email|– As minhas definições → o seu email
+# Nov 2026 (3)
+A quick look at each part of Job Hunt HQ. It moves on by itself – or pick any screen.|Uma visão rápida de cada parte do Job Hunt HQ. Avança sozinho – ou escolha um ecrã.
+Connect your email|Ligue o seu email
+Connect your email in My settings|Ligue o seu email em As minhas definições
+Connect your email – Gmail, Yahoo, iCloud and more – and Job Hunt HQ sorts replies from employers: received, interview, assessment, offer or rejected. Your applications update automatically, and if one is sorted wrongly you can change it in one click.|Ligue o seu email – Gmail, Yahoo, iCloud e outros – e o Job Hunt HQ organiza as respostas dos empregadores: recebida, entrevista, avaliação, oferta ou rejeição. As suas candidaturas atualizam-se sozinhas e, se alguma ficar mal classificada, corrige-a com um clique.
+Fix any reply in one click|Corrija qualquer resposta com um clique
+I'm 16 or over, and I agree to the|Tenho 16 anos ou mais e aceito os
+Interview dates on your Home page|As datas das entrevistas na sua página inicial
+No one can promise you an offer. Job Hunt HQ helps you apply for the jobs that are right for you, keep track of every reply and prepare for each interview – so you go in with your best chance.|Ninguém lhe pode prometer uma oferta. O Job Hunt HQ ajuda-o a candidatar-se às vagas certas para si, a acompanhar cada resposta e a preparar cada entrevista – para entrar com a melhor hipótese possível.
+Nothing waiting for you.|Nada à sua espera.
+Only you can see your details in Job Hunt HQ. Download everything or delete your account whenever you like.|Só você vê os seus dados no Job Hunt HQ. Descarregue tudo ou elimine a sua conta quando quiser.
+Replies from employers are tracked for you. When an interview comes up, practise the questions for that job and get tips to improve.|As respostas dos empregadores são acompanhadas por si. Quando surge uma entrevista, pratique as perguntas dessa vaga e receba dicas para melhorar.
+Replies from employers show here once your email is connected.|As respostas dos empregadores aparecem aqui assim que ligar o seu email.
+Sorted automatically – no person reads them|Organizadas automaticamente – ninguém as lê
+Use it in the language you prefer, on your computer or your phone.|Use-o no idioma que preferir, no computador ou no telemóvel.
+When an employer replies, Job Hunt HQ reads it and updates the application for you. If it’s an interview invitation, the date goes on your Home page and practice questions for that job are ready. If a reply is ever sorted wrongly, you can change it in one click.|Quando um empregador responde, o Job Hunt HQ lê a mensagem e atualiza a candidatura por si. Se for um convite para entrevista, a data aparece na sua página inicial e as perguntas de treino para essa vaga ficam prontas. Se alguma resposta ficar mal classificada, corrige-a com um clique.
+Your details, the jobs Job Hunt HQ looks for, and your email. Only you can see these.|Os seus dados, as vagas que o Job Hunt HQ procura e o seu email. Só você os vê.
+Pause the tour|Pausar a visita
+Play the tour|Reproduzir a visita
+Search (Ctrl K)|Pesquisar (Ctrl K)
+Search|Pesquisar
+Dear Hiring Manager,|Exmo./a. Responsável pelo Recrutamento,
+Available in several languages, and in {countries} countries, each with its own job sites.|Disponível em vários idiomas e em {countries} países, cada um com os seus próprios sites de emprego.
+Tick the box to confirm you're 16 or over and agree to the terms.|Assinale a caixa para confirmar que tem 16 anos ou mais e aceita os termos.
+Stop job emails · Job Hunt HQ|Parar os emails de vagas · Job Hunt HQ
+Done – no more job emails|Feito – sem mais emails de vagas
+You won't get the "new jobs" emails any more. You can turn them back on any time in My settings.|Deixará de receber os emails de «novas vagas». Pode voltar a ativá-los a qualquer momento em As minhas definições.
+Sign in to Job Hunt HQ|Entrar no Job Hunt HQ
+Stop the job emails?|Parar os emails de vagas?
+You'll stop getting the email with your best new jobs after each refresh. Nothing else changes.|Deixará de receber o email com as suas melhores vagas novas depois de cada atualização. Nada mais muda.
+Stop these emails|Parar estes emails
+Empty = current|Vazio = atual
+Empty = in progress|Vazio = em curso
+What happened, or what would make it better? The more detail the better.|O que aconteceu, ou o que o tornaria melhor? Quanto mais detalhes, melhor.
+https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…|https://www.linkedin.com/jobs/view/… ou https://uk.indeed.com/viewjob?jk=…
+Paste the job description here (on the job page: select the advert text, Ctrl+C, then Ctrl+V here)|Cole aqui a descrição da vaga (na página da vaga: selecione o texto, Ctrl+C e depois Ctrl+V aqui)
+Paste the job description here|Cole aqui a descrição da vaga
+e.g. £30,000 – £34,000|ex.: 30 000 £ – 34 000 £
+Job or application link|Link da vaga ou da candidatura
+Where your best matches are in {country}|Onde estão as suas melhores correspondências – {country}
+None of your best matches say where in {country} they are yet|Nenhuma das suas melhores correspondências indica ainda um local – {country}
+folder.|.
+page.|.
+waiting {n} days|à espera há {n} dias
+waiting 1 day|à espera há 1 dia
+Fill in each step, pick a design, and download it as a PDF or Word file – or as a version tailored to a job you're applying for. My career, your cover letters and application forms all use what you enter here.|Preencha cada passo, escolha um modelo e descarregue-o em PDF ou Word – ou numa versão adaptada a uma vaga. O meu percurso, as suas cartas de apresentação e os formulários de candidatura usam tudo o que escrever aqui.
+The details Apply for me uses to fill in “My Experience” pages: work history, education, skills and languages. They came from your CV – keep them up to date and every application from now on will use them.|Os dados que «Candidatar-me por mim» usa para preencher páginas como «A minha experiência»: percurso, formação, competências e idiomas. Vieram do seu CV – mantenha-os atualizados e todas as candidaturas futuras vão usá-los.
+Only you can see your details. Your emails are sorted automatically – no person reads them. You can download everything or delete your account at any time.|Só você vê os seus dados. Os seus emails são organizados automaticamente – ninguém os lê. Pode descarregar tudo ou eliminar a sua conta a qualquer momento.
+Your CV, with the skills and achievements this advert asks for moved to the top. Nothing is added.|O seu CV, com as competências e conquistas que este anúncio pede no topo. Nada é acrescentado.
+Add your work history, for better cover letters|Adicione o seu percurso, para melhores cartas

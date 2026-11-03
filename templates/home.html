@@ -116,7 +116,7 @@
     <div class="card-head"><h2 id="best-h">Best matches</h2>
       {% if kpis.strong %}<span class="pill pill-interview">{{ t('{n} strong fits', n=kpis.strong) if kpis.strong != 1 else t('1 strong fit') }}</span>{% endif %}</div>
     {% if jobs %}
-    <ul class="jobs">{% for j in jobs[:6] %}{{ job_row(j, compact=True) }}{% endfor %}</ul>
+    <ul class="jobs">{% for j in jobs[:8] %}{{ job_row(j, compact=True) }}{% endfor %}</ul>
     <p class="card-foot"><a class="btn btn-primary" href="{{ url_for('jobs_page') }}">{{ t('See all {n} jobs', n=kpis.matches) }}</a>
       <a class="btn btn-ghost" href="{{ url_for('everywhere') }}">Search every job site</a></p>
     {% else %}
@@ -157,7 +157,7 @@
         {% endfor %}
       </ul>
       {% else %}
-      <p class="empty">Replies from employers show here once Gmail is connected. <a href="/settings#gmail">Connect Gmail</a>.</p>
+      <p class="empty">Replies from employers show here once your email is connected. <a href="/settings#gmail">Connect your email</a>.</p>
       {% endif %}
     </section>
   </div>

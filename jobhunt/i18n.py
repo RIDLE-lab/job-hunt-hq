@@ -155,7 +155,13 @@ def phrase(text: str, lang: str, **values) -> str:
         return text.format(**values)
 
 
+DE_MONTHS = "Januar Februar März April Mai Juni Juli August September Oktober November Dezember"
+
+
 def date_label(d, lang: str) -> str:
+    """Home's date line, the way each language writes it: 'Tue 3 Nov 2026', 'Di., 3. November 2026'."""
+    if lang == "de":
+        return f"{DAYS['de'].split()[d.weekday()]}., {d.day}. {DE_MONTHS.split()[d.month - 1]} {d.year}"
     if lang not in DAYS:
-        return d.strftime("%a %d %b %Y")
-    return f"{DAYS[lang].split()[d.weekday()]} {d.day:02d} {MONTHS[lang].split()[d.month - 1]} {d.year}"
+        return f"{d:%a} {d.day} {d:%b} {d.year}"
+    return f"{DAYS[lang].split()[d.weekday()]} {d.day} {MONTHS[lang].split()[d.month - 1]} {d.year}"

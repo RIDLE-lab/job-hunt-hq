@@ -6,7 +6,7 @@
     <p class="back"><a href="{{ url_for('jobs_page') }}">← All jobs</a></p>
     <h1>Review queue</h1>
     <p class="muted">{% if queue %}{{ t('{n} strong matches ready, each with its cover letter written.', n=queue|length) if queue|length != 1 else t('1 strong match ready, with its cover letter written.') }}{% else %}Nothing waiting for you.{% endif %}
-      Check it, approve it, and press Submit on the employer's form yourself.</p>
+      <span>Check it, approve it, and press Submit on the employer's form yourself.</span></p>
   </div>
   {% if queue %}<p class="rv-count" aria-live="polite"><b>{{ queue|length }}</b><span>to review</span></p>{% endif %}
 </header>

@@ -1232,3 +1232,68 @@ Work history, skills, answers|الخبرة والمهارات والإجابات
 Build, improve or tailor it|أنشئها أو حسّنها أو خصّصها
 Replies from employers|ردود أصحاب العمل
 The browser assistant|مساعد المتصفح
+Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in your email. Open one to see every email about it.|كل وظيفة قدّمت عليها هذا العام: ما أرسلته عبر Job Hunt HQ، وما وُجد في بريدك الإلكتروني. افتح أيًّا منها لترى كل رسائلها.
+Recruitment emails found in your email, sorted automatically. If one is sorted wrongly, change the application's status on the|رسائل التوظيف الموجودة في بريدك الإلكتروني، مرتّبة تلقائيًا. إذا رُتّبت رسالة بشكل خاطئ، غيّر حالة الطلب في صفحة
+No interviews yet. When an application moves to Pre-screening, Assessment or Interview – from your email, or when you change its status – it appears here with questions for that job.|لا مقابلات بعد. عندما ينتقل طلب إلى «الفرز الأولي» أو «التقييم» أو «المقابلة» – من بريدك الإلكتروني أو عندما تغيّر حالته – يظهر هنا مع أسئلة لتلك الوظيفة.
+Deletes your account and everything stored for you – jobs, applications, emails read from your inbox, CV, letters, settings and feedback. This can't be undone, so download your data first if you want a copy.|يحذف حسابك وكل ما حُفظ لك – الوظائف والطلبات والرسائل المقروءة من بريدك الإلكتروني والسيرة الذاتية والخطابات والإعدادات والملاحظات. لا يمكن التراجع عن ذلك، فنزّل بياناتك أولًا إن أردت نسخة.
+emails are read automatically, only to recognise replies about your job applications and job-alert emails. For those it keeps the sender, subject, date and a short preview. Every other email is ignored and nothing is saved from it. Job Hunt HQ can't send, change or delete anything in your mailbox.|تُقرأ الرسائل تلقائيًا، فقط للتعرّف على الردود على طلباتك ورسائل تنبيهات الوظائف. ويُحتفظ منها بالمرسل والموضوع والتاريخ ومعاينة قصيرة. تُتجاهل كل الرسائل الأخرى ولا يُحفظ منها شيء. لا يستطيع Job Hunt HQ إرسال أي شيء أو تغييره أو حذفه في بريدك الإلكتروني.
+No person looks at your email through Job Hunt HQ – not the owner and not other users. Everything happens automatically, and each person's data is kept in its own separate store. The owner's admin pages show only names, usernames and when people last signed in.|لا يطّلع أي شخص على بريدك الإلكتروني الخاص بك عبر Job Hunt HQ – لا المالك ولا المستخدمون الآخرون. كل شيء يجري تلقائيًا، وبيانات كل شخص محفوظة في مخزن منفصل. صفحات إدارة المالك لا تعرض إلا الأسماء وأسماء المستخدمين وآخر تسجيل دخول.
+– disconnect your email in My settings at any time, or stop using the service.|– افصل بريدك الإلكتروني من «إعداداتي» في أي وقت، أو توقّف عن استخدام الخدمة.
+Import my 2026 history from my email|استيراد سجلّي لعام 2026 من بريدك الإلكتروني
+Found in your email|موجود في بريدك الإلكتروني
+read from your email|مقروءة من بريدك الإلكتروني
+connect your email in|اربط بريدك الإلكتروني في
+– connect your email in|– اربط بريدك الإلكتروني في
+Your email (only if you connect it):|بريدك الإلكتروني (فقط إذا ربطته):
+Disconnect your email|افصل بريدك الإلكتروني
+– My settings → Your email|– إعداداتي ← بريدك الإلكتروني
+# Nov 2026 (3)
+A quick look at each part of Job Hunt HQ. It moves on by itself – or pick any screen.|نظرة سريعة على كل جزء من Job Hunt HQ. ينتقل وحده – أو اختر أي شاشة.
+Connect your email|اربط بريدك الإلكتروني
+Connect your email in My settings|اربط بريدك الإلكتروني في «إعداداتي»
+Connect your email – Gmail, Yahoo, iCloud and more – and Job Hunt HQ sorts replies from employers: received, interview, assessment, offer or rejected. Your applications update automatically, and if one is sorted wrongly you can change it in one click.|اربط بريدك الإلكتروني – Gmail وYahoo وiCloud وغيرها – وسيرتّب Job Hunt HQ ردود أصحاب العمل: استلام، مقابلة، تقييم، عرض أو رفض. تتحدّث طلباتك تلقائيًا، وإذا صُنّف رد بشكل خاطئ يمكنك تغييره بنقرة واحدة.
+Fix any reply in one click|صحّح أي رد بنقرة واحدة
+I'm 16 or over, and I agree to the|عمري 16 عامًا أو أكثر، وأوافق على
+Interview dates on your Home page|مواعيد المقابلات على صفحتك الرئيسية
+No one can promise you an offer. Job Hunt HQ helps you apply for the jobs that are right for you, keep track of every reply and prepare for each interview – so you go in with your best chance.|لا أحد يستطيع أن يعدك بعرض عمل. يساعدك Job Hunt HQ على التقديم للوظائف المناسبة لك، ومتابعة كل رد، والاستعداد لكل مقابلة – لتدخلها بأفضل فرصة ممكنة.
+Nothing waiting for you.|لا شيء بانتظارك.
+Only you can see your details in Job Hunt HQ. Download everything or delete your account whenever you like.|أنت فقط ترى بياناتك في Job Hunt HQ. نزّل كل شيء أو احذف حسابك متى شئت.
+Replies from employers are tracked for you. When an interview comes up, practise the questions for that job and get tips to improve.|تُتابَع ردود أصحاب العمل نيابةً عنك. وعندما تأتي مقابلة، تدرّب على أسئلة تلك الوظيفة واحصل على نصائح للتحسّن.
+Replies from employers show here once your email is connected.|تظهر ردود أصحاب العمل هنا بمجرد ربط بريدك الإلكتروني.
+Sorted automatically – no person reads them|تُرتَّب تلقائيًا – لا يقرؤها أي شخص
+Use it in the language you prefer, on your computer or your phone.|استخدمه باللغة التي تفضّلها، على حاسوبك أو هاتفك.
+When an employer replies, Job Hunt HQ reads it and updates the application for you. If it’s an interview invitation, the date goes on your Home page and practice questions for that job are ready. If a reply is ever sorted wrongly, you can change it in one click.|عندما يردّ صاحب العمل، يقرأ Job Hunt HQ الرد ويحدّث الطلب نيابةً عنك. وإذا كانت دعوة لمقابلة، يظهر الموعد على صفحتك الرئيسية وتكون أسئلة التدريب لتلك الوظيفة جاهزة. وإذا صُنّف رد بشكل خاطئ، يمكنك تغييره بنقرة واحدة.
+Your details, the jobs Job Hunt HQ looks for, and your email. Only you can see these.|بياناتك، والوظائف التي يبحث عنها Job Hunt HQ، وبريدك الإلكتروني. أنت فقط ترى ذلك.
+Pause the tour|أوقف الجولة مؤقتًا
+Play the tour|شغّل الجولة
+Search (Ctrl K)|بحث (Ctrl K)
+Search|بحث
+Dear Hiring Manager,|السيد/السيدة مسؤول التوظيف المحترم،
+Available in several languages, and in {countries} countries, each with its own job sites.|متاح بعدة لغات وفي {countries} دولة، ولكل منها مواقع التوظيف الخاصة بها.
+Tick the box to confirm you're 16 or over and agree to the terms.|ضع علامة في المربع لتأكيد أن عمرك 16 عامًا أو أكثر وأنك توافق على الشروط.
+Stop job emails · Job Hunt HQ|إيقاف رسائل الوظائف · Job Hunt HQ
+Done – no more job emails|تم – لن تصلك رسائل الوظائف بعد الآن
+You won't get the "new jobs" emails any more. You can turn them back on any time in My settings.|لن تصلك رسائل «الوظائف الجديدة» بعد الآن. يمكنك إعادة تشغيلها في أي وقت من «إعداداتي».
+Sign in to Job Hunt HQ|سجّل الدخول إلى Job Hunt HQ
+Stop the job emails?|إيقاف رسائل الوظائف؟
+You'll stop getting the email with your best new jobs after each refresh. Nothing else changes.|لن تصلك بعد الآن رسالة بأفضل الوظائف الجديدة بعد كل تحديث. لا شيء آخر يتغيّر.
+Stop these emails|أوقف هذه الرسائل
+Empty = current|فارغ = حالي
+Empty = in progress|فارغ = قيد الدراسة
+What happened, or what would make it better? The more detail the better.|ماذا حدث، أو ما الذي سيجعله أفضل؟ كلما زادت التفاصيل كان أفضل.
+https://www.linkedin.com/jobs/view/… or https://uk.indeed.com/viewjob?jk=…|https://www.linkedin.com/jobs/view/… أو https://uk.indeed.com/viewjob?jk=…
+Paste the job description here (on the job page: select the advert text, Ctrl+C, then Ctrl+V here)|الصق وصف الوظيفة هنا (في صفحة الوظيفة: حدّد نص الإعلان، ثم Ctrl+C، ثم Ctrl+V هنا)
+Paste the job description here|الصق وصف الوظيفة هنا
+e.g. £30,000 – £34,000|مثال: 30,000 – 34,000 جنيه إسترليني
+Job or application link|رابط الوظيفة أو الطلب
+Where your best matches are in {country}|أماكن أفضل الوظائف المطابقة لك – {country}
+None of your best matches say where in {country} they are yet|لم تذكر أيّ من أفضل الوظائف المطابقة لك مكانًا بعد – {country}
+folder.|.
+page.|.
+waiting {n} days|بانتظار الرد منذ {n} يومًا
+waiting 1 day|بانتظار الرد منذ يوم واحد
+Fill in each step, pick a design, and download it as a PDF or Word file – or as a version tailored to a job you're applying for. My career, your cover letters and application forms all use what you enter here.|املأ كل خطوة، واختر تصميمًا، ونزّلها بصيغة PDF أو Word – أو بنسخة مخصّصة لوظيفة تتقدّم إليها. يستخدم «مسيرتي المهنية» وخطابات التقديم ونماذج الطلبات كل ما تُدخله هنا.
+The details Apply for me uses to fill in “My Experience” pages: work history, education, skills and languages. They came from your CV – keep them up to date and every application from now on will use them.|البيانات التي يستخدمها «قدّم عني» لملء صفحات مثل «خبرتي»: الخبرة العملية والتعليم والمهارات واللغات. جاءت من سيرتك الذاتية – حدّثها باستمرار وستستخدمها كل طلباتك القادمة.
+Only you can see your details. Your emails are sorted automatically – no person reads them. You can download everything or delete your account at any time.|أنت فقط ترى بياناتك. تُرتَّب رسائلك تلقائيًا – لا يقرؤها أي شخص. يمكنك تنزيل كل شيء أو حذف حسابك في أي وقت.
+Your CV, with the skills and achievements this advert asks for moved to the top. Nothing is added.|سيرتك الذاتية، مع المهارات والإنجازات التي يطلبها هذا الإعلان في الأعلى. لا يُضاف شيء.
+Add your work history, for better cover letters|أضف خبرتك العملية لخطابات تقديم أفضل

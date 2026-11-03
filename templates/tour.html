@@ -54,7 +54,6 @@
       <a class="btn btn-signal w-big" href="#join">Join with an invite code</a>
       <a class="btn w-ghost w-big" href="#how">See how it works</a>
     </div>
-    <p class="w-facts">{{ t('{titles} job titles across {fields} fields, and help changing career.', titles=n_titles, fields=n_sectors) }}</p>
   </div>
 </section>
 
@@ -75,10 +74,10 @@
         <p>Your cover letter is already written. The assistant fills in the application form. You check it and press Submit.</p></li>
       <li style="--i: 3"><span class="w-node">4</span>
         <h3>Walk in prepared</h3>
-        <p>Replies are tracked for you, so nothing is missed. Then practise the questions for that job and get tips to improve.</p></li>
+        <p>Replies from employers are tracked for you. When an interview comes up, practise the questions for that job and get tips to improve.</p></li>
       <li style="--i: 4"><span class="w-node">5</span>
         <h3>Get the job</h3>
-        <p>Nobody can promise an offer. But you’ll apply to the right jobs, never miss a reply and walk in prepared – the best chance you can give yourself.</p></li>
+        <p>No one can promise you an offer. Job Hunt HQ helps you apply for the jobs that are right for you, keep track of every reply and prepare for each interview – so you go in with your best chance.</p></li>
     </ol>
   </div>
 </section>
@@ -87,7 +86,7 @@
 <section class="w-sec w-tour" id="tour" aria-roledescription="carousel" aria-label="A closer look at Job Hunt HQ">
   <div class="w-in">
     <h2>The tour</h2>
-    <p class="w-intro">Ten screens, one for each part of Job Hunt HQ. Go at your own pace.</p>
+    <p class="w-intro">A quick look at each part of Job Hunt HQ. It moves on by itself – or pick any screen.</p>
 
     {% set slides = [
       ('Any job, anywhere', t('Pick from {titles} job titles across {fields} fields – warehouse, care, law, IT, retail, HR and more – or type your own. Tell it where you live and how far you’ll travel.', titles=n_titles, fields=n_sectors), ['Works for career changers too', 'Places are checked as you type', n_countries ~ ' countries, each with its own job sites']),
@@ -95,11 +94,11 @@
       ('Every job site in one place', 'Your searches, already filled in, on Indeed, LinkedIn, Reed, Totaljobs, CV-Library, NHS Jobs and the specialist sites for your field.', ['The right sites for your country', 'Set up job alerts in a click', 'Save any advert you find']),
       ('Your cover letter, already written', 'Open a job and the cover letter is waiting – written from your real experience and matched to the advert. Edit it, then download it as PDF or Word.', ['Never invents experience', 'Paste any job description to get one', 'Tailored CV for each job too']),
       ('The assistant fills it in', 'A small helper appears on job sites. It fills in your details, attaches your CV and cover letter, and suggests answers to the questions – from your own history.', ['You always press Submit yourself', 'Personal questions are left to you', 'Only appears on job sites']),
-      ('Every reply tracked', 'Connect your email – Gmail, Yahoo, iCloud and more – and replies sort themselves: received, interview, assessment, offer or rejected. Your applications update without you lifting a finger.', ['Nobody reads your emails', 'See what needs you next', 'Your whole year at a glance']),
+      ('Every reply tracked', 'Connect your email – Gmail, Yahoo, iCloud and more – and Job Hunt HQ sorts replies from employers: received, interview, assessment, offer or rejected. Your applications update automatically, and if one is sorted wrongly you can change it in one click.', ['Sorted automatically – no person reads them', 'See what needs you next', 'Fix any reply in one click']),
       ('Practise for the interview', 'Questions for that exact job. Type or speak your answer and get a score out of 10, a STAR check and clear tips to improve.', ['Answer out loud', 'Examples from your own history', 'See yourself improve']),
       ('A CV that fits', 'Build a CV from scratch, or upload yours or your LinkedIn profile and improve it. Pick a design, then tailor it to each job.', ['Three clean designs', 'PDF or Word', 'Suggestions to make it stronger']),
-      ('Your language, your phone', 'Use it in English, Français, Deutsch, Nederlands, Español, Português or العربية – on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
-      ('Private by design', 'Your details are only ever seen by you. Download everything or delete your account whenever you like.', ['UK GDPR rights built in', 'Nothing sold or shared', 'Invite-only accounts']),
+      ('Your language, your phone', 'Use it in the language you prefer, on your computer or your phone.', ['Add it to your home screen', 'Works on any device', 'Switch language any time']),
+      ('Private by design', 'Only you can see your details in Job Hunt HQ. Download everything or delete your account whenever you like.', ['UK GDPR rights built in', 'Nothing sold or shared', 'Invite-only accounts']),
     ] %}
 
     <div class="t-stage" data-scroll>
@@ -182,6 +181,7 @@
       <div class="t-controls">
         <button type="button" class="t-btn" data-prev aria-label="Previous screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
         <p class="t-count" aria-live="polite" dir="ltr"><b data-count>1</b> / {{ slides|length }}</p>
+        <button type="button" class="t-btn t-play" data-play aria-label="Pause the tour"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg><span hidden data-say-pause>Pause the tour</span><span hidden data-say-play>Play the tour</span></button>
         <button type="button" class="t-btn" data-next aria-label="Next screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
@@ -197,10 +197,10 @@
     </picture>
     <div class="w-band-copy">
       <h2>Never miss the call back</h2>
-      <p>When an employer replies, Job Hunt HQ notices. The application moves to Interview, the date goes on your Home page, and practice questions for that job are ready before you are.</p>
+      <p>When an employer replies, Job Hunt HQ reads it and updates the application for you. If it’s an interview invitation, the date goes on your Home page and practice questions for that job are ready. If a reply is ever sorted wrongly, you can change it in one click.</p>
       <ul class="w-ticks">
         <li>Replies sorted from your inbox automatically</li>
-        <li>Interview dates you can’t lose</li>
+        <li>Interview dates on your Home page</li>
         <li>Questions for that exact job</li>
       </ul>
     </div>
@@ -230,7 +230,7 @@
           ('Interview prep', 'Practise questions for the job, speak or type your answer, get a score and tips.'),
         ]),
         ('Your way', [
-          ('Languages and countries', t('{langs} languages, including Arabic, and {countries} countries, each with its own job sites.', langs=langs|length, countries=n_countries)),
+          ('Languages and countries', t('Available in several languages, and in {countries} countries, each with its own job sites.', countries=n_countries)),
           ('Phone and computer', 'Use it anywhere, and add it to your phone’s home screen like an app.'),
           ('Private and secure', 'Only you see your data. Download it or delete it at any time.'),
         ]),
@@ -252,7 +252,7 @@
       ('Who is it for?', 'Anyone looking for work – whatever the job, whether you’re starting out, moving up or changing career.'),
       ('Does it apply for me automatically?', 'It does the work – finds jobs, writes letters, fills in forms – but you always check and press Submit yourself. Questions about you personally (health, diversity, criminal record) are always left for you.'),
       ('Will it make things up about me?', 'No. Letters, answers and CV suggestions only use what you’ve told it about your own experience.'),
-      ('Is my data safe?', 'Only you can see your details. Nobody reads your emails – not even the people who run it. You can download everything or delete your account at any time.'),
+      ('Is my data safe?', 'Only you can see your details. Your emails are sorted automatically – no person reads them. You can download everything or delete your account at any time.'),
       ('Does it work on my phone?', 'Yes. Open it in your phone’s browser and add it to your home screen to use it like an app.'),
       ('How do I get an invite code?', t('Ask the person who told you about Job Hunt HQ, or email {email}.', email=contact)),
     ] %}
@@ -376,20 +376,40 @@
     strip.scrollTo({ left: b - (strip.clientWidth - tabs[n].offsetWidth) / 2, behavior: calm ? 'auto' : 'smooth' });
     if (focusTab) tabs[n].focus({ preventScroll: true });
     animate(slides[n]);
+    schedule();
   }
-  document.querySelector('[data-prev]').addEventListener('click', () => go(n - 1));
-  document.querySelector('[data-next]').addEventListener('click', () => go(n + 1));
-  tabs.forEach((b) => b.addEventListener('click', () => go(+b.dataset.go)));
+  /* it moves on by itself every few seconds while you can see it; pick a screen, swipe or press pause and it stops */
+  const tour = document.querySelector('.t-stage'), play = document.querySelector('[data-play]'), DUR = 7000;
+  let playing = !calm, inView = false, hovered = false, timer = null;
+  function schedule() {
+    clearTimeout(timer);
+    const run = playing && inView && !hovered && !document.hidden;
+    tour.classList.remove('playing'); void tour.offsetWidth;
+    tour.classList.toggle('playing', run);
+    tour.style.setProperty('--dur', DUR + 'ms');
+    play.setAttribute('aria-label', play.querySelector(playing ? '[data-say-pause]' : '[data-say-play]').textContent);
+    play.classList.toggle('paused', !playing);
+    if (run) timer = setTimeout(() => go(n + 1), DUR);
+  }
+  const stop = () => { playing = false; };
+  play.addEventListener('click', () => { playing = !playing; schedule(); });
+  new IntersectionObserver((es) => { inView = es[0].isIntersecting; schedule(); }, { threshold: .4 }).observe(tour);
+  tour.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+  tour.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+  document.addEventListener('visibilitychange', schedule);
+  document.querySelector('[data-prev]').addEventListener('click', () => { stop(); go(n - 1); });
+  document.querySelector('[data-next]').addEventListener('click', () => { stop(); go(n + 1); });
+  tabs.forEach((b) => b.addEventListener('click', () => { stop(); go(+b.dataset.go); }));
   document.querySelector('.t-tabs').addEventListener('keydown', (e) => {
     const rtl = document.documentElement.dir === 'rtl';
-    if (e.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) { e.preventDefault(); go(n + 1, true); }
-    else if (e.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) { e.preventDefault(); go(n - 1, true); }
+    if (e.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) { e.preventDefault(); stop(); go(n + 1, true); }
+    else if (e.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) { e.preventDefault(); stop(); go(n - 1, true); }
   });
   const stage = document.querySelector('.t-slides');
   let sx = null;
   stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx;
-    if (Math.abs(dx) > 50) go(n + ((dx < 0) !== (document.documentElement.dir === 'rtl') ? 1 : -1)); sx = null; });
+    if (Math.abs(dx) > 50) { stop(); go(n + ((dx < 0) !== (document.documentElement.dir === 'rtl') ? 1 : -1)); } sx = null; });
   animate(slides[0]);
 })();
 </script>

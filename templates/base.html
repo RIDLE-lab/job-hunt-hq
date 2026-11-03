@@ -27,7 +27,7 @@
     </a>
     {% set apply_ep = 'assistant_page' if hosted else 'robot_page' %}
     {% set jobs_on = nav_on in ('jobs_page', 'add_job', 'review_page', 'everywhere') %}
-    {% set you_on = nav_on in ('career_page', 'cv_builder', 'emails') or request.endpoint in ('emails', 'assistant_page') %}
+    {% set you_on = nav_on in ('career_page', 'cv_builder') or request.endpoint == 'emails' or (request.endpoint == 'assistant_page' and not hosted) %}
     <nav class="topnav" aria-label="Main">
       <a href="{{ url_for('dashboard') }}" class="{{ 'on' if nav_on == 'dashboard' }}"{% if nav_on == 'dashboard' %} aria-current="page"{% endif %}>Home</a>
       <details class="nav-drop{{ ' on' if jobs_on }}" data-menu>
@@ -53,7 +53,7 @@
       </details>
     </nav>
     <div class="mast-tools">
-      <button type="button" class="tool-btn jump-box" data-palette-open aria-haspopup="dialog" aria-label="Jump to a page">{{ icon('search') }}<kbd>Ctrl K</kbd></button>
+      <button type="button" class="tool-btn jump-box" data-palette-open aria-haspopup="dialog" aria-label="Search" title="Search (Ctrl K)">{{ icon('search') }}</button>
       {% include "_lang_top.html" %}
       <form method="post" action="{{ url_for('refresh') }}" class="refresh-form" onsubmit="this.querySelector('button').classList.add('busy')">
         <button class="btn btn-signal refresh-btn" aria-label="Refresh jobs">{{ icon('refresh') }}<span class="lbl">Refresh jobs</span></button>
@@ -138,7 +138,6 @@
       {% if not hosted %}<a role="menuitem" href="{{ url_for('setup') }}">{{ icon('gear') }}Setup</a>{% endif %}
       {% if is_admin %}<a role="menuitem" href="/people">{{ icon('user') }}People{% if feedback_new %} <span class="fb-count">{{ feedback_new }}</span>{% endif %}</a>{% endif %}
       {% if user %}<a role="menuitem" href="/feedback" data-fb-open>{{ icon('chat') }}Send feedback</a>{% endif %}
-      <div class="lang-pick">{% for code, label in langs %}<a href="{{ url_for('set_language', code=code) }}" class="{{ 'on' if lang == code }}" lang="{{ code }}">{{ label }}</a>{% endfor %}</div>
       <a role="menuitem" href="/account">{{ icon('user') }}Account and password</a>
       <a role="menuitem" href="{{ url_for('logout') }}">{{ icon('out') }}Sign out</a>
     </div>

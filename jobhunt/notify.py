@@ -1,7 +1,7 @@
 """Emails you the new jobs each refresh finds, best match first, with your match percentage.
 
-Sends through your own Gmail with an "app password" (a 16-letter code Google gives you for apps like this).
-Nothing goes anywhere except to your own inbox.
+Sends through your own email account (with the app password you gave it), only to your own inbox. Every email
+says why you're getting it and has a one-click link to stop them.
 """
 from __future__ import annotations
 
@@ -10,6 +10,8 @@ from email.message import EmailMessage
 from html import escape
 
 from .matcher import fit_label
+
+STOP_LINK = None          # set by the app: user id → the one-click "stop these emails" link
 
 FIT_COLOURS = {"Strong fit": "#1e7e46", "Good fit": "#2f6fb0", "Stretch": "#a86a00", "Weak fit": "#8a8f98"}
 
@@ -37,10 +39,13 @@ def ready(cfg: dict) -> tuple[bool, str]:
     return True, ""
 
 
-def send(cfg: dict, subject: str, html: str, text: str):
+def send(cfg: dict, subject: str, html: str, text: str, stop: str = ""):
     e = settings(cfg)
     msg = EmailMessage()
     msg["Subject"], msg["From"], msg["To"] = subject, f"Job Hunt HQ <{e['from']}>", e["to"]
+    if stop:                                     # mail apps show their own "Unsubscribe" button for this
+        msg["List-Unsubscribe"] = f"<{stop}>"
+        msg["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click"
     msg.set_content(text)
     msg.add_alternative(html, subtype="html")
     from . import mail_providers as mp
@@ -52,7 +57,13 @@ def send(cfg: dict, subject: str, html: str, text: str):
         s.send_message(msg)
 
 
-def build(jobs: list[dict], port: int = 5055) -> tuple[str, str, str]:
+def base_url(port: int = 5055) -> str:
+    import os
+    from .config import HOSTED
+    return os.environ.get("JOBHUNT_URL", "").rstrip("/") or ("https://www.jhhq.co.uk" if HOSTED else f"http://127.0.0.1:{port}")
+
+
+def build(jobs: list[dict], port: int = 5055, stop: str = "") -> tuple[str, str, str]:
     """(subject, html, text) for a list of jobs, best first."""
     top = jobs[0]
     subject = (f"{len(jobs)} new job{'s' if len(jobs) != 1 else ''} for you – top match {top['score']}% "
@@ -63,7 +74,7 @@ def build(jobs: list[dict], port: int = 5055) -> tuple[str, str, str]:
         colour = FIT_COLOURS.get(fit, "#8a8f98")
         details = " · ".join(x for x in (j.get("company"), j.get("location"), j.get("salary_text"), j.get("source")) if x)
         why = (j.get("score_reasons") or "").split(" · ")[:3]
-        app_link = f"http://127.0.0.1:{port}/job/{j['id']}"
+        app_link = f"{base_url(port)}/job/{j['id']}"
         rows.append(
             f'<tr><td style="padding:12px 10px;vertical-align:top;width:64px">'
             f'<div style="font:700 20px/1 Segoe UI,Arial,sans-serif;color:{colour}">{j["score"]}%</div>'
@@ -74,11 +85,16 @@ def build(jobs: list[dict], port: int = 5055) -> tuple[str, str, str]:
             f'<span style="color:#5b6577;font-size:12.5px">{escape(" · ".join(why))}</span><br>'
             f'<a href="{app_link}" style="font-size:12.5px;color:#a86a00">Open in Job Hunt HQ</a></td></tr>')
         lines.append(f"{j['score']}% {fit} – {j['title']}, {details}\n  {j.get('url') or app_link}")
+    why = ('You get this email because "Email me the best new jobs after each refresh" is on in your Job Hunt HQ settings.')
+    foot_html = (f'<p style="color:#5b6577;font-size:12px;margin:18px 0 0;border-top:1px solid #e6e8ec;padding-top:12px">{escape(why)} '
+                 + (f'<a href="{escape(stop)}" style="color:#5b6577">Stop these emails</a>' if stop else
+                    'To stop them, untick it in My settings.') + '</p>')
     html = (f'<div style="max-width:640px;margin:0 auto;font-family:Segoe UI,Arial,sans-serif">'
             f'<h2 style="font:600 20px Segoe UI,Arial,sans-serif;color:#1f3a5f;margin:0 0 4px">New jobs matching your CV</h2>'
-            f'<p style="color:#5b6577;font-size:13px;margin:0 0 12px">Best match first. "Open in Job Hunt HQ" works on your PC '
-            f'while the app is running.</p><table style="border-collapse:collapse;width:100%">{"".join(rows)}</table></div>')
-    text = "New jobs matching your CV (best first):\n\n" + "\n\n".join(lines)
+            f'<p style="color:#5b6577;font-size:13px;margin:0 0 12px">Best match first.</p>'
+            f'<table style="border-collapse:collapse;width:100%">{"".join(rows)}</table>{foot_html}</div>')
+    text = ("New jobs matching your CV (best first):\n\n" + "\n\n".join(lines) + "\n\n" + why +
+            (f"\nStop these emails: {stop}" if stop else " To stop them, untick it in My settings."))
     return subject, html, text
 
 
@@ -94,8 +110,14 @@ def send_new_jobs(conn, cfg: dict, since: str, log=print) -> int:
     if not jobs:
         return 0
     port = int((cfg.get("app") or {}).get("port", 5055))
+    stop = ""
     try:
-        send(cfg, *build(jobs, port))
+        from .config import current_user_id
+        stop = STOP_LINK(current_user_id()) if STOP_LINK and current_user_id() is not None else ""
+    except Exception:
+        stop = ""
+    try:
+        send(cfg, *build(jobs, port, stop), stop=stop)
         log(f"Emailed you {len(jobs)} new job{'s' if len(jobs) != 1 else ''}")
         return len(jobs)
     except Exception as ex:

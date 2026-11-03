@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop job emails · Job Hunt HQ</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body class="login-page solo">
+<main class="login-side">
+  <div class="login-box">
+    {% if done %}
+    <h2>Done – no more job emails</h2>
+    <p>You won't get the "new jobs" emails any more. You can turn them back on any time in My settings.</p>
+    <a class="btn btn-primary" href="{{ url_for('login') }}">Sign in to Job Hunt HQ</a>
+    {% else %}
+    <h2>Stop the job emails?</h2>
+    <p>You'll stop getting the email with your best new jobs after each refresh. Nothing else changes.</p>
+    <form method="post"><button class="btn btn-primary">Stop these emails</button></form>
+    {% endif %}
+  </div>
+</main>
+</body>
+</html>

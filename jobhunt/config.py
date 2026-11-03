@@ -102,8 +102,9 @@ def load_config() -> dict:
         settings_file = user_dir(uid) / "settings.yaml"
         mine = {}
         if settings_file.exists():
+            from .secretbox import open_settings
             with open(settings_file, encoding="utf-8") as f:
-                mine = yaml.safe_load(f) or {}
+                mine = open_settings(yaml.safe_load(f) or {})
         for k in PERSONAL_SECTIONS:
             cfg[k] = dict(mine.get(k) or {})
         cfg["builtin"] = bool(mine.get("builtin"))

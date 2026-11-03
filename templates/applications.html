@@ -7,7 +7,7 @@
   <div>
     <h1>Applications</h1>
     <p class="muted">Every role you've applied for this year: the ones you sent through Job Hunt HQ, and the ones found in
-      your Gmail. Open one to see every email about it.</p>
+      your email. Open one to see every email about it.</p>
   </div>
   <dl class="app-figures">
     <div><dt>Applied</dt><dd>{{ total }}</dd></div>
@@ -37,8 +37,8 @@
     {% endif %}
     {% if not history.running %}
     <form method="post" action="{{ url_for('applications_import') }}">
-      <button class="btn">Import my 2026 history from Gmail</button>
-      <button class="btn btn-ghost" name="rebuild" value="1" onclick="return confirm('Re-read all of 2026 from Gmail from scratch? Applications found in emails are rebuilt; the ones you added yourself are kept.')">Re-read everything</button>
+      <button class="btn">Import my 2026 history from my email</button>
+      <button class="btn btn-ghost" name="rebuild" value="1" onclick="return confirm('Re-read all of 2026 from your email from scratch? Applications found in emails are rebuilt; the ones you added yourself are kept.')">Re-read everything</button>
       <span class="muted small">Reads every job email since 1 January – replies, interviews, offers and what you sent – and
         adds anything missing here. It can take 10–20 minutes; you can keep using the app.</span>
     </form>
@@ -71,7 +71,7 @@
             {{ status_badge(a.status, status_labels.get(a.status, a.status)) }}
             <span class="muted small">
               {% if a.applied_on %}Applied {{ a.applied_on|nice_date }}{% endif %}
-              {% if a.status in ('applied', 'acknowledged') and a.days %} · waiting {{ a.days }} day{{ 's' if a.days != 1 }}{% endif %}
+              {% if a.status in ('applied', 'acknowledged') and a.days %} · {{ t('waiting {n} days', n=a.days) if a.days != 1 else t('waiting 1 day') }}{% endif %}
             </span>
           </span>
         </summary>
@@ -117,7 +117,7 @@
               <input type="hidden" name="show" value="{{ group }}">
               <button class="btn btn-ghost danger">Not an application</button>
             </form>
-            {% if a.source == 'gmail' %}<span class="muted tiny">Found in your Gmail</span>{% endif %}
+            {% if a.source == 'gmail' %}<span class="muted tiny">Found in your email</span>{% endif %}
           </div>
         </div>
       </details>

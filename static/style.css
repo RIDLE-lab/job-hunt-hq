@@ -1103,7 +1103,6 @@ h2 { font-weight: 700; }
 
 /* the figures on Home: room to breathe, one row on wide screens */
 .figures { display: grid; grid-template-columns: repeat(5, max-content); column-gap: clamp(20px, 3vw, 40px); row-gap: 18px; }
-.figures > * { padding: 0 !important; border: 0 !important; }
 .figures dt { white-space: nowrap; font-weight: 500; }
 .figures dd { font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 600; }
 @media (max-width: 1100px) and (min-width: 701px) { .figures { grid-template-columns: repeat(3, max-content); } }
@@ -1505,8 +1504,6 @@ html { scrollbar-color: #b7bed6 var(--paper); scrollbar-width: thin; }
 @media (max-width: 1620px) and (min-width: 761px) { body:has(.fb-fab) .save-bar { margin-right: 70px; } [dir="rtl"] body:has(.fb-fab) .save-bar { margin-right: 0; margin-left: 70px; } }
 @media (max-width: 700px) {
   .rv-count { display: none; }
-  .reasons > .why + .why::before, .reasons > .why-skills + .why::before, .reasons > .why + .why-skills > .why-lbl::before { content: none; }
-  .reasons { gap: 6px 12px; }
 }
 
 /* ================================================================ header, Nov 2026: one calm row
@@ -1566,3 +1563,51 @@ html { scrollbar-color: #b7bed6 var(--paper); scrollbar-width: thin; }
 }
 .topnav { overflow: visible; }
 @media (max-width: 1180px) and (min-width: 701px) { .topnav { overflow: visible; } }
+
+/* Home figures: one calm panel, five equal columns, the number above its label */
+.hero-home .figures { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; margin-top: 30px; padding: 6px 0; max-width: 640px;
+  border-radius: 16px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.hero-home .figures > * { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 4px; padding: 14px 18px; border-left: 1px solid rgba(255,255,255,.08); }
+.hero-home .figures > :first-child { border-left: 0; padding-left: 18px; }
+.hero-home .figures dd { margin: 0; font-size: 1.9rem; line-height: 1; }
+.hero-home .figures dt { font-size: .86rem; font-weight: 500; white-space: nowrap; }
+.hero-home .figures > a { border-radius: 0; transition: background-color .15s; }
+.hero-home .figures > a:hover { background: rgba(255,255,255,.05); }
+.hero-home .figures > a:first-child { border-radius: 16px 0 0 16px; } .hero-home .figures > a:last-child { border-radius: 0 16px 16px 0; }
+[dir="rtl"] .hero-home .figures > * { border-left: 0; border-right: 1px solid rgba(255,255,255,.08); }
+[dir="rtl"] .hero-home .figures > :first-child { border-right: 0; }
+.hero-home { align-items: center; }
+.hero-home .radar { width: min(100%, 380px); }
+@media (max-width: 700px) {
+  .hero-home .figures { grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; margin-right: 0; padding: 0; }
+  .hero-home .figures > * { padding: 12px 12px; border-left: 0; border-top: 1px solid rgba(255,255,255,.08); }
+  .hero-home .figures > :nth-child(-n+3) { border-top: 0; }
+  .hero-home .figures > :first-child { padding-left: 12px; }
+  .hero-home .figures dd { font-size: 1.55rem; }
+  .hero-home .figures dt { font-size: .8rem; white-space: normal; }
+  [dir="rtl"] .hero-home .figures > * { border-right: 0; }
+}
+/* phone header: the two buttons sit together at the right, each a proper tap size with a clear icon */
+@media (max-width: 700px) {
+  .topbar .brand { margin-right: auto; }
+  .mast-tools { gap: 10px; }
+  .mast .lang-top > summary, .btn.refresh-btn { width: 44px; height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
+  .refresh-btn .ico, .mast .lang-top > summary .ico { width: 21px; height: 21px; }
+}
+.login-page.solo { grid-template-columns: 1fr; }
+
+/* ================================================================ one design language, Nov 2026
+   The same shapes as the front page everywhere: pill buttons, softly rounded fields, cards with one radius and one
+   shadow. (Later rules in this file used to fight each other; these are the final word.) */
+:root { --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --shadow: 0 24px 48px -28px rgba(11,18,64,.45); }
+.btn { border-radius: 999px; padding: 10px 20px; font-weight: 600; }
+.btn.small { padding: 6px 14px; }
+.copy { border-radius: 999px; padding: 2px 10px; }
+input, select, textarea { border-radius: var(--r-sm); }
+.card { border-radius: var(--r-lg); }
+.step, .setup-list a, .rv-paper, #cover_letter, .history, .rb-q, .row-card, .choice { border-radius: var(--r-md); }
+.card.next, .head + .card, .head + .grid2 > .card:first-child, .head + .card-stack > .card:first-child,
+.job-list, .filter-panel, .job-col > .card:first-child, .job-side-col > .card:first-child, .rv-empty { box-shadow: var(--shadow); }
+.pill, .st, .tag { border-radius: 999px; }
+.tag { padding: 2px 10px; }
+@media (max-width: 700px) { .reasons > .why { display: inline; } .reasons { display: block; } .reasons > .why + .why::before { content: " · "; margin: 0 2px; } }
